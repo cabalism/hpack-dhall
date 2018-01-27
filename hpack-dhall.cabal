@@ -1,0 +1,55 @@
+-- This file has been generated from package.yaml by hpack version 0.22.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: b3c65f9548ae66c45a1e4aa1b7720e64d0a8c5c57542e591cce3af47ef5b7305
+
+name:           hpack-dhall
+version:        0.0.0
+build-type:     Simple
+cabal-version:  >= 1.10
+
+executable hpack-dhall
+  main-is: Main.hs
+  other-modules:
+      Hpack.Dhall
+      Paths_hpack_dhall
+  hs-source-dirs:
+      src
+      driver
+  ghc-options: -Wall
+  build-depends:
+      aeson
+    , base ==4.*
+    , dhall
+    , dhall-json
+    , hpack >=0.23.0
+    , text
+    , transformers
+    , trifecta
+  default-language: Haskell2010
+
+test-suite spec
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Hpack.Dhall
+      Hpack.DhallSpec
+      Paths_hpack_dhall
+  hs-source-dirs:
+      src
+      test
+  ghc-options: -Wall
+  build-depends:
+      aeson
+    , base ==4.*
+    , dhall
+    , dhall-json
+    , hpack >=0.23.0
+    , hspec ==2.*
+    , interpolate
+    , mockery
+    , text
+    , transformers
+    , trifecta
+  default-language: Haskell2010
