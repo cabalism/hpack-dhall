@@ -1,0 +1,31 @@
+sudo: false
+language: generic
+
+addons:
+  apt:
+    sources:
+      - hvr-ghc
+    packages:
+      - ghc-8.0.2
+      - cabal-install-1.24
+      - happy-1.19.5
+
+before_install:
+  - export PATH=$HOME/.tinc/bin:/opt/ghc/8.0.2/bin:/opt/cabal/1.24/bin:/opt/happy/1.19.5/bin:$PATH
+  - curl -sSL https://github.com/sol/tinc/raw/master/get-tinc.sh | bash
+  - tinc --version
+  - ghc --version
+  - cabal --version
+  - happy --version
+  - travis_retry cabal update
+  - sed -i 's/^jobs:/-- jobs:/' ${HOME}/.cabal/config
+
+install:
+  - tinc
+
+script:
+  - cabal configure --enable-tests --ghc-options=-Werror && cabal build && cabal test --show-details=direct
+
+cache:
+  directories:
+    - $HOME/.tinc/cache
