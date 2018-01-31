@@ -1,5 +1,12 @@
 {
   name = "hpack-dhall"
+, version = "0.1.0"
+, maintainer = "Simon Hengel <sol@typeful.net>"
+, license = "PublicDomain"
+, category = "Development"
+, synopsis = "Dhall support for Hpack"
+, description = "This package allows you to use the Dhall configuration language to specify Haskell packages."
+, github = "sol/hpack-dhall"
 
 , ghc-options = "-Wall"
 

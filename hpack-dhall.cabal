@@ -2,13 +2,12 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ec2439a4efe11af9b5938412195841fe9a88a8b28162e908f3fb9fc8e8a771f2
+-- hash: 4d2add4706d3d96a267901c262daa2d38d726c324b9cf4b86bfd1b693dd04f42
 
 name:           hpack-dhall
 version:        0.1.0
 synopsis:       Dhall support for Hpack
-description:    This package allows you to use the Dhall configuration language to specify
-                Haskell packages.
+description:    This package allows you to use the Dhall configuration language to specify Haskell packages.
 category:       Development
 homepage:       https://github.com/sol/hpack-dhall#readme
 bug-reports:    https://github.com/sol/hpack-dhall/issues
