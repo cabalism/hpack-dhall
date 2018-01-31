@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: c298d477b6c09e70c97fdc47ae58b23f965424ab7ecd301c4ab4372a2851cbe7
+-- hash: ec2439a4efe11af9b5938412195841fe9a88a8b28162e908f3fb9fc8e8a771f2
 
 name:           hpack-dhall
 version:        0.1.0
@@ -12,6 +12,7 @@ description:    This package allows you to use the Dhall configuration language 
 category:       Development
 homepage:       https://github.com/sol/hpack-dhall#readme
 bug-reports:    https://github.com/sol/hpack-dhall/issues
+maintainer:     Simon Hengel <sol@typeful.net>
 license:        PublicDomain
 build-type:     Simple
 cabal-version:  >= 1.10
