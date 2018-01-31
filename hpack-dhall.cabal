@@ -1,13 +1,24 @@
--- This file has been generated from package.yaml by hpack version 0.22.0.
+-- This file has been generated from package.yaml by hpack version 0.23.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: b3c65f9548ae66c45a1e4aa1b7720e64d0a8c5c57542e591cce3af47ef5b7305
+-- hash: c298d477b6c09e70c97fdc47ae58b23f965424ab7ecd301c4ab4372a2851cbe7
 
 name:           hpack-dhall
-version:        0.0.0
+version:        0.1.0
+synopsis:       Dhall support for Hpack
+description:    This package allows you to use the Dhall configuration language to specify
+                Haskell packages.
+category:       Development
+homepage:       https://github.com/sol/hpack-dhall#readme
+bug-reports:    https://github.com/sol/hpack-dhall/issues
+license:        PublicDomain
 build-type:     Simple
 cabal-version:  >= 1.10
+
+source-repository head
+  type: git
+  location: https://github.com/sol/hpack-dhall
 
 executable hpack-dhall
   main-is: Main.hs
