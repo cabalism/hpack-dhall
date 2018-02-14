@@ -15,7 +15,7 @@
   , "trifecta"
   , "dhall"
   , "dhall-json"
-  , "hpack >= 0.23.0"
+  , "hpack >= 0.26.0"
   , "transformers"
   , "aeson"
   , "text"

@@ -1,3 +1,4 @@
+{-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE NoMonomorphismRestriction #-}
 module Hpack.Dhall where
 
@@ -8,6 +9,7 @@ import           Data.Aeson
 import qualified Data.Text.Lazy.IO as LT
 import qualified Data.Text as T
 import           Data.Text.Encoding (encodeUtf8)
+import           System.Environment
 import           Text.Trifecta.Delta (Delta(..))
 import qualified Dhall.Parser
 import qualified Dhall.Import
@@ -19,8 +21,8 @@ import qualified Hpack
 packageConfig :: FilePath
 packageConfig = "package.dhall"
 
-readDhall :: FilePath -> IO (Either String Value)
-readDhall file = runExceptT $ do
+decodeDhall :: FilePath -> IO (Either String Value)
+decodeDhall file = runExceptT $ do
   expr <- readInput >>= parseExpr >>= liftIO . Dhall.Import.load
   _ <- liftResult $ Dhall.TypeCheck.typeOf expr
   liftResult $ Dhall.JSON.dhallToJSON expr
@@ -30,4 +32,7 @@ readDhall file = runExceptT $ do
     liftResult = ExceptT . return . first show
 
 main :: IO ()
-main = Hpack.mainWith packageConfig readDhall
+main = do
+  getArgs >>= Hpack.getOptions packageConfig >>= \ case
+    Just (verbose, options) -> Hpack.hpack verbose (Hpack.setDecode decodeDhall options)
+    Nothing -> return ()

@@ -1,8 +1,8 @@
--- This file has been generated from package.dhall by hpack version 0.23.0.
+-- This file has been generated from package.dhall by hpack version 0.26.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 4d2add4706d3d96a267901c262daa2d38d726c324b9cf4b86bfd1b693dd04f42
+-- hash: f761e67d74579bbbdc1341aa931460abda1791c20612594271e79b5164f3e21f
 
 name:           hpack-dhall
 version:        0.1.0
@@ -34,7 +34,7 @@ executable hpack-dhall
     , base ==4.*
     , dhall
     , dhall-json
-    , hpack >=0.23.0
+    , hpack >=0.26.0
     , text
     , transformers
     , trifecta
@@ -56,7 +56,7 @@ test-suite spec
     , base ==4.*
     , dhall
     , dhall-json
-    , hpack >=0.23.0
+    , hpack >=0.26.0
     , hspec ==2.*
     , interpolate
     , mockery
