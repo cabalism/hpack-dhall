@@ -1,8 +1,8 @@
--- This file has been generated from package.dhall by hpack version 0.26.0.
+-- This file has been generated from package.dhall by hpack version 0.28.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: f761e67d74579bbbdc1341aa931460abda1791c20612594271e79b5164f3e21f
+-- hash: 850524cb98d0e828b19d73102519d293c4c82b4afb077a006120e7f9039e4374
 
 name:           hpack-dhall
 version:        0.1.0
@@ -35,9 +35,9 @@ executable hpack-dhall
     , dhall
     , dhall-json
     , hpack >=0.26.0
+    , megaparsec
     , text
     , transformers
-    , trifecta
   default-language: Haskell2010
 
 test-suite spec
@@ -59,8 +59,8 @@ test-suite spec
     , hpack >=0.26.0
     , hspec ==2.*
     , interpolate
+    , megaparsec
     , mockery
     , text
     , transformers
-    , trifecta
   default-language: Haskell2010

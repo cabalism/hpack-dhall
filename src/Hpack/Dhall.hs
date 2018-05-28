@@ -7,10 +7,7 @@ import           Control.Monad.IO.Class
 import           Data.Bifunctor
 import           Data.Aeson
 import qualified Data.Text.Lazy.IO as LT
-import qualified Data.Text as T
-import           Data.Text.Encoding (encodeUtf8)
 import           System.Environment
-import           Text.Trifecta.Delta (Delta(..))
 import qualified Dhall.Parser
 import qualified Dhall.Import
 import qualified Dhall.TypeCheck
@@ -28,7 +25,7 @@ decodeDhall file = runExceptT $ do
   liftResult $ Dhall.JSON.dhallToJSON expr
   where
     readInput = liftIO (LT.readFile file)
-    parseExpr = liftResult . Dhall.Parser.exprFromText (Directed (encodeUtf8 $ T.pack file) 0 0 0 0)
+    parseExpr = liftResult . Dhall.Parser.exprFromText file
     liftResult = ExceptT . return . first show
 
 main :: IO ()
