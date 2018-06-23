@@ -12,7 +12,7 @@
 
 , dependencies = [
     "base == 4.*"
-  , "trifecta"
+  , "megaparsec"
   , "dhall"
   , "dhall-json"
   , "hpack >= 0.26.0"
