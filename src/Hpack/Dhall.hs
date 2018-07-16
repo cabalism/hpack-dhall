@@ -6,7 +6,7 @@ import           Control.Monad.Trans.Except
 import           Control.Monad.IO.Class
 import           Data.Bifunctor
 import           Data.Aeson
-import qualified Data.Text.Lazy.IO as LT
+import qualified Data.Text.IO as T
 import           System.Environment
 import qualified Dhall.Parser
 import qualified Dhall.Import
@@ -24,7 +24,7 @@ decodeDhall file = runExceptT $ do
   _ <- liftResult $ Dhall.TypeCheck.typeOf expr
   liftResult $ Dhall.JSON.dhallToJSON expr
   where
-    readInput = liftIO (LT.readFile file)
+    readInput = liftIO (T.readFile file)
     parseExpr = liftResult . Dhall.Parser.exprFromText file
     liftResult = ExceptT . return . first show
 

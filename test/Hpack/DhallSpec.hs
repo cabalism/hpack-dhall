@@ -23,14 +23,15 @@ spec = do
         |]
         main
         readFile "foo.cabal" `shouldReturn` unindent [i|
+        cabal-version: >= 1.10
+
         -- This file has been generated from package.dhall by hpack version #{showVersion Hpack.version}.
         --
         -- see: https://github.com/sol/hpack
         --
-        -- hash: 19abf59677a84e0a8a49435b80f42f6007f6cdacd2b09c43514ab2b46d6c5927
+        -- hash: 98987c02e53bcdf76e4c3d2912c868d16f30f3115762548e41d337f436ffc1cc
 
         name:           foo
         version:        0.0.0
         build-type:     Simple
-        cabal-version:  >= 1.10
         |]
