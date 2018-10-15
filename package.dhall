@@ -2,12 +2,10 @@
     "hpack-dhall"
 , version =
     "0.3.0"
-, author =
-    "Simon Hengel <sol@typeful.net>"
 , maintainer =
     "Phil de Joux <phil.dejoux@blockscope.com>"
 , copyright =
-    "\u00A9 2017-2018 Simon Hengel, \u00A9 2018 Phil de Joux"
+    "\u00A9 2018 Phil de Joux"
 , license =
     "MPL-2.0"
 , license-file =
