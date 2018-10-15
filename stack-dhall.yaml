@@ -1,0 +1,6 @@
+resolver: lts-12.13
+flags: {}
+packages: []
+extra-deps:
+- dhall-1.16.1
+work-dir: .stack-work-dhall
