@@ -10,3 +10,10 @@ extra-deps:
 - repline-0.2.0.0
 - serialise-0.2.1.0
 - infer-license-0.2.0
+- interpolate-0.2.0
+- haskell-src-meta-0.8.0.3
+# WARNING: Ignoring out of range dependency (allow-newer enabled):
+# base-4.12.0.0. haskell-src-meta requires: >=4.6 && <4.12
+# WARNING: Ignoring out of range dependency (allow-newer enabled):
+# template-haskell-2.14.0.0. haskell-src-meta requires: >=2.8 && <2.14
+allow-newer: true

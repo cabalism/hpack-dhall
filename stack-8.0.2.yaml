@@ -5,7 +5,6 @@ extra-deps:
 - dhall-1.18.0
 - dhall-json-1.2.4
 - cborg-0.2.1.0
-- hpack-0.26.0
 - optparse-applicative-0.14.3.0
 - prettyprinter-1.2.1
 - serialise-0.2.1.0
@@ -14,3 +13,15 @@ extra-deps:
 - aeson-1.2.4.0
 - megaparsec-7.0.1
 - repline-0.2.0.0
+- hpack-0.31.0
+- Cabal-2.4.0.1
+- infer-license-0.2.0
+- yaml-0.11.0.0
+- libyaml-0.1.0.0
+- parsec-3.1.13.0
+- text-1.2.3.1
+# WARNING: Ignoring out of range dependency (allow-newer enabled):
+# yaml-0.11.0.0. dhall-json requires: >=0.5.0 && <0.11
+# WARNING: Ignoring out of range dependency (allow-newer enabled):
+# Cabal-2.4.0.1. cabal-doctest requires: >=1.10 && <2.1
+allow-newer: true

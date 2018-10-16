@@ -1,5 +1,6 @@
 {-# LANGUAGE CPP #-}
 {-# LANGUAGE LambdaCase #-}
+{-# LANGUAGE TupleSections #-}
 {-# LANGUAGE NoMonomorphismRestriction #-}
 {-# LANGUAGE ScopedTypeVariables #-}
 
@@ -25,7 +26,7 @@ type ParseExpr = Expr Dhall.Parser.Src Import
 packageConfig :: FilePath
 packageConfig = "package.dhall"
 
-decodeDhall :: FilePath -> IO (Either String Value)
+decodeDhall :: FilePath -> IO (Either String ([String], Value))
 decodeDhall file = runExceptT $ do
     expr <-
         liftIO (T.readFile file)
@@ -33,7 +34,7 @@ decodeDhall file = runExceptT $ do
         >>= liftIO . Dhall.Import.load
 
     _ <- liftResult $ Dhall.TypeCheck.typeOf expr
-    liftResult $ Dhall.JSON.dhallToJSON expr
+    liftResult $ ([],) <$> Dhall.JSON.dhallToJSON expr
 
 liftResult :: (Show b, Monad m) => Either b a -> ExceptT String m a
 liftResult = ExceptT . return . first show
@@ -47,6 +48,8 @@ main = do
     >>= Hpack.getOptions packageConfig
     >>= \ case
         Just (verbose, options) ->
-            Hpack.hpack verbose (Hpack.setDecode decodeDhall options)
+            Hpack.hpack
+                verbose
+                (Hpack.setDecode decodeDhall options)
         Nothing ->
             return ()

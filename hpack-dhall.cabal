@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ad58b5f062abb26e7602f0d0eabbbe22989c330254b72f55664c3eab738ceb5e
+-- hash: b7b78705448bc0169432ff2a3695fcd227fe47ea3c8e15309759668c6df87477
 
 cabal-version:  >= 1.10
 name:           hpack-dhall
@@ -35,7 +35,7 @@ executable hpack-dhall
     , base ==4.*
     , dhall >=1.18.0
     , dhall-json >=1.2.4
-    , hpack >=0.26.0
+    , hpack >=0.31.0
     , megaparsec >=7.0.1
     , text
     , transformers
@@ -57,7 +57,7 @@ test-suite spec
     , base ==4.*
     , dhall >=1.18.0
     , dhall-json >=1.2.4
-    , hpack >=0.26.0
+    , hpack >=0.31.0
     , hspec ==2.*
     , interpolate
     , megaparsec >=7.0.1
