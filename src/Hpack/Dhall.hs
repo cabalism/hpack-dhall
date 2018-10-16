@@ -13,13 +13,13 @@ import qualified Data.Text as T (Text)
 import qualified Data.Text.IO as T (readFile)
 import System.Environment (getArgs)
 
-#if __GLASGOW_HASKELL__ >= 802
+#if __GLASGOW_HASKELL__ == 802
 import Data.Text.Lazy (fromStrict)
 #endif
 
 import Dhall.Core
     ( Expr
-#if __GLASGOW_HASKELL__ >= 802
+#if __GLASGOW_HASKELL__ == 802
     , Path
 #else
     , Import
@@ -36,7 +36,7 @@ import qualified Hpack (hpack, getOptions, setDecode)
 type ParseExpr =
     Expr
         Dhall.Parser.Src
-#if __GLASGOW_HASKELL__ >= 802
+#if __GLASGOW_HASKELL__ == 802
         Path
 #else
         Import
@@ -63,7 +63,7 @@ parseExpr s =
     liftResult
     $ Dhall.Parser.exprFromText
         mempty
-#if __GLASGOW_HASKELL__ >= 802
+#if __GLASGOW_HASKELL__ == 802
         (fromStrict s)
 #else
         s
