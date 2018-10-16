@@ -19,17 +19,17 @@
 , github =
     "blockscope/hpack-dhall"
 , tested-with =
-    "GHC == 8.2.2"
-, extra-source-files =
+    "GHC == 8.0.2, GHC == 8.2.2, GHC == 8.4.3"
+    , extra-source-files =
     [ "package.dhall", "changelog.md", "README.md" ]
 , ghc-options =
     "-Wall"
 , dependencies =
     [ "base == 4.*"
-    , "megaparsec"
-    , "dhall"
-    , "dhall-json"
-    , "hpack >= 0.26.0"
+    , "megaparsec >= 7.0.1"
+    , "dhall >= 1.18.0"
+    , "dhall-json >= 1.2.4"
+    , "hpack >= 0.31.0"
     , "transformers"
     , "aeson"
     , "text"
