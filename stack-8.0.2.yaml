@@ -1,0 +1,21 @@
+resolver: lts-9.21
+packages:
+- '.'
+extra-deps:
+- dhall-1.17.0
+- dhall-json-1.2.3
+- cborg-0.2.1.0
+- hpack-0.26.0
+- megaparsec-6.5.0
+- optparse-applicative-0.14.3.0
+- prettyprinter-1.2.1
+- serialise-0.2.1.0
+- Glob-0.9.3
+- infer-license-0.2.0
+- parser-combinators-1.0.0
+- libyaml-0.1.0.0
+- parsec-3.1.13.0
+- text-1.2.3.1
+- Cabal-2.0.1.1
+- aeson-1.2.4.0
+- yaml-0.10.4.0
