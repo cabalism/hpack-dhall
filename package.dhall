@@ -14,6 +14,8 @@
     "This package allows you to use the Dhall configuration language to specify Haskell packages."
 , github =
     "sol/hpack-dhall"
+, tested-with =
+    "GHC == 8.0.2, GHC == 8.2.2, GHC == 8.4.3"
 , ghc-options =
     "-Wall"
 , dependencies =
