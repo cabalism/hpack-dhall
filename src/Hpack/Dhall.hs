@@ -1,35 +1,60 @@
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE NoMonomorphismRestriction #-}
+{-# LANGUAGE ScopedTypeVariables #-}
+
 module Hpack.Dhall where
 
-import           Control.Monad.Trans.Except
-import           Control.Monad.IO.Class
-import           Data.Bifunctor
-import           Data.Aeson
-import qualified Data.Text.IO as T
-import           System.Environment
-import qualified Dhall.Parser
-import qualified Dhall.Import
-import qualified Dhall.TypeCheck
-import qualified Dhall.JSON
+import Control.Monad.Trans.Except (ExceptT(..), runExceptT)
+import Control.Monad.IO.Class (liftIO)
+import Data.Bifunctor (first)
+import Data.Aeson (Value)
+import qualified Data.Text as T (Text)
+import qualified Data.Text.IO as T (readFile)
+import System.Environment (getArgs)
+import Dhall.Core (Expr, Import)
+import qualified Dhall.Parser (Src, exprFromText)
+import qualified Dhall.Import (load)
+import qualified Dhall.TypeCheck (typeOf)
+import qualified Dhall.JSON (dhallToJSON)
 
-import qualified Hpack
+import qualified Hpack (hpack, getOptions, setDecode)
 
 packageConfig :: FilePath
 packageConfig = "package.dhall"
 
 decodeDhall :: FilePath -> IO (Either String Value)
 decodeDhall file = runExceptT $ do
-  expr <- readInput >>= parseExpr >>= liftIO . Dhall.Import.load
-  _ <- liftResult $ Dhall.TypeCheck.typeOf expr
-  liftResult $ Dhall.JSON.dhallToJSON expr
-  where
-    readInput = liftIO (T.readFile file)
-    parseExpr = liftResult . Dhall.Parser.exprFromText file
-    liftResult = ExceptT . return . first show
+    expr <-
+        readInput
+        >>= parseExpr
+        >>= liftIO . Dhall.Import.load
+
+    _ <- liftResult $ Dhall.TypeCheck.typeOf expr
+    liftResult $ Dhall.JSON.dhallToJSON expr
+    where
+        readInput :: ExceptT String IO T.Text
+        readInput = liftIO (T.readFile file)
+
+        parseExpr
+            :: T.Text
+            -> ExceptT
+                String
+                IO
+                (Expr Dhall.Parser.Src Import)
+        parseExpr = liftResult . Dhall.Parser.exprFromText file
+
+        liftResult
+            :: (Show b, Monad m)
+            => Either b a
+            -> ExceptT String m a
+        liftResult = ExceptT . return . first show
 
 main :: IO ()
 main = do
-  getArgs >>= Hpack.getOptions packageConfig >>= \ case
-    Just (verbose, options) -> Hpack.hpack verbose (Hpack.setDecode decodeDhall options)
-    Nothing -> return ()
+    getArgs
+    >>= Hpack.getOptions packageConfig
+    >>= \ case
+        Just (verbose, options) ->
+            Hpack.hpack verbose (Hpack.setDecode decodeDhall options)
+        Nothing ->
+            return ()
