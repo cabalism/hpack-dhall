@@ -7,7 +7,7 @@
 , copyright =
     "\u00A9 2018 Phil de Joux"
 , license =
-    "MPL-2.0"
+    "BSD3"
 , license-file =
     "LICENSE.md"
 , category =
