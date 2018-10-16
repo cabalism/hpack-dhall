@@ -20,9 +20,9 @@
     "-Wall"
 , dependencies =
     [ "base == 4.*"
-    , "megaparsec"
-    , "dhall"
-    , "dhall-json"
+    , "megaparsec >= 7.0.1"
+    , "dhall >= 1.18.0"
+    , "dhall-json >= 1.2.4"
     , "hpack >= 0.26.0"
     , "transformers"
     , "aeson"

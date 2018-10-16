@@ -1,3 +1,11 @@
 resolver: lts-11.22
 packages:
 - '.'
+extra-deps:
+- dhall-1.18.0
+- dhall-json-1.2.4
+- megaparsec-7.0.1
+- repline-0.2.0.0
+- serialise-0.2.1.0
+- cborg-0.2.1.0
+- parser-combinators-1.0.0

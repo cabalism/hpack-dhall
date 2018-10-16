@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: deba1b8634b540666e118d0d19c78496923d69ed51a5fbc04f503ed8d61b9e8c
+-- hash: ad58b5f062abb26e7602f0d0eabbbe22989c330254b72f55664c3eab738ceb5e
 
 cabal-version:  >= 1.10
 name:           hpack-dhall
@@ -33,10 +33,10 @@ executable hpack-dhall
   build-depends:
       aeson
     , base ==4.*
-    , dhall
-    , dhall-json
+    , dhall >=1.18.0
+    , dhall-json >=1.2.4
     , hpack >=0.26.0
-    , megaparsec
+    , megaparsec >=7.0.1
     , text
     , transformers
   default-language: Haskell2010
@@ -55,12 +55,12 @@ test-suite spec
   build-depends:
       aeson
     , base ==4.*
-    , dhall
-    , dhall-json
+    , dhall >=1.18.0
+    , dhall-json >=1.2.4
     , hpack >=0.26.0
     , hspec ==2.*
     , interpolate
-    , megaparsec
+    , megaparsec >=7.0.1
     , mockery
     , text
     , transformers

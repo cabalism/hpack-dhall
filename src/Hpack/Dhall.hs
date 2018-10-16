@@ -12,20 +12,7 @@ import Data.Aeson (Value)
 import qualified Data.Text as T (Text)
 import qualified Data.Text.IO as T (readFile)
 import System.Environment (getArgs)
-
-#if __GLASGOW_HASKELL__ == 802
-import Data.Text.Lazy (fromStrict)
-#endif
-
-import Dhall.Core
-    ( Expr
-#if __GLASGOW_HASKELL__ == 802
-    , Path
-#else
-    , Import
-#endif
-    )
-
+import Dhall.Core (Expr , Import)
 import qualified Dhall.Parser (Src, exprFromText)
 import qualified Dhall.Import (load)
 import qualified Dhall.TypeCheck (typeOf)
@@ -33,14 +20,7 @@ import qualified Dhall.JSON (dhallToJSON)
 
 import qualified Hpack (hpack, getOptions, setDecode)
 
-type ParseExpr =
-    Expr
-        Dhall.Parser.Src
-#if __GLASGOW_HASKELL__ == 802
-        Path
-#else
-        Import
-#endif
+type ParseExpr = Expr Dhall.Parser.Src Import
 
 packageConfig :: FilePath
 packageConfig = "package.dhall"
@@ -59,16 +39,7 @@ liftResult :: (Show b, Monad m) => Either b a -> ExceptT String m a
 liftResult = ExceptT . return . first show
 
 parseExpr :: T.Text -> ExceptT String IO ParseExpr
-parseExpr s =
-    liftResult
-    $ Dhall.Parser.exprFromText
-        mempty
-#if __GLASGOW_HASKELL__ == 802
-        (fromStrict s)
-#else
-        s
-#endif
-
+parseExpr = liftResult . Dhall.Parser.exprFromText mempty
 
 main :: IO ()
 main = do

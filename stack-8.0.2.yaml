@@ -2,14 +2,15 @@ resolver: lts-9.21
 packages:
 - '.'
 extra-deps:
-- dhall-1.17.0
-- dhall-json-1.2.3
+- dhall-1.18.0
+- dhall-json-1.2.4
 - cborg-0.2.1.0
 - hpack-0.26.0
-- megaparsec-6.5.0
 - optparse-applicative-0.14.3.0
 - prettyprinter-1.2.1
 - serialise-0.2.1.0
 - Glob-0.9.3
 - parser-combinators-1.0.0
 - aeson-1.2.4.0
+- megaparsec-7.0.1
+- repline-0.2.0.0
