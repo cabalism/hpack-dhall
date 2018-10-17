@@ -22,26 +22,25 @@ hpack-dhall> hpack-dhall package.dhall
 generated hpack-dhall.cabal
 ```
 
-Going from a package, `package.dhall` with [hpack
-fields](https://github.com/sol/hpack#top-level-fields) to a
-[`*.cabal`](https://www.haskell.org/cabal/users-guide/developing-packages.html#package-descriptions)
-package description with
-[cabal package
-properties](https://www.haskell.org/cabal/users-guide/developing-packages.html#package-properties),
-requires less to be stated explicitly, thereby easing the burden of
-completing a package description by hand. This is acheived by having sensible
-defaults and inferring some fields from others, such as `other-modules` from
-`exposed-modules`. By using an hpack-like Dhall dialect here rather
+By going from [hpack package fields](https://github.com/sol/hpack#top-level-fields) to
+[cabal package properties](https://www.haskell.org/cabal/users-guide/developing-packages.html#package-properties),
+we are not required to state what can be inferred or defaulted,
+easing the burden of completing a package description by hand.
+For example `other-modules` can be inferred by taking the set difference between
+modules on disk and the set of `exposed-modules`.
+
+By using an hpack-like Dhall dialect here rather
 than the [YAML](https://en.wikipedia.org/wiki/YAML) of hpack we're able to;
 
 * Add types to the fields.
 * Safely import from other `*.dhall` files.
 * Use functions.
 
-So it is a safer and more capable alternative input format for hpack. We're
-able to generate the same output but also to generate other outputs. For
-instance we can create a `.hlint.yaml` output from a `default-extensions.dhall`
-file imported by `package.dhall`.
+With this safer and more capable alternative input format for hpack, we're
+able to simply describe the package and by leveraging imports and functions we're
+also able to do more. For
+instance we can create an `.hlint.yaml` from `default-extensions.dhall`
+shared with and imported by `package.dhall`.
 
 ## Formatting
 
