@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 245a6e9941865062d48e43d21241ce0ffa798225241a00a6ade2b545fcbb0877
+-- hash: f537a05298046080a050501e68401e3889819c398ca0d192441714f707d7092b
 
 name:           hpack-dhall
 version:        0.3.0
@@ -16,7 +16,7 @@ bug-reports:    https://github.com/blockscope/hpack-dhall/issues
 maintainer:     Phil de Joux <phil.dejoux@blockscope.com>
 copyright:      © 2018 Phil de Joux
 license:        BSD3
-license-file:   LICENSE.md
+license-file:   LICENSE
 tested-with:    GHC == 8.0.2, GHC == 8.2.2, GHC == 8.4.3
 build-type:     Simple
 extra-source-files:
