@@ -9,7 +9,7 @@
 , license =
     "BSD3"
 , license-file =
-    "LICENSE.md"
+    "LICENSE"
 , category =
     "Development"
 , synopsis =
