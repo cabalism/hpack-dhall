@@ -1,20 +1,37 @@
-# hpack-dhall: **H**askell **pack**age description in **dhall**
+# hpack-dhall
 
-In
-[`package.dhall`](https://github.com/sol/hpack-dhall/blob/master/package.dhall)
-is described a package named `hpack-dhall` also with an executable of the same
-name.  That executable when built and run on the `package.dhall` creates
-`hpack-dhall.cabal`, a `*.cabal` file with a name matching the package name. It
-translates from a package described in `*.dhall` to one described
+**H**askell **pack**age descriptions in [**Dhall**](https://github.com/dhall-lang/dhall-lang).
+
+A package named `hpack-dhall` containing an executable also named `hpack-dhall` is described in
+[`package.dhall`](https://github.com/sol/hpack-dhall/blob/master/package.dhall).
+
+```
+{ name =
+    "hpack-dhall"
+...
+, executable =
+    { main = "Main.hs", source-dirs = "driver" }
+}
+```
+
+When run on `package.dhall`, `hpack-dhall` the executable writes
+a `*.cabal` file matching the package name;
+
+```
+hpack-dhall> hpack-dhall package.dhall
+generated hpack-dhall.cabal
+```
+
+Going from a package, `package.dhall` with [hpack
+fields](https://github.com/sol/hpack#top-level-fields) to a
 [`*.cabal`](https://www.haskell.org/cabal/users-guide/developing-packages.html#package-descriptions)
-package descriptions. The fields of the description are [hpack
-fields](https://github.com/sol/hpack#top-level-fields). These differ from the
+package description with
 [cabal package
 properties](https://www.haskell.org/cabal/users-guide/developing-packages.html#package-properties),
-requiring less to be stated explicitly and thereby easing the burden of
+requires less to be stated explicitly, thereby easing the burden of
 completing a package description by hand. This is acheived by having sensible
 defaults and inferring some fields from others, such as `other-modules` from
-`exposed-modules`. By using an hpack-like [Dhall](https) dialect here rather
+`exposed-modules`. By using an hpack-like Dhall dialect here rather
 than the [YAML](https://en.wikipedia.org/wiki/YAML) of hpack we're able to;
 
 * Add types to the fields.
