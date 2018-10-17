@@ -42,9 +42,7 @@ By using an hpack-like Dhall dialect here rather than the
 
 With this safer and more capable alternative input format for hpack, we're able
 to simply describe the package and by leveraging imports and functions we can
-do more. For instance we can create an `.hlint.yaml` from
-`default-extensions.dhall` shared with and imported by `package.dhall` and
-`hlint.dhall`;
+do more such as configuring the linting;
 
 ```
 > cat default-extensions.dhall
