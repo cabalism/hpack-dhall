@@ -41,8 +41,8 @@ By using an hpack-like Dhall dialect here rather than the
 ## Imports and Functions
 
 With this safer and more capable alternative input format for hpack, we're able
-to simply describe the package and by leveraging imports and functions we're
-also able to do more. For instance we can create an `.hlint.yaml` from
+to simply describe the package and by leveraging imports and functions we can
+do more. For instance we can create an `.hlint.yaml` from
 `default-extensions.dhall` shared with and imported by `package.dhall` and
 `hlint.dhall`;
 
