@@ -76,6 +76,34 @@ arguments:
 - -XUndecidableInstances
 ```
 
+We can pull those same `default-extensions` into a package description;
+
+```
+> cat package.dhall
+    let defs = ./defaults.dhall
+
+in    defs
+    ⫽ ./default-extensions.dhall
+    ⫽ { name =
+          "flight-units"
+    ...
+      , github =
+          "blockscope/flare-timing/units"
+    ...
+      , dependencies =
+            defs.dependencies
+          # [ "numbers"
+            , "fixed"
+            , "bifunctors"
+            , "text"
+            , "formatting"
+            , "uom-plugin"
+            , "siggy-chardust"
+            ]
+    ...
+      }
+```
+
 ## Formatting
 
 We can consistently format `package.dhall` and other `*.dhall` imports using
