@@ -14,8 +14,7 @@ A package named `hpack-dhall` containing only an executable is described in
 }
 ```
 
-When run on `package.dhall`, `hpack-dhall` the executable writes
-a `*.cabal` file matching the package name;
+This executable can be run over its own package description;
 
 ```
 hpack-dhall> hpack-dhall package.dhall
