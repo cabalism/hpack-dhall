@@ -39,8 +39,8 @@ By using an hpack-like Dhall dialect here rather than the
 ## Imports and Functions
 
 With this safer and more capable alternative input format for hpack, we're able
-to simply describe the package and by leveraging imports and functions we can
-do more such as configuring the linting;
+to simply describe the package and by using imports and functions we can do
+more such as configuring linting;
 
 ```
 > cat default-extensions.dhall
