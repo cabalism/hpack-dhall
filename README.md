@@ -49,33 +49,7 @@ do more such as configuring the linting;
 { default-extensions =
     [ "DataKinds"
     , "DeriveFunctor"
-    , "DeriveGeneric"
-    , "DeriveAnyClass"
-    , "DerivingStrategies"
-    , "DisambiguateRecordFields"
-    , "FlexibleContexts"
-    , "FlexibleInstances"
-    , "GeneralizedNewtypeDeriving"
-    , "GADTs"
-    , "LambdaCase"
-    , "MultiParamTypeClasses"
-    , "MultiWayIf"
-    , "NamedFieldPuns"
-    , "OverloadedStrings"
-    , "PackageImports"
-    , "ParallelListComp"
-    , "PartialTypeSignatures"
-    , "PatternSynonyms"
-    , "QuasiQuotes"
-    , "RankNTypes"
-    , "RecordWildCards"
-    , "ScopedTypeVariables"
-    , "StandaloneDeriving"
-    , "TemplateHaskell"
-    , "TypeApplications"
-    , "TypeFamilies"
-    , "TypeOperators"
-    , "TypeSynonymInstances"
+    ...
     , "TupleSections"
     , "UndecidableInstances"
     ]
@@ -97,33 +71,7 @@ in  { arguments = Prelude/List/map Text Text f defs.default-extensions }
 arguments:
 - -XDataKinds
 - -XDeriveFunctor
-- -XDeriveGeneric
-- -XDeriveAnyClass
-- -XDerivingStrategies
-- -XDisambiguateRecordFields
-- -XFlexibleContexts
-- -XFlexibleInstances
-- -XGeneralizedNewtypeDeriving
-- -XGADTs
-- -XLambdaCase
-- -XMultiParamTypeClasses
-- -XMultiWayIf
-- -XNamedFieldPuns
-- -XOverloadedStrings
-- -XPackageImports
-- -XParallelListComp
-- -XPartialTypeSignatures
-- -XPatternSynonyms
-- -XQuasiQuotes
-- -XRankNTypes
-- -XRecordWildCards
-- -XScopedTypeVariables
-- -XStandaloneDeriving
-- -XTemplateHaskell
-- -XTypeApplications
-- -XTypeFamilies
-- -XTypeOperators
-- -XTypeSynonymInstances
+...
 - -XTupleSections
 - -XUndecidableInstances
 ```
