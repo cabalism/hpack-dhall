@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 9408a6a01258e1861d7c9ac6b8314925aeb6cec4e8b82ee9ee3e1c6bedc3d895
+-- hash: ea89770f510472e5a8b653a2daab948f038a47dd7bf926f774128bd93b12664e
 
 name:           hpack-dhall
 version:        0.3.0
@@ -48,27 +48,33 @@ executable hpack-dhall
     , transformers
   default-language: Haskell2010
 
-test-suite spec
+test-suite golden
   type: exitcode-stdio-1.0
-  main-is: Spec.hs
+  main-is: Golden.hs
   other-modules:
       Hpack.Dhall
-      Hpack.DhallSpec
+      Hpack.Dhall
       Paths_hpack_dhall
   hs-source-dirs:
       library
-      test/spec
+      library
+      test/golden
   ghc-options: -Wall
   build-depends:
-      aeson
-    , base ==4.*
+      Cabal
+    , Diff
+    , aeson
+    , base
+    , bytestring
     , dhall >=1.18.0
     , dhall-json >=1.2.4
+    , filepath
     , hpack >=0.31.0
-    , hspec ==2.*
-    , interpolate
     , megaparsec >=7.0.1
-    , mockery
+    , microlens
+    , prettyprinter
+    , tasty
+    , tasty-golden
     , text
     , transformers
   default-language: Haskell2010

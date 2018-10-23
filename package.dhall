@@ -39,13 +39,30 @@
 , executable =
     { main = "Main.hs", source-dirs = "exe/hpack-dhall" }
 , tests =
-    { spec =
+    { golden =
         { main =
-            "Spec.hs"
+            "Golden.hs"
         , source-dirs =
-            "test/spec"
+            [ "library", "test/golden" ]
         , dependencies =
-            [ "hspec == 2.*", "mockery", "interpolate" ]
+            [ "base"
+            , "Cabal"
+            , "Diff"
+            , "bytestring"
+            , "dhall"
+            , "filepath"
+            , "microlens"
+            , "prettyprinter"
+            , "tasty"
+            , "tasty-golden"
+            , "text"
+            , "megaparsec >= 7.0.1"
+            , "dhall >= 1.18.0"
+            , "dhall-json >= 1.2.4"
+            , "hpack >= 0.31.0"
+            , "transformers"
+            , "aeson"
+            ]
         }
     }
 }
