@@ -19,3 +19,4 @@ extra-deps:
 # WARNING: Ignoring out of range dependency (allow-newer enabled):
 # Cabal-2.4.0.1. cabal-doctest requires: >=1.10 && <2.3
 allow-newer: true
+local-bin-path: __bin
