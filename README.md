@@ -17,7 +17,7 @@ A package named `hpack-dhall` containing only an executable is described in
 This executable can be run over its own package description;
 
 ```
-> stack install hpack-dhall --stack-yaml=stack-dhall.yaml
+> stack install --stack-yaml=stack-8.4.3.yaml
 > __bin/hpack-dhall package.dhall
 hpack-dhall.cabal is up-to-date
 > __bin/hpack-dhall --force package.dhall

@@ -20,7 +20,7 @@
     "blockscope/hpack-dhall"
 , tested-with =
     "GHC == 8.0.2, GHC == 8.2.2, GHC == 8.4.3"
-    , extra-source-files =
+, extra-source-files =
     [ "package.dhall", "changelog.md", "README.md" ]
 , ghc-options =
     "-Wall"
@@ -35,7 +35,7 @@
     , "text"
     ]
 , source-dirs =
-    "src"
+    "library"
 , executable =
     { main = "Main.hs", source-dirs = "driver" }
 , tests =

@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: f537a05298046080a050501e68401e3889819c398ca0d192441714f707d7092b
+-- hash: 79bb26c403cd718602397adc33e6ff888fcf74e9a377e567f4c04c345990bb70
 
 name:           hpack-dhall
 version:        0.3.0
@@ -34,7 +34,7 @@ executable hpack-dhall
       Hpack.Dhall
       Paths_hpack_dhall
   hs-source-dirs:
-      src
+      library
       driver
   ghc-options: -Wall
   build-depends:
@@ -56,7 +56,7 @@ test-suite spec
       Hpack.DhallSpec
       Paths_hpack_dhall
   hs-source-dirs:
-      src
+      library
       test
   ghc-options: -Wall
   build-depends:
