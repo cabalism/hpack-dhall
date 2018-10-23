@@ -17,7 +17,10 @@ A package named `hpack-dhall` containing only an executable is described in
 This executable can be run over its own package description;
 
 ```
-hpack-dhall> hpack-dhall package.dhall
+> stack install hpack-dhall --stack-yaml=stack-dhall.yaml
+> __bin/hpack-dhall package.dhall
+hpack-dhall.cabal is up-to-date
+> __bin/hpack-dhall --force package.dhall
 generated hpack-dhall.cabal
 ```
 
@@ -108,5 +111,6 @@ We can consistently format `package.dhall` and other `*.dhall` imports using
 `dhall`;
 
 ```
-> dhall format --inplace package.dhall
+> stack install dhall --stack-yaml=stack-dhall.yaml
+> __bin/dhall format --inplace package.dhall
 ```

@@ -2,3 +2,4 @@
 /dist-newstyle/
 .ghc.environment.*
 .stack-work*
+__bin

@@ -1,6 +1,7 @@
-resolver: lts-12.13
+resolver: lts-12.14
 flags: {}
 packages: []
 extra-deps:
 - dhall-1.16.1
 work-dir: .stack-work-dhall
+local-bin-path: __bin
