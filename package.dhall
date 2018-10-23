@@ -37,13 +37,13 @@
 , source-dirs =
     "library"
 , executable =
-    { main = "Main.hs", source-dirs = "driver" }
+    { main = "Main.hs", source-dirs = "exe/hpack-dhall" }
 , tests =
     { spec =
         { main =
             "Spec.hs"
         , source-dirs =
-            "test"
+            "test/spec"
         , dependencies =
             [ "hspec == 2.*", "mockery", "interpolate" ]
         }
