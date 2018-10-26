@@ -1,6 +1,6 @@
 {-# LANGUAGE TupleSections #-}
 
-module Hpack.Dhall (decodeDhall, packageConfig) where
+module Hpack.Dhall (decodeExpr, decodeFile, packageConfig) where
 
 import Control.Monad.Trans.Except (ExceptT(..), runExceptT)
 import Control.Monad.IO.Class (liftIO)
@@ -9,28 +9,27 @@ import Data.Aeson (Value)
 import qualified Data.Text as T (Text)
 import qualified Data.Text.IO as T (readFile)
 import Dhall.Core (Expr, Import)
-import qualified Dhall.Parser (Src, exprFromText)
-import qualified Dhall.Import (load)
-import qualified Dhall.TypeCheck (typeOf)
-import qualified Dhall.JSON (dhallToJSON)
+import Dhall.Parser (Src, exprFromText)
+import Dhall.Import (load)
+import Dhall.TypeCheck (typeOf)
+import Dhall.JSON (dhallToJSON)
 
-type ParseExpr = Expr Dhall.Parser.Src Import
+type ParseExpr = Expr Src Import
 
 packageConfig :: FilePath
 packageConfig = "package.dhall"
 
-decodeDhall :: FilePath -> IO (Either String ([String], Value))
-decodeDhall file = runExceptT $ do
-    expr <-
-        liftIO (T.readFile file)
-        >>= parseExpr
-        >>= liftIO . Dhall.Import.load
+decodeFile :: FilePath -> IO (Either String ([String], Value))
+decodeFile file = liftIO (T.readFile file) >>= decodeExpr
 
-    _ <- liftResult $ Dhall.TypeCheck.typeOf expr
-    liftResult $ ([],) <$> Dhall.JSON.dhallToJSON expr
+decodeExpr :: T.Text -> IO (Either String ([String], Value))
+decodeExpr contents = runExceptT $ do
+    expr <- parseExpr contents >>= liftIO . load
+    _ <- liftResult $ typeOf expr
+    liftResult $ ([],) <$> dhallToJSON expr
+    where
+        liftResult :: (Show b, Monad m) => Either b a -> ExceptT String m a
+        liftResult = ExceptT . return . first show
 
-liftResult :: (Show b, Monad m) => Either b a -> ExceptT String m a
-liftResult = ExceptT . return . first show
-
-parseExpr :: T.Text -> ExceptT String IO ParseExpr
-parseExpr = liftResult . Dhall.Parser.exprFromText mempty
+        parseExpr :: T.Text -> ExceptT String IO ParseExpr
+        parseExpr = liftResult . exprFromText mempty
