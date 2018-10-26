@@ -33,6 +33,8 @@
     , "transformers"
     , "aeson"
     , "text"
+    , "microlens"
+    , "filepath"
     ]
 , source-dirs =
     "library"

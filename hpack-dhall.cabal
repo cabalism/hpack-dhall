@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ea89770f510472e5a8b653a2daab948f038a47dd7bf926f774128bd93b12664e
+-- hash: f42857a1f70a774aee4f2618fbdfb1654bb77939ed8f52f34d37ad2593d4d15e
 
 name:           hpack-dhall
 version:        0.3.0
@@ -42,8 +42,10 @@ executable hpack-dhall
     , base ==4.*
     , dhall >=1.18.0
     , dhall-json >=1.2.4
+    , filepath
     , hpack >=0.31.0
     , megaparsec >=7.0.1
+    , microlens
     , text
     , transformers
   default-language: Haskell2010
