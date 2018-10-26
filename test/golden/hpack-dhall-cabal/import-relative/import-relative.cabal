@@ -1,0 +1,11 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.dhall by hpack version 0.31.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 989056d21c3910e06ec15967716df134a39f43c561858afff828d22802a22005
+
+name:           import-relative
+version:        0.0.0
+build-type:     Simple
