@@ -48,10 +48,7 @@ decodeExpr settings text = runExceptT $ do
 
 check :: InputSettings -> Text -> IO (Expr Src X)
 check settings text = do
-    expr <-
-        case exprFromText mempty text of
-            Left err -> throwIO err
-            Right expr -> return expr
+    expr <- either throwIO return $ exprFromText mempty text
 
     x <- State.evalStateT
             (loadWith expr)
