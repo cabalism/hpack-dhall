@@ -21,7 +21,14 @@
 , tested-with =
     "GHC == 8.0.2, GHC == 8.2.2, GHC == 8.4.3, GHC == 8.6.1"
 , extra-source-files =
-    [ "package.dhall", "changelog.md", "README.md" ]
+    [ "package.dhall"
+    , "changelog.md"
+    , "README.md"
+    , "test/golden/**/*.dhall"
+    , "test/golden/**/*.dhl"
+    , "test/golden/**/*.cabal"
+    , "test/golden/**/*.golden"
+    ]
 , ghc-options =
     "-Wall"
 , dependencies =
