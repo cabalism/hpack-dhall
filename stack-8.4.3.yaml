@@ -1,4 +1,4 @@
-resolver: lts-12.13
+resolver: lts-12.14
 packages:
 - '.'
 extra-deps:
@@ -14,3 +14,4 @@ extra-deps:
 # WARNING: Ignoring out of range dependency (allow-newer enabled):
 # yaml-0.11.0.0. dhall-json requires: >=0.5.0 && <0.11
 allow-newer: true
+local-bin-path: __bin

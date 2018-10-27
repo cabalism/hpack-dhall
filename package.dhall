@@ -1,7 +1,7 @@
 { name =
     "hpack-dhall"
 , version =
-    "0.3.0"
+    "0.4.0"
 , maintainer =
     "Phil de Joux <phil.dejoux@blockscope.com>"
 , copyright =
@@ -19,9 +19,16 @@
 , github =
     "blockscope/hpack-dhall"
 , tested-with =
-    "GHC == 8.0.2, GHC == 8.2.2, GHC == 8.4.3"
-    , extra-source-files =
-    [ "package.dhall", "changelog.md", "README.md" ]
+    "GHC == 8.4.3, GHC == 8.6.1"
+, extra-source-files =
+    [ "package.dhall"
+    , "changelog.md"
+    , "README.md"
+    , "test/golden/**/*.dhall"
+    , "test/golden/**/*.dhl"
+    , "test/golden/**/*.cabal"
+    , "test/golden/**/*.golden"
+    ]
 , ghc-options =
     "-Wall"
 , dependencies =
@@ -33,19 +40,38 @@
     , "transformers"
     , "aeson"
     , "text"
+    , "microlens"
+    , "filepath"
     ]
 , source-dirs =
-    "src"
+    "library"
 , executable =
-    { main = "Main.hs", source-dirs = "driver" }
+    { main = "Main.hs", source-dirs = "exe/hpack-dhall" }
 , tests =
-    { spec =
+    { golden =
         { main =
-            "Spec.hs"
+            "Golden.hs"
         , source-dirs =
-            "test"
+            [ "library", "test/golden" ]
         , dependencies =
-            [ "hspec == 2.*", "mockery", "interpolate" ]
+            [ "base"
+            , "Cabal"
+            , "Diff"
+            , "bytestring"
+            , "dhall"
+            , "filepath"
+            , "microlens"
+            , "prettyprinter"
+            , "tasty"
+            , "tasty-golden"
+            , "text"
+            , "megaparsec >= 7.0.1"
+            , "dhall >= 1.18.0"
+            , "dhall-json >= 1.2.4"
+            , "hpack >= 0.31.0"
+            , "transformers"
+            , "aeson"
+            ]
         }
     }
 }

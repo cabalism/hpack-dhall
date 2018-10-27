@@ -14,3 +14,4 @@ extra-deps:
 - hpack-0.29.6
 - infer-license-0.2.0
 work-dir: .stack-work-cabal2nix
+local-bin-path: __bin

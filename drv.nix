@@ -4,26 +4,29 @@ let
 
   inherit (nixpkgs) pkgs;
 
-  f = { mkDerivation, aeson, base, dhall, dhall-json, hpack, hspec
-      , interpolate, megaparsec, mockery, stdenv, text, transformers
+  f = { mkDerivation, aeson, base, bytestring, Cabal, dhall
+      , dhall-json, Diff, filepath, hpack, megaparsec, microlens
+      , prettyprinter, stdenv, tasty, tasty-golden, text, transformers
       , cabal-install
       }:
       mkDerivation {
         pname = "hpack-dhall";
-        version = "0.3.0";
+        version = "0.4.0";
         src = ./.;
         isLibrary = false;
         isExecutable = true;
         executableHaskellDepends = [
-          aeson base dhall dhall-json hpack megaparsec text transformers
+          aeson base dhall dhall-json filepath hpack megaparsec microlens
+          text transformers
         ];
         testHaskellDepends = [
-          aeson base dhall dhall-json hpack hspec interpolate megaparsec
-          mockery text transformers
+          aeson base bytestring Cabal dhall dhall-json Diff filepath hpack
+          megaparsec microlens prettyprinter tasty tasty-golden text
+          transformers
         ];
-        homepage = "https://github.com/sol/hpack-dhall#readme";
+        homepage = "https://github.com/blockscope/hpack-dhall#readme";
         description = "Dhall support for Hpack";
-        license = stdenv.lib.licenses.publicDomain;
+        license = stdenv.lib.licenses.bsd3;
         buildTools = [ cabal-install ];
       };
 

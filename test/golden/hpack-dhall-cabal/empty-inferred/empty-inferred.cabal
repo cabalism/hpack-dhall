@@ -1,0 +1,11 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.dhall by hpack version 0.31.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 9f10239d716ef4564587e29b36c0e3b74056721733790211e20061a86a0feb53
+
+name:           empty-inferred
+version:        0.0.0
+build-type:     Simple

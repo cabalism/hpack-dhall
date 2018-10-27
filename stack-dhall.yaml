@@ -1,6 +1,10 @@
-resolver: lts-12.13
+resolver: lts-12.14
 flags: {}
 packages: []
 extra-deps:
-- dhall-1.16.1
+- dhall-1.18.0
+- megaparsec-7.0.2@sha256:b61eed5594c1e3d767ba94f507d332b56ab28271f5b89d86e92cd6da0838c64b
+- repline-0.2.0.0@sha256:0ebbf9a59edb60eeac7e002971d501a81ef633b2dc4db3908d27f30f95e4eac1
+- serialise-0.2.1.0@sha256:8d6051f64c6ebfaf705195dd0b8dfb667617f2e674b290ed2e44985009e4f951
 work-dir: .stack-work-dhall
+local-bin-path: __bin
