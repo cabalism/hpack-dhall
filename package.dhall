@@ -1,7 +1,7 @@
 { name =
     "hpack-dhall"
 , version =
-    "0.3.0"
+    "0.4.0"
 , maintainer =
     "Phil de Joux <phil.dejoux@blockscope.com>"
 , copyright =

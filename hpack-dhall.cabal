@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 7005d0d8d7de53a4250b5e48ae8e502f6193ecea3b281df6cdfaae6267ff7b3f
+-- hash: df84dfd26e83b307564a2cf57acd957169807d48ec1870f85d99ca11f6a7b23c
 
 name:           hpack-dhall
-version:        0.3.0
+version:        0.4.0
 synopsis:       Dhall support for Hpack
 description:    This package allows you to use the Dhall configuration language to specify Haskell packages.
 category:       Development
