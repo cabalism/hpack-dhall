@@ -69,9 +69,7 @@ writeCabal dhallFile =
         options = defaultOptions {optionsDecodeOptions = d'}
 
 toJson :: FilePath -> IO L.ByteString
-toJson p = do
-    s <- showJson p
-    return . fromString $ s
+toJson = fmap fromString . showJson
 
 cabalFilePath :: FilePath -> FilePath
 cabalFilePath p
