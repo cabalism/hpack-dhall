@@ -27,6 +27,8 @@
     , "test/golden/**/*.dhall"
     , "test/golden/**/*.dhl"
     , "test/golden/**/*.cabal"
+    , "test/golden/**/*.json"
+    , "test/golden/**/*.yaml"
     , "test/golden/**/*.golden"
     ]
 , ghc-options =
@@ -69,7 +71,6 @@
             [ "base"
             , "Cabal"
             , "Diff"
-            , "bytestring"
             , "dhall"
             , "filepath"
             , "microlens"

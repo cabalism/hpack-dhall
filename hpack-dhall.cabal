@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 68067c2ca911792f338d2e05c0ff0ac56318a7d3120f8ff554c5c2e7e7649dc5
+-- hash: 06c84093a604b082908f644973f90740fe0d36a6acf317591dc466c8535d31e5
 
 name:           hpack-dhall
 version:        0.4.0
@@ -33,10 +33,22 @@ extra-source-files:
     test/golden/hpack-dhall-cabal/empty-package.cabal
     test/golden/hpack-dhall-cabal/import-local/import-local.cabal
     test/golden/hpack-dhall-cabal/import-relative/import-relative.cabal
+    test/golden/hpack-dhall-cabal/empty-inferred/package.json
+    test/golden/hpack-dhall-cabal/empty-package.json
+    test/golden/hpack-dhall-cabal/import-local/package.json
+    test/golden/hpack-dhall-cabal/import-relative/package.json
+    test/golden/hpack-dhall-cabal/empty-inferred/package.yaml
+    test/golden/hpack-dhall-cabal/empty-package.yaml
+    test/golden/hpack-dhall-cabal/import-local/package.yaml
+    test/golden/hpack-dhall-cabal/import-relative/package.yaml
     test/golden/hpack-dhall-cabal/empty-inferred/empty-inferred.cabal.golden
+    test/golden/hpack-dhall-cabal/empty-inferred/package.dhall.golden
     test/golden/hpack-dhall-cabal/empty-package.cabal.golden
+    test/golden/hpack-dhall-cabal/empty-package.dhall.golden
     test/golden/hpack-dhall-cabal/import-local/import-local.cabal.golden
+    test/golden/hpack-dhall-cabal/import-local/package.dhall.golden
     test/golden/hpack-dhall-cabal/import-relative/import-relative.cabal.golden
+    test/golden/hpack-dhall-cabal/import-relative/package.dhall.golden
 
 source-repository head
   type: git
