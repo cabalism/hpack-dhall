@@ -83,6 +83,7 @@
             , "hpack >= 0.31.0"
             , "transformers"
             , "aeson"
+            , "utf8-string"
             ]
         }
     }

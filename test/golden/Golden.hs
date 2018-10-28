@@ -3,17 +3,19 @@
 module Main (main) where
 
 import System.FilePath
-    ( (</>), (<.>)
+    ( (</>), (<.>), (-<.>)
     , takeBaseName, replaceExtension
     , takeDirectory, splitDirectories, joinPath
     )
 import Test.Tasty (defaultMain, TestTree, testGroup)
 import Test.Tasty.Golden (findByExtension)
-import Test.Tasty.Golden (goldenVsFile)
+import Test.Tasty.Golden (goldenVsFile, goldenVsString)
 
 import Hpack (Verbose(..), Options(..), hpack, defaultOptions, setDecode)
 import Hpack.Config (DecodeOptions(..))
-import Hpack.Dhall (fileToJson)
+import Hpack.Dhall (fileToJson, showJson)
+import qualified Data.ByteString.Lazy as L
+import Data.ByteString.Lazy.UTF8 (fromString)
 
 main :: IO ()
 main =
@@ -23,7 +25,7 @@ goldenTests :: IO TestTree
 goldenTests = do
     dhallFiles <- findByExtension [".dhall"] "test/golden/hpack-dhall-cabal/"
     return $ testGroup "golden tests"
-        [ testGroup "hpack dhall to cabal"
+        [ testGroup ".dhall to .cabal"
             [ goldenVsFile
                 (testName dhallFile)
                 (cabalFile <.> ".golden")
@@ -31,6 +33,13 @@ goldenTests = do
                 (writeCabal dhallFile)
             | dhallFile <- dhallFiles
             , let cabalFile = cabalFilePath dhallFile
+            ]
+        , testGroup ".dhall to json"
+            [ goldenVsString
+                (testName dhallFile)
+                (dhallFile -<.> ".json")
+                (toJson dhallFile)
+            | dhallFile <- dhallFiles
             ]
         ]
 
@@ -58,6 +67,11 @@ writeCabal dhallFile =
         d = optionsDecodeOptions defaultOptions
         d' = d {decodeOptionsTarget = dhallFile}
         options = defaultOptions {optionsDecodeOptions = d'}
+
+toJson :: FilePath -> IO L.ByteString
+toJson p = do
+    s <- showJson p
+    return . fromString $ s
 
 cabalFilePath :: FilePath -> FilePath
 cabalFilePath p

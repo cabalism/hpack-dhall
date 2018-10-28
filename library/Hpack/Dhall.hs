@@ -31,8 +31,8 @@ import Dhall.Parser (Src, exprFromText)
 import Dhall.Import (loadWith, emptyStatus)
 import Dhall.TypeCheck (X, typeOf)
 import Dhall.JSON (dhallToJSON)
-import Dhall.Pretty
-import Data.Yaml
+import Dhall.Pretty (prettyExpr, layoutOpts)
+import Data.Yaml (encode)
 import qualified Data.Text.Prettyprint.Doc as PP
 import qualified Data.Text.Prettyprint.Doc.Render.Text as PP
 
