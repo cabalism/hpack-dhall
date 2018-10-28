@@ -9,19 +9,50 @@ A package named `hpack-dhall` containing only an executable is described in
 { name =
     "hpack-dhall"
 ...
-, executable =
-    { main = "Main.hs", source-dirs = "driver" }
+, executables =
+    { dhall-hpack-cabal =
+        { main = "CabalMain.hs", source-dirs = "exe/dhall-hpack-cabal" }
+    , dhall-hpack-json =
+        { main = "JsonMain.hs", source-dirs = "exe/dhall-hpack-json" }
+    , dhall-hpack-yaml =
+        { main = "YamlMain.hs", source-dirs = "exe/dhall-hpack-yaml" }
+    , dhall-hpack-dhall =
+        { main = "DhallMain.hs", source-dirs = "exe/dhall-hpack-dhall" }
+    }
 }
 ```
 
-This executable can be run over its own package description;
+This `.cabal` creating executable can be run over its own package description;
 
 ```
-> stack install --stack-yaml=stack-8.4.3.yaml
-> __bin/hpack-dhall package.dhall
+> stack install --stack-yaml=stack-8.4.4.yaml
+...
+Copied executables to /.../hpack-dhall/__bin:
+- dhall-hpack-cabal
+- dhall-hpack-dhall
+- dhall-hpack-json
+- dhall-hpack-yaml
+
+> __bin/dhall-hpack-cabal package.dhall
 hpack-dhall.cabal is up-to-date
-> __bin/hpack-dhall --force package.dhall
+
+> __bin/dhall-hpack-cabal --force package.dhall
 generated hpack-dhall.cabal
+```
+
+Using one of the golden tests for example, there are executables to show the
+the dhall with the imports made as well as json and yaml equivalents;
+```
+> __bin/dhall-hpack-dhall test/golden/hpack-dhall-cabal/empty-package.dhall
+{ name = "empty-package" }
+
+> __bin/dhall-hpack-json test/golden/hpack-dhall-cabal/empty-package.dhall
+{
+    "name": "empty-package"
+}
+
+> __bin/dhall-hpack-yaml test/golden/hpack-dhall-cabal/empty-package.dhall
+name: empty-package
 ```
 
 By going from [hpack package
