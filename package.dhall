@@ -45,6 +45,7 @@
     , "aeson-pretty"
     , "bytestring"
     , "prettyprinter"
+    , "yaml"
     ]
 , source-dirs =
     "library"
@@ -53,6 +54,8 @@
         { main = "CabalMain.hs", source-dirs = "exe/dhall-hpack-cabal" }
     , dhall-hpack-json =
         { main = "JsonMain.hs", source-dirs = "exe/dhall-hpack-json" }
+    , dhall-hpack-yaml =
+        { main = "YamlMain.hs", source-dirs = "exe/dhall-hpack-yaml" }
     , dhall-hpack-dhall =
         { main = "DhallMain.hs", source-dirs = "exe/dhall-hpack-dhall" }
     }

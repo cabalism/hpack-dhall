@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 2fa77c01a2bb69ed4976727f395a6056ac9a8a2d278d90f2a4973da1b7f70e30
+-- hash: 2440577223958548397bc92d8d436b3f064b116ad7b575a1ea611c0016863e96
 
 name:           hpack-dhall
 version:        0.4.0
@@ -65,6 +65,7 @@ executable dhall-hpack-cabal
     , prettyprinter
     , text
     , transformers
+    , yaml
   default-language: Haskell2010
 
 executable dhall-hpack-dhall
@@ -90,6 +91,7 @@ executable dhall-hpack-dhall
     , prettyprinter
     , text
     , transformers
+    , yaml
   default-language: Haskell2010
 
 executable dhall-hpack-json
@@ -115,6 +117,33 @@ executable dhall-hpack-json
     , prettyprinter
     , text
     , transformers
+    , yaml
+  default-language: Haskell2010
+
+executable dhall-hpack-yaml
+  main-is: YamlMain.hs
+  other-modules:
+      Hpack.Dhall
+      Paths_hpack_dhall
+  hs-source-dirs:
+      library
+      exe/dhall-hpack-yaml
+  ghc-options: -Wall
+  build-depends:
+      aeson
+    , aeson-pretty
+    , base ==4.*
+    , bytestring
+    , dhall >=1.18.0
+    , dhall-json >=1.2.4
+    , filepath
+    , hpack >=0.31.0
+    , megaparsec >=7.0.1
+    , microlens
+    , prettyprinter
+    , text
+    , transformers
+    , yaml
   default-language: Haskell2010
 
 test-suite golden
@@ -147,4 +176,5 @@ test-suite golden
     , tasty-golden
     , text
     , transformers
+    , yaml
   default-language: Haskell2010

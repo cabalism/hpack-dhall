@@ -3,6 +3,7 @@
 module Hpack.Dhall
     ( fileToJson
     , showJson
+    , showYaml
     , showDhall
     , packageConfig
     ) where
@@ -31,12 +32,16 @@ import Dhall.Import (loadWith, emptyStatus)
 import Dhall.TypeCheck (X, typeOf)
 import Dhall.JSON (dhallToJSON)
 import Dhall.Pretty
+import Data.Yaml
 import qualified Data.Text.Prettyprint.Doc as PP
 import qualified Data.Text.Prettyprint.Doc.Render.Text as PP
 
 -- SEE: http://onoffswitch.net/adventures-pretty-printing-json-haskell/
 getJson :: ToJSON a => a -> String
-getJson d = T.unpack $ decodeUtf8 $ BSL.toStrict (encodePretty d)
+getJson = T.unpack . decodeUtf8 . BSL.toStrict . encodePretty
+
+getYaml :: ToJSON a => a -> String
+getYaml = T.unpack . decodeUtf8 . Data.Yaml.encode
 
 packageConfig :: FilePath
 packageConfig = "package.dhall"
@@ -45,6 +50,11 @@ showJson :: FilePath -> IO String
 showJson file = do
     Right (_, v) <- fileToJson file
     return $ getJson v
+
+showYaml :: FilePath -> IO String
+showYaml file = do
+    Right (_, v) <- fileToJson file
+    return $ getYaml v
 
 showDhall :: FilePath -> IO String
 showDhall file = do
