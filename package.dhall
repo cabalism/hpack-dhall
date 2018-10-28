@@ -19,7 +19,7 @@
 , github =
     "blockscope/hpack-dhall"
 , tested-with =
-    "GHC == 8.4.3, GHC == 8.6.1"
+    "GHC == 8.4.3, GHC == 8.4.4, GHC == 8.6.1"
 , extra-source-files =
     [ "package.dhall"
     , "changelog.md"
@@ -27,6 +27,8 @@
     , "test/golden/**/*.dhall"
     , "test/golden/**/*.dhl"
     , "test/golden/**/*.cabal"
+    , "test/golden/**/*.json"
+    , "test/golden/**/*.yaml"
     , "test/golden/**/*.golden"
     ]
 , ghc-options =
@@ -42,11 +44,23 @@
     , "text"
     , "microlens"
     , "filepath"
+    , "aeson-pretty"
+    , "bytestring"
+    , "prettyprinter"
+    , "yaml"
     ]
 , source-dirs =
     "library"
-, executable =
-    { main = "Main.hs", source-dirs = "exe/hpack-dhall" }
+, executables =
+    { dhall-hpack-cabal =
+        { main = "CabalMain.hs", source-dirs = "exe/dhall-hpack-cabal" }
+    , dhall-hpack-json =
+        { main = "JsonMain.hs", source-dirs = "exe/dhall-hpack-json" }
+    , dhall-hpack-yaml =
+        { main = "YamlMain.hs", source-dirs = "exe/dhall-hpack-yaml" }
+    , dhall-hpack-dhall =
+        { main = "DhallMain.hs", source-dirs = "exe/dhall-hpack-dhall" }
+    }
 , tests =
     { golden =
         { main =
@@ -57,7 +71,6 @@
             [ "base"
             , "Cabal"
             , "Diff"
-            , "bytestring"
             , "dhall"
             , "filepath"
             , "microlens"
@@ -71,6 +84,7 @@
             , "hpack >= 0.31.0"
             , "transformers"
             , "aeson"
+            , "utf8-string"
             ]
         }
     }

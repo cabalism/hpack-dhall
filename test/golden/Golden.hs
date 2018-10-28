@@ -3,17 +3,18 @@
 module Main (main) where
 
 import System.FilePath
-    ( (</>), (<.>)
+    ( (</>), (<.>), (-<.>)
     , takeBaseName, replaceExtension
     , takeDirectory, splitDirectories, joinPath
     )
 import Test.Tasty (defaultMain, TestTree, testGroup)
 import Test.Tasty.Golden (findByExtension)
-import Test.Tasty.Golden (goldenVsFile)
+import Test.Tasty.Golden (goldenVsFile, goldenVsString)
 
 import Hpack (Verbose(..), Options(..), hpack, defaultOptions, setDecode)
 import Hpack.Config (DecodeOptions(..))
-import Hpack.Dhall (decodeFile)
+import Hpack.Dhall (fileToJson, showDhall, showJson, showYaml)
+import Data.ByteString.Lazy.UTF8 (fromString)
 
 main :: IO ()
 main =
@@ -23,7 +24,7 @@ goldenTests :: IO TestTree
 goldenTests = do
     dhallFiles <- findByExtension [".dhall"] "test/golden/hpack-dhall-cabal/"
     return $ testGroup "golden tests"
-        [ testGroup "hpack dhall to cabal"
+        [ testGroup ".dhall to .cabal"
             [ goldenVsFile
                 (testName dhallFile)
                 (cabalFile <.> ".golden")
@@ -31,6 +32,27 @@ goldenTests = do
                 (writeCabal dhallFile)
             | dhallFile <- dhallFiles
             , let cabalFile = cabalFilePath dhallFile
+            ]
+        , testGroup ".dhall to dhall"
+            [ goldenVsString
+                (testName dhallFile)
+                (dhallFile <.> ".golden")
+                (fmap fromString . showDhall $ dhallFile)
+            | dhallFile <- dhallFiles
+            ]
+        , testGroup ".dhall to json"
+            [ goldenVsString
+                (testName dhallFile)
+                (dhallFile -<.> ".json")
+                (fmap fromString . showJson $ dhallFile)
+            | dhallFile <- dhallFiles
+            ]
+        , testGroup ".dhall to yaml"
+            [ goldenVsString
+                (testName dhallFile)
+                (dhallFile -<.> ".yaml")
+                (fmap fromString . showYaml $ dhallFile)
+            | dhallFile <- dhallFiles
             ]
         ]
 
@@ -53,7 +75,7 @@ testName p =
 
 writeCabal :: FilePath -> IO ()
 writeCabal dhallFile =
-    hpack NoVerbose (setDecode decodeFile options)
+    hpack NoVerbose (setDecode fileToJson options)
     where
         d = optionsDecodeOptions defaultOptions
         d' = d {decodeOptionsTarget = dhallFile}
