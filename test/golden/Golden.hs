@@ -13,7 +13,7 @@ import Test.Tasty.Golden (goldenVsFile, goldenVsString)
 
 import Hpack (Verbose(..), Options(..), hpack, defaultOptions, setDecode)
 import Hpack.Config (DecodeOptions(..))
-import Hpack.Dhall (fileToJson, showJson, showYaml)
+import Hpack.Dhall (fileToJson, showDhall, showJson, showYaml)
 import qualified Data.ByteString.Lazy as L
 import Data.ByteString.Lazy.UTF8 (fromString)
 
@@ -33,6 +33,13 @@ goldenTests = do
                 (writeCabal dhallFile)
             | dhallFile <- dhallFiles
             , let cabalFile = cabalFilePath dhallFile
+            ]
+        , testGroup ".dhall to dhall"
+            [ goldenVsString
+                (testName dhallFile)
+                (dhallFile <.> ".golden")
+                (toDhall dhallFile)
+            | dhallFile <- dhallFiles
             ]
         , testGroup ".dhall to json"
             [ goldenVsString
@@ -80,6 +87,9 @@ toJson = fmap fromString . showJson
 
 toYaml :: FilePath -> IO L.ByteString
 toYaml = fmap fromString . showYaml
+
+toDhall :: FilePath -> IO L.ByteString
+toDhall = fmap fromString . showDhall
 
 cabalFilePath :: FilePath -> FilePath
 cabalFilePath p
