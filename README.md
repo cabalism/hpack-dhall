@@ -41,7 +41,7 @@ generated hpack-dhall.cabal
 ```
 
 Using one of the golden tests for example, there are executables to show the
-the dhall with the imports made as well as json and yaml equivalents;
+dhall with the imports made as well as json and yaml equivalents;
 ```
 > __bin/dhall-hpack-dhall test/golden/hpack-dhall-cabal/empty-package.dhall
 { name = "empty-package" }
