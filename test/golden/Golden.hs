@@ -14,7 +14,6 @@ import Test.Tasty.Golden (goldenVsFile, goldenVsString)
 import Hpack (Verbose(..), Options(..), hpack, defaultOptions, setDecode)
 import Hpack.Config (DecodeOptions(..))
 import Hpack.Dhall (fileToJson, showDhall, showJson, showYaml)
-import qualified Data.ByteString.Lazy as L
 import Data.ByteString.Lazy.UTF8 (fromString)
 
 main :: IO ()
@@ -38,21 +37,21 @@ goldenTests = do
             [ goldenVsString
                 (testName dhallFile)
                 (dhallFile <.> ".golden")
-                (toDhall dhallFile)
+                (fmap fromString . showDhall $ dhallFile)
             | dhallFile <- dhallFiles
             ]
         , testGroup ".dhall to json"
             [ goldenVsString
                 (testName dhallFile)
                 (dhallFile -<.> ".json")
-                (toJson dhallFile)
+                (fmap fromString . showJson $ dhallFile)
             | dhallFile <- dhallFiles
             ]
         , testGroup ".dhall to yaml"
             [ goldenVsString
                 (testName dhallFile)
                 (dhallFile -<.> ".yaml")
-                (toYaml dhallFile)
+                (fmap fromString . showYaml $ dhallFile)
             | dhallFile <- dhallFiles
             ]
         ]
@@ -81,15 +80,6 @@ writeCabal dhallFile =
         d = optionsDecodeOptions defaultOptions
         d' = d {decodeOptionsTarget = dhallFile}
         options = defaultOptions {optionsDecodeOptions = d'}
-
-toJson :: FilePath -> IO L.ByteString
-toJson = fmap fromString . showJson
-
-toYaml :: FilePath -> IO L.ByteString
-toYaml = fmap fromString . showYaml
-
-toDhall :: FilePath -> IO L.ByteString
-toDhall = fmap fromString . showDhall
 
 cabalFilePath :: FilePath -> FilePath
 cabalFilePath p
