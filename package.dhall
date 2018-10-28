@@ -42,11 +42,17 @@
     , "text"
     , "microlens"
     , "filepath"
+    , "aeson-pretty"
+    , "bytestring"
     ]
 , source-dirs =
     "library"
-, executable =
-    { main = "Main.hs", source-dirs = "exe/hpack-dhall" }
+, executables =
+    { dhall-hpack-cabal =
+        { main = "CabalMain.hs", source-dirs = "exe/dhall-hpack-cabal" }
+    , dhall-hpack-json =
+        { main = "JsonMain.hs", source-dirs = "exe/dhall-hpack-json" }
+    }
 , tests =
     { golden =
         { main =
