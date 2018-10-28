@@ -3,12 +3,12 @@
 module Main (main) where
 
 import System.Environment (getArgs)
-import Hpack.Dhall (showJson, packageConfig)
+import Hpack.Dhall (showDhall, packageConfig)
 
 main :: IO ()
 main =
     getArgs
     >>= \ case
-            [s] -> showJson s
-            _ -> showJson packageConfig
+            [s] -> showDhall s
+            _ -> showDhall packageConfig
     >>= putStrLn

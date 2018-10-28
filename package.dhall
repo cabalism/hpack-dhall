@@ -44,6 +44,7 @@
     , "filepath"
     , "aeson-pretty"
     , "bytestring"
+    , "prettyprinter"
     ]
 , source-dirs =
     "library"
@@ -52,6 +53,8 @@
         { main = "CabalMain.hs", source-dirs = "exe/dhall-hpack-cabal" }
     , dhall-hpack-json =
         { main = "JsonMain.hs", source-dirs = "exe/dhall-hpack-json" }
+    , dhall-hpack-dhall =
+        { main = "DhallMain.hs", source-dirs = "exe/dhall-hpack-dhall" }
     }
 , tests =
     { golden =

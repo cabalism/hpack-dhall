@@ -1,9 +1,9 @@
 {-# LANGUAGE TupleSections #-}
 
 module Hpack.Dhall
-    ( decodeExpr
-    , decodeFile
-    , decodeToJson
+    ( fileToJson
+    , showJson
+    , showDhall
     , packageConfig
     ) where
 
@@ -30,6 +30,9 @@ import Dhall.Parser (Src, exprFromText)
 import Dhall.Import (loadWith, emptyStatus)
 import Dhall.TypeCheck (X, typeOf)
 import Dhall.JSON (dhallToJSON)
+import Dhall.Pretty
+import qualified Data.Text.Prettyprint.Doc as PP
+import qualified Data.Text.Prettyprint.Doc.Render.Text as PP
 
 -- SEE: http://onoffswitch.net/adventures-pretty-printing-json-haskell/
 getJson :: ToJSON a => a -> String
@@ -38,24 +41,33 @@ getJson d = T.unpack $ decodeUtf8 $ BSL.toStrict (encodePretty d)
 packageConfig :: FilePath
 packageConfig = "package.dhall"
 
-decodeToJson :: FilePath -> IO String 
-decodeToJson file = do
-    Right (_, v) <- decodeFile file
+showJson :: FilePath -> IO String
+showJson file = do
+    Right (_, v) <- fileToJson file
     return $ getJson v
 
-decodeFile :: FilePath -> IO (Either String ([String], Value))
-decodeFile file = liftIO (T.readFile file) >>= decodeExpr settings
-    where
-        settings =
-            Dhall.defaultInputSettings
-            & set rootDirectory (takeDirectory file)
-            & set sourceName file
+showDhall :: FilePath -> IO String
+showDhall file = do
+    text <- T.readFile file
+    expr <- check (inputSettings file) text
+    return . T.unpack $ renderDhall expr
 
-decodeExpr
+fileToJson :: FilePath -> IO (Either String ([String], Value))
+fileToJson file =
+    liftIO (T.readFile file)
+    >>= textToJson (inputSettings file)
+
+inputSettings :: FilePath -> InputSettings
+inputSettings file =
+    Dhall.defaultInputSettings
+    & set rootDirectory (takeDirectory file)
+    & set sourceName file
+
+textToJson
     :: InputSettings
     -> T.Text
     -> IO (Either String ([String], Value))
-decodeExpr settings text = runExceptT $ do
+textToJson settings text = runExceptT $ do
     expr <- liftIO $ check settings text
     _ <- liftResult $ typeOf expr
     liftResult $ ([],) <$> dhallToJSON expr
@@ -72,3 +84,11 @@ check settings text = do
             (emptyStatus $ settings ^. rootDirectory)
 
     return x
+
+-- SEE: https://github.com/mstksg/hakyll-dhall
+renderDhall :: (PP.Pretty a, Eq a) => Expr Src a -> T.Text
+renderDhall =
+    PP.renderStrict
+    . PP.layoutSmart layoutOpts
+    . PP.unAnnotate
+    . prettyExpr

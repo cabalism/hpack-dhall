@@ -13,7 +13,7 @@ import Test.Tasty.Golden (goldenVsFile)
 
 import Hpack (Verbose(..), Options(..), hpack, defaultOptions, setDecode)
 import Hpack.Config (DecodeOptions(..))
-import Hpack.Dhall (decodeFile)
+import Hpack.Dhall (fileToJson)
 
 main :: IO ()
 main =
@@ -53,7 +53,7 @@ testName p =
 
 writeCabal :: FilePath -> IO ()
 writeCabal dhallFile =
-    hpack NoVerbose (setDecode decodeFile options)
+    hpack NoVerbose (setDecode fileToJson options)
     where
         d = optionsDecodeOptions defaultOptions
         d' = d {decodeOptionsTarget = dhallFile}
