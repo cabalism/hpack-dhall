@@ -3,38 +3,40 @@
 
 module Options
     ( Options(..)
-    , parseOptions
     , parseNumericVersion
     , parseVersion
+    , parseOptions
+    , parsePkgFile
     ) where
 
 import Data.Monoid ((<>))
 import Hpack.Dhall (packageConfig)
 import Options.Applicative
 
-data Options = Options {file :: String}
+data Options = Options {pkgFile :: FilePath}
 
 parseOptions :: Parser Options
 parseOptions = helper <*> do
-    file <- parseFile
+    pkgFile <- parsePkgFile
     return (Options {..})
-  where
-    parseFile =
-        strOption $
-        long "package-dhall"
-        <> metavar "FILE"
-        <> value packageConfig
-        <> showDefault
-        <> help "A record of hpack fields"
+
+parsePkgFile :: Parser FilePath
+parsePkgFile =
+    strOption $
+    long "package-dhall"
+    <> metavar "FILE"
+    <> value packageConfig
+    <> showDefault
+    <> help "A record of hpack fields"
 
 parseNumericVersion :: Parser ()
 parseNumericVersion =
-  flag' () $
-      long "numeric-version"
-      <> help "Show version only"
+    flag' () $
+    long "numeric-version"
+    <> help "Show version only"
 
 parseVersion :: Parser ()
 parseVersion =
-  flag' () $
-      long "version"
-      <> help "Show app name and version"
+    flag' () $
+    long "version"
+    <> help "Show app name and version"

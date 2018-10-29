@@ -34,7 +34,7 @@ in  { name =
     , synopsis =
         "Hpack's dhalling"
     , description =
-        "This package allows you to use the Dhall configuration language to specify Haskell packages."
+        "Write the .cabal for a .dhall package description, resolving imports."
     , github =
         "blockscope/hpack-dhall"
     , tested-with =
@@ -61,7 +61,7 @@ in  { name =
             { main =
                 "CabalMain.hs"
             , source-dirs =
-                "exe/dhall-hpack-cabal"
+                [ "exe/options", "exe/dhall-hpack-cabal" ]
             , dependencies =
                 exe-deps
             }
