@@ -6,7 +6,7 @@
 
 **H**askell **pack**age descriptions in [**Dhall**](https://github.com/dhall-lang/dhall-lang).
 
-A package named `hpack-dhall` containing only an executable is described in
+This package named `hpack-dhall` as described in
 [`package.dhall`](https://github.com/sol/hpack-dhall/blob/master/package.dhall).
 
 ```
