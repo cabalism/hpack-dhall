@@ -69,7 +69,7 @@ in  { name =
             { main =
                 "JsonMain.hs"
             , source-dirs =
-                "exe/dhall-hpack-json"
+                [ "exe/options", "exe/dhall-hpack-json" ]
             , dependencies =
                 exe-deps
             }
@@ -77,7 +77,7 @@ in  { name =
             { main =
                 "YamlMain.hs"
             , source-dirs =
-                "exe/dhall-hpack-yaml"
+                [ "exe/options", "exe/dhall-hpack-yaml" ]
             , dependencies =
                 exe-deps
             }
@@ -85,7 +85,7 @@ in  { name =
             { main =
                 "DhallMain.hs"
             , source-dirs =
-                "exe/dhall-hpack-dhall"
+                [ "exe/options", "exe/dhall-hpack-dhall" ]
             , dependencies =
                 exe-deps
             }

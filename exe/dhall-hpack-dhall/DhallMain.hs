@@ -1,27 +1,12 @@
 {-# LANGUAGE RecordWildCards #-}
-{-# LANGUAGE ApplicativeDo #-}
 
 module Main (main) where
 
 import Data.Monoid ((<>))
-import Hpack.Dhall (showDhall, packageConfig)
-import Options.Applicative (Parser, ParserInfo)
+import Options.Applicative (ParserInfo)
 import qualified Options.Applicative as O
-
-data Options = Options {file :: String}
-
-parseOptions :: Parser Options
-parseOptions = O.helper <*> do
-    file <- parseFile
-    return (Options {..})
-  where
-    parseFile =
-        O.strOption $
-        O.long "package-dhall"
-        <> O.metavar "FILE"
-        <> O.value packageConfig
-        <> O.showDefault
-        <> O.help "A record of hpack fields"
+import Options (Options(..), parseOptions)
+import Hpack.Dhall (showDhall)
 
 parserInfo :: ParserInfo Options
 parserInfo =
@@ -29,7 +14,7 @@ parserInfo =
         parseOptions $
         O.fullDesc
         <> O.header "Hpack as Dhall"
-        <> O.progDesc "Show the compiled dhall expression of an hpack package description file."
+        <> O.progDesc "Show a package description expression with imports resolved."
 
 main :: IO ()
 main = do
