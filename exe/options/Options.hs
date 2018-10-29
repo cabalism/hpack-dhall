@@ -47,6 +47,7 @@ parseForce :: Parser Bool
 parseForce =
     flag False True $
     long "force"
+    <> short 'f'
     <> help "Overwrite of the output .cabal file unnecessarily"
 
 parseQuiet :: Parser Bool
