@@ -1,7 +1,12 @@
 {-# LANGUAGE RecordWildCards #-}
 {-# LANGUAGE ApplicativeDo #-}
 
-module Options where
+module Options
+    ( Options(..)
+    , parseOptions
+    , parseNumericVersion
+    , parseVersion
+    ) where
 
 import Data.Monoid ((<>))
 import Hpack.Dhall (packageConfig)
@@ -21,3 +26,15 @@ parseOptions = helper <*> do
         <> value packageConfig
         <> showDefault
         <> help "A record of hpack fields"
+
+parseNumericVersion :: Parser ()
+parseNumericVersion =
+  flag' () $
+      long "numeric-version"
+      <> help "Show version only"
+
+parseVersion :: Parser ()
+parseVersion =
+  flag' () $
+      long "version"
+      <> help "Show app name and version"
