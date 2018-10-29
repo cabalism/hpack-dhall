@@ -7,6 +7,8 @@ module Options
     , parseVersion
     , parseOptions
     , parsePkgFile
+    , parseForce
+    , parseQuiet
     ) where
 
 import Data.Monoid ((<>))
@@ -40,3 +42,15 @@ parseVersion =
     flag' () $
     long "version"
     <> help "Show app name and version"
+
+parseForce :: Parser Bool
+parseForce =
+    flag False True $
+    long "force"
+    <> help "Overwrite of the output .cabal file unnecessarily"
+
+parseQuiet :: Parser Bool
+parseQuiet =
+    flag False True $
+    long "silent"
+    <> help "Suppress logging"

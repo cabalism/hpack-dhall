@@ -8,17 +8,27 @@ import Data.Version (showVersion)
 import Data.Monoid ((<>))
 import Data.Foldable (asum)
 import qualified Options.Applicative as O
-import Options (parsePkgFile, parseNumericVersion, parseVersion)
+import Options
+    ( parsePkgFile, parseNumericVersion, parseVersion
+    , parseForce, parseQuiet
+    )
 import qualified Hpack as H (hpack, version, getOptions, setDecode)
 import Hpack.Dhall (fileToJson)
 
 data Command = NumericVersion | Version | Run Options
 
-data Options = Options {pkgFile :: String}
+data Options =
+    Options
+        { pkgFile :: String
+        , force :: Bool
+        , quiet :: Bool
+        }
 
 parseOptions :: O.Parser Options
 parseOptions = O.helper <*> do
     pkgFile <- parsePkgFile
+    force <- parseForce
+    quiet <- parseQuiet
     return (Options {..})
 
 parserInfo :: O.ParserInfo Command
@@ -47,7 +57,11 @@ main = do
             putStrLn $ "hpack-" ++ showVersion H.version
 
         Run (Options {..}) -> do
-            opts <- H.getOptions pkgFile []
+            opts <- H.getOptions pkgFile $
+                mconcat
+                    [ if force then [ "--force" ] else []
+                    , if quiet then [ "--silent" ] else []
+                    ]
             case opts of
                 Just (verbose, options) ->
                     H.hpack verbose (H.setDecode fileToJson options)
