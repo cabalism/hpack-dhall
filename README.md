@@ -1,5 +1,9 @@
 # hpack-dhall
 
+[![Build Status](https://travis-ci.org/BlockScope/hpack-dhall.svg)](https://travis-ci.org/BlockScope/hpack-dhall)
+[![hackage release](https://img.shields.io/hackage/v/hpack-dhall.svg?label=hackage)](http://hackage.haskell.org/package/hpack-dhall)
+[![Dependencies of latest version on Hackage](https://img.shields.io/hackage-deps/v/hpack-dhall.svg)](https://hackage.haskell.org/package/hpack-dhall)
+
 **H**askell **pack**age descriptions in [**Dhall**](https://github.com/dhall-lang/dhall-lang).
 
 A package named `hpack-dhall` containing only an executable is described in
