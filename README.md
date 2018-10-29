@@ -13,15 +13,13 @@ This package named `hpack-dhall` as described in
 { name =
     "hpack-dhall"
 ...
+, library =
+    { exposed-modules = "Hpack.Dhall" }
 , executables =
-    { dhall-hpack-cabal =
-        { main = "CabalMain.hs", source-dirs = "exe/dhall-hpack-cabal" }
-    , dhall-hpack-json =
-        { main = "JsonMain.hs", source-dirs = "exe/dhall-hpack-json" }
-    , dhall-hpack-yaml =
-        { main = "YamlMain.hs", source-dirs = "exe/dhall-hpack-yaml" }
-    , dhall-hpack-dhall =
-        { main = "DhallMain.hs", source-dirs = "exe/dhall-hpack-dhall" }
+    { dhall-hpack-cabal = ...
+    , dhall-hpack-json = ...
+    , dhall-hpack-yaml = ...
+    , dhall-hpack-dhall = ...
     }
 }
 ```
