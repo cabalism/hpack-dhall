@@ -6,10 +6,10 @@ import Paths_hpack_dhall (version)
 import Data.Version (showVersion)
 import Data.Monoid ((<>))
 import Data.Foldable (asum)
-import Options.Applicative (ParserInfo)
 import qualified Options.Applicative as O
 import Options (Options(..), parseOptions, parseNumericVersion, parseVersion)
 import Hpack.Dhall (showJson)
+import qualified Hpack as H (version)
 
 data Command = Run Options | Version | NumericVersion
 
@@ -36,8 +36,9 @@ main = do
             putStrLn s
             return ()
 
-        Version ->
-            putStrLn $ "dhall-hpack-dhall-" ++ showVersion version
+        Version -> do
+            putStrLn $ "dhall-hpack-json-" ++ showVersion version
+            putStrLn $ "hpack-" ++ showVersion H.version
 
         NumericVersion ->
             putStrLn $ showVersion version

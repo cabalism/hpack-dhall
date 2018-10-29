@@ -9,6 +9,7 @@ import Data.Foldable (asum)
 import qualified Options.Applicative as O
 import Options (Options(..), parseOptions, parseNumericVersion, parseVersion)
 import Hpack.Dhall (showDhall)
+import qualified Hpack as H (version)
 
 data Command = Run Options | Version | NumericVersion
 
@@ -35,8 +36,9 @@ main = do
             putStrLn s
             return ()
 
-        Version ->
+        Version -> do
             putStrLn $ "dhall-hpack-dhall-" ++ showVersion version
+            putStrLn $ "hpack-" ++ showVersion H.version
 
         NumericVersion ->
             putStrLn $ showVersion version
