@@ -1,6 +1,7 @@
-{ mkDerivation, aeson, base, bytestring, Cabal, dhall, dhall-json
-, Diff, filepath, hpack, megaparsec, microlens, prettyprinter
-, stdenv, tasty, tasty-golden, text, transformers
+{ mkDerivation, aeson, aeson-pretty, base, bytestring, Cabal, dhall
+, dhall-json, Diff, filepath, hpack, megaparsec, microlens
+, optparse-applicative, prettyprinter, stdenv, tasty, tasty-golden
+, text, transformers, utf8-string, yaml
 , cabal-install
 }:
 mkDerivation {
@@ -10,16 +11,17 @@ mkDerivation {
   isLibrary = false;
   isExecutable = true;
   executableHaskellDepends = [
-    aeson base dhall dhall-json filepath hpack megaparsec microlens
-    text transformers
+    aeson aeson-pretty base bytestring dhall dhall-json filepath hpack
+    megaparsec microlens optparse-applicative prettyprinter text
+    transformers yaml
   ];
   testHaskellDepends = [
-    aeson base bytestring Cabal dhall dhall-json Diff filepath hpack
-    megaparsec microlens prettyprinter tasty tasty-golden text
-    transformers
+    aeson aeson-pretty base bytestring Cabal dhall dhall-json Diff
+    filepath hpack megaparsec microlens prettyprinter tasty
+    tasty-golden text transformers utf8-string yaml
   ];
   homepage = "https://github.com/blockscope/hpack-dhall#readme";
-  description = "Dhall support for Hpack";
+  description = "Hpack's dhalling";
   license = stdenv.lib.licenses.bsd3;
   buildTools = [ cabal-install ];
 }
