@@ -4,11 +4,11 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: f6de4cf5ba21b9a4426ceae133a245c77f8b984f3c4eda677d7b527bf5cb3f24
+-- hash: e92b9c31695e3abceb3e6a45c0f6b77251a77f7a371e5403f677a54d3793ef0e
 
 name:           hpack-dhall
 version:        0.4.0
-synopsis:       Dhall support for Hpack
+synopsis:       Hpack's dhalling
 description:    This package allows you to use the Dhall configuration language to specify Haskell packages.
 category:       Development
 homepage:       https://github.com/blockscope/hpack-dhall#readme
@@ -74,6 +74,7 @@ executable dhall-hpack-cabal
     , hpack >=0.31.0
     , megaparsec >=7.0.1
     , microlens
+    , optparse-applicative
     , prettyprinter
     , text
     , transformers
@@ -84,9 +85,11 @@ executable dhall-hpack-dhall
   main-is: DhallMain.hs
   other-modules:
       Hpack.Dhall
+      Options
       Paths_hpack_dhall
   hs-source-dirs:
       library
+      exe/options
       exe/dhall-hpack-dhall
   ghc-options: -Wall
   build-depends:
@@ -100,6 +103,7 @@ executable dhall-hpack-dhall
     , hpack >=0.31.0
     , megaparsec >=7.0.1
     , microlens
+    , optparse-applicative
     , prettyprinter
     , text
     , transformers
@@ -110,9 +114,11 @@ executable dhall-hpack-json
   main-is: JsonMain.hs
   other-modules:
       Hpack.Dhall
+      Options
       Paths_hpack_dhall
   hs-source-dirs:
       library
+      exe/options
       exe/dhall-hpack-json
   ghc-options: -Wall
   build-depends:
@@ -126,6 +132,7 @@ executable dhall-hpack-json
     , hpack >=0.31.0
     , megaparsec >=7.0.1
     , microlens
+    , optparse-applicative
     , prettyprinter
     , text
     , transformers
@@ -136,9 +143,11 @@ executable dhall-hpack-yaml
   main-is: YamlMain.hs
   other-modules:
       Hpack.Dhall
+      Options
       Paths_hpack_dhall
   hs-source-dirs:
       library
+      exe/options
       exe/dhall-hpack-yaml
   ghc-options: -Wall
   build-depends:
@@ -152,6 +161,7 @@ executable dhall-hpack-yaml
     , hpack >=0.31.0
     , megaparsec >=7.0.1
     , microlens
+    , optparse-applicative
     , prettyprinter
     , text
     , transformers
