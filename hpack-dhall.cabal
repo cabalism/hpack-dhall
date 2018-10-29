@@ -4,12 +4,16 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e92b9c31695e3abceb3e6a45c0f6b77251a77f7a371e5403f677a54d3793ef0e
+-- hash: 54e969575f071159fb33343e58086ca65b8d139b29dad2b6d49b63656125fb5a
 
 name:           hpack-dhall
 version:        0.4.0
 synopsis:       Hpack's dhalling
-description:    This package allows you to use the Dhall configuration language to specify Haskell packages.
+description:    Work with Hpack fields in dhall records with the following executables;
+                * with @dhall-hpack-cabal@ write the .cabal for a .dhall package description.
+                * with @dhall-hpack-dhall@ show the package description expression, with imports resolved.
+                * with @dhall-hpack-json@ show the package description as JSON.
+                * with @dhall-hpack-yaml@ show the package description as YAML.
 category:       Development
 homepage:       https://github.com/blockscope/hpack-dhall#readme
 bug-reports:    https://github.com/blockscope/hpack-dhall/issues
@@ -58,9 +62,11 @@ executable dhall-hpack-cabal
   main-is: CabalMain.hs
   other-modules:
       Hpack.Dhall
+      Options
       Paths_hpack_dhall
   hs-source-dirs:
       library
+      exe/options
       exe/dhall-hpack-cabal
   ghc-options: -Wall
   build-depends:
