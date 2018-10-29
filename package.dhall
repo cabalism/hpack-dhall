@@ -24,7 +24,7 @@ in  { name =
     , maintainer =
         "Phil de Joux <phil.dejoux@blockscope.com>"
     , copyright =
-        "\u00A9 2018 Phil de Joux"
+        "\u00A9 2018 Phil de Joux, \u00A9 2018 Block Scope Limited"
     , license =
         "BSD3"
     , license-file =
@@ -32,7 +32,7 @@ in  { name =
     , category =
         "Development"
     , synopsis =
-        "Hpack's dhalling"
+        "hpack's dhalling"
     , description =
         ''
         Work with Hpack fields in dhall records with the following executables;
@@ -62,6 +62,8 @@ in  { name =
         deps
     , source-dirs =
         "library"
+    , library =
+        { exposed-modules = "Hpack.Dhall" }
     , executables =
         { dhall-hpack-cabal =
             { main =
