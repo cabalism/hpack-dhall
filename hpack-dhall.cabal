@@ -4,12 +4,16 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e8c8b50fb540f21902e8c72795ba50066007889f63f8acee0655fea1f3fae68c
+-- hash: 54e969575f071159fb33343e58086ca65b8d139b29dad2b6d49b63656125fb5a
 
 name:           hpack-dhall
 version:        0.4.0
 synopsis:       Hpack's dhalling
-description:    Write the .cabal for a .dhall package description, resolving imports.
+description:    Work with Hpack fields in dhall records with the following executables;
+                * with @dhall-hpack-cabal@ write the .cabal for a .dhall package description.
+                * with @dhall-hpack-dhall@ show the package description expression, with imports resolved.
+                * with @dhall-hpack-json@ show the package description as JSON.
+                * with @dhall-hpack-yaml@ show the package description as YAML.
 category:       Development
 homepage:       https://github.com/blockscope/hpack-dhall#readme
 bug-reports:    https://github.com/blockscope/hpack-dhall/issues
