@@ -11,7 +11,7 @@ import Options (Options(..), parseOptions, parseNumericVersion, parseVersion)
 import Hpack.Dhall (showDhall)
 import qualified Hpack as H (version)
 
-data Command = Run Options | Version | NumericVersion
+data Command = NumericVersion | Version | Run Options
 
 parserInfo :: O.ParserInfo Command
 parserInfo =
@@ -21,9 +21,9 @@ parserInfo =
         <> O.progDesc "Show a package description expression with imports resolved."
     where
         parser = asum $
-            [ Run <$> parseOptions
+            [ NumericVersion <$ parseNumericVersion
             , Version <$ parseVersion
-            , NumericVersion <$ parseNumericVersion
+            , Run <$> parseOptions
             ]
 
 main :: IO ()
@@ -31,14 +31,14 @@ main = do
     command <- O.execParser parserInfo
 
     case command of
-        Run (Options {..}) -> do
-            s <- showDhall file
-            putStrLn s
-            return ()
+        NumericVersion ->
+            putStrLn $ showVersion version
 
         Version -> do
             putStrLn $ "dhall-hpack-dhall-" ++ showVersion version
             putStrLn $ "hpack-" ++ showVersion H.version
 
-        NumericVersion ->
-            putStrLn $ showVersion version
+        Run (Options {..}) -> do
+            s <- showDhall pkgFile
+            putStrLn s
+            return ()
