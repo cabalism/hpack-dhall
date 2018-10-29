@@ -1,5 +1,18 @@
 {-# LANGUAGE TupleSections #-}
 
+{-|
+Module: Hpack.Dhall
+Copyright:
+    © 2018 Phil de Joux
+    © 2018 Block Scope Limited
+License: BSD3 
+Maintainer: Phil de Joux <phil.dejoux@blockscope.com>
+Stability: experimental
+Instead of working with <https://github.com/sol/hpack#readme hpack> in
+<https://en.wikipedia.org/wiki/YAML YAML>, use
+<https://github.com/dhall-lang/dhall-lang#readme Dhall>.  All functions resolve
+imports relative to the location of the given @.dhall@ file.
+-}
 module Hpack.Dhall
     ( fileToJson
     , showJson
@@ -43,26 +56,41 @@ getJson = T.unpack . decodeUtf8 . BSL.toStrict . encodePretty
 getYaml :: ToJSON a => a -> String
 getYaml = T.unpack . decodeUtf8 . Data.Yaml.encode
 
+-- | The default package file name is @package.dhall@.
 packageConfig :: FilePath
 packageConfig = "package.dhall"
 
-showJson :: FilePath -> IO String
+-- | Pretty prints JSON for the package description.
+showJson
+    :: FilePath -- ^ Path to a @.dhall@ file
+    -> IO String
 showJson file = do
     Right (_, v) <- fileToJson file
     return $ getJson v
 
-showYaml :: FilePath -> IO String
+-- | Pretty prints YAML for the package description.
+showYaml
+    :: FilePath -- ^ Path to a @.dhall@ file
+    -> IO String
 showYaml file = do
     Right (_, v) <- fileToJson file
     return $ getYaml v
 
-showDhall :: FilePath -> IO String
+-- | Pretty prints the package description Dhall expression, resolving imports
+-- relative to the location of the @.dhall@ file.
+showDhall
+    :: FilePath -- ^ Path to a @.dhall@ file
+    -> IO String
 showDhall file = do
     text <- T.readFile file
     expr <- check (inputSettings file) text
     return . T.unpack $ renderDhall expr
 
-fileToJson :: FilePath -> IO (Either String ([String], Value))
+-- | A file decoder for hpack. This should evaluate to a single record with
+-- hpack's top-level <https://github.com/sol/hpack#top-level-fields fields>.
+fileToJson
+    :: FilePath -- ^ Path to a @.dhall@ file
+    -> IO (Either String ([String], Value))
 fileToJson file =
     liftIO (T.readFile file)
     >>= textToJson (inputSettings file)

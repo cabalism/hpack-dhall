@@ -4,11 +4,11 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 54e969575f071159fb33343e58086ca65b8d139b29dad2b6d49b63656125fb5a
+-- hash: 6dba75ae59cdfd38ed1f91398a78f1cb79fd9a7972b35a8e6ec9c8a9fd980ea8
 
 name:           hpack-dhall
 version:        0.4.0
-synopsis:       Hpack's dhalling
+synopsis:       hpack's dhalling
 description:    Work with Hpack fields in dhall records with the following executables;
                 * with @dhall-hpack-cabal@ write the .cabal for a .dhall package description.
                 * with @dhall-hpack-dhall@ show the package description expression, with imports resolved.
@@ -18,7 +18,7 @@ category:       Development
 homepage:       https://github.com/blockscope/hpack-dhall#readme
 bug-reports:    https://github.com/blockscope/hpack-dhall/issues
 maintainer:     Phil de Joux <phil.dejoux@blockscope.com>
-copyright:      © 2018 Phil de Joux
+copyright:      © 2018 Phil de Joux, © 2018 Block Scope Limited
 license:        BSD3
 license-file:   LICENSE
 tested-with:    GHC == 8.4.3, GHC == 8.4.4, GHC == 8.6.1
@@ -57,6 +57,31 @@ extra-source-files:
 source-repository head
   type: git
   location: https://github.com/blockscope/hpack-dhall
+
+library
+  exposed-modules:
+      Hpack.Dhall
+  other-modules:
+      Paths_hpack_dhall
+  hs-source-dirs:
+      library
+  ghc-options: -Wall
+  build-depends:
+      aeson
+    , aeson-pretty
+    , base ==4.*
+    , bytestring
+    , dhall >=1.18.0
+    , dhall-json >=1.2.4
+    , filepath
+    , hpack >=0.31.0
+    , megaparsec >=7.0.1
+    , microlens
+    , prettyprinter
+    , text
+    , transformers
+    , yaml
+  default-language: Haskell2010
 
 executable dhall-hpack-cabal
   main-is: CabalMain.hs
