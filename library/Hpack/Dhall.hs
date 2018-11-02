@@ -1,11 +1,13 @@
 {-# LANGUAGE TupleSections #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving #-}
 
 {-|
 Module: Hpack.Dhall
 Copyright:
     © 2018 Phil de Joux
     © 2018 Block Scope Limited
-License: BSD3 
+License: BSD3
 Maintainer: Phil de Joux <phil.dejoux@blockscope.com>
 Stability: experimental
 Instead of working with <https://github.com/sol/hpack#readme hpack> in
@@ -45,16 +47,45 @@ import Dhall.Import (loadWith, emptyStatus)
 import Dhall.TypeCheck (X, typeOf)
 import Dhall.JSON (dhallToJSON)
 import Dhall.Pretty (prettyExpr, layoutOpts)
-import Data.Yaml (encode)
 import qualified Data.Text.Prettyprint.Doc as PP
 import qualified Data.Text.Prettyprint.Doc.Render.Text as PP
+import qualified Data.Yaml.Pretty.Extras as PE
+import Data.Yaml.Pretty.Extras (ToPrettyYaml(..))
+
+newtype CabalFields = CabalFields Value deriving ToJSON
+
+instance PE.ToPrettyYaml CabalFields where
+    fieldOrder =
+        const
+            [ "name"
+            , "version"
+            , "author"
+            , "maintainer"
+            , "copyright"
+            , "license"
+            , "license-file"
+            , "category"
+            , "synopsis"
+            , "description"
+            , "homepage"
+            , "github"
+            , "tested-with"
+            , "extra-source-files"
+            , "ghc-options"
+            , "default-extensions"
+            , "dependencies"
+            , "source-dirs"
+            , "library"
+            , "executables"
+            , "tests"
+            ]
 
 -- SEE: http://onoffswitch.net/adventures-pretty-printing-json-haskell/
 getJson :: ToJSON a => a -> String
 getJson = T.unpack . decodeUtf8 . BSL.toStrict . encodePretty
 
-getYaml :: ToJSON a => a -> String
-getYaml = T.unpack . decodeUtf8 . Data.Yaml.encode
+getYaml :: Value -> String
+getYaml = T.unpack . decodeUtf8 . toPrettyYaml . CabalFields
 
 -- | The default package file name is @package.dhall@.
 packageConfig :: FilePath
