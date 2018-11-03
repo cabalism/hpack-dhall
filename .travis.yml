@@ -66,14 +66,8 @@ install:
   - travis_retry cabal update -v
   - "sed -i.bak 's/^jobs:/-- jobs:/' ${HOME}/.cabal/config"
   - rm -fv cabal.project cabal.project.local
-  - "sed -i.bak 's/^-- jobs:.*/jobs: 2/' ${HOME}/.cabal/config"
-  - "if [ $HCNUMVER -ge 70800 ]; then sed -i.bak 's/-- ghc-options:.*/ghc-options: -j2/' ${HOME}/.cabal/config; fi"
   - grep -Ev -- '^\s*--' ${HOME}/.cabal/config | grep -Ev '^\s*$'
-  - (cd /tmp && echo '' | cabal new-repl -w ${HC} --build-dep fail)
-  - if [ $HCNUMVER -eq 80403 ]; then cabal new-install -w ${HC} -j2 --symlink-bindir=$HOME/.local/bin hlint --constraint='hlint ==2.1.*'; fi
   - "printf 'packages: \".\"\\n' > cabal.project"
-  - echo 'package hpack-dhall' >> cabal.project
-  - "echo '  ghc-options: -Werror' >> cabal.project"
   - touch cabal.project.local
   - "if ! $NOINSTALLEDCONSTRAINTS; then for pkg in $($HCPKG list --simple-output); do echo $pkg  | grep -vw -- hpack-dhall | sed 's/^/constraints: /' | sed 's/-[^-]*$/ installed/' >> cabal.project.local; done; fi"
   - cat cabal.project || true
@@ -96,8 +90,6 @@ script:
   - cd ${DISTDIR} || false
   - find . -maxdepth 1 -name '*.tar.gz' -exec tar -xvf '{}' \;
   - "printf 'packages: hpack-dhall-*/*.cabal\\n' > cabal.project"
-  - echo 'package hpack-dhall' >> cabal.project
-  - "echo '  ghc-options: -Werror' >> cabal.project"
   - touch cabal.project.local
   - "if ! $NOINSTALLEDCONSTRAINTS; then for pkg in $($HCPKG list --simple-output); do echo $pkg  | grep -vw -- hpack-dhall | sed 's/^/constraints: /' | sed 's/-[^-]*$/ installed/' >> cabal.project.local; done; fi"
   - cat cabal.project || true
@@ -109,26 +101,11 @@ script:
   - cabal new-build -w ${HC} ${TEST} ${BENCH} all
   - if [ "x$TEST" = "x--enable-tests" ]; then cabal new-test -w ${HC} ${TEST} ${BENCH} all; fi
 
-  # hlint
-  - if [ $HCNUMVER -eq 80403 ]; then (cd hpack-dhall-* && hlint -h ${ROOTDIR}/.hlint.yaml library); fi
-
-  # cabal check
-  - (cd hpack-dhall-* && cabal check)
-
   # haddock
   - if $HADDOCK; then cabal new-haddock -w ${HC} ${TEST} ${BENCH} all; else echo "Skipping haddock generation";fi
 
   # Build without installed constraints for packages in global-db
   - if $UNCONSTRAINED; then rm -f cabal.project.local; echo cabal new-build -w ${HC} --disable-tests --disable-benchmarks all; else echo "Not building without installed constraints"; fi
-
-  # Constraint sets
-  - rm -rf cabal.project.local
-
-  # Constraint set deepseq-1.4
-  - echo Constraint set deepseq-1.4 && echo -en 'travis_fold:start:constraint-sets-deepseq-1.4\\r'
-  - if [ $HCNUMVER -ge 70800 ] && [ $HCNUMVER -lt 71000 ]  ||  [ $HCNUMVER -eq 80202 ]; then cabal new-build -w ${HC} --disable-tests --disable-benchmarks --constraint='deepseq ==1.4.*' all; else echo skipping...; fi
-
-  - echo -en 'travis_fold:end:constraint-sets-deepseq-1.4\\r'
 
 # REGENDATA ["--output=.travis.yml","--config=cabal.haskell-ci","hpack-dhall.cabal","--env=8.0.2:HADDOCK=false","--env=8.2.2:HADDOCK=false","--env=8.4.3:HADDOCK=false","--env=8.4.4:HADDOCK=false","--env=8.6.1:HADDOCK=false"]
 # EOF
