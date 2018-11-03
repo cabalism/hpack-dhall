@@ -22,7 +22,7 @@ main =
 
 goldenTests :: IO TestTree
 goldenTests = do
-    dhallFiles <- findByExtension [".dhall"] "test/golden/test-files/"
+    dhallFiles <- findByExtension [".dhall"] "test/golden/test-files"
     return $ testGroup "golden tests"
         [ testGroup ".dhall to .cabal"
             [ goldenVsFile
