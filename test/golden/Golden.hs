@@ -1,4 +1,3 @@
-{-# LANGUAGE CPP #-}
 {-# LANGUAGE MultiWayIf #-}
 
 module Main (main) where
@@ -48,7 +47,6 @@ goldenTests = do
                 (fmap fromString . showJson $ dhallFile)
             | dhallFile <- dhallFiles
             ]
-#if __GLASGOW_HASKELL__ >= 802
         , testGroup ".dhall to yaml"
             [ goldenVsString
                 (testName dhallFile)
@@ -56,7 +54,6 @@ goldenTests = do
                 (fmap fromString . showYaml $ dhallFile)
             | dhallFile <- dhallFiles
             ]
-#endif
         ]
 
 testName :: FilePath -> FilePath

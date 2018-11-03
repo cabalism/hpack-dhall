@@ -1,7 +1,6 @@
-{-# LANGUAGE CPP #-}
 {-# LANGUAGE TupleSections #-}
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE MultiWayIf #-}
 
 {-|
 Module: Hpack.Dhall
@@ -24,9 +23,13 @@ module Hpack.Dhall
     , packageConfig
     ) where
 
+import Data.Maybe (fromMaybe)
+import Data.List (elemIndex)
+import Data.String (IsString())
 import Data.Function ((&))
 import Lens.Micro ((^.), set)
 import System.FilePath (takeDirectory)
+import Control.Applicative (liftA2)
 import Control.Exception (throwIO)
 import Control.Monad.Trans.Except (ExceptT(..), runExceptT)
 import Control.Monad.IO.Class (liftIO)
@@ -50,18 +53,19 @@ import Dhall.JSON (dhallToJSON)
 import Dhall.Pretty (prettyExpr, layoutOpts)
 import qualified Data.Text.Prettyprint.Doc as PP
 import qualified Data.Text.Prettyprint.Doc.Render.Text as PP
+import qualified Data.Yaml.Pretty as Y
 
-#if __GLASGOW_HASKELL__ < 802
-import Data.Yaml (encode)
-#else
-import qualified Data.Yaml.Pretty.Extras as PE
-import Data.Yaml.Pretty.Extras (ToPrettyYaml(..))
+cmp :: (Ord a, IsString a) => a -> a -> Ordering
+cmp a b =
+    fromMaybe fallback $
+        liftA2 compare (elemIndex a fields) (elemIndex b fields)
+    where
+        fallback =
+            if | elem a fields -> LT
+               | elem b fields -> GT
+               | otherwise -> a `compare` b
 
-newtype CabalFields = CabalFields Value deriving ToJSON
-
-instance PE.ToPrettyYaml CabalFields where
-    fieldOrder =
-        const
+        fields =
             [ "name"
             , "version"
             , "author"
@@ -79,6 +83,7 @@ instance PE.ToPrettyYaml CabalFields where
             , "ghc-options"
             , "default-extensions"
             , "dependencies"
+            , "main"
             , "source-dirs"
             , "library"
             , "executables"
@@ -88,21 +93,15 @@ instance PE.ToPrettyYaml CabalFields where
             , "then"
             , "else"
             ]
-#endif
 
 -- SEE: http://onoffswitch.net/adventures-pretty-printing-json-haskell/
 getJson :: ToJSON a => a -> String
 getJson = T.unpack . decodeUtf8 . BSL.toStrict . encodePretty
 
 getYaml :: Value -> String
-getYaml =
-    T.unpack
-    . decodeUtf8
-#if __GLASGOW_HASKELL__ < 802
-    . encode
-#else
-    . toPrettyYaml . CabalFields
-#endif
+getYaml = T.unpack . decodeUtf8 . (Y.encodePretty cfg)
+    where
+        cfg = Y.setConfCompare cmp Y.defConfig
 
 -- | The default package file name is @package.dhall@.
 packageConfig :: FilePath

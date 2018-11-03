@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.dhall by hpack version 0.31.0.
+-- This file has been generated from hpack-dhall.dhall by hpack version 0.31.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: c469ecec72a98d5c6ba9487e787be8642045c53b9c29c2620daf3e37e9458eb2
+-- hash: 2cda033f86e205babc457286429e82d54b504d8e8a287c1ea57ba3ecd45f1a65
 
 name:           hpack-dhall
 version:        0.4.1
@@ -32,6 +32,7 @@ extra-source-files:
     README.md
     test/golden/hpack-dhall-cabal/empty-inferred/package.dhall
     test/golden/hpack-dhall-cabal/empty-package.dhall
+    test/golden/hpack-dhall-cabal/hpack-dhall.dhall
     test/golden/hpack-dhall-cabal/import-local/package.dhall
     test/golden/hpack-dhall-cabal/import-relative/package.dhall
     test/golden/hpack-dhall-cabal/when-dependencies.dhall
@@ -39,16 +40,19 @@ extra-source-files:
     test/golden/hpack-dhall-cabal/import-relative.dhl
     test/golden/hpack-dhall-cabal/empty-inferred/empty-inferred.cabal
     test/golden/hpack-dhall-cabal/empty-package.cabal
+    test/golden/hpack-dhall-cabal/hpack-dhall.cabal
     test/golden/hpack-dhall-cabal/import-local/import-local.cabal
     test/golden/hpack-dhall-cabal/import-relative/import-relative.cabal
     test/golden/hpack-dhall-cabal/when-dependencies.cabal
     test/golden/hpack-dhall-cabal/empty-inferred/package.json
     test/golden/hpack-dhall-cabal/empty-package.json
+    test/golden/hpack-dhall-cabal/hpack-dhall.json
     test/golden/hpack-dhall-cabal/import-local/package.json
     test/golden/hpack-dhall-cabal/import-relative/package.json
     test/golden/hpack-dhall-cabal/when-dependencies.json
     test/golden/hpack-dhall-cabal/empty-inferred/package.yaml
     test/golden/hpack-dhall-cabal/empty-package.yaml
+    test/golden/hpack-dhall-cabal/hpack-dhall.yaml
     test/golden/hpack-dhall-cabal/import-local/package.yaml
     test/golden/hpack-dhall-cabal/import-relative/package.yaml
     test/golden/hpack-dhall-cabal/when-dependencies.yaml
@@ -56,6 +60,8 @@ extra-source-files:
     test/golden/hpack-dhall-cabal/empty-inferred/package.dhall.golden
     test/golden/hpack-dhall-cabal/empty-package.cabal.golden
     test/golden/hpack-dhall-cabal/empty-package.dhall.golden
+    test/golden/hpack-dhall-cabal/hpack-dhall.cabal.golden
+    test/golden/hpack-dhall-cabal/hpack-dhall.dhall.golden
     test/golden/hpack-dhall-cabal/import-local/import-local.cabal.golden
     test/golden/hpack-dhall-cabal/import-local/package.dhall.golden
     test/golden/hpack-dhall-cabal/import-relative/import-relative.cabal.golden
