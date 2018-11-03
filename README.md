@@ -147,3 +147,16 @@ We can consistently format `package.dhall` and other `*.dhall` imports using
 > stack install dhall --stack-yaml=stack-dhall.yaml
 > __bin/dhall format --inplace package.dhall
 ```
+
+### Continuous Integration
+
+With haskell-ci tooling installed, generate the `.travis.yml` setup with;
+```
+> make-travis-yml --output=.travis.yml --config=cabal.haskell-ci hpack-dhall.cabal \
+--env=8.0.2:HADDOCK=false \
+--env=8.2.2:HADDOCK=false \
+--env=8.4.3:HADDOCK=false \
+--env=8.4.4:HADDOCK=false \
+--env=8.6.1:HADDOCK=false
+*INFO* Generating Travis-CI config for testing for GHC versions: 8.0.2 8.2.2 8.4.3 8.4.4 8.6.1
+```
