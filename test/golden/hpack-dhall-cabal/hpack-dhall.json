@@ -36,22 +36,45 @@
     "license-file": "LICENSE",
     "maintainer": "Phil de Joux <phil.dejoux@blockscope.com>",
     "ghc-options": "-Wall",
-    "dependencies": [
-        "base == 4.*",
-        "megaparsec >= 7.0.1",
-        "dhall >= 1.18.0",
-        "dhall-json >= 1.2.4",
-        "hpack >= 0.31.0",
-        "transformers",
-        "aeson",
-        "text",
-        "microlens",
-        "filepath",
-        "aeson-pretty",
-        "bytestring",
-        "prettyprinter",
-        "yaml-pretty-extras"
-    ],
+    "when": {
+        "then": {
+            "dependencies": [
+                "yaml",
+                "base == 4.*",
+                "megaparsec >= 7.0.1",
+                "dhall >= 1.18.0",
+                "dhall-json >= 1.2.4",
+                "hpack >= 0.31.0",
+                "transformers",
+                "aeson",
+                "text",
+                "microlens",
+                "filepath",
+                "aeson-pretty",
+                "bytestring",
+                "prettyprinter"
+            ]
+        },
+        "else": {
+            "dependencies": [
+                "yaml-pretty-extras",
+                "base == 4.*",
+                "megaparsec >= 7.0.1",
+                "dhall >= 1.18.0",
+                "dhall-json >= 1.2.4",
+                "hpack >= 0.31.0",
+                "transformers",
+                "aeson",
+                "text",
+                "microlens",
+                "filepath",
+                "aeson-pretty",
+                "bytestring",
+                "prettyprinter"
+            ]
+        },
+        "condition": "impl(ghc < 8.2.2)"
+    },
     "name": "hpack-dhall",
     "version": "0.4.1",
     "extra-source-files": [
@@ -90,7 +113,6 @@
                 "aeson-pretty",
                 "bytestring",
                 "prettyprinter",
-                "yaml-pretty-extras",
                 "optparse-applicative"
             ]
         },
@@ -114,7 +136,6 @@
                 "aeson-pretty",
                 "bytestring",
                 "prettyprinter",
-                "yaml-pretty-extras",
                 "optparse-applicative"
             ]
         },
@@ -138,7 +159,6 @@
                 "aeson-pretty",
                 "bytestring",
                 "prettyprinter",
-                "yaml-pretty-extras",
                 "optparse-applicative"
             ]
         },
@@ -162,7 +182,6 @@
                 "aeson-pretty",
                 "bytestring",
                 "prettyprinter",
-                "yaml-pretty-extras",
                 "optparse-applicative"
             ]
         }

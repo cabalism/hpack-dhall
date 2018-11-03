@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP #-}
 {-# LANGUAGE TupleSections #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
@@ -49,6 +50,10 @@ import Dhall.JSON (dhallToJSON)
 import Dhall.Pretty (prettyExpr, layoutOpts)
 import qualified Data.Text.Prettyprint.Doc as PP
 import qualified Data.Text.Prettyprint.Doc.Render.Text as PP
+
+#if __GLASGOW_HASKELL__ < 802
+import Data.Yaml (encode)
+#else
 import qualified Data.Yaml.Pretty.Extras as PE
 import Data.Yaml.Pretty.Extras (ToPrettyYaml(..))
 
@@ -78,14 +83,26 @@ instance PE.ToPrettyYaml CabalFields where
             , "library"
             , "executables"
             , "tests"
+            , "when"
+            , "condition"
+            , "then"
+            , "else"
             ]
+#endif
 
 -- SEE: http://onoffswitch.net/adventures-pretty-printing-json-haskell/
 getJson :: ToJSON a => a -> String
 getJson = T.unpack . decodeUtf8 . BSL.toStrict . encodePretty
 
 getYaml :: Value -> String
-getYaml = T.unpack . decodeUtf8 . toPrettyYaml . CabalFields
+getYaml =
+    T.unpack
+    . decodeUtf8
+#if __GLASGOW_HASKELL__ < 802
+    . encode
+#else
+    . toPrettyYaml . CabalFields
+#endif
 
 -- | The default package file name is @package.dhall@.
 packageConfig :: FilePath

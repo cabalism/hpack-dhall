@@ -12,7 +12,6 @@
           , "aeson-pretty"
           , "bytestring"
           , "prettyprinter"
-          , "yaml-pretty-extras"
           ]
 
 in  let exe-deps = deps # [ "optparse-applicative" ]
@@ -61,8 +60,14 @@ in  { name =
         ]
     , ghc-options =
         "-Wall"
-    , dependencies =
-        deps
+    , when =
+        { condition =
+            "impl(ghc < 8.2.2)"
+        , `then` =
+            { dependencies = [ "yaml" ] # deps }
+        , `else` =
+            { dependencies = [ "yaml-pretty-extras" ] # deps }
+        }
     , source-dirs =
         "library"
     , library =

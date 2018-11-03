@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e2130764f9e3a771f92e473ca8c3b347aa54ff2af76c8e46b5f1a0d6335c57c6
+-- hash: 26d213109c4180f20d25a0d64d308ac282bc439d57bec143c1bc5fd9c62e5b1b
 
 name:           hpack-dhall
 version:        0.4.1
@@ -75,21 +75,38 @@ library
   hs-source-dirs:
       library
   ghc-options: -Wall
-  build-depends:
-      aeson
-    , aeson-pretty
-    , base ==4.*
-    , bytestring
-    , dhall >=1.18.0
-    , dhall-json >=1.2.4
-    , filepath
-    , hpack >=0.31.0
-    , megaparsec >=7.0.1
-    , microlens
-    , prettyprinter
-    , text
-    , transformers
-    , yaml-pretty-extras
+  if impl(ghc < 8.2.2)
+    build-depends:
+        aeson
+      , aeson-pretty
+      , base ==4.*
+      , bytestring
+      , dhall >=1.18.0
+      , dhall-json >=1.2.4
+      , filepath
+      , hpack >=0.31.0
+      , megaparsec >=7.0.1
+      , microlens
+      , prettyprinter
+      , text
+      , transformers
+      , yaml
+  else
+    build-depends:
+        aeson
+      , aeson-pretty
+      , base ==4.*
+      , bytestring
+      , dhall >=1.18.0
+      , dhall-json >=1.2.4
+      , filepath
+      , hpack >=0.31.0
+      , megaparsec >=7.0.1
+      , microlens
+      , prettyprinter
+      , text
+      , transformers
+      , yaml-pretty-extras
   default-language: Haskell2010
 
 executable dhall-hpack-cabal
@@ -118,7 +135,38 @@ executable dhall-hpack-cabal
     , prettyprinter
     , text
     , transformers
-    , yaml-pretty-extras
+  if impl(ghc < 8.2.2)
+    build-depends:
+        aeson
+      , aeson-pretty
+      , base ==4.*
+      , bytestring
+      , dhall >=1.18.0
+      , dhall-json >=1.2.4
+      , filepath
+      , hpack >=0.31.0
+      , megaparsec >=7.0.1
+      , microlens
+      , prettyprinter
+      , text
+      , transformers
+      , yaml
+  else
+    build-depends:
+        aeson
+      , aeson-pretty
+      , base ==4.*
+      , bytestring
+      , dhall >=1.18.0
+      , dhall-json >=1.2.4
+      , filepath
+      , hpack >=0.31.0
+      , megaparsec >=7.0.1
+      , microlens
+      , prettyprinter
+      , text
+      , transformers
+      , yaml-pretty-extras
   default-language: Haskell2010
 
 executable dhall-hpack-dhall
@@ -147,7 +195,38 @@ executable dhall-hpack-dhall
     , prettyprinter
     , text
     , transformers
-    , yaml-pretty-extras
+  if impl(ghc < 8.2.2)
+    build-depends:
+        aeson
+      , aeson-pretty
+      , base ==4.*
+      , bytestring
+      , dhall >=1.18.0
+      , dhall-json >=1.2.4
+      , filepath
+      , hpack >=0.31.0
+      , megaparsec >=7.0.1
+      , microlens
+      , prettyprinter
+      , text
+      , transformers
+      , yaml
+  else
+    build-depends:
+        aeson
+      , aeson-pretty
+      , base ==4.*
+      , bytestring
+      , dhall >=1.18.0
+      , dhall-json >=1.2.4
+      , filepath
+      , hpack >=0.31.0
+      , megaparsec >=7.0.1
+      , microlens
+      , prettyprinter
+      , text
+      , transformers
+      , yaml-pretty-extras
   default-language: Haskell2010
 
 executable dhall-hpack-json
@@ -176,7 +255,38 @@ executable dhall-hpack-json
     , prettyprinter
     , text
     , transformers
-    , yaml-pretty-extras
+  if impl(ghc < 8.2.2)
+    build-depends:
+        aeson
+      , aeson-pretty
+      , base ==4.*
+      , bytestring
+      , dhall >=1.18.0
+      , dhall-json >=1.2.4
+      , filepath
+      , hpack >=0.31.0
+      , megaparsec >=7.0.1
+      , microlens
+      , prettyprinter
+      , text
+      , transformers
+      , yaml
+  else
+    build-depends:
+        aeson
+      , aeson-pretty
+      , base ==4.*
+      , bytestring
+      , dhall >=1.18.0
+      , dhall-json >=1.2.4
+      , filepath
+      , hpack >=0.31.0
+      , megaparsec >=7.0.1
+      , microlens
+      , prettyprinter
+      , text
+      , transformers
+      , yaml-pretty-extras
   default-language: Haskell2010
 
 executable dhall-hpack-yaml
@@ -205,7 +315,38 @@ executable dhall-hpack-yaml
     , prettyprinter
     , text
     , transformers
-    , yaml-pretty-extras
+  if impl(ghc < 8.2.2)
+    build-depends:
+        aeson
+      , aeson-pretty
+      , base ==4.*
+      , bytestring
+      , dhall >=1.18.0
+      , dhall-json >=1.2.4
+      , filepath
+      , hpack >=0.31.0
+      , megaparsec >=7.0.1
+      , microlens
+      , prettyprinter
+      , text
+      , transformers
+      , yaml
+  else
+    build-depends:
+        aeson
+      , aeson-pretty
+      , base ==4.*
+      , bytestring
+      , dhall >=1.18.0
+      , dhall-json >=1.2.4
+      , filepath
+      , hpack >=0.31.0
+      , megaparsec >=7.0.1
+      , microlens
+      , prettyprinter
+      , text
+      , transformers
+      , yaml-pretty-extras
   default-language: Haskell2010
 
 test-suite golden
@@ -224,9 +365,7 @@ test-suite golden
       Cabal
     , Diff
     , aeson
-    , aeson-pretty
     , base
-    , bytestring
     , dhall >=1.18.0
     , dhall-json >=1.2.4
     , filepath
@@ -239,5 +378,36 @@ test-suite golden
     , text
     , transformers
     , utf8-string
-    , yaml-pretty-extras
+  if impl(ghc < 8.2.2)
+    build-depends:
+        aeson
+      , aeson-pretty
+      , base ==4.*
+      , bytestring
+      , dhall >=1.18.0
+      , dhall-json >=1.2.4
+      , filepath
+      , hpack >=0.31.0
+      , megaparsec >=7.0.1
+      , microlens
+      , prettyprinter
+      , text
+      , transformers
+      , yaml
+  else
+    build-depends:
+        aeson
+      , aeson-pretty
+      , base ==4.*
+      , bytestring
+      , dhall >=1.18.0
+      , dhall-json >=1.2.4
+      , filepath
+      , hpack >=0.31.0
+      , megaparsec >=7.0.1
+      , microlens
+      , prettyprinter
+      , text
+      , transformers
+      , yaml-pretty-extras
   default-language: Haskell2010
