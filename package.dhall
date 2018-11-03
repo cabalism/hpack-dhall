@@ -38,7 +38,7 @@ in  { name =
         Work with hpack's top-level
         <https://github.com/sol/hpack#top-level-fields fields> in a Dhall
         record with the following executables;
-
+        
         * with @dhall-hpack-cabal@ write the @.cabal@ for a @.dhall@ package description.
         * with @dhall-hpack-dhall@ show the package description expression, with imports resolved.
         * with @dhall-hpack-json@ show the package description as JSON.
@@ -47,7 +47,7 @@ in  { name =
     , github =
         "blockscope/hpack-dhall"
     , tested-with =
-        "GHC == 8.2.2, GHC == 8.4.3, GHC == 8.4.4, GHC == 8.6.1"
+        "GHC == 8.0.2, GHC == 8.2.2, GHC == 8.4.3, GHC == 8.4.4, GHC == 8.6.1"
     , extra-source-files =
         [ "package.dhall"
         , "changelog.md"

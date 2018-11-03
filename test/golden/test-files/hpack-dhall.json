@@ -66,7 +66,7 @@
     ],
     "synopsis": "hpack's dhalling",
     "github": "blockscope/hpack-dhall",
-    "tested-with": "GHC == 8.2.2, GHC == 8.4.3, GHC == 8.4.4, GHC == 8.6.1",
+    "tested-with": "GHC == 8.0.2, GHC == 8.2.2, GHC == 8.4.3, GHC == 8.4.4, GHC == 8.6.1",
     "license": "BSD3",
     "executables": {
         "dhall-hpack-yaml": {

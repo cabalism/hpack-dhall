@@ -22,7 +22,7 @@ main =
 
 goldenTests :: IO TestTree
 goldenTests = do
-    dhallFiles <- findByExtension [".dhall"] "test/golden/hpack-dhall-cabal/"
+    dhallFiles <- findByExtension [".dhall"] "test/golden/test-files/"
     return $ testGroup "golden tests"
         [ testGroup ".dhall to .cabal"
             [ goldenVsFile
@@ -60,7 +60,7 @@ testName :: FilePath -> FilePath
 testName p =
     if | fName == dName -> fName
        | fName == "package" -> dName
-       | dName == "hpack-dhall-cabal" -> fName
+       | dName == "test-files" -> fName
        | otherwise -> dName </> fName
     where
         dName =

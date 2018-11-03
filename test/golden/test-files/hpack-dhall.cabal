@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 457b7f504bdf3aa2e669493d29dd0dd987e553eaae1994d4dfa1a5d7d9aaad31
+-- hash: b7352bde3bde7a8b4a898fa38c76f17aff5276930947af31001ceb6c25b9902e
 
 name:           hpack-dhall
 version:        0.4.1
@@ -24,50 +24,50 @@ maintainer:     Phil de Joux <phil.dejoux@blockscope.com>
 copyright:      © 2018 Phil de Joux, © 2018 Block Scope Limited
 license:        BSD3
 license-file:   LICENSE
-tested-with:    GHC == 8.2.2, GHC == 8.4.3, GHC == 8.4.4, GHC == 8.6.1
+tested-with:    GHC == 8.0.2, GHC == 8.2.2, GHC == 8.4.3, GHC == 8.4.4, GHC == 8.6.1
 build-type:     Simple
 extra-source-files:
     package.dhall
     changelog.md
     README.md
-    test/golden/hpack-dhall-cabal/empty-inferred/package.dhall
-    test/golden/hpack-dhall-cabal/empty-package.dhall
-    test/golden/hpack-dhall-cabal/hpack-dhall.dhall
-    test/golden/hpack-dhall-cabal/import-local/package.dhall
-    test/golden/hpack-dhall-cabal/import-relative/package.dhall
-    test/golden/hpack-dhall-cabal/when-dependencies.dhall
-    test/golden/hpack-dhall-cabal/import-local/name.dhl
-    test/golden/hpack-dhall-cabal/import-relative.dhl
-    test/golden/hpack-dhall-cabal/empty-inferred/empty-inferred.cabal
-    test/golden/hpack-dhall-cabal/empty-package.cabal
-    test/golden/hpack-dhall-cabal/hpack-dhall.cabal
-    test/golden/hpack-dhall-cabal/import-local/import-local.cabal
-    test/golden/hpack-dhall-cabal/import-relative/import-relative.cabal
-    test/golden/hpack-dhall-cabal/when-dependencies.cabal
-    test/golden/hpack-dhall-cabal/empty-inferred/package.json
-    test/golden/hpack-dhall-cabal/empty-package.json
-    test/golden/hpack-dhall-cabal/hpack-dhall.json
-    test/golden/hpack-dhall-cabal/import-local/package.json
-    test/golden/hpack-dhall-cabal/import-relative/package.json
-    test/golden/hpack-dhall-cabal/when-dependencies.json
-    test/golden/hpack-dhall-cabal/empty-inferred/package.yaml
-    test/golden/hpack-dhall-cabal/empty-package.yaml
-    test/golden/hpack-dhall-cabal/hpack-dhall.yaml
-    test/golden/hpack-dhall-cabal/import-local/package.yaml
-    test/golden/hpack-dhall-cabal/import-relative/package.yaml
-    test/golden/hpack-dhall-cabal/when-dependencies.yaml
-    test/golden/hpack-dhall-cabal/empty-inferred/empty-inferred.cabal.golden
-    test/golden/hpack-dhall-cabal/empty-inferred/package.dhall.golden
-    test/golden/hpack-dhall-cabal/empty-package.cabal.golden
-    test/golden/hpack-dhall-cabal/empty-package.dhall.golden
-    test/golden/hpack-dhall-cabal/hpack-dhall.cabal.golden
-    test/golden/hpack-dhall-cabal/hpack-dhall.dhall.golden
-    test/golden/hpack-dhall-cabal/import-local/import-local.cabal.golden
-    test/golden/hpack-dhall-cabal/import-local/package.dhall.golden
-    test/golden/hpack-dhall-cabal/import-relative/import-relative.cabal.golden
-    test/golden/hpack-dhall-cabal/import-relative/package.dhall.golden
-    test/golden/hpack-dhall-cabal/when-dependencies.cabal.golden
-    test/golden/hpack-dhall-cabal/when-dependencies.dhall.golden
+    test/golden/test-files/empty-inferred/package.dhall
+    test/golden/test-files/empty-package.dhall
+    test/golden/test-files/hpack-dhall.dhall
+    test/golden/test-files/import-local/package.dhall
+    test/golden/test-files/import-relative/package.dhall
+    test/golden/test-files/when-dependencies.dhall
+    test/golden/test-files/import-local/name.dhl
+    test/golden/test-files/import-relative.dhl
+    test/golden/test-files/empty-inferred/empty-inferred.cabal
+    test/golden/test-files/empty-package.cabal
+    test/golden/test-files/hpack-dhall.cabal
+    test/golden/test-files/import-local/import-local.cabal
+    test/golden/test-files/import-relative/import-relative.cabal
+    test/golden/test-files/when-dependencies.cabal
+    test/golden/test-files/empty-inferred/package.json
+    test/golden/test-files/empty-package.json
+    test/golden/test-files/hpack-dhall.json
+    test/golden/test-files/import-local/package.json
+    test/golden/test-files/import-relative/package.json
+    test/golden/test-files/when-dependencies.json
+    test/golden/test-files/empty-inferred/package.yaml
+    test/golden/test-files/empty-package.yaml
+    test/golden/test-files/hpack-dhall.yaml
+    test/golden/test-files/import-local/package.yaml
+    test/golden/test-files/import-relative/package.yaml
+    test/golden/test-files/when-dependencies.yaml
+    test/golden/test-files/empty-inferred/empty-inferred.cabal.golden
+    test/golden/test-files/empty-inferred/package.dhall.golden
+    test/golden/test-files/empty-package.cabal.golden
+    test/golden/test-files/empty-package.dhall.golden
+    test/golden/test-files/hpack-dhall.cabal.golden
+    test/golden/test-files/hpack-dhall.dhall.golden
+    test/golden/test-files/import-local/import-local.cabal.golden
+    test/golden/test-files/import-local/package.dhall.golden
+    test/golden/test-files/import-relative/import-relative.cabal.golden
+    test/golden/test-files/import-relative/package.dhall.golden
+    test/golden/test-files/when-dependencies.cabal.golden
+    test/golden/test-files/when-dependencies.dhall.golden
 
 source-repository head
   type: git
