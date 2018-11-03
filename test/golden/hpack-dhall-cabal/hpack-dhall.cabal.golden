@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 2cda033f86e205babc457286429e82d54b504d8e8a287c1ea57ba3ecd45f1a65
+-- hash: 457b7f504bdf3aa2e669493d29dd0dd987e553eaae1994d4dfa1a5d7d9aaad31
 
 name:           hpack-dhall
 version:        0.4.1
@@ -118,6 +118,7 @@ executable dhall-hpack-cabal
     , dhall-json >=1.2.4
     , filepath
     , hpack >=0.31.0
+    , hpack-dhall
     , megaparsec >=7.0.1
     , microlens
     , optparse-applicative
@@ -147,6 +148,7 @@ executable dhall-hpack-dhall
     , dhall-json >=1.2.4
     , filepath
     , hpack >=0.31.0
+    , hpack-dhall
     , megaparsec >=7.0.1
     , microlens
     , optparse-applicative
@@ -176,6 +178,7 @@ executable dhall-hpack-json
     , dhall-json >=1.2.4
     , filepath
     , hpack >=0.31.0
+    , hpack-dhall
     , megaparsec >=7.0.1
     , microlens
     , optparse-applicative
@@ -205,6 +208,7 @@ executable dhall-hpack-yaml
     , dhall-json >=1.2.4
     , filepath
     , hpack >=0.31.0
+    , hpack-dhall
     , megaparsec >=7.0.1
     , microlens
     , optparse-applicative
@@ -219,12 +223,10 @@ test-suite golden
   main-is: Golden.hs
   other-modules:
       Hpack.Dhall
-      Hpack.Dhall
       Paths_hpack_dhall
   hs-source-dirs:
       library
-      library
-      test/golden
+      test/golden/src
   ghc-options: -Wall
   build-depends:
       Cabal

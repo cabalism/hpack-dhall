@@ -15,7 +15,7 @@
           , "yaml"
           ]
 
-in  let exe-deps = deps # [ "optparse-applicative" ]
+in  let exe-deps = [ "hpack-dhall", "optparse-applicative" ]
 
 in  { name =
         "hpack-dhall"
@@ -106,7 +106,7 @@ in  { name =
             { main =
                 "Golden.hs"
             , source-dirs =
-                [ "library", "test/golden" ]
+                [ "test/golden/src" ]
             , dependencies =
                 [ "base"
                 , "Cabal"

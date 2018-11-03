@@ -15,7 +15,7 @@
           , "yaml"
           ]
 
-in  let exe-deps = deps # [ "optparse-applicative" ]
+in  let exe-deps = [ "hpack-dhall", "optparse-applicative" ]
 
 in  { name =
         "hpack-dhall"
@@ -38,7 +38,7 @@ in  { name =
         Work with hpack's top-level
         <https://github.com/sol/hpack#top-level-fields fields> in a Dhall
         record with the following executables;
-        
+
         * with @dhall-hpack-cabal@ write the @.cabal@ for a @.dhall@ package description.
         * with @dhall-hpack-dhall@ show the package description expression, with imports resolved.
         * with @dhall-hpack-json@ show the package description as JSON.
@@ -106,7 +106,7 @@ in  { name =
             { main =
                 "Golden.hs"
             , source-dirs =
-                [ "library", "test/golden" ]
+                [ "test/golden/src" ]
             , dependencies =
                 [ "base"
                 , "Cabal"

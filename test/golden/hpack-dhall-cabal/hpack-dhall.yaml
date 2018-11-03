@@ -57,20 +57,7 @@ library:
 executables:
   dhall-hpack-cabal:
     dependencies:
-    - base == 4.*
-    - megaparsec >= 7.0.1
-    - dhall >= 1.18.0
-    - dhall-json >= 1.2.4
-    - hpack >= 0.31.0
-    - transformers
-    - aeson
-    - text
-    - microlens
-    - filepath
-    - aeson-pretty
-    - bytestring
-    - prettyprinter
-    - yaml
+    - hpack-dhall
     - optparse-applicative
     main: CabalMain.hs
     source-dirs:
@@ -78,20 +65,7 @@ executables:
     - exe/dhall-hpack-cabal
   dhall-hpack-dhall:
     dependencies:
-    - base == 4.*
-    - megaparsec >= 7.0.1
-    - dhall >= 1.18.0
-    - dhall-json >= 1.2.4
-    - hpack >= 0.31.0
-    - transformers
-    - aeson
-    - text
-    - microlens
-    - filepath
-    - aeson-pretty
-    - bytestring
-    - prettyprinter
-    - yaml
+    - hpack-dhall
     - optparse-applicative
     main: DhallMain.hs
     source-dirs:
@@ -99,20 +73,7 @@ executables:
     - exe/dhall-hpack-dhall
   dhall-hpack-json:
     dependencies:
-    - base == 4.*
-    - megaparsec >= 7.0.1
-    - dhall >= 1.18.0
-    - dhall-json >= 1.2.4
-    - hpack >= 0.31.0
-    - transformers
-    - aeson
-    - text
-    - microlens
-    - filepath
-    - aeson-pretty
-    - bytestring
-    - prettyprinter
-    - yaml
+    - hpack-dhall
     - optparse-applicative
     main: JsonMain.hs
     source-dirs:
@@ -120,20 +81,7 @@ executables:
     - exe/dhall-hpack-json
   dhall-hpack-yaml:
     dependencies:
-    - base == 4.*
-    - megaparsec >= 7.0.1
-    - dhall >= 1.18.0
-    - dhall-json >= 1.2.4
-    - hpack >= 0.31.0
-    - transformers
-    - aeson
-    - text
-    - microlens
-    - filepath
-    - aeson-pretty
-    - bytestring
-    - prettyprinter
-    - yaml
+    - hpack-dhall
     - optparse-applicative
     main: YamlMain.hs
     source-dirs:
@@ -161,5 +109,4 @@ tests:
     - utf8-string
     main: Golden.hs
     source-dirs:
-    - library
-    - test/golden
+    - test/golden/src

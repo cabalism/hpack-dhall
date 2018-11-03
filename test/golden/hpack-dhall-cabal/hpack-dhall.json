@@ -6,8 +6,7 @@
     "tests": {
         "golden": {
             "source-dirs": [
-                "library",
-                "test/golden"
+                "test/golden/src"
             ],
             "main": "Golden.hs",
             "dependencies": [
@@ -77,20 +76,7 @@
             ],
             "main": "YamlMain.hs",
             "dependencies": [
-                "base == 4.*",
-                "megaparsec >= 7.0.1",
-                "dhall >= 1.18.0",
-                "dhall-json >= 1.2.4",
-                "hpack >= 0.31.0",
-                "transformers",
-                "aeson",
-                "text",
-                "microlens",
-                "filepath",
-                "aeson-pretty",
-                "bytestring",
-                "prettyprinter",
-                "yaml",
+                "hpack-dhall",
                 "optparse-applicative"
             ]
         },
@@ -101,20 +87,7 @@
             ],
             "main": "JsonMain.hs",
             "dependencies": [
-                "base == 4.*",
-                "megaparsec >= 7.0.1",
-                "dhall >= 1.18.0",
-                "dhall-json >= 1.2.4",
-                "hpack >= 0.31.0",
-                "transformers",
-                "aeson",
-                "text",
-                "microlens",
-                "filepath",
-                "aeson-pretty",
-                "bytestring",
-                "prettyprinter",
-                "yaml",
+                "hpack-dhall",
                 "optparse-applicative"
             ]
         },
@@ -125,20 +98,7 @@
             ],
             "main": "CabalMain.hs",
             "dependencies": [
-                "base == 4.*",
-                "megaparsec >= 7.0.1",
-                "dhall >= 1.18.0",
-                "dhall-json >= 1.2.4",
-                "hpack >= 0.31.0",
-                "transformers",
-                "aeson",
-                "text",
-                "microlens",
-                "filepath",
-                "aeson-pretty",
-                "bytestring",
-                "prettyprinter",
-                "yaml",
+                "hpack-dhall",
                 "optparse-applicative"
             ]
         },
@@ -149,20 +109,7 @@
             ],
             "main": "DhallMain.hs",
             "dependencies": [
-                "base == 4.*",
-                "megaparsec >= 7.0.1",
-                "dhall >= 1.18.0",
-                "dhall-json >= 1.2.4",
-                "hpack >= 0.31.0",
-                "transformers",
-                "aeson",
-                "text",
-                "microlens",
-                "filepath",
-                "aeson-pretty",
-                "bytestring",
-                "prettyprinter",
-                "yaml",
+                "hpack-dhall",
                 "optparse-applicative"
             ]
         }
