@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: b7352bde3bde7a8b4a898fa38c76f17aff5276930947af31001ceb6c25b9902e
+-- hash: 2f3afa8287a233a29b721641b78706e3387e82178c4740a2a8aeafa92d7ebc9e
 
 name:           hpack-dhall
 version:        0.4.1
@@ -32,7 +32,6 @@ extra-source-files:
     README.md
     test/golden/test-files/empty-inferred/package.dhall
     test/golden/test-files/empty-package.dhall
-    test/golden/test-files/hpack-dhall.dhall
     test/golden/test-files/import-local/package.dhall
     test/golden/test-files/import-relative/package.dhall
     test/golden/test-files/when-dependencies.dhall
@@ -40,19 +39,16 @@ extra-source-files:
     test/golden/test-files/import-relative.dhl
     test/golden/test-files/empty-inferred/empty-inferred.cabal
     test/golden/test-files/empty-package.cabal
-    test/golden/test-files/hpack-dhall.cabal
     test/golden/test-files/import-local/import-local.cabal
     test/golden/test-files/import-relative/import-relative.cabal
     test/golden/test-files/when-dependencies.cabal
     test/golden/test-files/empty-inferred/package.json
     test/golden/test-files/empty-package.json
-    test/golden/test-files/hpack-dhall.json
     test/golden/test-files/import-local/package.json
     test/golden/test-files/import-relative/package.json
     test/golden/test-files/when-dependencies.json
     test/golden/test-files/empty-inferred/package.yaml
     test/golden/test-files/empty-package.yaml
-    test/golden/test-files/hpack-dhall.yaml
     test/golden/test-files/import-local/package.yaml
     test/golden/test-files/import-relative/package.yaml
     test/golden/test-files/when-dependencies.yaml
@@ -60,8 +56,6 @@ extra-source-files:
     test/golden/test-files/empty-inferred/package.dhall.golden
     test/golden/test-files/empty-package.cabal.golden
     test/golden/test-files/empty-package.dhall.golden
-    test/golden/test-files/hpack-dhall.cabal.golden
-    test/golden/test-files/hpack-dhall.dhall.golden
     test/golden/test-files/import-local/import-local.cabal.golden
     test/golden/test-files/import-local/package.dhall.golden
     test/golden/test-files/import-relative/import-relative.cabal.golden
