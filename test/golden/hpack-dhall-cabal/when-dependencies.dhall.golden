@@ -1,0 +1,13 @@
+    let deps = [ "base == 4.*" ]
+
+in  { name =
+        "when-dependencies"
+    , when =
+        { condition =
+            "impl(ghc < 8.2.2)"
+        , `then` =
+            { dependencies = deps # [ "yaml" ] }
+        , `else` =
+            { dependencies = deps # [ "yaml-pretty-extras" ] }
+        }
+    }
