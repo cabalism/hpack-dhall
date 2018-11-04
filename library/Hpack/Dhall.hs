@@ -1,6 +1,4 @@
 {-# LANGUAGE TupleSections #-}
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE MultiWayIf #-}
 
 {-|
 Module: Hpack.Dhall
@@ -23,13 +21,9 @@ module Hpack.Dhall
     , packageConfig
     ) where
 
-import Data.Maybe (fromMaybe)
-import Data.List (elemIndex)
-import Data.String (IsString())
 import Data.Function ((&))
 import Lens.Micro ((^.), set)
 import System.FilePath (takeDirectory)
-import Control.Applicative (liftA2)
 import Control.Exception (throwIO)
 import Control.Monad.Trans.Except (ExceptT(..), runExceptT)
 import Control.Monad.IO.Class (liftIO)
@@ -54,45 +48,7 @@ import Dhall.Pretty (prettyExpr, layoutOpts)
 import qualified Data.Text.Prettyprint.Doc as PP
 import qualified Data.Text.Prettyprint.Doc.Render.Text as PP
 import qualified Data.Yaml.Pretty as Y
-
-cmp :: (Ord a, IsString a) => a -> a -> Ordering
-cmp a b =
-    fromMaybe fallback $
-        liftA2 compare (elemIndex a fields) (elemIndex b fields)
-    where
-        fallback =
-            if | elem a fields -> LT
-               | elem b fields -> GT
-               | otherwise -> a `compare` b
-
-        fields =
-            [ "name"
-            , "version"
-            , "author"
-            , "maintainer"
-            , "copyright"
-            , "license"
-            , "license-file"
-            , "category"
-            , "synopsis"
-            , "description"
-            , "homepage"
-            , "github"
-            , "tested-with"
-            , "extra-source-files"
-            , "ghc-options"
-            , "default-extensions"
-            , "dependencies"
-            , "main"
-            , "source-dirs"
-            , "library"
-            , "executables"
-            , "tests"
-            , "when"
-            , "condition"
-            , "then"
-            , "else"
-            ]
+import Hpack.Fields (cmp)
 
 -- SEE: http://onoffswitch.net/adventures-pretty-printing-json-haskell/
 getJson :: ToJSON a => a -> String

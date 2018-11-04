@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 475ba80d814082bc68683be8679140867571a8a7b615083c7826845f0d668551
+-- hash: 283c8bdf7353f9b0047aba88a2f06502848d4b3ee342aab52ac8a2ef88bdb488
 
 name:           hpack-dhall
 version:        0.4.1
@@ -71,6 +71,7 @@ library
   exposed-modules:
       Hpack.Dhall
   other-modules:
+      Hpack.Fields
       Paths_hpack_dhall
   hs-source-dirs:
       library
@@ -96,6 +97,7 @@ executable dhall-hpack-cabal
   main-is: CabalMain.hs
   other-modules:
       Hpack.Dhall
+      Hpack.Fields
       Options
       Paths_hpack_dhall
   hs-source-dirs:
@@ -126,6 +128,7 @@ executable dhall-hpack-dhall
   main-is: DhallMain.hs
   other-modules:
       Hpack.Dhall
+      Hpack.Fields
       Options
       Paths_hpack_dhall
   hs-source-dirs:
@@ -156,6 +159,7 @@ executable dhall-hpack-json
   main-is: JsonMain.hs
   other-modules:
       Hpack.Dhall
+      Hpack.Fields
       Options
       Paths_hpack_dhall
   hs-source-dirs:
@@ -186,6 +190,7 @@ executable dhall-hpack-yaml
   main-is: YamlMain.hs
   other-modules:
       Hpack.Dhall
+      Hpack.Fields
       Options
       Paths_hpack_dhall
   hs-source-dirs:
@@ -217,6 +222,7 @@ test-suite golden
   main-is: Golden.hs
   other-modules:
       Hpack.Dhall
+      Hpack.Fields
       Paths_hpack_dhall
   hs-source-dirs:
       library
