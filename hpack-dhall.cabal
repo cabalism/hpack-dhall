@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 283c8bdf7353f9b0047aba88a2f06502848d4b3ee342aab52ac8a2ef88bdb488
+-- hash: e8b71c04fa7d13a28db36ec7b9bffc455140eab368838c6753d30c9cad5ecb9f
 
 name:           hpack-dhall
-version:        0.4.1
+version:        0.5.0
 synopsis:       hpack's dhalling
 description:    Work with hpack's top-level
                 <https://github.com/sol/hpack#top-level-fields fields> in a Dhall
@@ -70,8 +70,8 @@ source-repository head
 library
   exposed-modules:
       Hpack.Dhall
-  other-modules:
       Hpack.Fields
+  other-modules:
       Paths_hpack_dhall
   hs-source-dirs:
       library

@@ -21,6 +21,7 @@ module Hpack.Dhall
     , packageConfig
     ) where
 
+import Data.Maybe (fromMaybe)
 import Data.Function ((&))
 import Lens.Micro ((^.), set)
 import System.FilePath (takeDirectory)
@@ -54,10 +55,10 @@ import Hpack.Fields (cmp)
 getJson :: ToJSON a => a -> String
 getJson = T.unpack . decodeUtf8 . BSL.toStrict . encodePretty
 
-getYaml :: Value -> String
-getYaml = T.unpack . decodeUtf8 . (Y.encodePretty cfg)
+getYaml :: ToJSON a => (Text -> Text -> Ordering) -> a -> String
+getYaml cmp' = T.unpack . decodeUtf8 . (Y.encodePretty cfg)
     where
-        cfg = Y.setConfCompare cmp Y.defConfig
+        cfg = Y.setConfCompare cmp' Y.defConfig
 
 -- | The default package file name is @package.dhall@.
 packageConfig :: FilePath
@@ -73,11 +74,14 @@ showJson file = do
 
 -- | Pretty prints YAML for the package description.
 showYaml
-    :: FilePath -- ^ Path to a @.dhall@ file
+    :: Maybe (Text -> Text -> Ordering)
+    -- ^ An ordering of YAML fields.
+    -> FilePath
+    -- ^ Path to a @.dhall@ file
     -> IO String
-showYaml file = do
+showYaml fieldOrdering file = do
     Right (_, v) <- fileToJson file
-    return $ getYaml v
+    return $ getYaml (fromMaybe cmp fieldOrdering) v
 
 -- | Pretty prints the package description Dhall expression, resolving imports
 -- relative to the location of the @.dhall@ file.

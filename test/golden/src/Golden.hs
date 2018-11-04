@@ -51,7 +51,7 @@ goldenTests = do
             [ goldenVsString
                 (testName dhallFile)
                 (dhallFile -<.> ".yaml")
-                (fmap fromString . showYaml $ dhallFile)
+                (fmap fromString . showYaml Nothing $ dhallFile)
             | dhallFile <- dhallFiles
             ]
         ]

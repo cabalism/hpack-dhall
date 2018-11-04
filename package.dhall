@@ -20,7 +20,7 @@ in  let exe-deps = [ "hpack-dhall", "optparse-applicative" ]
 in  { name =
         "hpack-dhall"
     , version =
-        "0.4.1"
+        "0.5.0"
     , maintainer =
         "Phil de Joux <phil.dejoux@blockscope.com>"
     , copyright =
@@ -66,7 +66,7 @@ in  { name =
     , source-dirs =
         "library"
     , library =
-        { exposed-modules = "Hpack.Dhall" }
+        { exposed-modules = [ "Hpack.Dhall", "Hpack.Fields" ] }
     , executables =
         { dhall-hpack-cabal =
             { main =

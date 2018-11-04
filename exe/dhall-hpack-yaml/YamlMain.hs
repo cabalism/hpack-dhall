@@ -39,6 +39,6 @@ main = do
             putStrLn $ "hpack-" ++ showVersion H.version
 
         Run (Options {..}) -> do
-            s <- showYaml pkgFile
+            s <- showYaml Nothing pkgFile
             putStrLn s
             return ()
