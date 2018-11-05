@@ -24,7 +24,6 @@ cmp a b =
 
         fields =
             [ topLevelFields
-            , commonFields
             , libraryFields
             , runnableFields
             , flagFields
@@ -38,6 +37,7 @@ topLevelFields =
     headerFields
     ++ packageFields
     ++ repoFields
+    ++ commonFields
     ++ stanzasFields
 
 -- | The header subset of

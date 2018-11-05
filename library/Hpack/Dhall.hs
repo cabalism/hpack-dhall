@@ -31,7 +31,6 @@ import Control.Monad.IO.Class (liftIO)
 import qualified Control.Monad.Trans.State.Strict as State
 import Data.Bifunctor (first)
 import Data.Aeson (ToJSON, Value)
-import Data.Aeson.Encode.Pretty (encodePretty)
 import qualified Data.ByteString.Lazy as BSL (toStrict)
 import Data.Text.Encoding (decodeUtf8)
 import qualified Data.Text as T (Text, unpack)
@@ -49,16 +48,19 @@ import Dhall.Pretty (prettyExpr, layoutOpts)
 import qualified Data.Text.Prettyprint.Doc as PP
 import qualified Data.Text.Prettyprint.Doc.Render.Text as PP
 import qualified Data.Yaml.Pretty as Y
+import qualified Data.Aeson.Encode.Pretty as A
 import Hpack.Fields (cmp)
 
 -- SEE: http://onoffswitch.net/adventures-pretty-printing-json-haskell/
-getJson :: ToJSON a => a -> String
-getJson = T.unpack . decodeUtf8 . BSL.toStrict . encodePretty
+getJson :: ToJSON a => (Text -> Text -> Ordering) -> a -> String
+getJson cmp' =
+    let cfg = A.defConfig {A.confCompare = cmp'}
+    in T.unpack . decodeUtf8 . BSL.toStrict . (A.encodePretty' cfg)
 
 getYaml :: ToJSON a => (Text -> Text -> Ordering) -> a -> String
-getYaml cmp' = T.unpack . decodeUtf8 . (Y.encodePretty cfg)
-    where
-        cfg = Y.setConfCompare cmp' Y.defConfig
+getYaml cmp' =
+    let cfg = Y.setConfCompare cmp' Y.defConfig
+    in T.unpack . decodeUtf8 . (Y.encodePretty cfg)
 
 -- | The default package file name is @package.dhall@.
 packageConfig :: FilePath
@@ -66,11 +68,14 @@ packageConfig = "package.dhall"
 
 -- | Pretty prints JSON for the package description.
 showJson
-    :: FilePath -- ^ Path to a @.dhall@ file
+    :: Maybe (Text -> Text -> Ordering)
+    -- ^ An ordering of JSON fields.
+    -> FilePath
+    -- ^ Path to a @.dhall@ file
     -> IO String
-showJson file = do
+showJson fieldOrdering file = do
     Right (_, v) <- fileToJson file
-    return $ getJson v
+    return $ getJson (fromMaybe cmp fieldOrdering) v
 
 -- | Pretty prints YAML for the package description.
 showYaml

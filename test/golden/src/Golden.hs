@@ -44,7 +44,7 @@ goldenTests = do
             [ goldenVsString
                 (testName dhallFile)
                 (dhallFile -<.> ".json")
-                (fmap fromString . showJson $ dhallFile)
+                (fmap fromString . showJson Nothing $ dhallFile)
             | dhallFile <- dhallFiles
             ]
         , testGroup ".dhall to yaml"

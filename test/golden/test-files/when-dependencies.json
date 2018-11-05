@@ -1,5 +1,7 @@
 {
+    "name": "when-dependencies",
     "when": {
+        "condition": "impl(ghc < 8.2.2)",
         "then": {
             "dependencies": [
                 "base == 4.*",
@@ -11,8 +13,6 @@
                 "base == 4.*",
                 "yaml-pretty-extras"
             ]
-        },
-        "condition": "impl(ghc < 8.2.2)"
-    },
-    "name": "when-dependencies"
+        }
+    }
 }

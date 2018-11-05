@@ -39,6 +39,6 @@ main = do
             putStrLn $ "hpack-" ++ showVersion H.version
 
         Run (Options {..}) -> do
-            s <- showJson pkgFile
+            s <- showJson Nothing pkgFile
             putStrLn s
             return ()

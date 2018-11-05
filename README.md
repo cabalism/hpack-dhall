@@ -153,5 +153,5 @@ We can consistently format `package.dhall` and other `*.dhall` imports using
 With haskell-ci tooling installed, generate the `.travis.yml` setup with;
 ```
 > make-travis-yml --output=.travis.yml --config=cabal.haskell-ci hpack-dhall.cabal
-*INFO* Generating Travis-CI config for testing for GHC versions: 8.2.2 8.4.3 8.4.4 8.6.1
+*INFO* Generating Travis-CI config for testing for GHC versions: 8.4.3 8.4.4 8.6.1
 ```
