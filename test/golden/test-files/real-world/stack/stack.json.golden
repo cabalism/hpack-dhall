@@ -9,11 +9,402 @@
     "maintainer": "manny@fpcomplete.com",
     "license": "BSD3",
     "github": "commercialhaskell/stack",
+    "extra-source-files": [
+        "CONTRIBUTING.md",
+        "ChangeLog.md",
+        "README.md",
+        "doc/*.md",
+        "src/setup-shim/StackSetupShim.hs",
+        "stack.yaml",
+        "test/package-dump/ghc-7.10.txt",
+        "test/package-dump/ghc-7.8.4-osx.txt",
+        "test/package-dump/ghc-7.8.txt"
+    ],
+    "ghc-options": [
+        "-Wall",
+        "-fwarn-tabs",
+        "-fwarn-incomplete-uni-patterns",
+        "-fwarn-incomplete-record-updates",
+        "-optP-Wno-nonportable-include-path # workaround [Filename case on macOS · Issue #4739 · haskell/cabal](https://github.com/haskell/cabal/issues/4739)"
+    ],
+    "dependencies": [
+        "Cabal >= 2.4",
+        "aeson",
+        "annotated-wl-pprint",
+        "ansi-terminal >= 0.8.1",
+        "array",
+        "async",
+        "attoparsec",
+        "base >=4.10 && < 5",
+        "base64-bytestring",
+        "bytestring",
+        "colour",
+        "conduit",
+        "conduit-extra",
+        "containers",
+        "cryptonite",
+        "cryptonite-conduit",
+        "deepseq",
+        "directory",
+        "echo",
+        "exceptions",
+        "extra",
+        "file-embed",
+        "filelock",
+        "filepath",
+        "fsnotify",
+        "generic-deriving",
+        "hackage-security",
+        "hashable",
+        "hpack",
+        "hpc",
+        "http-client",
+        "http-client-tls",
+        "http-conduit",
+        "http-types",
+        "memory",
+        "microlens",
+        "mintty",
+        "monad-logger",
+        "mono-traversable",
+        "mtl",
+        "mustache",
+        "neat-interpolation",
+        "network-uri",
+        "open-browser",
+        "optparse-applicative",
+        "pantry",
+        "path",
+        "path-io",
+        "persistent",
+        "persistent-sqlite",
+        "persistent-template",
+        "pretty",
+        "primitive",
+        "process",
+        "project-template",
+        "regex-applicative-text",
+        "resourcet",
+        "retry >= 0.7",
+        "rio",
+        "semigroups",
+        "split",
+        "stm",
+        "store-core",
+        "streaming-commons",
+        "tar",
+        "template-haskell",
+        "temporary",
+        "text",
+        "text-metrics",
+        "th-reify-many",
+        "time",
+        "tls",
+        "transformers",
+        "typed-process",
+        "unicode-transforms",
+        "unix-compat",
+        "unliftio >= 0.2.8.0",
+        "unordered-containers",
+        "vector",
+        "yaml",
+        "zip-archive",
+        "zlib"
+    ],
+    "when": {
+        "condition": "os(windows)",
+        "then": {
+            "cpp-options": [
+                "-DWINDOWS"
+            ],
+            "dependencies": [
+                "Win32"
+            ]
+        },
+        "else": {
+            "dependencies": [
+                "unix"
+            ],
+            "build-tools": [
+                "hsc2hs"
+            ]
+        }
+    },
     "custom-setup": {
         "dependencies": [
             "base >=4.10 && < 5",
             "Cabal >= 2.4",
             "filepath"
         ]
+    },
+    "flags": {
+        "disable-git-info": {
+            "description": "Disable compile-time inclusion of current git info in stack",
+            "manual": true,
+            "default": false
+        },
+        "hide-dependency-versions": {
+            "description": "Hides dependency versions from \"stack --version\", used only by building with stack.yaml",
+            "manual": true,
+            "default": false
+        },
+        "integration-tests": {
+            "description": "Run the integration test suite",
+            "manual": true,
+            "default": false
+        },
+        "static": {
+            "description": "Pass -static/-pthread to ghc when linking the stack binary.",
+            "manual": true,
+            "default": false
+        },
+        "supported-build": {
+            "description": "If false, causes \"stack --version\" to issue a warning about the build being unsupported.  True only if building with stack.yaml",
+            "manual": true,
+            "default": false
+        }
+    },
+    "library": {
+        "exposed-modules": [
+            "Control.Concurrent.Execute",
+            "Data.Attoparsec.Args",
+            "Data.Attoparsec.Combinators",
+            "Data.Attoparsec.Interpreter",
+            "Data.Monoid.Map",
+            "Network.HTTP.Download",
+            "Network.HTTP.Download.Verified",
+            "Network.HTTP.StackClient",
+            "Options.Applicative.Args",
+            "Options.Applicative.Builder.Extra",
+            "Options.Applicative.Complicated",
+            "Path.CheckInstall",
+            "Path.Extra",
+            "Path.Find",
+            "Stack.Build",
+            "Stack.Build.Cache",
+            "Stack.Build.ConstructPlan",
+            "Stack.Build.Execute",
+            "Stack.Build.Haddock",
+            "Stack.Build.Installed",
+            "Stack.Build.Source",
+            "Stack.Build.Target",
+            "Stack.BuildPlan",
+            "Stack.Clean",
+            "Stack.Config",
+            "Stack.Config.Build",
+            "Stack.Config.Urls",
+            "Stack.Config.Docker",
+            "Stack.Config.Nix",
+            "Stack.ConfigCmd",
+            "Stack.Constants",
+            "Stack.Constants.Config",
+            "Stack.Coverage",
+            "Stack.DefaultColorWhen",
+            "Stack.DefaultStyles",
+            "Stack.Docker",
+            "Stack.Docker.GlobalDB",
+            "Stack.Dot",
+            "Stack.FileWatch",
+            "Stack.Freeze",
+            "Stack.GhcPkg",
+            "Stack.Ghci",
+            "Stack.Ghci.Script",
+            "Stack.Hoogle",
+            "Stack.IDE",
+            "Stack.Image",
+            "Stack.Init",
+            "Stack.Ls",
+            "Stack.New",
+            "Stack.Nix",
+            "Stack.Options.BenchParser",
+            "Stack.Options.BuildMonoidParser",
+            "Stack.Options.BuildParser",
+            "Stack.Options.CleanParser",
+            "Stack.Options.ConfigParser",
+            "Stack.Options.Completion",
+            "Stack.Options.DockerParser",
+            "Stack.Options.DotParser",
+            "Stack.Options.ExecParser",
+            "Stack.Options.FreezeParser",
+            "Stack.Options.GhcBuildParser",
+            "Stack.Options.GhciParser",
+            "Stack.Options.GhcVariantParser",
+            "Stack.Options.GlobalParser",
+            "Stack.Options.HaddockParser",
+            "Stack.Options.HpcReportParser",
+            "Stack.Options.LogLevelParser",
+            "Stack.Options.NewParser",
+            "Stack.Options.NixParser",
+            "Stack.Options.PackageParser",
+            "Stack.Options.ResolverParser",
+            "Stack.Options.ScriptParser",
+            "Stack.Options.SDistParser",
+            "Stack.Options.SolverParser",
+            "Stack.Options.TestParser",
+            "Stack.Options.Utils",
+            "Stack.Package",
+            "Stack.PackageDump",
+            "Stack.Path",
+            "Stack.Prelude",
+            "Stack.PrettyPrint",
+            "Stack.Runners",
+            "Stack.Script",
+            "Stack.SDist",
+            "Stack.Setup",
+            "Stack.Setup.Installed",
+            "Stack.SetupCmd",
+            "Stack.Sig",
+            "Stack.Sig.GPG",
+            "Stack.Sig.Sign",
+            "Stack.Snapshot",
+            "Stack.Solver",
+            "Stack.StoreTH",
+            "Stack.Types.Build",
+            "Stack.Types.BuildPlan",
+            "Stack.Types.CompilerBuild",
+            "Stack.Types.Urls",
+            "Stack.Types.Compiler",
+            "Stack.Types.Config",
+            "Stack.Types.Config.Build",
+            "Stack.Types.Docker",
+            "Stack.Types.GhcPkgId",
+            "Stack.Types.Image",
+            "Stack.Types.NamedComponent",
+            "Stack.Types.Nix",
+            "Stack.Types.Package",
+            "Stack.Types.PackageDump",
+            "Stack.Types.PackageName",
+            "Stack.Types.PrettyPrint",
+            "Stack.Types.Resolver",
+            "Stack.Types.Runner",
+            "Stack.Types.Sig",
+            "Stack.Types.StylesUpdate",
+            "Stack.Types.TemplateName",
+            "Stack.Types.Version",
+            "Stack.Types.VersionIntervals",
+            "Stack.Unpack",
+            "Stack.Upgrade",
+            "Stack.Upload",
+            "Text.PrettyPrint.Leijen.Extended",
+            "System.Permissions",
+            "System.Process.PagerEditor",
+            "System.Terminal"
+        ],
+        "generated-exposed-modules": [
+            "Paths_stack"
+        ],
+        "source-dirs": "src/",
+        "ghc-options": [
+            "-fwarn-identities"
+        ],
+        "when": {
+            "condition": "os(windows)",
+            "then": {
+                "source-dirs": [
+                    "src/windows/"
+                ]
+            },
+            "else": {
+                "source-dirs": [
+                    "src/unix/"
+                ],
+                "c-sources": [
+                    "src/unix/cbits/uname.c"
+                ]
+            }
+        }
+    },
+    "executables": {
+        "stack": {
+            "main": "Main.hs",
+            "generated-other-modules": [
+                "Build_stack",
+                "Paths_stack"
+            ],
+            "source-dirs": [
+                "src/main"
+            ],
+            "ghc-options": [
+                "-threaded",
+                "-rtsopts"
+            ],
+            "dependencies": [
+                "stack"
+            ],
+            "when": [
+                {
+                    "condition": "flag(static)",
+                    "cpp-options": [],
+                    "ld-options": [
+                        "-static",
+                        "-pthread"
+                    ],
+                    "dependencies": []
+                },
+                {
+                    "condition": "!(flag(disable-git-info))",
+                    "cpp-options": [
+                        "-DUSE_GIT_INFO"
+                    ],
+                    "ld-options": [],
+                    "dependencies": [
+                        "githash",
+                        "optparse-simple"
+                    ]
+                },
+                {
+                    "condition": "flag(hide-dependency-versions)",
+                    "cpp-options": [
+                        "-DHIDE_DEP_VERSIONS"
+                    ],
+                    "ld-options": [],
+                    "dependencies": []
+                },
+                {
+                    "condition": "flag(supported-build)",
+                    "cpp-options": [
+                        "-DSUPPORTED_BUILD"
+                    ],
+                    "ld-options": [],
+                    "dependencies": []
+                }
+            ]
+        }
+    },
+    "tests": {
+        "stack-integration-test": {
+            "main": "IntegrationSpec.hs",
+            "source-dirs": [
+                "test/integration",
+                "test/integration/lib"
+            ],
+            "ghc-options": [
+                "-threaded",
+                "-rtsopts",
+                "-with-rtsopts=-N"
+            ],
+            "dependencies": [
+                "hspec"
+            ],
+            "when": {
+                "condition": "!flag(integration-tests)",
+                "buildable": false
+            }
+        },
+        "stack-test": {
+            "main": "Spec.hs",
+            "source-dirs": [
+                "src/test"
+            ],
+            "ghc-options": [
+                "-threaded"
+            ],
+            "dependencies": [
+                "QuickCheck",
+                "hspec",
+                "stack",
+                "smallcheck"
+            ]
+        }
     }
 }

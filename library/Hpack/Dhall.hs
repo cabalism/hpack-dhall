@@ -74,8 +74,10 @@ showJson
     -- ^ Path to a @.dhall@ file
     -> IO String
 showJson fieldOrdering file = do
-    Right (_, v) <- fileToJson file
-    return $ getJson (fromMaybe cmp fieldOrdering) v
+    x <- fileToJson file
+    return $ case x of
+        Left err -> err
+        Right (_, v) -> getJson (fromMaybe cmp fieldOrdering) v
 
 -- | Pretty prints YAML for the package description.
 showYaml
@@ -85,8 +87,10 @@ showYaml
     -- ^ Path to a @.dhall@ file
     -> IO String
 showYaml fieldOrdering file = do
-    Right (_, v) <- fileToJson file
-    return $ getYaml (fromMaybe cmp fieldOrdering) v
+    x <- fileToJson file
+    return $ case x of
+        Left err -> err
+        Right (_, v) -> getYaml (fromMaybe cmp fieldOrdering) v
 
 -- | Pretty prints the package description Dhall expression, resolving imports
 -- relative to the location of the @.dhall@ file.

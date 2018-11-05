@@ -17,8 +17,12 @@ cmp a b =
     . asum
     $ [ liftA2 compare (elemIndex a xs) (elemIndex b xs) | xs <- fields ]
     where
+        -- NOTE: There can be short form conditions with no then or else. In
+        -- that case always put condition before the other field name.
         fallback =
-            if | elem a topLevelFields -> LT
+            if | a == "condition" -> LT
+               | b == "condition" -> GT
+               | elem a topLevelFields -> LT
                | elem b topLevelFields -> GT
                | otherwise -> a `compare` b
 

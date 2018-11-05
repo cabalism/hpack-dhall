@@ -1,10 +1,10 @@
-cabal-version: 1.24
+cabal-version: 2.0
 
 -- This file has been generated from stack.dhall by hpack version 0.31.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 35546ab238db21c4065ad4b710944992f1a8c40e8372fc8c8b35b8a730f40e3a
+-- hash: 33d90e3e81d97f3c404a9e20246cf4aa6942dc054db675cadd50b1edd68582ce
 
 name:           stack
 version:        1.10.0
@@ -21,6 +21,15 @@ author:         Commercial Haskell SIG
 maintainer:     manny@fpcomplete.com
 license:        BSD3
 build-type:     Custom
+extra-source-files:
+    CONTRIBUTING.md
+    ChangeLog.md
+    README.md
+    src/setup-shim/StackSetupShim.hs
+    stack.yaml
+    test/package-dump/ghc-7.10.txt
+    test/package-dump/ghc-7.8.4-osx.txt
+    test/package-dump/ghc-7.8.txt
 
 source-repository head
   type: git
@@ -31,3 +40,590 @@ custom-setup
       Cabal >=2.4
     , base >=4.10 && <5
     , filepath
+
+flag disable-git-info
+  description: Disable compile-time inclusion of current git info in stack
+  manual: True
+  default: False
+
+flag hide-dependency-versions
+  description: Hides dependency versions from "stack --version", used only by building with stack.yaml
+  manual: True
+  default: False
+
+flag integration-tests
+  description: Run the integration test suite
+  manual: True
+  default: False
+
+flag static
+  description: Pass -static/-pthread to ghc when linking the stack binary.
+  manual: True
+  default: False
+
+flag supported-build
+  description: If false, causes "stack --version" to issue a warning about the build being unsupported.  True only if building with stack.yaml
+  manual: True
+  default: False
+
+library
+  exposed-modules:
+      Control.Concurrent.Execute
+      Data.Attoparsec.Args
+      Data.Attoparsec.Combinators
+      Data.Attoparsec.Interpreter
+      Data.Monoid.Map
+      Network.HTTP.Download
+      Network.HTTP.Download.Verified
+      Network.HTTP.StackClient
+      Options.Applicative.Args
+      Options.Applicative.Builder.Extra
+      Options.Applicative.Complicated
+      Path.CheckInstall
+      Path.Extra
+      Path.Find
+      Stack.Build
+      Stack.Build.Cache
+      Stack.Build.ConstructPlan
+      Stack.Build.Execute
+      Stack.Build.Haddock
+      Stack.Build.Installed
+      Stack.Build.Source
+      Stack.Build.Target
+      Stack.BuildPlan
+      Stack.Clean
+      Stack.Config
+      Stack.Config.Build
+      Stack.Config.Urls
+      Stack.Config.Docker
+      Stack.Config.Nix
+      Stack.ConfigCmd
+      Stack.Constants
+      Stack.Constants.Config
+      Stack.Coverage
+      Stack.DefaultColorWhen
+      Stack.DefaultStyles
+      Stack.Docker
+      Stack.Docker.GlobalDB
+      Stack.Dot
+      Stack.FileWatch
+      Stack.Freeze
+      Stack.GhcPkg
+      Stack.Ghci
+      Stack.Ghci.Script
+      Stack.Hoogle
+      Stack.IDE
+      Stack.Image
+      Stack.Init
+      Stack.Ls
+      Stack.New
+      Stack.Nix
+      Stack.Options.BenchParser
+      Stack.Options.BuildMonoidParser
+      Stack.Options.BuildParser
+      Stack.Options.CleanParser
+      Stack.Options.ConfigParser
+      Stack.Options.Completion
+      Stack.Options.DockerParser
+      Stack.Options.DotParser
+      Stack.Options.ExecParser
+      Stack.Options.FreezeParser
+      Stack.Options.GhcBuildParser
+      Stack.Options.GhciParser
+      Stack.Options.GhcVariantParser
+      Stack.Options.GlobalParser
+      Stack.Options.HaddockParser
+      Stack.Options.HpcReportParser
+      Stack.Options.LogLevelParser
+      Stack.Options.NewParser
+      Stack.Options.NixParser
+      Stack.Options.PackageParser
+      Stack.Options.ResolverParser
+      Stack.Options.ScriptParser
+      Stack.Options.SDistParser
+      Stack.Options.SolverParser
+      Stack.Options.TestParser
+      Stack.Options.Utils
+      Stack.Package
+      Stack.PackageDump
+      Stack.Path
+      Stack.Prelude
+      Stack.PrettyPrint
+      Stack.Runners
+      Stack.Script
+      Stack.SDist
+      Stack.Setup
+      Stack.Setup.Installed
+      Stack.SetupCmd
+      Stack.Sig
+      Stack.Sig.GPG
+      Stack.Sig.Sign
+      Stack.Snapshot
+      Stack.Solver
+      Stack.StoreTH
+      Stack.Types.Build
+      Stack.Types.BuildPlan
+      Stack.Types.CompilerBuild
+      Stack.Types.Urls
+      Stack.Types.Compiler
+      Stack.Types.Config
+      Stack.Types.Config.Build
+      Stack.Types.Docker
+      Stack.Types.GhcPkgId
+      Stack.Types.Image
+      Stack.Types.NamedComponent
+      Stack.Types.Nix
+      Stack.Types.Package
+      Stack.Types.PackageDump
+      Stack.Types.PackageName
+      Stack.Types.PrettyPrint
+      Stack.Types.Resolver
+      Stack.Types.Runner
+      Stack.Types.Sig
+      Stack.Types.StylesUpdate
+      Stack.Types.TemplateName
+      Stack.Types.Version
+      Stack.Types.VersionIntervals
+      Stack.Unpack
+      Stack.Upgrade
+      Stack.Upload
+      Text.PrettyPrint.Leijen.Extended
+      System.Permissions
+      System.Process.PagerEditor
+      System.Terminal
+      Paths_stack
+  autogen-modules:
+      Paths_stack
+  hs-source-dirs:
+      src/
+  ghc-options: -Wall -fwarn-tabs -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -optP-Wno-nonportable-include-path # workaround [Filename case on macOS · Issue #4739 · haskell/cabal](https://github.com/haskell/cabal/issues/4739) -fwarn-identities
+  build-depends:
+      Cabal >=2.4
+    , aeson
+    , annotated-wl-pprint
+    , ansi-terminal >=0.8.1
+    , array
+    , async
+    , attoparsec
+    , base >=4.10 && <5
+    , base64-bytestring
+    , bytestring
+    , colour
+    , conduit
+    , conduit-extra
+    , containers
+    , cryptonite
+    , cryptonite-conduit
+    , deepseq
+    , directory
+    , echo
+    , exceptions
+    , extra
+    , file-embed
+    , filelock
+    , filepath
+    , fsnotify
+    , generic-deriving
+    , hackage-security
+    , hashable
+    , hpack
+    , hpc
+    , http-client
+    , http-client-tls
+    , http-conduit
+    , http-types
+    , memory
+    , microlens
+    , mintty
+    , monad-logger
+    , mono-traversable
+    , mtl
+    , mustache
+    , neat-interpolation
+    , network-uri
+    , open-browser
+    , optparse-applicative
+    , pantry
+    , path
+    , path-io
+    , persistent
+    , persistent-sqlite
+    , persistent-template
+    , pretty
+    , primitive
+    , process
+    , project-template
+    , regex-applicative-text
+    , resourcet
+    , retry >=0.7
+    , rio
+    , semigroups
+    , split
+    , stm
+    , store-core
+    , streaming-commons
+    , tar
+    , template-haskell
+    , temporary
+    , text
+    , text-metrics
+    , th-reify-many
+    , time
+    , tls
+    , transformers
+    , typed-process
+    , unicode-transforms
+    , unix-compat
+    , unliftio >=0.2.8.0
+    , unordered-containers
+    , vector
+    , yaml
+    , zip-archive
+    , zlib
+  if os(windows)
+    cpp-options: -DWINDOWS
+    build-depends:
+        Win32
+  else
+    build-tools:
+        hsc2hs
+    build-depends:
+        unix
+  if os(windows)
+    hs-source-dirs:
+        src/windows/
+  else
+    hs-source-dirs:
+        src/unix/
+    c-sources:
+        src/unix/cbits/uname.c
+  default-language: Haskell2010
+
+executable stack
+  main-is: Main.hs
+  other-modules:
+      Build_stack
+      Paths_stack
+  autogen-modules:
+      Build_stack
+      Paths_stack
+  hs-source-dirs:
+      src/main
+  ghc-options: -Wall -fwarn-tabs -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -optP-Wno-nonportable-include-path # workaround [Filename case on macOS · Issue #4739 · haskell/cabal](https://github.com/haskell/cabal/issues/4739) -threaded -rtsopts
+  build-depends:
+      Cabal >=2.4
+    , aeson
+    , annotated-wl-pprint
+    , ansi-terminal >=0.8.1
+    , array
+    , async
+    , attoparsec
+    , base >=4.10 && <5
+    , base64-bytestring
+    , bytestring
+    , colour
+    , conduit
+    , conduit-extra
+    , containers
+    , cryptonite
+    , cryptonite-conduit
+    , deepseq
+    , directory
+    , echo
+    , exceptions
+    , extra
+    , file-embed
+    , filelock
+    , filepath
+    , fsnotify
+    , generic-deriving
+    , hackage-security
+    , hashable
+    , hpack
+    , hpc
+    , http-client
+    , http-client-tls
+    , http-conduit
+    , http-types
+    , memory
+    , microlens
+    , mintty
+    , monad-logger
+    , mono-traversable
+    , mtl
+    , mustache
+    , neat-interpolation
+    , network-uri
+    , open-browser
+    , optparse-applicative
+    , pantry
+    , path
+    , path-io
+    , persistent
+    , persistent-sqlite
+    , persistent-template
+    , pretty
+    , primitive
+    , process
+    , project-template
+    , regex-applicative-text
+    , resourcet
+    , retry >=0.7
+    , rio
+    , semigroups
+    , split
+    , stack
+    , stm
+    , store-core
+    , streaming-commons
+    , tar
+    , template-haskell
+    , temporary
+    , text
+    , text-metrics
+    , th-reify-many
+    , time
+    , tls
+    , transformers
+    , typed-process
+    , unicode-transforms
+    , unix-compat
+    , unliftio >=0.2.8.0
+    , unordered-containers
+    , vector
+    , yaml
+    , zip-archive
+    , zlib
+  if os(windows)
+    cpp-options: -DWINDOWS
+    build-depends:
+        Win32
+  else
+    build-tools:
+        hsc2hs
+    build-depends:
+        unix
+  if flag(static)
+    ld-options: -static -pthread
+  if !(flag(disable-git-info))
+    cpp-options: -DUSE_GIT_INFO
+    build-depends:
+        githash
+      , optparse-simple
+  if flag(hide-dependency-versions)
+    cpp-options: -DHIDE_DEP_VERSIONS
+  if flag(supported-build)
+    cpp-options: -DSUPPORTED_BUILD
+  default-language: Haskell2010
+
+test-suite stack-integration-test
+  type: exitcode-stdio-1.0
+  main-is: IntegrationSpec.hs
+  other-modules:
+      Paths_stack
+  hs-source-dirs:
+      test/integration
+      test/integration/lib
+  ghc-options: -Wall -fwarn-tabs -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -optP-Wno-nonportable-include-path # workaround [Filename case on macOS · Issue #4739 · haskell/cabal](https://github.com/haskell/cabal/issues/4739) -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      Cabal >=2.4
+    , aeson
+    , annotated-wl-pprint
+    , ansi-terminal >=0.8.1
+    , array
+    , async
+    , attoparsec
+    , base >=4.10 && <5
+    , base64-bytestring
+    , bytestring
+    , colour
+    , conduit
+    , conduit-extra
+    , containers
+    , cryptonite
+    , cryptonite-conduit
+    , deepseq
+    , directory
+    , echo
+    , exceptions
+    , extra
+    , file-embed
+    , filelock
+    , filepath
+    , fsnotify
+    , generic-deriving
+    , hackage-security
+    , hashable
+    , hpack
+    , hpc
+    , hspec
+    , http-client
+    , http-client-tls
+    , http-conduit
+    , http-types
+    , memory
+    , microlens
+    , mintty
+    , monad-logger
+    , mono-traversable
+    , mtl
+    , mustache
+    , neat-interpolation
+    , network-uri
+    , open-browser
+    , optparse-applicative
+    , pantry
+    , path
+    , path-io
+    , persistent
+    , persistent-sqlite
+    , persistent-template
+    , pretty
+    , primitive
+    , process
+    , project-template
+    , regex-applicative-text
+    , resourcet
+    , retry >=0.7
+    , rio
+    , semigroups
+    , split
+    , stm
+    , store-core
+    , streaming-commons
+    , tar
+    , template-haskell
+    , temporary
+    , text
+    , text-metrics
+    , th-reify-many
+    , time
+    , tls
+    , transformers
+    , typed-process
+    , unicode-transforms
+    , unix-compat
+    , unliftio >=0.2.8.0
+    , unordered-containers
+    , vector
+    , yaml
+    , zip-archive
+    , zlib
+  if os(windows)
+    cpp-options: -DWINDOWS
+    build-depends:
+        Win32
+  else
+    build-tools:
+        hsc2hs
+    build-depends:
+        unix
+  if !flag(integration-tests)
+    buildable: False
+  default-language: Haskell2010
+
+test-suite stack-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_stack
+  hs-source-dirs:
+      src/test
+  ghc-options: -Wall -fwarn-tabs -fwarn-incomplete-uni-patterns -fwarn-incomplete-record-updates -optP-Wno-nonportable-include-path # workaround [Filename case on macOS · Issue #4739 · haskell/cabal](https://github.com/haskell/cabal/issues/4739) -threaded
+  build-depends:
+      Cabal >=2.4
+    , QuickCheck
+    , aeson
+    , annotated-wl-pprint
+    , ansi-terminal >=0.8.1
+    , array
+    , async
+    , attoparsec
+    , base >=4.10 && <5
+    , base64-bytestring
+    , bytestring
+    , colour
+    , conduit
+    , conduit-extra
+    , containers
+    , cryptonite
+    , cryptonite-conduit
+    , deepseq
+    , directory
+    , echo
+    , exceptions
+    , extra
+    , file-embed
+    , filelock
+    , filepath
+    , fsnotify
+    , generic-deriving
+    , hackage-security
+    , hashable
+    , hpack
+    , hpc
+    , hspec
+    , http-client
+    , http-client-tls
+    , http-conduit
+    , http-types
+    , memory
+    , microlens
+    , mintty
+    , monad-logger
+    , mono-traversable
+    , mtl
+    , mustache
+    , neat-interpolation
+    , network-uri
+    , open-browser
+    , optparse-applicative
+    , pantry
+    , path
+    , path-io
+    , persistent
+    , persistent-sqlite
+    , persistent-template
+    , pretty
+    , primitive
+    , process
+    , project-template
+    , regex-applicative-text
+    , resourcet
+    , retry >=0.7
+    , rio
+    , semigroups
+    , smallcheck
+    , split
+    , stack
+    , stm
+    , store-core
+    , streaming-commons
+    , tar
+    , template-haskell
+    , temporary
+    , text
+    , text-metrics
+    , th-reify-many
+    , time
+    , tls
+    , transformers
+    , typed-process
+    , unicode-transforms
+    , unix-compat
+    , unliftio >=0.2.8.0
+    , unordered-containers
+    , vector
+    , yaml
+    , zip-archive
+    , zlib
+  if os(windows)
+    cpp-options: -DWINDOWS
+    build-depends:
+        Win32
+  else
+    build-tools:
+        hsc2hs
+    build-depends:
+        unix
+  default-language: Haskell2010
