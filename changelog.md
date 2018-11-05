@@ -2,6 +2,7 @@ The [latest version](https://github.com/blockscope/hpack-dhall/blob/master/chang
 
 ## 0.5.0 - Sorted Fields Pretty Printing
 * Sort fields when pretty printing JSON and YAML.
+* Add real world golden tests, using stack and hpack packages.
 
 ## 0.4.0 - Split Executables
 * Add licence and copyright.
