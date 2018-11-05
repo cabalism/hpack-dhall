@@ -1,6 +1,6 @@
 cabal-version: 2.0
 
--- This file has been generated from stack.dhall by hpack version 0.31.0.
+-- This file has been generated from stack.yaml by hpack version 0.31.0.
 --
 -- see: https://github.com/sol/hpack
 --

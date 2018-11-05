@@ -7,7 +7,7 @@ import System.FilePath
     , takeBaseName, replaceExtension
     , takeDirectory, splitDirectories, joinPath
     )
-import System.Directory (copyFile, removeFile, renameFile)
+import System.Directory (renameFile)
 import Test.Tasty (defaultMain, TestTree, testGroup)
 import Test.Tasty.Golden (findByExtension)
 import Test.Tasty.Golden (goldenVsFile, goldenVsString)
@@ -107,11 +107,10 @@ writeDhallCabal dhallFile =
 
 writeYamlCabal :: FilePath -> FilePath -> FilePath -> IO ()
 writeYamlCabal yamlFile cabalFile yamlCabalFile = do
-        copyFile cabalFile tmp
+        renameFile cabalFile tmp
         hpack NoVerbose options
         renameFile cabalFile yamlCabalFile
-        copyFile tmp cabalFile
-        removeFile tmp
+        renameFile tmp cabalFile
     where
         tmp = cabalFile <.> ".TMP"
 
