@@ -24,8 +24,8 @@ cmp a b =
 
         fields =
             [ topLevelFields
-            , libraryFields
-            , runnableFields
+            , libraryFields ++ commonFields
+            , runnableFields ++ commonFields
             , flagFields
             , conditionalFields
             , defaultsFields
@@ -35,8 +35,8 @@ cmp a b =
 topLevelFields :: (Ord a, IsString a) => [a]
 topLevelFields =
     headerFields
-    ++ packageFields
     ++ repoFields
+    ++ packageFields
     ++ commonFields
     ++ stanzasFields
 

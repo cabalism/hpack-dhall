@@ -22,8 +22,15 @@ main =
 
 goldenTests :: IO TestTree
 goldenTests = do
-    dhallFiles <- findByExtension [".dhall"] "test/golden/test-files"
-    return $ testGroup "golden tests"
+    ks <- findByExtension [".dhall"] "test/golden/test-files/key"
+    rs <- findByExtension [".dhall"] "test/golden/test-files/real-world"
+    g1 <- goldenTestSet "archetypes" ks
+    g2 <- goldenTestSet "real-world examples" rs
+    return $ testGroup "golden tests" [g1 , g2]
+
+goldenTestSet :: String -> [FilePath] -> IO TestTree
+goldenTestSet title dhallFiles = do
+    return $ testGroup title 
         [ testGroup ".dhall to .cabal"
             [ goldenVsFile
                 (testName dhallFile)
@@ -64,7 +71,8 @@ testName :: FilePath -> FilePath
 testName p =
     if | fName == dName -> fName
        | fName == "package" -> dName
-       | dName == "test-files" -> fName
+       | dName == "key" -> fName
+       | dName == "real-world" -> fName
        | otherwise -> dName </> fName
     where
         dName =
