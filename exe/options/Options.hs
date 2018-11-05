@@ -15,7 +15,7 @@ import Data.Monoid ((<>))
 import Hpack.Dhall (packageConfig)
 import Options.Applicative
 
-data Options = Options {pkgFile :: FilePath}
+newtype Options = Options {pkgFile :: FilePath}
 
 parseOptions :: Parser Options
 parseOptions = helper <*> do

@@ -38,7 +38,7 @@ parserInfo =
         <> O.header "Hpack's dhalling"
         <> O.progDesc "Write the .cabal for a .dhall package description, resolving imports."
     where
-        parser = asum $
+        parser = asum
             [ NumericVersion <$ parseNumericVersion
             , Version <$ parseVersion
             , Run <$> parseOptions
@@ -56,11 +56,11 @@ main = do
             putStrLn $ "dhall-hpack-cabal-" ++ showVersion version
             putStrLn $ "hpack-" ++ showVersion H.version
 
-        Run (Options {..}) -> do
+        Run Options{..} -> do
             opts <- H.getOptions pkgFile $
                 mconcat
-                    [ if force then [ "--force" ] else []
-                    , if quiet then [ "--silent" ] else []
+                    [ [ "--force" | force ]
+                    , [ "--silent" | quiet ]
                     ]
             case opts of
                 Just (verbose, options) ->

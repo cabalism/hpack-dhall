@@ -102,31 +102,32 @@ in  { name =
             }
         }
     , tests =
-        { golden =
-            { main =
-                "Golden.hs"
-            , source-dirs =
-                [ "test/golden/src" ]
-            , dependencies =
-                [ "base"
-                , "Cabal"
-                , "Diff"
-                , "dhall"
-                , "filepath"
-                , "microlens"
-                , "prettyprinter"
-                , "tasty"
-                , "tasty-golden"
-                , "text"
-                , "megaparsec >= 7.0.1"
-                , "dhall >= 1.18.0"
-                , "dhall-json >= 1.2.4"
-                , "hpack >= 0.31.0"
-                , "transformers"
-                , "aeson"
-                , "utf8-string"
-                , "directory"
-                ]
-            }
-        }
+          ./default-tests.dhall
+        ⫽ { golden =
+              { main =
+                  "Golden.hs"
+              , source-dirs =
+                  [ "test/golden/src" ]
+              , dependencies =
+                  [ "base"
+                  , "Cabal"
+                  , "Diff"
+                  , "dhall"
+                  , "filepath"
+                  , "microlens"
+                  , "prettyprinter"
+                  , "tasty"
+                  , "tasty-golden"
+                  , "text"
+                  , "megaparsec >= 7.0.1"
+                  , "dhall >= 1.18.0"
+                  , "dhall-json >= 1.2.4"
+                  , "hpack >= 0.31.0"
+                  , "transformers"
+                  , "aeson"
+                  , "utf8-string"
+                  , "directory"
+                  ]
+              }
+          }
     }

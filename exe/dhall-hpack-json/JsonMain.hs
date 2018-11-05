@@ -20,7 +20,7 @@ parserInfo =
         <> O.header "Hpack as JSON"
         <> O.progDesc "Show a package description as JSON."
     where
-        parser = asum $
+        parser = asum
             [ NumericVersion <$ parseNumericVersion
             , Version <$ parseVersion
             , Run <$> parseOptions
@@ -38,7 +38,7 @@ main = do
             putStrLn $ "dhall-hpack-json-" ++ showVersion version
             putStrLn $ "hpack-" ++ showVersion H.version
 
-        Run (Options {..}) -> do
+        Run Options{..} -> do
             s <- showJson Nothing pkgFile
             putStrLn s
             return ()

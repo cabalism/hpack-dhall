@@ -55,12 +55,12 @@ import Hpack.Fields (cmp)
 getJson :: ToJSON a => (Text -> Text -> Ordering) -> a -> String
 getJson cmp' =
     let cfg = A.defConfig {A.confCompare = cmp'}
-    in T.unpack . decodeUtf8 . BSL.toStrict . (A.encodePretty' cfg)
+    in T.unpack . decodeUtf8 . BSL.toStrict . A.encodePretty' cfg
 
 getYaml :: ToJSON a => (Text -> Text -> Ordering) -> a -> String
 getYaml cmp' =
     let cfg = Y.setConfCompare cmp' Y.defConfig
-    in T.unpack . decodeUtf8 . (Y.encodePretty cfg)
+    in T.unpack . decodeUtf8 . Y.encodePretty cfg
 
 -- | The default package file name is @package.dhall@.
 packageConfig :: FilePath
@@ -132,12 +132,7 @@ textToJson settings text = runExceptT $ do
 check :: InputSettings -> Text -> IO (Expr Src X)
 check settings text = do
     expr <- either throwIO return $ exprFromText mempty text
-
-    x <- State.evalStateT
-            (loadWith expr)
-            (emptyStatus $ settings ^. rootDirectory)
-
-    return x
+    State.evalStateT (loadWith expr) (emptyStatus $ settings ^. rootDirectory)
 
 -- SEE: https://github.com/mstksg/hakyll-dhall
 renderDhall :: (PP.Pretty a, Eq a) => Expr Src a -> T.Text
