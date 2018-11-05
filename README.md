@@ -148,10 +148,11 @@ We can consistently format `package.dhall` and other `*.dhall` imports using
 > __bin/dhall format --inplace package.dhall
 ```
 
-### Restrictions
+## Restrictions
 
-Using hpack's conditions in a list in `package.dhall` can cause an error
-because lists in Dhall must have elements of the same type;
+Using hpack's [conditionals](https://github.com/sol/hpack#conditionals) in
+a list in `package.dhall` can cause an error because lists in Dhall must have
+elements of the same type;
 
 From stack's `package.yaml`;
 ```
