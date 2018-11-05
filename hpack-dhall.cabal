@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e8b71c04fa7d13a28db36ec7b9bffc455140eab368838c6753d30c9cad5ecb9f
+-- hash: 62ddc19d9af0464f9ac8504a09e18425ec7f1421d2ecfeee6449299699520ffe
 
 name:           hpack-dhall
 version:        0.5.0
@@ -54,14 +54,24 @@ extra-source-files:
     test/golden/test-files/when-dependencies.yaml
     test/golden/test-files/empty-inferred/empty-inferred.cabal.golden
     test/golden/test-files/empty-inferred/package.dhall.golden
+    test/golden/test-files/empty-inferred/package.json.golden
+    test/golden/test-files/empty-inferred/package.yaml.golden
     test/golden/test-files/empty-package.cabal.golden
     test/golden/test-files/empty-package.dhall.golden
+    test/golden/test-files/empty-package.json.golden
+    test/golden/test-files/empty-package.yaml.golden
     test/golden/test-files/import-local/import-local.cabal.golden
     test/golden/test-files/import-local/package.dhall.golden
+    test/golden/test-files/import-local/package.json.golden
+    test/golden/test-files/import-local/package.yaml.golden
     test/golden/test-files/import-relative/import-relative.cabal.golden
     test/golden/test-files/import-relative/package.dhall.golden
+    test/golden/test-files/import-relative/package.json.golden
+    test/golden/test-files/import-relative/package.yaml.golden
     test/golden/test-files/when-dependencies.cabal.golden
     test/golden/test-files/when-dependencies.dhall.golden
+    test/golden/test-files/when-dependencies.json.golden
+    test/golden/test-files/when-dependencies.yaml.golden
 
 source-repository head
   type: git

@@ -41,18 +41,22 @@ goldenTests = do
             | dhallFile <- dhallFiles
             ]
         , testGroup ".dhall to json"
-            [ goldenVsString
+            [ goldenVsFile
                 (testName dhallFile)
-                (dhallFile -<.> ".json")
-                (fmap fromString . showJson Nothing $ dhallFile)
+                (dhallFile -<.> ".json.golden")
+                jsonFile
+                (writeJson dhallFile jsonFile)
             | dhallFile <- dhallFiles
+            , let jsonFile = dhallFile -<.> ".json"
             ]
         , testGroup ".dhall to yaml"
-            [ goldenVsString
+            [ goldenVsFile
                 (testName dhallFile)
-                (dhallFile -<.> ".yaml")
-                (fmap fromString . showYaml Nothing $ dhallFile)
+                (dhallFile -<.> ".yaml.golden")
+                yamlFile
+                (writeYaml dhallFile yamlFile)
             | dhallFile <- dhallFiles
+            , let yamlFile = dhallFile -<.> ".yaml"
             ]
         ]
 
@@ -80,6 +84,16 @@ writeCabal dhallFile =
         d = optionsDecodeOptions defaultOptions
         d' = d {decodeOptionsTarget = dhallFile}
         options = defaultOptions {optionsDecodeOptions = d'}
+
+writeJson :: FilePath -> FilePath -> IO ()
+writeJson dhallFile jsonFile = do
+    s <- showJson Nothing dhallFile
+    writeFile jsonFile s
+
+writeYaml :: FilePath -> FilePath -> IO ()
+writeYaml dhallFile yamlFile = do
+    s <- showYaml Nothing dhallFile
+    writeFile yamlFile s
 
 cabalFilePath :: FilePath -> FilePath
 cabalFilePath p
