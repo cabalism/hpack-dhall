@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 139a6dd2ca5316bc1e9135546b6d930cbc9506fe3b2d03463268aeebb41cfcf9
+-- hash: 056b2248186a5860a9315055d3cbf8c57994ff2621e5f5941f214397c7ca26d9
 
 name:           hpack-dhall
 version:        0.5.0
@@ -40,12 +40,19 @@ extra-source-files:
     test/golden/test-files/key/import-local/name.dhl
     test/golden/test-files/key/import-relative.dhl
     test/golden/test-files/key/empty-inferred/empty-inferred.cabal
+    test/golden/test-files/key/empty-inferred/package.yaml.cabal
     test/golden/test-files/key/empty-package.cabal
+    test/golden/test-files/key/empty-package.yaml.cabal
     test/golden/test-files/key/import-local/import-local.cabal
+    test/golden/test-files/key/import-local/package.yaml.cabal
     test/golden/test-files/key/import-relative/import-relative.cabal
+    test/golden/test-files/key/import-relative/package.yaml.cabal
     test/golden/test-files/key/when-dependencies.cabal
+    test/golden/test-files/key/when-dependencies.yaml.cabal
     test/golden/test-files/real-world/hpack/hpack.cabal
+    test/golden/test-files/real-world/hpack/hpack.yaml.cabal
     test/golden/test-files/real-world/stack/stack.cabal
+    test/golden/test-files/real-world/stack/stack.yaml.cabal
     test/golden/test-files/key/empty-inferred/package.json
     test/golden/test-files/key/empty-package.json
     test/golden/test-files/key/import-local/package.json
@@ -265,6 +272,7 @@ test-suite golden
     , bytestring
     , dhall >=1.18.0
     , dhall-json >=1.2.4
+    , directory
     , filepath
     , hpack >=0.31.0
     , megaparsec >=7.0.1

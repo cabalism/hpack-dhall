@@ -1,0 +1,11 @@
+cabal-version: 1.12
+
+-- This file has been generated from when-dependencies.dhall by hpack version 0.31.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: a1d315a919b697e7986a0c149715373427427e43104f82f05f394a439793907f
+
+name:           when-dependencies
+version:        0.0.0
+build-type:     Simple

@@ -7,6 +7,7 @@ import System.FilePath
     , takeBaseName, replaceExtension
     , takeDirectory, splitDirectories, joinPath
     )
+import System.Directory (copyFile, removeFile, renameFile)
 import Test.Tasty (defaultMain, TestTree, testGroup)
 import Test.Tasty.Golden (findByExtension)
 import Test.Tasty.Golden (goldenVsFile, goldenVsString)
@@ -36,7 +37,7 @@ goldenTestSet title dhallFiles = do
                 (testName dhallFile)
                 (cabalFile <.> ".golden")
                 cabalFile
-                (writeCabal dhallFile)
+                (writeDhallCabal dhallFile)
             | dhallFile <- dhallFiles
             , let cabalFile = cabalFilePath dhallFile
             ]
@@ -65,6 +66,17 @@ goldenTestSet title dhallFiles = do
             | dhallFile <- dhallFiles
             , let yamlFile = dhallFile -<.> ".yaml"
             ]
+        , testGroup ".yaml to .cabal"
+            [ goldenVsFile
+                (testName dhallFile)
+                (cabalFile <.> ".golden")
+                cabalFile
+                (writeYamlCabal yamlFile cabalFile yamlCabalFile)
+            | dhallFile <- dhallFiles
+            , let yamlFile = dhallFile -<.> ".yaml"
+            , let cabalFile = cabalFilePath dhallFile
+            , let yamlCabalFile = yamlFile <.> ".cabal"
+            ]
         ]
 
 testName :: FilePath -> FilePath
@@ -85,13 +97,30 @@ testName p =
 
         fName = takeBaseName p
 
-writeCabal :: FilePath -> IO ()
-writeCabal dhallFile =
+writeDhallCabal :: FilePath -> IO ()
+writeDhallCabal dhallFile =
     hpack NoVerbose (setDecode fileToJson options)
     where
         d = optionsDecodeOptions defaultOptions
         d' = d {decodeOptionsTarget = dhallFile}
         options = defaultOptions {optionsDecodeOptions = d'}
+
+writeYamlCabal :: FilePath -> FilePath -> FilePath -> IO ()
+writeYamlCabal yamlFile cabalFile yamlCabalFile = do
+        copyFile cabalFile tmp
+        hpack NoVerbose options
+        renameFile cabalFile yamlCabalFile
+        copyFile tmp cabalFile
+        removeFile tmp
+    where
+        tmp = cabalFile <.> ".TMP"
+
+        d = optionsDecodeOptions defaultOptions
+        d' = d {decodeOptionsTarget = yamlFile}
+        options =
+            defaultOptions
+                { optionsDecodeOptions = d'
+                }
 
 writeJson :: FilePath -> FilePath -> IO ()
 writeJson dhallFile jsonFile = do

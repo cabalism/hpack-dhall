@@ -125,6 +125,7 @@ in  { name =
                 , "transformers"
                 , "aeson"
                 , "utf8-string"
+                , "directory"
                 ]
             }
         }
