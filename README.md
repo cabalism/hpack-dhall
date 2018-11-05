@@ -148,6 +148,97 @@ We can consistently format `package.dhall` and other `*.dhall` imports using
 > __bin/dhall format --inplace package.dhall
 ```
 
+### Restrictions
+
+Using hpack's conditions in a list in `package.dhall` can cause an error
+because lists in Dhall must have elements of the same type;
+
+From stack's `package.yaml`;
+```
+executables:
+  stack:
+    main: Main.hs
+    source-dirs: src/main
+    generated-other-modules:
+    - Build_stack
+    - Paths_stack
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    dependencies:
+    - stack
+    when:
+    - condition: flag(static)
+      ld-options:
+      - -static
+      - -pthread
+    - condition: ! '!(flag(disable-git-info))'
+      cpp-options: -DUSE_GIT_INFO
+      dependencies:
+      - githash
+      - optparse-simple
+    - condition: flag(hide-dependency-versions)
+      cpp-options: -DHIDE_DEP_VERSIONS
+    - condition: flag(supported-build)
+      cpp-options: -DSUPPORTED_BUILD
+```
+
+This can be represented in `package.dhall` as;
+```
+, executables =
+    { stack =
+        { main =
+            "Main.hs"
+        , source-dirs =
+            [ "src/main" ]
+        , generated-other-modules =
+            [ "Build_stack", "Paths_stack" ]
+        , ghc-options =
+            [ "-threaded", "-rtsopts" ]
+        , dependencies =
+            [ "stack" ]
+        , when =
+            [ { condition =
+                  "flag(static)"
+              , cpp-options =
+                  [] : List Text
+              , dependencies =
+                  [] : List Text
+              , ld-options =
+                  [ "-static", "-pthread" ]
+              }
+            , { condition =
+                  "!(flag(disable-git-info))"
+              , cpp-options =
+                  [ "-DUSE_GIT_INFO" ]
+              , dependencies =
+                  [ "githash", "optparse-simple" ]
+              , ld-options =
+                  [] : List Text
+              }
+            , { condition =
+                  "flag(hide-dependency-versions)"
+              , cpp-options =
+                  [ "-DHIDE_DEP_VERSIONS" ]
+              , dependencies =
+                  [] : List Text
+              , ld-options =
+                  [] : List Text
+              }
+            , { condition =
+                  "flag(supported-build)"
+              , cpp-options =
+                  [ "-DSUPPORTED_BUILD" ]
+              , dependencies =
+                  [] : List Text
+              , ld-options =
+                  [] : List Text
+              }
+            ]
+        }
+    }
+```
+
 ### Continuous Integration
 
 With haskell-ci tooling installed, generate the `.travis.yml` setup with;
