@@ -8,10 +8,14 @@ Copyright:
 License: BSD3
 Maintainer: Phil de Joux <phil.dejoux@blockscope.com>
 Stability: experimental
-Instead of working with <https://github.com/sol/hpack#readme hpack> in
-<https://en.wikipedia.org/wiki/YAML YAML>, use
-<https://github.com/dhall-lang/dhall-lang#readme Dhall>.  All functions resolve
-imports relative to the location of the given @.dhall@ file.
+The functions in this module make it possible to configure an
+<https://github.com/sol/hpack#readme hpack>
+package description with
+<https://github.com/dhall-lang/dhall-lang#readme Dhall>
+instead of
+<https://en.wikipedia.org/wiki/YAML YAML>.
+When doing so, note that all functions resolve imports relative to the location
+of the given @.dhall@ input file.
 -}
 module Hpack.Dhall
     ( fileToJson
