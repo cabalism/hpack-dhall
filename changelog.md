@@ -1,6 +1,6 @@
 The [latest version](https://github.com/blockscope/hpack-dhall/blob/master/changelog.md) of this changelog.
 
-## 0.5.1 - Sorted Fields Pretty Printing
+## 0.5.1 - Minor, bump in hpack version 
 * Regenerate golden files for the bump in hpack's version:
 
 ```
