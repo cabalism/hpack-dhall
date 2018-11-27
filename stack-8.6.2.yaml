@@ -1,5 +1,4 @@
 resolver: nightly-2018-11-27
-flags: {}
-packages: []
-work-dir: .stack-work-dhall
+packages:
+- '.'
 local-bin-path: __bin

@@ -1,4 +1,4 @@
-    let deps = [ "base == 4.*" ]
+let deps = [ "base == 4.*" ]
 
 in  { name =
         "when-dependencies"

@@ -41,7 +41,7 @@
     , "-fwarn-tabs"
     , "-fwarn-incomplete-uni-patterns"
     , "-fwarn-incomplete-record-updates"
-    , "-optP-Wno-nonportable-include-path # workaround [Filename case on macOS \u00B7 Issue #4739 \u00B7 haskell/cabal](https://github.com/haskell/cabal/issues/4739)"
+    , "-optP-Wno-nonportable-include-path # workaround [Filename case on macOS · Issue #4739 · haskell/cabal](https://github.com/haskell/cabal/issues/4739)"
     ]
 , dependencies =
     [ "Cabal >= 2.4"

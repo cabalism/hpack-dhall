@@ -1,13 +1,13 @@
 cabal-version: 1.12
 
--- This file has been generated from package.dhall by hpack version 0.31.0.
+-- This file has been generated from package.dhall by hpack version 0.31.1.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 056b2248186a5860a9315055d3cbf8c57994ff2621e5f5941f214397c7ca26d9
+-- hash: d22739e30a675226a9ed8fea90cc5052e8a0701c9b642eaecdff7ac957b386e5
 
 name:           hpack-dhall
-version:        0.5.0
+version:        0.5.1
 synopsis:       hpack's dhalling
 description:    Work with hpack's top-level
                 <https://github.com/sol/hpack#top-level-fields fields> in a Dhall
