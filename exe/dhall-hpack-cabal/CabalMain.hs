@@ -29,7 +29,7 @@ parseOptions = O.helper <*> do
     pkgFile <- parsePkgFile
     force <- parseForce
     quiet <- parseQuiet
-    return (Options {..})
+    return Options{..}
 
 parserInfo :: O.ParserInfo Command
 parserInfo =
