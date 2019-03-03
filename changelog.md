@@ -1,5 +1,9 @@
 The [latest version](https://github.com/blockscope/hpack-dhall/blob/master/changelog.md) of this changelog.
 
+## 0.5.2 - Consistent Golden Tests
+* Use explicit dependencies to achieve consistent golden tests in all but
+  stack-8.6.3.yaml.
+
 ## 0.5.1 - Minor, bump in hpack version 
 * Regenerate golden files for the bump in hpack's version:
 
