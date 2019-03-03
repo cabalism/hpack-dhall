@@ -1,4 +1,4 @@
-resolver: nightly-2018-11-27
+resolver: lts-13.9
 flags: {}
 packages: []
 work-dir: .stack-work-dhall
