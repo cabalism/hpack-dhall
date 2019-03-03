@@ -20,7 +20,7 @@ newtype Options = Options {pkgFile :: FilePath}
 parseOptions :: Parser Options
 parseOptions = helper <*> do
     pkgFile <- parsePkgFile
-    return (Options {..})
+    return Options{..}
 
 parsePkgFile :: Parser FilePath
 parsePkgFile =
