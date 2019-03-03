@@ -1,7 +1,7 @@
 name: stack
 version: 1.10.0
 synopsis: The Haskell Tool Stack
-description: ! 'Please see the README.md for usage information, and
+description: 'Please see the README.md for usage information, and
 
   the wiki on Github for more details.  Also, note that
 
@@ -31,7 +31,7 @@ ghc-options:
 - -fwarn-tabs
 - -fwarn-incomplete-uni-patterns
 - -fwarn-incomplete-record-updates
-- ! '-optP-Wno-nonportable-include-path # workaround [Filename case on macOS · Issue
+- '-optP-Wno-nonportable-include-path # workaround [Filename case on macOS · Issue
   #4739 · haskell/cabal](https://github.com/haskell/cabal/issues/4739)'
 dependencies:
 - Cabal >= 2.4
@@ -316,7 +316,7 @@ executables:
       - -static
       - -pthread
       dependencies: []
-    - condition: ! '!(flag(disable-git-info))'
+    - condition: '!(flag(disable-git-info))'
       cpp-options:
       - -DUSE_GIT_INFO
       ld-options: []
@@ -346,7 +346,7 @@ tests:
     dependencies:
     - hspec
     when:
-      condition: ! '!flag(integration-tests)'
+      condition: '!flag(integration-tests)'
       buildable: false
   stack-test:
     main: Spec.hs

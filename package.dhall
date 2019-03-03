@@ -17,11 +17,11 @@ let deps =
 
 in  let exe-deps =
           [ "hpack-dhall", "optparse-applicative" ]
-    
+
     in  { name =
             "hpack-dhall"
         , version =
-            "0.5.1"
+            "0.5.2"
         , maintainer =
             "Phil de Joux <phil.dejoux@blockscope.com>"
         , copyright =
@@ -39,7 +39,7 @@ in  let exe-deps =
             Work with hpack's top-level
             <https://github.com/sol/hpack#top-level-fields fields> in a Dhall
             record with the following executables;
-            
+
             * with @dhall-hpack-cabal@ write the @.cabal@ for a @.dhall@ package description.
             * with @dhall-hpack-dhall@ show the package description expression, with imports resolved.
             * with @dhall-hpack-json@ show the package description as JSON.
@@ -48,7 +48,7 @@ in  let exe-deps =
         , github =
             "blockscope/hpack-dhall"
         , tested-with =
-            "GHC == 8.4.3, GHC == 8.4.4, GHC == 8.6.1, GHC == 8.6.2"
+            "GHC == 8.2.2, GHC == 8.4.3, GHC == 8.4.4, GHC == 8.6.3"
         , extra-source-files =
             [ "package.dhall"
             , "changelog.md"
