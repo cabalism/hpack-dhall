@@ -1,4 +1,4 @@
-{-# LANGUAGE MultiWayIf #-}
+{-# LANGUAGE MultiWayIf, LambdaCase, CPP #-}
 
 module Main (main) where
 
@@ -17,9 +17,30 @@ import Hpack.Config (DecodeOptions(..))
 import Hpack.Dhall (fileToJson, showDhall, showJson, showYaml)
 import Data.ByteString.Lazy.UTF8 (fromString)
 
+data Out = Cabal | Dhall | Json | Yaml
+
 main :: IO ()
-main =
-    defaultMain =<< goldenTests
+main = defaultMain =<< goldenTests
+
+goldExt :: Out -> FilePath
+goldExt =
+    \case
+        Cabal -> ".cabal.golden"
+
+        Dhall ->
+            let d =
+                    #if MIN_VERSION_dhall (1, 34, 0)
+                        ".dhall-1.34"
+                    #elif MIN_VERSION_dhall (1, 32, 0)
+                        ".dhall-1.32"
+                    #else
+                        ".dhall"
+                    #endif
+
+            in d <> ".golden"
+
+        Json -> ".json.golden"
+        Yaml -> ".yaml.golden"
 
 goldenTests :: IO TestTree
 goldenTests = do
@@ -31,11 +52,11 @@ goldenTests = do
 
 goldenTestSet :: String -> [FilePath] -> IO TestTree
 goldenTestSet title dhallFiles = do
-    return $ testGroup title 
+    return $ testGroup title
         [ testGroup ".dhall to .cabal"
             [ goldenVsFile
                 (testName dhallFile)
-                (cabalFile <.> ".golden")
+                (cabalFile -<.> goldExt Cabal)
                 cabalFile
                 (writeDhallCabal dhallFile)
             | dhallFile <- dhallFiles
@@ -44,14 +65,14 @@ goldenTestSet title dhallFiles = do
         , testGroup ".dhall to dhall"
             [ goldenVsString
                 (testName dhallFile)
-                (dhallFile <.> ".golden")
+                (dhallFile -<.> goldExt Dhall)
                 (fmap fromString . showDhall $ dhallFile)
             | dhallFile <- dhallFiles
             ]
         , testGroup ".dhall to json"
             [ goldenVsFile
                 (testName dhallFile)
-                (dhallFile -<.> ".json.golden")
+                (dhallFile -<.> goldExt Json)
                 jsonFile
                 (writeJson dhallFile jsonFile)
             | dhallFile <- dhallFiles
@@ -60,7 +81,7 @@ goldenTestSet title dhallFiles = do
         , testGroup ".dhall to yaml"
             [ goldenVsFile
                 (testName dhallFile)
-                (dhallFile -<.> ".yaml.golden")
+                (dhallFile -<.> goldExt Yaml)
                 yamlFile
                 (writeYaml dhallFile yamlFile)
             | dhallFile <- dhallFiles
@@ -69,7 +90,7 @@ goldenTestSet title dhallFiles = do
         , testGroup ".yaml to .cabal"
             [ goldenVsFile
                 (testName dhallFile)
-                (cabalFile <.> ".golden")
+                (cabalFile -<.> goldExt Cabal)
                 cabalFile
                 (writeYamlCabal yamlFile cabalFile yamlCabalFile)
             | dhallFile <- dhallFiles

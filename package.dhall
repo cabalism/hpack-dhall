@@ -1,9 +1,9 @@
 let deps =
       [ "base == 4.*"
-      , "megaparsec >= 7.0.1"
-      , "dhall >= 1.18.0"
-      , "dhall-json >= 1.2.4"
-      , "hpack >= 0.31.0"
+      , "megaparsec"
+      , "dhall"
+      , "dhall-json"
+      , "hpack"
       , "transformers"
       , "text"
       , "microlens"
@@ -48,7 +48,7 @@ in  let exe-deps =
         , github =
             "blockscope/hpack-dhall"
         , tested-with =
-            "GHC == 8.2.2, GHC == 8.4.4, GHC == 8.6.5, GHC == 8.8.3"
+            "GHC == 8.8.3"
         , extra-source-files =
             [ "package.dhall"
             , "changelog.md"

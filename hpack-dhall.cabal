@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: b55055978905fa4ac2bed564922715ca16ac0b51361ba3d3c319f412273e8000
+-- hash: c8d8053b14d24a1bbd9babf4224b60159448d4afbc84bf3fc934f1fc33814d2c
 
 name:           hpack-dhall
 version:        0.5.2
@@ -24,7 +24,7 @@ maintainer:     Phil de Joux <phil.dejoux@blockscope.com>
 copyright:      © 2018 Phil de Joux, © 2018 Block Scope Limited
 license:        BSD3
 license-file:   LICENSE
-tested-with:    GHC == 8.2.2, GHC == 8.4.4, GHC == 8.6.5, GHC == 8.8.3
+tested-with:    GHC == 8.8.3
 build-type:     Simple
 extra-source-files:
     package.dhall
@@ -69,34 +69,6 @@ extra-source-files:
     test/golden/test-files/real-world/hpack/package.yaml
     test/golden/test-files/real-world/stack/package.yaml
     test/golden/test-files/real-world/stack/stack.yaml
-    test/golden/test-files/key/empty-inferred/empty-inferred.cabal.golden
-    test/golden/test-files/key/empty-inferred/package.dhall.golden
-    test/golden/test-files/key/empty-inferred/package.json.golden
-    test/golden/test-files/key/empty-inferred/package.yaml.golden
-    test/golden/test-files/key/empty-package.cabal.golden
-    test/golden/test-files/key/empty-package.dhall.golden
-    test/golden/test-files/key/empty-package.json.golden
-    test/golden/test-files/key/empty-package.yaml.golden
-    test/golden/test-files/key/import-local/import-local.cabal.golden
-    test/golden/test-files/key/import-local/package.dhall.golden
-    test/golden/test-files/key/import-local/package.json.golden
-    test/golden/test-files/key/import-local/package.yaml.golden
-    test/golden/test-files/key/import-relative/import-relative.cabal.golden
-    test/golden/test-files/key/import-relative/package.dhall.golden
-    test/golden/test-files/key/import-relative/package.json.golden
-    test/golden/test-files/key/import-relative/package.yaml.golden
-    test/golden/test-files/key/when-dependencies.cabal.golden
-    test/golden/test-files/key/when-dependencies.dhall.golden
-    test/golden/test-files/key/when-dependencies.json.golden
-    test/golden/test-files/key/when-dependencies.yaml.golden
-    test/golden/test-files/real-world/hpack/hpack.cabal.golden
-    test/golden/test-files/real-world/hpack/hpack.dhall.golden
-    test/golden/test-files/real-world/hpack/hpack.json.golden
-    test/golden/test-files/real-world/hpack/hpack.yaml.golden
-    test/golden/test-files/real-world/stack/stack.cabal.golden
-    test/golden/test-files/real-world/stack/stack.dhall.golden
-    test/golden/test-files/real-world/stack/stack.json.golden
-    test/golden/test-files/real-world/stack/stack.yaml.golden
 
 source-repository head
   type: git
@@ -116,11 +88,11 @@ library
     , aeson-pretty
     , base ==4.*
     , bytestring
-    , dhall >=1.18.0
-    , dhall-json >=1.2.4
+    , dhall
+    , dhall-json
     , filepath
-    , hpack >=0.31.0
-    , megaparsec >=7.0.1
+    , hpack
+    , megaparsec
     , microlens
     , prettyprinter
     , text
@@ -145,12 +117,12 @@ executable dhall-hpack-cabal
     , aeson-pretty
     , base ==4.*
     , bytestring
-    , dhall >=1.18.0
-    , dhall-json >=1.2.4
+    , dhall
+    , dhall-json
     , filepath
-    , hpack >=0.31.0
+    , hpack
     , hpack-dhall
-    , megaparsec >=7.0.1
+    , megaparsec
     , microlens
     , optparse-applicative
     , prettyprinter
@@ -176,12 +148,12 @@ executable dhall-hpack-dhall
     , aeson-pretty
     , base ==4.*
     , bytestring
-    , dhall >=1.18.0
-    , dhall-json >=1.2.4
+    , dhall
+    , dhall-json
     , filepath
-    , hpack >=0.31.0
+    , hpack
     , hpack-dhall
-    , megaparsec >=7.0.1
+    , megaparsec
     , microlens
     , optparse-applicative
     , prettyprinter
@@ -207,12 +179,12 @@ executable dhall-hpack-json
     , aeson-pretty
     , base ==4.*
     , bytestring
-    , dhall >=1.18.0
-    , dhall-json >=1.2.4
+    , dhall
+    , dhall-json
     , filepath
-    , hpack >=0.31.0
+    , hpack
     , hpack-dhall
-    , megaparsec >=7.0.1
+    , megaparsec
     , microlens
     , optparse-applicative
     , prettyprinter
@@ -238,12 +210,12 @@ executable dhall-hpack-yaml
     , aeson-pretty
     , base ==4.*
     , bytestring
-    , dhall >=1.18.0
-    , dhall-json >=1.2.4
+    , dhall
+    , dhall-json
     , filepath
-    , hpack >=0.31.0
+    , hpack
     , hpack-dhall
-    , megaparsec >=7.0.1
+    , megaparsec
     , microlens
     , optparse-applicative
     , prettyprinter
@@ -306,12 +278,12 @@ test-suite hlint
     , aeson-pretty
     , base ==4.*
     , bytestring
-    , dhall >=1.18.0
-    , dhall-json >=1.2.4
+    , dhall
+    , dhall-json
     , filepath
     , hlint
-    , hpack >=0.31.0
-    , megaparsec >=7.0.1
+    , hpack
+    , megaparsec
     , microlens
     , prettyprinter
     , text
