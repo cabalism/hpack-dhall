@@ -1,15 +1,12 @@
 name: stack
 version: 1.10.0
 synopsis: The Haskell Tool Stack
-description: 'Please see the README.md for usage information, and
-
+description: |-
+  Please see the README.md for usage information, and
   the wiki on Github for more details.  Also, note that
-
   the API for the library is not currently stable, and may
-
   change significantly, even between minor releases. It is
-
-  currently only intended for use by the executable.'
+  currently only intended for use by the executable.
 category: Development
 homepage: http://haskellstack.org
 author: Commercial Haskell SIG

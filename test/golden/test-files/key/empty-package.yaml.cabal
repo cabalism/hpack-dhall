@@ -1,10 +1,8 @@
 cabal-version: 1.12
 
--- This file has been generated from empty-package.yaml by hpack version 0.31.2.
+-- This file has been generated from empty-package.yaml by hpack version 0.34.2.
 --
 -- see: https://github.com/sol/hpack
---
--- hash: e0a74f511d829cae53cd712664781db312951dd773249603163ba1b1e32afd04
 
 name:           empty-package
 version:        0.0.0

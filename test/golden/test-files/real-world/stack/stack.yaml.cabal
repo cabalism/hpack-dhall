@@ -1,10 +1,8 @@
 cabal-version: 2.0
 
--- This file has been generated from stack.yaml by hpack version 0.31.2.
+-- This file has been generated from stack.yaml by hpack version 0.34.2.
 --
 -- see: https://github.com/sol/hpack
---
--- hash: 33d90e3e81d97f3c404a9e20246cf4aa6942dc054db675cadd50b1edd68582ce
 
 name:           stack
 version:        1.10.0
