@@ -23,7 +23,7 @@ jobs:
 
     - name: cache key
       id: cache_key
-      run: echo ::set-output name=key::$(md5sum ./stack/stack-${{ matrix.ghc }}.yaml | awk '{print $1}')
+      run: echo ::set-output name=key::$(md5sum stack.yaml | awk '{print $1}')
 
     - uses: actions/cache@v1
       name: cache ~/.stack
@@ -33,10 +33,10 @@ jobs:
         key: ${{ matrix.os }}-${{ matrix.ghc }}-${{ steps.cache_key.outputs.key }}
 
     - name: build tests
-      run: stack test --no-run-tests --no-terminal --stack-yaml=./stack/stack-${{ matrix.ghc }}.yaml
+      run: stack test --no-run-tests --no-terminal
 
     - name: test hlint 
-      run: stack test hpack-dhall:hlint --no-terminal --test-arguments "--color=always" --stack-yaml=./stack/stack-${{ matrix.ghc }}.yaml
+      run: stack test hpack-dhall:hlint --no-terminal --test-arguments "--color=always"
 
     - name: test golden
-      run: stack test hpack-dhall:golden --no-terminal --test-arguments "--color=always" --stack-yaml=./stack/stack-${{ matrix.ghc }}.yaml
+      run: stack test hpack-dhall:golden --no-terminal --test-arguments "--color=always"
