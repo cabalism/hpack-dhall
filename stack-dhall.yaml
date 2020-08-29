@@ -2,4 +2,3 @@ resolver: lts-13.9
 flags: {}
 packages: []
 work-dir: .stack-work-dhall
-local-bin-path: __bin

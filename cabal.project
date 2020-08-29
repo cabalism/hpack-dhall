@@ -1,0 +1,2 @@
+with-compiler: ghc-8.2.2
+packages: hpack-dhall.cabal

@@ -17,4 +17,3 @@ extra-deps:
 - cborg-0.2.1.0@sha256:6e2c9a4dc3ccd621d799689d6c3ff862c761ffbab4da104874ba04a14c60ac7a
 - parser-combinators-1.0.1@sha256:c28576a0851300fdbd9ffa9970c305eb879dc3f7c36907a667233a0fef4268dc
 allow-newer: true
-local-bin-path: __bin
