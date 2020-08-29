@@ -1,6 +1,6 @@
 resolver: lts-11.22
 packages:
-- '.'
+- '..'
 extra-deps:
 - dhall-1.20.1@sha256:3377090039ba3560b50515799affc57d74d2d3e57d3f8699bb2a9fc428fa4918
 - dhall-json-1.2.6@sha256:dd2073697cc0c73ee3611b596e0c33363afb3a926a148c39de15b5c7b07ecdf4
