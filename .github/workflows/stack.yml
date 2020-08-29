@@ -1,0 +1,42 @@
+name: stack
+
+on:
+  push:
+    branches: [ci-stack, wip/ci-31]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        ghc:
+          - "8.8.3"
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: mstksg/setup-stack@v1
+      name: setup stack
+
+    - name: cache key
+      id: cache_key
+      run: echo ::set-output name=key::$(md5sum ./stack/stack-${{ matrix.ghc }}.yaml | awk '{print $1}')
+
+    - uses: actions/cache@v1
+      name: cache ~/.stack
+      id: cache
+      with:
+        path: ~/.stack
+        key: ${{ matrix.os }}-${{ matrix.ghc }}-${{ steps.cache_key.outputs.key }}
+
+    - name: build tests
+      run: stack test --no-run-tests --no-terminal --stack-yaml=./stack/stack-${{ matrix.ghc }}.yaml
+
+    - name: test hlint 
+      run: stack test hpack-dhall:hlint --no-terminal --test-arguments "--color=always" --stack-yaml=./stack/stack-${{ matrix.ghc }}.yaml
+
+    - name: test golden
+      run: stack test hpack-dhall:golden --no-terminal --test-arguments "--color=always" --stack-yaml=./stack/stack-${{ matrix.ghc }}.yaml
