@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.dhall by hpack version 0.31.1.
+-- This file has been generated from package.dhall by hpack version 0.34.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 98b50eed37278c62f016933a31bdfb02a687ae915796045d96e6357a4a826acb
+-- hash: b55055978905fa4ac2bed564922715ca16ac0b51361ba3d3c319f412273e8000
 
 name:           hpack-dhall
 version:        0.5.2
@@ -24,7 +24,7 @@ maintainer:     Phil de Joux <phil.dejoux@blockscope.com>
 copyright:      © 2018 Phil de Joux, © 2018 Block Scope Limited
 license:        BSD3
 license-file:   LICENSE
-tested-with:    GHC == 8.2.2, GHC == 8.4.3, GHC == 8.4.4, GHC == 8.6.3
+tested-with:    GHC == 8.2.2, GHC == 8.4.4, GHC == 8.6.5, GHC == 8.8.3
 build-type:     Simple
 extra-source-files:
     package.dhall
@@ -283,5 +283,38 @@ test-suite golden
     , text
     , transformers
     , utf8-string
+    , yaml
+  default-language: Haskell2010
+
+test-suite hlint
+  type: exitcode-stdio-1.0
+  main-is: HLint.hs
+  other-modules:
+      Hpack.Dhall
+      Hpack.Fields
+      Hpack.Dhall
+      Hpack.Fields
+      Paths_hpack_dhall
+  hs-source-dirs:
+      library
+      library
+      exe
+      test-suite-hlint
+  ghc-options: -Wall -rtsopts -threaded -with-rtsopts=-N
+  build-depends:
+      aeson
+    , aeson-pretty
+    , base ==4.*
+    , bytestring
+    , dhall >=1.18.0
+    , dhall-json >=1.2.4
+    , filepath
+    , hlint
+    , hpack >=0.31.0
+    , megaparsec >=7.0.1
+    , microlens
+    , prettyprinter
+    , text
+    , transformers
     , yaml
   default-language: Haskell2010
