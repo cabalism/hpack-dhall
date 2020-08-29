@@ -20,7 +20,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - uses: actions/setup-haskell@v1
-      name: Setup GHC and cabal-install
+      name: setup GHC and cabal-install
       with:
         ghc-version: ${{ matrix.ghc }}
         cabal-version: ${{ matrix.cabal }}
@@ -36,8 +36,8 @@ jobs:
         cabal update
         cabal build all --enable-tests
 
-    - name: test uom-plugin
-      run: cabal test hlint --test-show-details=direct --test-option="--color=always"
-
     - name: test golden
-      run: cabal test golden --test-show-details=direct --test-option="--color=always"
+      run: cabal test test:golden --test-show-details=direct --test-option="--color=always"
+
+    - name: test hlint
+      run: cabal test test:hlint --test-show-details=direct --test-option="--color=always"
