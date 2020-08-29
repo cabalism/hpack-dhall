@@ -43,8 +43,8 @@ goldExt =
 
 goldenTests :: IO TestTree
 goldenTests = do
-    ks <- findByExtension [".dhall"] "test/golden/test-files/key"
-    rs <- findByExtension [".dhall"] "test/golden/test-files/real-world"
+    ks <- findByExtension [".dhall"] "test-suite-golden/test-files/key"
+    rs <- findByExtension [".dhall"] "test-suite-golden/test-files/real-world"
     g1 <- goldenTestSet "archetypes" ks
     g2 <- goldenTestSet "real-world examples" rs
     return $ testGroup "golden tests" [g1 , g2]
