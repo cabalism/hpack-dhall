@@ -8,10 +8,11 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
+    name: ghc ${{ matrix.ghc }}
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        cabal: ["3.2"]
         ghc:
           - "8.8.3"
 
@@ -30,13 +31,13 @@ jobs:
       id: cache
       with:
         path: ~/.stack
-        key: ${{ matrix.os }}-${{ matrix.ghc }}-${{ steps.cache_key.outputs.key }}
+        key: ${{ runner.os }}-${{ matrix.ghc }}-${{ steps.cache_key.outputs.key }}
 
     - name: build tests
       run: stack test --no-run-tests --no-terminal
 
     - name: test hlint 
-      run: stack test hpack-dhall:hlint --no-terminal --test-arguments "--color=always"
+      run: stack test test:hlint --no-terminal --test-arguments "--color=always"
 
     - name: test golden
-      run: stack test hpack-dhall:golden --no-terminal --test-arguments "--color=always"
+      run: stack test test:golden --no-terminal --test-arguments "--color=always"

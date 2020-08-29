@@ -29,13 +29,13 @@ goldExt =
 
         Dhall ->
             let d =
-                    #if MIN_VERSION_dhall (1, 34, 0)
-                        ".dhall-1.34"
-                    #elif MIN_VERSION_dhall (1, 32, 0)
-                        ".dhall-1.32"
-                    #else
-                        ".dhall"
-                    #endif
+#if MIN_VERSION_dhall (1, 34, 0)
+                    ".dhall-1.34"
+#elif MIN_VERSION_dhall (1, 32, 0)
+                    ".dhall-1.32"
+#else
+                    ".dhall"
+#endif
 
             in d <> ".golden"
 
