@@ -53,12 +53,12 @@ in  let exe-deps =
             [ "package.dhall"
             , "changelog.md"
             , "README.md"
-            , "test/golden/**/*.dhall"
-            , "test/golden/**/*.dhl"
-            , "test/golden/**/*.cabal"
-            , "test/golden/**/*.json"
-            , "test/golden/**/*.yaml"
-            , "test/golden/**/*.golden"
+            , "test-suite-golden/**/*.dhall"
+            , "test-suite-golden/**/*.dhl"
+            , "test-suite-golden/**/*.cabal"
+            , "test-suite-golden/**/*.json"
+            , "test-suite-golden/**/*.yaml"
+            , "test-suite-golden/**/*.golden"
             ]
         , ghc-options =
             "-Wall"
@@ -108,7 +108,7 @@ in  let exe-deps =
                   { main =
                       "Golden.hs"
                   , source-dirs =
-                      [ "test/golden/src" ]
+                      [ "test-suite-golden/src" ]
                   , dependencies =
                       [ "base"
                       , "Cabal"

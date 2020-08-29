@@ -9,8 +9,7 @@ import System.FilePath
     )
 import System.Directory (renameFile)
 import Test.Tasty (defaultMain, TestTree, testGroup)
-import Test.Tasty.Golden (findByExtension)
-import Test.Tasty.Golden (goldenVsFile, goldenVsString)
+import Test.Tasty.Golden (findByExtension, goldenVsFile, goldenVsString)
 
 import Hpack (Verbose(..), Options(..), hpack, defaultOptions, setDecode)
 import Hpack.Config (DecodeOptions(..))

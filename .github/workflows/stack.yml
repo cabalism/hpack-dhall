@@ -36,8 +36,8 @@ jobs:
     - name: build tests
       run: stack test --no-run-tests --no-terminal
 
-    - name: test hlint 
-      run: stack test hpack-dhall:hlint --no-terminal --test-arguments "--color=always"
-
     - name: test golden
       run: stack test hpack-dhall:golden --no-terminal --test-arguments "--color=always"
+
+    - name: test hlint 
+      run: stack test hpack-dhall:hlint --no-terminal --test-arguments "--color=always"

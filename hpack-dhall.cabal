@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: c8d8053b14d24a1bbd9babf4224b60159448d4afbc84bf3fc934f1fc33814d2c
+-- hash: 2d7175056542421625acfebbb49c442afb9b6847e6f3a42cce0b241b9d83edca
 
 name:           hpack-dhall
 version:        0.5.2
@@ -30,45 +30,80 @@ extra-source-files:
     package.dhall
     changelog.md
     README.md
-    test/golden/test-files/key/empty-inferred/package.dhall
-    test/golden/test-files/key/empty-package.dhall
-    test/golden/test-files/key/import-local/package.dhall
-    test/golden/test-files/key/import-relative/package.dhall
-    test/golden/test-files/key/when-dependencies.dhall
-    test/golden/test-files/real-world/hpack/hpack.dhall
-    test/golden/test-files/real-world/stack/stack.dhall
-    test/golden/test-files/key/import-local/name.dhl
-    test/golden/test-files/key/import-relative.dhl
-    test/golden/test-files/key/empty-inferred/empty-inferred.cabal
-    test/golden/test-files/key/empty-inferred/package.yaml.cabal
-    test/golden/test-files/key/empty-package.cabal
-    test/golden/test-files/key/empty-package.yaml.cabal
-    test/golden/test-files/key/import-local/import-local.cabal
-    test/golden/test-files/key/import-local/package.yaml.cabal
-    test/golden/test-files/key/import-relative/import-relative.cabal
-    test/golden/test-files/key/import-relative/package.yaml.cabal
-    test/golden/test-files/key/when-dependencies.cabal
-    test/golden/test-files/key/when-dependencies.yaml.cabal
-    test/golden/test-files/real-world/hpack/hpack.cabal
-    test/golden/test-files/real-world/hpack/hpack.yaml.cabal
-    test/golden/test-files/real-world/stack/stack.cabal
-    test/golden/test-files/real-world/stack/stack.yaml.cabal
-    test/golden/test-files/key/empty-inferred/package.json
-    test/golden/test-files/key/empty-package.json
-    test/golden/test-files/key/import-local/package.json
-    test/golden/test-files/key/import-relative/package.json
-    test/golden/test-files/key/when-dependencies.json
-    test/golden/test-files/real-world/hpack/hpack.json
-    test/golden/test-files/real-world/stack/stack.json
-    test/golden/test-files/key/empty-inferred/package.yaml
-    test/golden/test-files/key/empty-package.yaml
-    test/golden/test-files/key/import-local/package.yaml
-    test/golden/test-files/key/import-relative/package.yaml
-    test/golden/test-files/key/when-dependencies.yaml
-    test/golden/test-files/real-world/hpack/hpack.yaml
-    test/golden/test-files/real-world/hpack/package.yaml
-    test/golden/test-files/real-world/stack/package.yaml
-    test/golden/test-files/real-world/stack/stack.yaml
+    test-suite-golden/test-files/key/empty-inferred/package.dhall
+    test-suite-golden/test-files/key/empty-package.dhall
+    test-suite-golden/test-files/key/import-local/package.dhall
+    test-suite-golden/test-files/key/import-relative/package.dhall
+    test-suite-golden/test-files/key/when-dependencies.dhall
+    test-suite-golden/test-files/real-world/hpack/hpack.dhall
+    test-suite-golden/test-files/real-world/stack/stack.dhall
+    test-suite-golden/test-files/key/import-local/name.dhl
+    test-suite-golden/test-files/key/import-relative.dhl
+    test-suite-golden/test-files/key/empty-inferred/empty-inferred.cabal
+    test-suite-golden/test-files/key/empty-inferred/package.yaml.cabal
+    test-suite-golden/test-files/key/empty-package.cabal
+    test-suite-golden/test-files/key/empty-package.yaml.cabal
+    test-suite-golden/test-files/key/import-local/import-local.cabal
+    test-suite-golden/test-files/key/import-local/package.yaml.cabal
+    test-suite-golden/test-files/key/import-relative/import-relative.cabal
+    test-suite-golden/test-files/key/import-relative/package.yaml.cabal
+    test-suite-golden/test-files/key/when-dependencies.cabal
+    test-suite-golden/test-files/key/when-dependencies.yaml.cabal
+    test-suite-golden/test-files/real-world/hpack/hpack.cabal
+    test-suite-golden/test-files/real-world/hpack/hpack.yaml.cabal
+    test-suite-golden/test-files/real-world/stack/stack.cabal
+    test-suite-golden/test-files/real-world/stack/stack.yaml.cabal
+    test-suite-golden/test-files/key/empty-inferred/package.json
+    test-suite-golden/test-files/key/empty-package.json
+    test-suite-golden/test-files/key/import-local/package.json
+    test-suite-golden/test-files/key/import-relative/package.json
+    test-suite-golden/test-files/key/when-dependencies.json
+    test-suite-golden/test-files/real-world/hpack/hpack.json
+    test-suite-golden/test-files/real-world/stack/stack.json
+    test-suite-golden/test-files/key/empty-inferred/package.yaml
+    test-suite-golden/test-files/key/empty-package.yaml
+    test-suite-golden/test-files/key/import-local/package.yaml
+    test-suite-golden/test-files/key/import-relative/package.yaml
+    test-suite-golden/test-files/key/when-dependencies.yaml
+    test-suite-golden/test-files/real-world/hpack/hpack.yaml
+    test-suite-golden/test-files/real-world/hpack/package.yaml
+    test-suite-golden/test-files/real-world/stack/package.yaml
+    test-suite-golden/test-files/real-world/stack/stack.yaml
+    test-suite-golden/test-files/key/empty-inferred/empty-inferred.cabal.golden
+    test-suite-golden/test-files/key/empty-inferred/package.dhall-1.32.golden
+    test-suite-golden/test-files/key/empty-inferred/package.dhall-1.34.golden
+    test-suite-golden/test-files/key/empty-inferred/package.json.golden
+    test-suite-golden/test-files/key/empty-inferred/package.yaml.golden
+    test-suite-golden/test-files/key/empty-package.cabal.golden
+    test-suite-golden/test-files/key/empty-package.dhall-1.32.golden
+    test-suite-golden/test-files/key/empty-package.dhall-1.34.golden
+    test-suite-golden/test-files/key/empty-package.json.golden
+    test-suite-golden/test-files/key/empty-package.yaml.golden
+    test-suite-golden/test-files/key/import-local/import-local.cabal.golden
+    test-suite-golden/test-files/key/import-local/package.dhall-1.32.golden
+    test-suite-golden/test-files/key/import-local/package.dhall-1.34.golden
+    test-suite-golden/test-files/key/import-local/package.json.golden
+    test-suite-golden/test-files/key/import-local/package.yaml.golden
+    test-suite-golden/test-files/key/import-relative/import-relative.cabal.golden
+    test-suite-golden/test-files/key/import-relative/package.dhall-1.32.golden
+    test-suite-golden/test-files/key/import-relative/package.dhall-1.34.golden
+    test-suite-golden/test-files/key/import-relative/package.json.golden
+    test-suite-golden/test-files/key/import-relative/package.yaml.golden
+    test-suite-golden/test-files/key/when-dependencies.cabal.golden
+    test-suite-golden/test-files/key/when-dependencies.dhall-1.32.golden
+    test-suite-golden/test-files/key/when-dependencies.dhall-1.34.golden
+    test-suite-golden/test-files/key/when-dependencies.json.golden
+    test-suite-golden/test-files/key/when-dependencies.yaml.golden
+    test-suite-golden/test-files/real-world/hpack/hpack.cabal.golden
+    test-suite-golden/test-files/real-world/hpack/hpack.dhall-1.32.golden
+    test-suite-golden/test-files/real-world/hpack/hpack.dhall-1.34.golden
+    test-suite-golden/test-files/real-world/hpack/hpack.json.golden
+    test-suite-golden/test-files/real-world/hpack/hpack.yaml.golden
+    test-suite-golden/test-files/real-world/stack/stack.cabal.golden
+    test-suite-golden/test-files/real-world/stack/stack.dhall-1.32.golden
+    test-suite-golden/test-files/real-world/stack/stack.dhall-1.34.golden
+    test-suite-golden/test-files/real-world/stack/stack.json.golden
+    test-suite-golden/test-files/real-world/stack/stack.yaml.golden
 
 source-repository head
   type: git
@@ -233,7 +268,7 @@ test-suite golden
       Paths_hpack_dhall
   hs-source-dirs:
       library
-      test/golden/src
+      test-suite-golden/src
   ghc-options: -Wall
   build-depends:
       Cabal
