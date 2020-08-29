@@ -2,7 +2,7 @@ name: stack
 
 on:
   push:
-    branches: [ci-stack, wip/ci-31]
+    branches: [ci-stack]
   pull_request:
     branches: [master]
 
