@@ -1,0 +1,43 @@
+name: cabal
+
+on:
+  push:
+    branches: [ci-cabal]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    name: ghc ${{ matrix.ghc }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        cabal: ["3.2"]
+        ghc:
+          - "8.8.3"
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - uses: actions/setup-haskell@v1
+      name: setup GHC and cabal-install
+      with:
+        ghc-version: ${{ matrix.ghc }}
+        cabal-version: ${{ matrix.cabal }}
+
+    - uses: actions/cache@v1
+      name: cache ~/.cabal/store
+      with:
+        path: ~/.cabal/store
+        key: ${{ runner.os }}-${{ matrix.ghc }}-cabal
+
+    - name: build
+      run: |
+        cabal update
+        cabal build all --enable-tests
+
+    - name: test golden
+      run: cabal test test:golden --test-show-details=direct --test-option="--color=always"
+
+    - name: test hlint
+      run: cabal test test:hlint --test-show-details=direct --test-option="--color=always"

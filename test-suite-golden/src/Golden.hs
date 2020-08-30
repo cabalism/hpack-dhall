@@ -9,8 +9,7 @@ import System.FilePath
     )
 import System.Directory (renameFile)
 import Test.Tasty (defaultMain, TestTree, testGroup)
-import Test.Tasty.Golden (findByExtension)
-import Test.Tasty.Golden (goldenVsFile, goldenVsString)
+import Test.Tasty.Golden (findByExtension, goldenVsFile, goldenVsString)
 
 import Hpack (Verbose(..), Options(..), hpack, defaultOptions, setDecode)
 import Hpack.Config (DecodeOptions(..))
@@ -29,13 +28,13 @@ goldExt =
 
         Dhall ->
             let d =
-                    #if MIN_VERSION_dhall (1, 34, 0)
-                        ".dhall-1.34"
-                    #elif MIN_VERSION_dhall (1, 32, 0)
-                        ".dhall-1.32"
-                    #else
-                        ".dhall"
-                    #endif
+#if MIN_VERSION_dhall (1, 34, 0)
+                    ".dhall-1.34"
+#elif MIN_VERSION_dhall (1, 32, 0)
+                    ".dhall-1.32"
+#else
+                    ".dhall"
+#endif
 
             in d <> ".golden"
 
@@ -44,8 +43,8 @@ goldExt =
 
 goldenTests :: IO TestTree
 goldenTests = do
-    ks <- findByExtension [".dhall"] "test/golden/test-files/key"
-    rs <- findByExtension [".dhall"] "test/golden/test-files/real-world"
+    ks <- findByExtension [".dhall"] "test-suite-golden/test-files/key"
+    rs <- findByExtension [".dhall"] "test-suite-golden/test-files/real-world"
     g1 <- goldenTestSet "archetypes" ks
     g2 <- goldenTestSet "real-world examples" rs
     return $ testGroup "golden tests" [g1 , g2]

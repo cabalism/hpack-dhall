@@ -8,6 +8,7 @@ arguments =
     [ "library"
     , "exe"
     , "test-suite-hlint"
+    , "test-suite-golden"
     -- WARNING: HLint turns off QuasiQuotes even if turned on in
     -- default-extensions in the cabal file, #55.
     -- SEE: https://github.com/ndmitchell/hlint/issues/223
