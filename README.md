@@ -240,11 +240,3 @@ This can be represented in `package.dhall` as;
         }
     }
 ```
-
-### Continuous Integration
-
-With haskell-ci tooling installed, generate the `.travis.yml` setup with;
-```
-> haskell-ci --output=.travis.yml --config=cabal.haskell-ci hpack-dhall.cabal
-*INFO* Generating Travis-CI config for testing for GHC versions: 8.2.2 8.4.3 8.4.4 8.6.3
-```
