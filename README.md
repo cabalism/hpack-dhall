@@ -1,6 +1,7 @@
 # hpack-dhall
 
-[![Build Status](https://travis-ci.org/BlockScope/hpack-dhall.svg)](https://travis-ci.org/BlockScope/hpack-dhall)
+![cabal](https://github.com/BlockScope/hpack-dhall/workflows/cabal/badge.svg)
+![stack](https://github.com/BlockScope/hpack-dhall/workflows/stack/badge.svg)
 [![hackage release](https://img.shields.io/hackage/v/hpack-dhall.svg?label=hackage)](http://hackage.haskell.org/package/hpack-dhall)
 [![Dependencies of latest version on Hackage](https://img.shields.io/hackage-deps/v/hpack-dhall.svg)](https://hackage.haskell.org/package/hpack-dhall)
 
