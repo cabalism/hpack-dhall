@@ -5,7 +5,7 @@
 [![hackage release](https://img.shields.io/hackage/v/hpack-dhall.svg?label=hackage)](http://hackage.haskell.org/package/hpack-dhall)
 [![Dependencies of latest version on Hackage](https://img.shields.io/hackage-deps/v/hpack-dhall.svg)](https://hackage.haskell.org/package/hpack-dhall)
 
-**H**askell **pack**age descriptions in [**Dhall**](https://github.com/dhall-lang/dhall-lang).
+[**Dhall**](https://github.com/dhall-lang/dhall-lang) programmable configuration for Haskell in the [hpack](https://github.com/sol/hpack) dialect .
 
 This package named `hpack-dhall` as described in
 [`package.dhall`](https://github.com/sol/hpack-dhall/blob/master/package.dhall).
