@@ -1,4 +1,4 @@
-# hpack-dhall
+# Hpack Dhall
 
 ![cabal](https://github.com/BlockScope/hpack-dhall/workflows/cabal/badge.svg)
 ![stack](https://github.com/BlockScope/hpack-dhall/workflows/stack/badge.svg)
