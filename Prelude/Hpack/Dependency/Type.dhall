@@ -1,1 +1,3 @@
-{ name : Text, lower : Text, upper : Text }
+let VersionRange = ../VersionRange/Type.dhall
+
+in { name : Text, range : VersionRange }

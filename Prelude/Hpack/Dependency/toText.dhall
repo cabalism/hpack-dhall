@@ -1,7 +1,9 @@
-let Dep = ./Type.dhall
+let Dependency = ./Type.dhall
 
-let Dep/toText
-    : ∀(x : Dep) → Text
-    = λ(x : Dep) → "${x.name} >= ${x.lower} && < ${x.upper}"
+let VersionRange/toText = ../VersionRange/toText.dhall
 
-in Dep/toText
+let Dependency/toText
+    : ∀(x : Dependency) → Text
+    = λ(x : Dependency) → "${x.name} ${VersionRange/toText x.range}"
+
+in  Dependency/toText

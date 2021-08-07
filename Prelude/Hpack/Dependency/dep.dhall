@@ -1,5 +1,11 @@
-let Dep = ./Type.dhall
+let Dependency = ./Type.dhall
 
-let Dep/dep : forall (x : Text) -> forall (l : Text) -> forall (u : Text) -> Dep =  \(x : Text) -> \(l : Text) -> \(u : Text) -> { name = x, lower = l, upper = u }
+let VersionRange = ../VersionRange/Type.dhall
 
-in Dep/dep
+let Dependency/dep
+    : ∀(x : Text) → ∀(l : Text) → ∀(u : Text) → Dependency
+    = λ(x : Text) →
+      λ(l : Text) →
+        \(u : Text) → { name = x, range = { lower = l, upper = u } }
+
+in  Dependency/dep

@@ -1,0 +1,1 @@
+{ upper : Text, lower : Text }
