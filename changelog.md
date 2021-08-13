@@ -1,14 +1,30 @@
 The [latest version](https://github.com/blockscope/hpack-dhall/blob/master/changelog.md) of this changelog.
 
-## 0.5.3 - Bump Hpack version
-* Bumped the hpack dependency:
-```diff
-$ dhall-hpack-cabal --version
--dhall-hpack-cabal-0.5.2
--hpack-0.34.2
-+dhall-hpack-cabal-0.5.3
-+hpack-0.34.4
-```
+## 0.5.3 - Bump Versions and Fix Warnings
+* Require `hpack >= 0.34.4`:
+  ```diff
+  $ dhall-hpack-cabal --version
+  -dhall-hpack-cabal-0.5.2
+  -hpack-0.34.2
+  +dhall-hpack-cabal-0.5.3
+  +hpack-0.34.4
+  ```
+* Require `base >= 4.13`, implying `GHC >= 8.8.4`.
+* Test with GHC `8.8.4` and `8.10.4`.
+* Add files for different stack GHC versions.
+  ```
+  $ stack build --stack-yaml=stack/stack-8.8.4.yaml
+  $ stack build --stack-yaml=stack/stack-8.10.4.yaml
+  $ stack build --stack-yaml=stack/stack-9.0.1.yaml
+  ```
+* Remove the travis script and update github scripts with:
+  ```diff
+  - - uses: actions/setup-haskell@v1
+  + - uses: haskell/actions/setup@v1
+
+  - - uses: actions/cache@v1
+  + - uses: actions/cache@v2
+  ```
 
 ## 0.5.2 - Consistent Golden Tests
 * Use explicit dependencies to achieve consistent golden tests in all but
