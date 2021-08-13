@@ -19,13 +19,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - uses: actions/setup-haskell@v1
+    - uses: haskell/actions/setup@v1
       name: setup GHC and cabal-install
       with:
         ghc-version: ${{ matrix.ghc }}
         cabal-version: ${{ matrix.cabal }}
 
-    - uses: actions/cache@v1
+    - uses: actions/cache@v2
       name: cache ~/.cabal/store
       with:
         path: ~/.cabal/store
@@ -33,11 +33,11 @@ jobs:
 
     - name: build
       run: |
-        cabal update
-        cabal build all --enable-tests
+        cabal v2-update
+        cabal v2-build all --enable-tests
 
     - name: test golden
-      run: cabal test test:golden --test-show-details=direct --test-option="--color=always"
+      run: cabal v2-test test:golden --test-show-details=direct --test-option="--color=always"
 
     - name: test hlint
-      run: cabal test test:hlint --test-show-details=direct --test-option="--color=always"
+      run: cabal v2-test test:hlint --test-show-details=direct --test-option="--color=always"
