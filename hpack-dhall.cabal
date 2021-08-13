@@ -1,10 +1,10 @@
 cabal-version: 1.12
 
--- This file has been generated from package.dhall by hpack version 0.34.2.
+-- This file has been generated from package.dhall by hpack version 0.34.4.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 64b45277b56ad7f1909ee12096998ed607349c64ff769e2826123e9ba929b800
+-- hash: ea7e44472720eef00d0edcb43dd6189144ad219b3d1649efda6e8a4544dd4486
 
 name:           hpack-dhall
 version:        0.5.3
@@ -24,7 +24,8 @@ maintainer:     Phil de Joux <phil.dejoux@blockscope.com>
 copyright:      © 2018 Phil de Joux, © 2018 Block Scope Limited
 license:        BSD3
 license-file:   LICENSE
-tested-with:    GHC == 8.8.3
+tested-with:
+    GHC == 8.10.4
 build-type:     Simple
 extra-source-files:
     package.dhall
@@ -299,11 +300,8 @@ test-suite hlint
   other-modules:
       Hpack.Dhall
       Hpack.Fields
-      Hpack.Dhall
-      Hpack.Fields
       Paths_hpack_dhall
   hs-source-dirs:
-      library
       library
       exe
       test-suite-hlint
