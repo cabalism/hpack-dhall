@@ -14,7 +14,8 @@
 , license = "BSD3"
 , github = "commercialhaskell/stack"
 , homepage = "http://haskellstack.org"
-, custom-setup.dependencies =
+, custom-setup.dependencies
+  =
   [ "base >=4.10 && < 5", "Cabal >= 2.4", "filepath" ]
 , extra-source-files =
   [ "CONTRIBUTING.md"
@@ -261,7 +262,8 @@
       }
     }
   }
-, executables.stack =
+, executables.stack
+  =
   { main = "Main.hs"
   , source-dirs = [ "src/main" ]
   , generated-other-modules = [ "Build_stack", "Paths_stack" ]

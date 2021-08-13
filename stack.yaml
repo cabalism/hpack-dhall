@@ -1,3 +1,5 @@
-resolver: lts-16.11
+resolver: lts-16.31
 packages:
 - '.'
+extra-deps:
+- hpack-0.34.4@sha256:e15193faba0a222389ff86faf52c4d45e91f190f940715e237cf862973537788,4478

@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 2d7175056542421625acfebbb49c442afb9b6847e6f3a42cce0b241b9d83edca
+-- hash: a1272730e5e83a4354b7f41161c742ae8c4c2904e873dcc92c4ac388ca2b17b6
 
 name:           hpack-dhall
-version:        0.5.2
+version:        0.5.3
 synopsis:       hpack's dhalling
 description:    Work with hpack's top-level
                 <https://github.com/sol/hpack#top-level-fields fields> in a Dhall
@@ -126,7 +126,7 @@ library
     , dhall
     , dhall-json
     , filepath
-    , hpack
+    , hpack >=0.34.4
     , megaparsec
     , microlens
     , prettyprinter
@@ -155,7 +155,7 @@ executable dhall-hpack-cabal
     , dhall
     , dhall-json
     , filepath
-    , hpack
+    , hpack >=0.34.4
     , hpack-dhall
     , megaparsec
     , microlens
@@ -186,7 +186,7 @@ executable dhall-hpack-dhall
     , dhall
     , dhall-json
     , filepath
-    , hpack
+    , hpack >=0.34.4
     , hpack-dhall
     , megaparsec
     , microlens
@@ -217,7 +217,7 @@ executable dhall-hpack-json
     , dhall
     , dhall-json
     , filepath
-    , hpack
+    , hpack >=0.34.4
     , hpack-dhall
     , megaparsec
     , microlens
@@ -248,7 +248,7 @@ executable dhall-hpack-yaml
     , dhall
     , dhall-json
     , filepath
-    , hpack
+    , hpack >=0.34.4
     , hpack-dhall
     , megaparsec
     , microlens
@@ -317,7 +317,7 @@ test-suite hlint
     , dhall-json
     , filepath
     , hlint
-    , hpack
+    , hpack >=0.34.4
     , megaparsec
     , microlens
     , prettyprinter

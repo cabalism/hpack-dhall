@@ -37,7 +37,8 @@
   }
 , executable =
   { main = "Main.hs", source-dirs = "driver", dependencies = [ "hpack" ] }
-, tests.spec =
+, tests.spec
+  =
   { cpp-options = "-DTEST"
   , main = "Spec.hs"
   , source-dirs = [ "test", "src" ]

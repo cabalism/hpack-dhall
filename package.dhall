@@ -3,7 +3,7 @@ let deps =
       , "megaparsec"
       , "dhall"
       , "dhall-json"
-      , "hpack"
+      , "hpack >= 0.34.4"
       , "transformers"
       , "text"
       , "microlens"
@@ -21,7 +21,7 @@ in  let exe-deps =
     in  { name =
             "hpack-dhall"
         , version =
-            "0.5.2"
+            "0.5.3"
         , maintainer =
             "Phil de Joux <phil.dejoux@blockscope.com>"
         , copyright =
