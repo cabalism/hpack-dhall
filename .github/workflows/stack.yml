@@ -14,6 +14,7 @@ jobs:
         cabal: ["3.4"]
         ghc:
           - "8.10.4"
+          - "8.8.4"
 
     steps:
     - uses: actions/checkout@v2
@@ -29,7 +30,7 @@ jobs:
       name: cache ~/.stack
       with:
         path: ~/.stack
-        key: ${{ runner.os }}-${{ matrix.ghc }}-stack
+        key: ${{ runner.os }}-${{ matrix.cabal }}-${{ matrix.ghc }}-cabal
 
     - name: build tests
       run: stack test --no-run-tests --no-terminal --stack-yaml=./stack/stack-${{ matrix.ghc }}.yaml
