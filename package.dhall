@@ -48,7 +48,7 @@ in  let exe-deps =
         , github =
             "blockscope/hpack-dhall"
         , tested-with =
-            "GHC == 8.10.4"
+            "GHC == 8.8.4, GHC == 8.10.4"
         , extra-source-files =
             [ "package.dhall"
             , "changelog.md"
