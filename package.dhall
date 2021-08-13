@@ -1,5 +1,5 @@
 let deps =
-      [ "base == 4.*"
+      [ "base >= 4.13"
       , "megaparsec"
       , "dhall"
       , "dhall-json"

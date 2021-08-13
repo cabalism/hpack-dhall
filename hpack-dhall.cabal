@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ea7e44472720eef00d0edcb43dd6189144ad219b3d1649efda6e8a4544dd4486
+-- hash: e611067ecb881fb69f7a629c9f24bcf9cafd77c95d31ba20e6a248e32e69c63e
 
 name:           hpack-dhall
 version:        0.5.3
@@ -122,7 +122,7 @@ library
   build-depends:
       aeson
     , aeson-pretty
-    , base ==4.*
+    , base >=4.13
     , bytestring
     , dhall
     , dhall-json
@@ -151,7 +151,7 @@ executable dhall-hpack-cabal
   build-depends:
       aeson
     , aeson-pretty
-    , base ==4.*
+    , base >=4.13
     , bytestring
     , dhall
     , dhall-json
@@ -182,7 +182,7 @@ executable dhall-hpack-dhall
   build-depends:
       aeson
     , aeson-pretty
-    , base ==4.*
+    , base >=4.13
     , bytestring
     , dhall
     , dhall-json
@@ -213,7 +213,7 @@ executable dhall-hpack-json
   build-depends:
       aeson
     , aeson-pretty
-    , base ==4.*
+    , base >=4.13
     , bytestring
     , dhall
     , dhall-json
@@ -244,7 +244,7 @@ executable dhall-hpack-yaml
   build-depends:
       aeson
     , aeson-pretty
-    , base ==4.*
+    , base >=4.13
     , bytestring
     , dhall
     , dhall-json
@@ -309,7 +309,7 @@ test-suite hlint
   build-depends:
       aeson
     , aeson-pretty
-    , base ==4.*
+    , base >=4.13
     , bytestring
     , dhall
     , dhall-json
