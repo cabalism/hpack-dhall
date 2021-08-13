@@ -61,7 +61,14 @@ in  let exe-deps =
             , "test-suite-golden/**/*.golden"
             ]
         , ghc-options =
-            "-Wall"
+            [ "-Wall"
+            , "-Werror"
+            , "-Wincomplete-uni-patterns"
+            , "-Wcompat"
+            , "-Widentities"
+            , "-Wredundant-constraints"
+            , "-fhide-source-paths"
+            ]
         , dependencies =
             deps
         , source-dirs =

@@ -11,7 +11,6 @@ module Options
     , parseQuiet
     ) where
 
-import Data.Monoid ((<>))
 import Hpack.Dhall (packageConfig)
 import Options.Applicative
 

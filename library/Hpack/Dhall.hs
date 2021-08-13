@@ -25,6 +25,7 @@ module Hpack.Dhall
     , packageConfig
     ) where
 
+import Data.Void (Void)
 import Data.Maybe (fromMaybe)
 import Data.Function ((&))
 import Lens.Micro ((^.), set)
@@ -46,7 +47,7 @@ import Dhall
 import Dhall.Core (Expr)
 import Dhall.Parser (Src, exprFromText)
 import Dhall.Import (loadWith, emptyStatus)
-import Dhall.TypeCheck (X, typeOf)
+import Dhall.TypeCheck (typeOf)
 import Dhall.JSON (dhallToJSON)
 import Dhall.Pretty (prettyExpr, layoutOpts)
 import qualified Data.Text.Prettyprint.Doc as PP
@@ -133,13 +134,13 @@ textToJson settings text = runExceptT $ do
         liftResult :: (Show b, Monad m) => Either b a -> ExceptT String m a
         liftResult = ExceptT . return . first show
 
-check :: InputSettings -> Text -> IO (Expr Src X)
+check :: InputSettings -> Text -> IO (Expr Src Void)
 check settings text = do
     expr <- either throwIO return $ exprFromText mempty text
     State.evalStateT (loadWith expr) (emptyStatus $ settings ^. rootDirectory)
 
 -- SEE: https://github.com/mstksg/hakyll-dhall
-renderDhall :: (PP.Pretty a, Eq a) => Expr Src a -> T.Text
+renderDhall :: PP.Pretty a => Expr Src a -> T.Text
 renderDhall =
     PP.renderStrict
     . PP.layoutSmart layoutOpts

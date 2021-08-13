@@ -5,7 +5,6 @@ module Main (main) where
 
 import Paths_hpack_dhall (version)
 import Data.Version (showVersion)
-import Data.Monoid ((<>))
 import Data.Foldable (asum)
 import qualified Options.Applicative as O
 import Options

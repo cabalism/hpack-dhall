@@ -36,7 +36,7 @@ cmp a b =
             ]
 
 -- | All <https://github.com/sol/hpack#top-level-fields top-level> fields combined.
-topLevelFields :: (Ord a, IsString a) => [a]
+topLevelFields :: IsString a => [a]
 topLevelFields =
     headerFields
     ++ repoFields
@@ -46,7 +46,7 @@ topLevelFields =
 
 -- | The header subset of
 -- <https://github.com/sol/hpack#top-level-fields top-level> fields.
-headerFields :: (Ord a, IsString a) => [a]
+headerFields :: IsString a => [a]
 headerFields =
     [ "spec-version"
     , "name"
@@ -69,7 +69,7 @@ headerFields =
 
 -- | The package subset of
 -- <https://github.com/sol/hpack#top-level-fields top-level> fields.
-packageFields :: (Ord a, IsString a) => [a]
+packageFields :: IsString a => [a]
 packageFields =
     [ "extra-source-files"
     , "extra-doc-files"
@@ -79,7 +79,7 @@ packageFields =
 
 -- | The source repository subset of
 -- <https://github.com/sol/hpack#top-level-fields top-level> fields.
-repoFields :: (Ord a, IsString a) => [a]
+repoFields :: IsString a => [a]
 repoFields =
     [ "github"
     , "git"
@@ -87,7 +87,7 @@ repoFields =
 
 -- | The stanzas subset of
 -- <https://github.com/sol/hpack#top-level-fields top-level> fields.
-stanzasFields :: (Ord a, IsString a) => [a]
+stanzasFields :: IsString a => [a]
 stanzasFields =
     [ "custom-setup"
     , "flags"
@@ -101,7 +101,7 @@ stanzasFields =
     ]
 
 -- | The <https://github.com/sol/hpack#common-fields common> fields.
-commonFields :: (Ord a, IsString a) => [a]
+commonFields :: IsString a => [a]
 commonFields =
     [ "buildable"
     , "source-dirs"
@@ -132,7 +132,7 @@ commonFields =
 
 
 -- | The <https://github.com/sol/hpack#library-fields library> fields.
-libraryFields :: (Ord a, IsString a) => [a]
+libraryFields :: IsString a => [a]
 libraryFields =
     [ "exposed"
     , "exposed-modules"
@@ -147,7 +147,7 @@ libraryFields =
 -- <https://github.com/sol/hpack#test-fields test> and
 -- <https://github.com/sol/hpack#benchmark-fields benchmark> fields are all the
 -- same.
-runnableFields :: (Ord a, IsString a) => [a]
+runnableFields :: IsString a => [a]
 runnableFields =
     [ "main"
     , "other-modules"
@@ -155,7 +155,7 @@ runnableFields =
     ]
 
 -- | The <https://github.com/sol/hpack#flags flag> fields.
-flagFields :: (Ord a, IsString a) => [a]
+flagFields :: IsString a => [a]
 flagFields =
     [ "description"
     , "manual"
@@ -163,7 +163,7 @@ flagFields =
     ]
 
 -- | The <https://github.com/sol/hpack#-conditionals conditional> fields.
-conditionalFields :: (Ord a, IsString a) => [a]
+conditionalFields :: IsString a => [a]
 conditionalFields =
     [ "condition"
     , "then"
@@ -171,7 +171,7 @@ conditionalFields =
     ]
 
 -- | The <https://github.com/sol/hpack#defaults defaults> fields.
-defaultsFields :: (Ord a, IsString a) => [a]
+defaultsFields :: IsString a => [a]
 defaultsFields =
     [ "github"
     , "ref"

@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a1272730e5e83a4354b7f41161c742ae8c4c2904e873dcc92c4ac388ca2b17b6
+-- hash: 64b45277b56ad7f1909ee12096998ed607349c64ff769e2826123e9ba929b800
 
 name:           hpack-dhall
 version:        0.5.3
@@ -117,7 +117,7 @@ library
       Paths_hpack_dhall
   hs-source-dirs:
       library
-  ghc-options: -Wall
+  ghc-options: -Wall -Werror -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
       aeson
     , aeson-pretty
@@ -146,7 +146,7 @@ executable dhall-hpack-cabal
       library
       exe/options
       exe/dhall-hpack-cabal
-  ghc-options: -Wall
+  ghc-options: -Wall -Werror -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
       aeson
     , aeson-pretty
@@ -177,7 +177,7 @@ executable dhall-hpack-dhall
       library
       exe/options
       exe/dhall-hpack-dhall
-  ghc-options: -Wall
+  ghc-options: -Wall -Werror -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
       aeson
     , aeson-pretty
@@ -208,7 +208,7 @@ executable dhall-hpack-json
       library
       exe/options
       exe/dhall-hpack-json
-  ghc-options: -Wall
+  ghc-options: -Wall -Werror -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
       aeson
     , aeson-pretty
@@ -239,7 +239,7 @@ executable dhall-hpack-yaml
       library
       exe/options
       exe/dhall-hpack-yaml
-  ghc-options: -Wall
+  ghc-options: -Wall -Werror -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
       aeson
     , aeson-pretty
@@ -269,7 +269,7 @@ test-suite golden
   hs-source-dirs:
       library
       test-suite-golden/src
-  ghc-options: -Wall
+  ghc-options: -Wall -Werror -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
       Cabal
     , Diff
@@ -307,7 +307,7 @@ test-suite hlint
       library
       exe
       test-suite-hlint
-  ghc-options: -Wall -rtsopts -threaded -with-rtsopts=-N
+  ghc-options: -Wall -Werror -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths -rtsopts -threaded -with-rtsopts=-N
   build-depends:
       aeson
     , aeson-pretty
