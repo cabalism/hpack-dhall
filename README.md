@@ -14,15 +14,15 @@ modules on disk and the set of `exposed-modules`.
 Get the safety of dhall's programmable configuration: typed fields, safe imports
 and functions.
 
-Another convenience is that files are easily formatted. The cabal output file is
-formatted on write and the input package dhall file can be formatted too with:
+Another convenience is that files are easily formatted. The cabal file is
+formatted on write and the package dhall file can be formatted too with:
 
     $ dhall format --inplace package.dhall
 
 ## Phrasing
 
 Use hpack phrasing: The vocabulary of [hpack's
-fields](https://github.com/sol/hpack#top-level-fields) and values differs only
+fields](https://github.com/cabalism/hpack#top-level-fields) and values differs only
 slightly from [cabal's
 properties](https://www.haskell.org/cabal/users-guide/developing-packages.html#package-properties).
 They're close Haskell packaging dialects.
@@ -30,21 +30,10 @@ They're close Haskell packaging dialects.
 ## Write Cabal
 
 This very package is described in
-[`package.dhall`](https://github.com/sol/hpack-dhall/blob/master/package.dhall).
-
-```
-{ name =
-    "hpack-dhall"
-...
-, library =
-    { exposed-modules = "Hpack.Dhall" }
-, executables =
-    { dhall-hpack-cabal = ...
-    }
-}
-```
-
-From the same folder the cabal file can be produced with:
+[`package.dhall`](https://github.com/cabalism/hpack-dhall/blob/main/package.dhall)
+and produces
+[`hpack-dhall.cabal`](https://github.com/cabalism/hpack-dhall/blob/main/package.dhall)
+with the command:
 
 ```
 $ dhall-hpack-cabal
