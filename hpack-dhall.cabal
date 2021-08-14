@@ -7,14 +7,17 @@ cabal-version: 1.12
 name:           hpack-dhall
 version:        0.5.3
 synopsis:       hpack's dhalling
-description:    Work with hpack's top-level
-                <https://github.com/sol/hpack#top-level-fields fields> in a Dhall
-                record with the following executables;
+description:    Use hpack phrasing in dhall to write cabal files.
                 .
-                * with @dhall-hpack-cabal@ write the @.cabal@ for a @.dhall@ package description.
-                * with @dhall-hpack-dhall@ show the package description expression, with imports resolved.
-                * with @dhall-hpack-json@ show the package description as JSON.
-                * with @dhall-hpack-yaml@ show the package description as YAML.
+                There are two main reasons why you'd use hpack-dhall, convenience and safety.
+                .
+                Get the convenience of hpack. Don't bother to state what can be inferred or
+                defaulted, easing the burden of completing a package description by hand.  For
+                example `other-modules` can be inferred by taking the set difference between
+                modules on disk and the set of `exposed-modules`.
+                .
+                Get the safety of dhall's programmable configuration: typed fields, safe imports
+                and functions.
 category:       Development
 homepage:       https://github.com/blockscope/hpack-dhall#readme
 bug-reports:    https://github.com/blockscope/hpack-dhall/issues
