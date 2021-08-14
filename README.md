@@ -1,13 +1,35 @@
 # Hpack Dhall
 
-![cabal](https://github.com/BlockScope/hpack-dhall/workflows/cabal/badge.svg)
-![stack](https://github.com/BlockScope/hpack-dhall/workflows/stack/badge.svg)
-[![hackage release](https://img.shields.io/hackage/v/hpack-dhall.svg?label=hackage)](http://hackage.haskell.org/package/hpack-dhall)
-[![Dependencies of latest version on Hackage](https://img.shields.io/hackage-deps/v/hpack-dhall.svg)](https://hackage.haskell.org/package/hpack-dhall)
+Use hpack phrasing in dhall to write cabal files.
 
-[**Dhall**](https://github.com/dhall-lang/dhall-lang) programmable configuration for packaging Haskell modules in the [hpack](https://github.com/sol/hpack) dialect.
+## Convenience and Safety
 
-This package named `hpack-dhall` as described in
+There are two main reasons why you'd use hpack-dhall, convenience and safety.
+
+Get the convenience of hpack. Don't bother to state what can be inferred or
+defaulted, easing the burden of completing a package description by hand.  For
+example `other-modules` can be inferred by taking the set difference between
+modules on disk and the set of `exposed-modules`.
+
+Get the safety of dhall's programmable configuration: typed fields, safe imports
+and functions.
+
+Another convenience is that files are easily formatted. The cabal output file is
+formatted on write and the input package dhall file can be formatted too with:
+
+    $ dhall format --inplace package.dhall
+
+## Phrasing
+
+Use hpack phrasing: The vocabulary of [hpack's
+fields](https://github.com/sol/hpack#top-level-fields) and values differs only
+slightly from [cabal's
+properties](https://www.haskell.org/cabal/users-guide/developing-packages.html#package-properties).
+They're close Haskell packaging dialects.
+
+## Write Cabal
+
+This very package is described in
 [`package.dhall`](https://github.com/sol/hpack-dhall/blob/master/package.dhall).
 
 ```
@@ -18,66 +40,73 @@ This package named `hpack-dhall` as described in
     { exposed-modules = "Hpack.Dhall" }
 , executables =
     { dhall-hpack-cabal = ...
-    , dhall-hpack-json = ...
-    , dhall-hpack-yaml = ...
-    , dhall-hpack-dhall = ...
     }
 }
 ```
 
-This `.cabal` creating executable can be run over its own package description;
+From the same folder the cabal file can be produced with:
 
 ```
-> stack install --stack-yaml=stack-8.4.4.yaml
-...
-Copied executables to /.../hpack-dhall/__bin:
-- dhall-hpack-cabal
-- dhall-hpack-dhall
-- dhall-hpack-json
-- dhall-hpack-yaml
-
-> __bin/dhall-hpack-cabal package.dhall
-hpack-dhall.cabal is up-to-date
-
-> __bin/dhall-hpack-cabal --force package.dhall
+$ dhall-hpack-cabal
 generated hpack-dhall.cabal
 ```
 
-Using one of the golden tests for example, there are executables to show the
-dhall with the imports made as well as json and yaml equivalents;
+This cabal file can be consumed by stack and cabal-install to build the package.
+
+## Source Control
+
+Value the dhall file as a way to produce the cabal file. It's a convenience.
+Both files should be checked into source control. If you're working on a project
+where some people like the dhall file and others like the cabal file then work
+can continue without disrupting either party. If the cabal file gets ahead of
+the dhall file, it should be possible to get them in sync again. By checking
+both types of file into source control you're not excluding either way of
+working.
+
+## Building from Source
+
 ```
-> __bin/dhall-hpack-dhall test/golden/hpack-dhall-cabal/empty-package.dhall
-{ name = "empty-package" }
+$ gh repo clone cabalism/hpack-dhall
+$ cd hpack-dhall
 
-> __bin/dhall-hpack-json test/golden/hpack-dhall-cabal/empty-package.dhall
-{
-    "name": "empty-package"
-}
+# installing with stack (stack itself bundles hpack)
+$ stack --version
+Version 2.7.3, Git revision 7927a3aec32e2b2e5e4fb5be76d0d50eddcc197f x86_64 hpack-0.34.4
+$ stack install
+Copied executables to /Users/pdejoux/.local/bin:
+- dhall-hpack-cabal
+- dhall-hpack-dhall
+- dhall-hpack-json
+- dhall-hpack-yaml 
 
-> __bin/dhall-hpack-yaml test/golden/hpack-dhall-cabal/empty-package.dhall
-name: empty-package
+# installing with cabal
+$ ghcup --version
+The GHCup Haskell installer, version v0.1.16.2
+$ ghcup set cabal 3.4.0.0
+[ Info  ] Cabal 3.4.0.0 successfully set as default version
+$ ghcup set ghc 8.10.4
+[ Info  ] GHC 8.10.4 successfully set as default version
+$ cabal install all:exes --overwrite-policy=always --installdir=$HOME/.cabal/bin
+...
+Completed    hpack-dhall-0.5.3 (exe:dhall-hpack-cabal)
+Symlinking 'dhall-hpack-dhall' to '/Users/.../.cabal/bin/dhall-hpack-dhall'
+Symlinking 'dhall-hpack-json' to '/Users/.../.cabal/bin/dhall-hpack-json'
+Symlinking 'dhall-hpack-yaml' to '/Users/.../.cabal/bin/dhall-hpack-yaml'
+Symlinking 'dhall-hpack-cabal' to '/Users/.../.cabal/bin/dhall-hpack-cabal'
 ```
 
-By going from [hpack package
-fields](https://github.com/sol/hpack#top-level-fields) to [cabal package
-properties](https://www.haskell.org/cabal/users-guide/developing-packages.html#package-properties),
-we are not required to state what can be inferred or defaulted, easing the
-burden of completing a package description by hand.  For example
-`other-modules` can be inferred by taking the set difference between modules on
-disk and the set of `exposed-modules`.
+## Other Exes
 
-By using an hpack-like Dhall dialect here rather than the
-[YAML](https://en.wikipedia.org/wiki/YAML) of hpack we're able to;
+If you're migrating from hpack to hpack-dhall but don't have a source controlled cabal file then `dhall-hpack-yaml` can be used to generate a package.yaml.
 
-* Add types to the fields.
-* Safely import from other `*.dhall` files.
-* Use functions.
+If for some reason you want JSON, then `dhall-hpack-json` does that.
+
+For seeing dhall with imports resolved there's `dhall-hpack-dhall`.
 
 ## Imports and Functions
 
-With this safer and more capable alternative input format for hpack, we're able
-to simply describe the package and by using imports and functions we can do
-more such as configuring linting;
+By using imports and functions we can do more than just create a cabal file. We
+can configure extensions for linting;
 
 ```
 > cat default-extensions.dhall
@@ -139,20 +168,10 @@ in    defs
       }
 ```
 
-## Formatting
-
-We can consistently format `package.dhall` and other `*.dhall` imports using
-`dhall`;
-
-```
-> stack install dhall --stack-yaml=stack-dhall.yaml
-> __bin/dhall format --inplace package.dhall
-```
-
 ## Restrictions
 
 Using hpack's [conditionals](https://github.com/sol/hpack#conditionals) in
-a list in `package.dhall` can cause an error because lists in Dhall must have
+a list in `package.dhall` can cause an error because lists in dhall must have
 elements of the same type;
 
 From stack's `package.yaml`;
@@ -240,3 +259,9 @@ This can be represented in `package.dhall` as;
         }
     }
 ```
+
+## Status
+![cabal](https://github.com/BlockScope/hpack-dhall/workflows/cabal/badge.svg)
+![stack](https://github.com/BlockScope/hpack-dhall/workflows/stack/badge.svg)
+[![hackage release](https://img.shields.io/hackage/v/hpack-dhall.svg?label=hackage)](http://hackage.haskell.org/package/hpack-dhall)
+[![Dependencies of latest version on Hackage](https://img.shields.io/hackage-deps/v/hpack-dhall.svg)](https://hackage.haskell.org/package/hpack-dhall)
