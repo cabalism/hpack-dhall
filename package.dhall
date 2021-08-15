@@ -1,5 +1,5 @@
 let deps =
-      [ "base >= 4.13"
+      [ "base >= 4.13 && < 5"
       , "megaparsec"
       , "dhall"
       , "dhall-json"
@@ -64,7 +64,6 @@ in  let exe-deps =
             ]
         , ghc-options =
             [ "-Wall"
-            , "-Werror"
             , "-Wincomplete-uni-patterns"
             , "-Wcompat"
             , "-Widentities"

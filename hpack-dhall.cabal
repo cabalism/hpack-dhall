@@ -118,11 +118,11 @@ library
       Paths_hpack_dhall
   hs-source-dirs:
       library
-  ghc-options: -Wall -Werror -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
+  ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
       aeson
     , aeson-pretty
-    , base >=4.13
+    , base >=4.13 && <5
     , bytestring
     , dhall
     , dhall-json
@@ -147,11 +147,11 @@ executable dhall-hpack-cabal
       library
       exe/options
       exe/dhall-hpack-cabal
-  ghc-options: -Wall -Werror -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
+  ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
       aeson
     , aeson-pretty
-    , base >=4.13
+    , base >=4.13 && <5
     , bytestring
     , dhall
     , dhall-json
@@ -178,11 +178,11 @@ executable dhall-hpack-dhall
       library
       exe/options
       exe/dhall-hpack-dhall
-  ghc-options: -Wall -Werror -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
+  ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
       aeson
     , aeson-pretty
-    , base >=4.13
+    , base >=4.13 && <5
     , bytestring
     , dhall
     , dhall-json
@@ -209,11 +209,11 @@ executable dhall-hpack-json
       library
       exe/options
       exe/dhall-hpack-json
-  ghc-options: -Wall -Werror -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
+  ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
       aeson
     , aeson-pretty
-    , base >=4.13
+    , base >=4.13 && <5
     , bytestring
     , dhall
     , dhall-json
@@ -240,11 +240,11 @@ executable dhall-hpack-yaml
       library
       exe/options
       exe/dhall-hpack-yaml
-  ghc-options: -Wall -Werror -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
+  ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
       aeson
     , aeson-pretty
-    , base >=4.13
+    , base >=4.13 && <5
     , bytestring
     , dhall
     , dhall-json
@@ -270,7 +270,7 @@ test-suite golden
   hs-source-dirs:
       library
       test-suite-golden/src
-  ghc-options: -Wall -Werror -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
+  ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
       Cabal
     , Diff
@@ -305,11 +305,11 @@ test-suite hlint
       library
       exe
       test-suite-hlint
-  ghc-options: -Wall -Werror -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths -rtsopts -threaded -with-rtsopts=-N
+  ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths -rtsopts -threaded -with-rtsopts=-N
   build-depends:
       aeson
     , aeson-pretty
-    , base >=4.13
+    , base >=4.13 && <5
     , bytestring
     , dhall
     , dhall-json
