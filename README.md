@@ -22,7 +22,7 @@ and functions.
 Another convenience is that files are easily formatted. The cabal file is
 formatted on write and the package dhall file can be formatted too with:
 
-    $ dhall format --inplace package.dhall
+    > dhall format --inplace package.dhall
 
 We use hpack phrasing. The vocabulary of [hpack's
 fields](https://github.com/cabalism/hpack#top-level-fields) and values differs only
@@ -39,7 +39,7 @@ and produces
 with the command:
 
 ```
-$ dhall-hpack-cabal
+> dhall-hpack-cabal
 generated hpack-dhall.cabal
 ```
 
