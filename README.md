@@ -1,6 +1,6 @@
 # `hpack-dhall`
 
-Supercharge hpack with dhall to write cabal files.
+Use hpack's phrasing in dhall to write cabal files.
 
 ## Installation
 
