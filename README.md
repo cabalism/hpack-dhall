@@ -5,7 +5,7 @@ Use hpack's phrasing in dhall to write cabal files.
 ## Installation
 
 Install with `cabal install hpack-dhall` or [install from
-source](https://github.com/cabalism/hpack-dhall/blob/main/BUILDING.md).
+source](https://github.com/cabalism/hpack-dhall/blob/main/docs/BUILDING.md).
 
 ## Motivation
 
@@ -46,7 +46,7 @@ generated hpack-dhall.cabal
 The generated cabal file can then inform both stack and cabal-install what
 modules to package into libraries, executables and test suites.
 
-There is [more](https://github.com/cabalism/hpack-dhall/blob/main/MORE.md) you can do.
+There is [more](https://github.com/cabalism/hpack-dhall/blob/main/docs/MORE.md) you can do.
 
 ## Source Control
 
