@@ -1,6 +1,8 @@
 The [latest version](https://github.com/blockscope/hpack-dhall/blob/master/changelog.md) of this changelog.
 
-## 0.5.3 - Bump Versions and Fix Warnings
+## 0.5.3 - Rewrite the README
+* Rewrite the README, making it shorter and splitting some details about more
+  uses and building into separate docs.
 * Require `hpack >= 0.34.4`:
   ```diff
   $ dhall-hpack-cabal --version
