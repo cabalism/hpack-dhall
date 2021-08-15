@@ -1,5 +1,5 @@
 let deps =
-      [ "base >= 4.13"
+      [ "base >= 4.13 && < 5"
       , "megaparsec"
       , "dhall"
       , "dhall-json"
@@ -17,7 +17,7 @@ let deps =
 
 in  let exe-deps =
           [ "hpack-dhall", "optparse-applicative" ]
-
+    
     in  { name =
             "hpack-dhall"
         , version =
@@ -36,14 +36,17 @@ in  let exe-deps =
             "hpack's dhalling"
         , description =
             ''
-            Work with hpack's top-level
-            <https://github.com/sol/hpack#top-level-fields fields> in a Dhall
-            record with the following executables;
+            Use hpack phrasing in dhall to write cabal files.
+            
+            There are two main reasons why you'd use hpack-dhall, convenience and safety.
 
-            * with @dhall-hpack-cabal@ write the @.cabal@ for a @.dhall@ package description.
-            * with @dhall-hpack-dhall@ show the package description expression, with imports resolved.
-            * with @dhall-hpack-json@ show the package description as JSON.
-            * with @dhall-hpack-yaml@ show the package description as YAML.
+            Get the convenience of hpack. Don't bother to state what can be inferred or
+            defaulted, easing the burden of completing a package description by hand.  For
+            example `other-modules` can be inferred by taking the set difference between
+            modules on disk and the set of `exposed-modules`.
+
+            Get the safety of dhall's programmable configuration: typed fields, safe imports
+            and functions.
             ''
         , github =
             "blockscope/hpack-dhall"
@@ -52,7 +55,6 @@ in  let exe-deps =
         , extra-source-files =
             [ "package.dhall"
             , "changelog.md"
-            , "README.md"
             , "test-suite-golden/**/*.dhall"
             , "test-suite-golden/**/*.dhl"
             , "test-suite-golden/**/*.cabal"
@@ -62,7 +64,6 @@ in  let exe-deps =
             ]
         , ghc-options =
             [ "-Wall"
-            , "-Werror"
             , "-Wincomplete-uni-patterns"
             , "-Wcompat"
             , "-Widentities"
