@@ -1,4 +1,4 @@
-# Hpack Dhall
+# `hpack-dhall`
 
 Use hpack phrasing in dhall to write cabal files.
 
@@ -68,7 +68,7 @@ For seeing dhall with imports resolved there's `dhall-hpack-dhall`.
 ## Imports and Functions
 
 By using imports and functions we can do more than just create a cabal file. We
-can configure extensions for linting;
+can configure extensions for linting:
 
 ```
 > cat default-extensions.dhall
@@ -102,7 +102,7 @@ arguments:
 - -XUndecidableInstances
 ```
 
-We can pull those same `default-extensions` into a package description;
+We can pull those same `default-extensions` into a package description:
 
 ```
 > cat package.dhall
@@ -134,9 +134,9 @@ in    defs
 
 Using hpack's [conditionals](https://github.com/sol/hpack#conditionals) in
 a list in `package.dhall` can cause an error because lists in dhall must have
-elements of the same type;
+elements of the same type:
 
-From stack's `package.yaml`;
+From stack's `package.yaml`:
 ```
 executables:
   stack:
