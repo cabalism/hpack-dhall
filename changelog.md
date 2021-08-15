@@ -27,6 +27,7 @@ The [latest version](https://github.com/blockscope/hpack-dhall/blob/master/chang
   - - uses: actions/cache@v1
   + - uses: actions/cache@v2
   ```
+* Remove stale nix-related files.
 
 ## 0.5.2 - Consistent Golden Tests
 * Use explicit dependencies to achieve consistent golden tests in all but
