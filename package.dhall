@@ -55,7 +55,6 @@ in  let exe-deps =
         , extra-source-files =
             [ "package.dhall"
             , "changelog.md"
-            , "README.md"
             , "test-suite-golden/**/*.dhall"
             , "test-suite-golden/**/*.dhl"
             , "test-suite-golden/**/*.cabal"
