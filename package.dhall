@@ -1,9 +1,9 @@
 let deps =
       [ "base >= 4.13 && < 5"
-      , "megaparsec"
-      , "dhall"
-      , "dhall-json"
-      , "hpack >= 0.34.4"
+      , "megaparsec >= 9.2.0"
+      , "dhall >= 1.40.2"
+      , "dhall-json >= 1.7.9"
+      , "hpack >= 0.34.6"
       , "transformers"
       , "text"
       , "microlens"
@@ -15,29 +15,21 @@ let deps =
       , "yaml"
       ]
 
-in  let exe-deps =
-          [ "hpack-dhall", "optparse-applicative" ]
-    
-    in  { name =
-            "hpack-dhall"
-        , version =
-            "0.5.3"
-        , maintainer =
-            "Phil de Joux <phil.dejoux@blockscope.com>"
+in  let exe-deps = [ "optparse-applicative" ]
+
+    in  { name = "hpack-dhall"
+        , version = "0.5.4"
+        , maintainer = "Phil de Joux <phil.dejoux@blockscope.com>"
         , copyright =
-            "© 2018 Phil de Joux, © 2018 Block Scope Limited"
-        , license =
-            "BSD3"
-        , license-file =
-            "LICENSE"
-        , category =
-            "Development"
-        , synopsis =
-            "hpack's dhalling"
+            "© 2018 - 2021 Phil de Joux, © 2018 - 2021 Block Scope Limited"
+        , license = "BSD3"
+        , license-file = "LICENSE"
+        , category = "Development"
+        , synopsis = "hpack's dhalling"
         , description =
             ''
             Use hpack phrasing in dhall to write cabal files.
-            
+
             There are two main reasons why you'd use hpack-dhall, convenience and safety.
 
             Get the convenience of hpack. Don't bother to state what can be inferred or
@@ -48,95 +40,76 @@ in  let exe-deps =
             Get the safety of dhall's programmable configuration: typed fields, safe imports
             and functions.
             ''
-        , github =
-            "blockscope/hpack-dhall"
-        , tested-with =
-            "GHC == 8.8.4, GHC == 8.10.4"
+        , github = "cabalism/hpack-dhall"
+        , tested-with = "GHC == 8.8.4, GHC == 8.10.7"
         , extra-source-files =
-            [ "package.dhall"
-            , "changelog.md"
-            , "test-suite-golden/**/*.dhall"
-            , "test-suite-golden/**/*.dhl"
-            , "test-suite-golden/**/*.cabal"
-            , "test-suite-golden/**/*.json"
-            , "test-suite-golden/**/*.yaml"
-            , "test-suite-golden/**/*.golden"
-            ]
+          [ "package.dhall"
+          , "changelog.md"
+          , "test-suite-golden/**/*.dhall"
+          , "test-suite-golden/**/*.dhl"
+          , "test-suite-golden/**/*.cabal"
+          , "test-suite-golden/**/*.json"
+          , "test-suite-golden/**/*.yaml"
+          , "test-suite-golden/**/*.golden"
+          ]
         , ghc-options =
-            [ "-Wall"
-            , "-Wincomplete-uni-patterns"
-            , "-Wcompat"
-            , "-Widentities"
-            , "-Wredundant-constraints"
-            , "-fhide-source-paths"
-            ]
-        , dependencies =
-            deps
-        , source-dirs =
-            "library"
-        , library =
-            { exposed-modules = [ "Hpack.Dhall", "Hpack.Fields" ] }
+          [ "-Wall"
+          , "-Wincomplete-uni-patterns"
+          , "-Wcompat"
+          , "-Widentities"
+          , "-Wredundant-constraints"
+          , "-fhide-source-paths"
+          ]
+        , dependencies = deps
+        , source-dirs = "library"
+        , library.exposed-modules = [ "Hpack.Dhall", "Hpack.Fields" ]
         , executables =
-            { dhall-hpack-cabal =
-                { main =
-                    "CabalMain.hs"
-                , source-dirs =
-                    [ "exe/options", "exe/dhall-hpack-cabal" ]
-                , dependencies =
-                    exe-deps
-                }
-            , dhall-hpack-json =
-                { main =
-                    "JsonMain.hs"
-                , source-dirs =
-                    [ "exe/options", "exe/dhall-hpack-json" ]
-                , dependencies =
-                    exe-deps
-                }
-            , dhall-hpack-yaml =
-                { main =
-                    "YamlMain.hs"
-                , source-dirs =
-                    [ "exe/options", "exe/dhall-hpack-yaml" ]
-                , dependencies =
-                    exe-deps
-                }
-            , dhall-hpack-dhall =
-                { main =
-                    "DhallMain.hs"
-                , source-dirs =
-                    [ "exe/options", "exe/dhall-hpack-dhall" ]
-                , dependencies =
-                    exe-deps
-                }
+          { dhall-hpack-cabal =
+            { main = "CabalMain.hs"
+            , source-dirs = [ "exe/options", "exe/dhall-hpack-cabal" ]
+            , dependencies = exe-deps
             }
+          , dhall-hpack-json =
+            { main = "JsonMain.hs"
+            , source-dirs = [ "exe/options", "exe/dhall-hpack-json" ]
+            , dependencies = exe-deps
+            }
+          , dhall-hpack-yaml =
+            { main = "YamlMain.hs"
+            , source-dirs = [ "exe/options", "exe/dhall-hpack-yaml" ]
+            , dependencies = exe-deps
+            }
+          , dhall-hpack-dhall =
+            { main = "DhallMain.hs"
+            , source-dirs = [ "exe/options", "exe/dhall-hpack-dhall" ]
+            , dependencies = exe-deps
+            }
+          }
         , tests =
               ./default-tests.dhall
             ⫽ { golden =
-                  { main =
-                      "Golden.hs"
-                  , source-dirs =
-                      [ "test-suite-golden/src" ]
-                  , dependencies =
-                      [ "base"
-                      , "Cabal"
-                      , "Diff"
-                      , "dhall"
-                      , "filepath"
-                      , "microlens"
-                      , "prettyprinter"
-                      , "tasty"
-                      , "tasty-golden"
-                      , "text"
-                      , "megaparsec >= 7.0.1"
-                      , "dhall >= 1.18.0"
-                      , "dhall-json >= 1.2.4"
-                      , "hpack >= 0.31.0"
-                      , "transformers"
-                      , "aeson"
-                      , "utf8-string"
-                      , "directory"
-                      ]
-                  }
+                { main = "Golden.hs"
+                , source-dirs = [ "test-suite-golden/src" ]
+                , dependencies =
+                  [ "base"
+                  , "Cabal"
+                  , "Diff"
+                  , "dhall"
+                  , "filepath"
+                  , "microlens"
+                  , "prettyprinter"
+                  , "tasty"
+                  , "tasty-golden"
+                  , "text"
+                  , "megaparsec >= 9.2.0"
+                  , "dhall >= 1.40.2"
+                  , "dhall-json >= 1.7.9"
+                  , "hpack >= 0.34.6"
+                  , "transformers"
+                  , "aeson"
+                  , "utf8-string"
+                  , "directory"
+                  ]
+                }
               }
         }
