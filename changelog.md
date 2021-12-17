@@ -1,5 +1,9 @@
 The [latest version](https://github.com/blockscope/hpack-dhall/blob/master/changelog.md) of this changelog.
 
+## 0.5.4 - Rewrite the README
+* Require `hpack >= 0.34.6`.
+* Test with GHC `8.8.4`, GHC `8.10.7` and GHC `9.0.1`.
+
 ## 0.5.3 - Rewrite the README
 * Rewrite the README, making it shorter and splitting some details about more
   uses and building into separate docs.

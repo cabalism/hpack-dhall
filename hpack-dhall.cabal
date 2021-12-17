@@ -1,11 +1,11 @@
 cabal-version: 1.12
 
--- This file has been generated from package.dhall by hpack version 0.34.4.
+-- This file has been generated from package.dhall by hpack version 0.34.6.
 --
 -- see: https://github.com/sol/hpack
 
 name:           hpack-dhall
-version:        0.5.3
+version:        0.5.4
 synopsis:       hpack's dhalling
 description:    Use hpack phrasing in dhall to write cabal files.
                 .
@@ -19,15 +19,15 @@ description:    Use hpack phrasing in dhall to write cabal files.
                 Get the safety of dhall's programmable configuration: typed fields, safe imports
                 and functions.
 category:       Development
-homepage:       https://github.com/blockscope/hpack-dhall#readme
-bug-reports:    https://github.com/blockscope/hpack-dhall/issues
+homepage:       https://github.com/cabalism/hpack-dhall#readme
+bug-reports:    https://github.com/cabalism/hpack-dhall/issues
 maintainer:     Phil de Joux <phil.dejoux@blockscope.com>
-copyright:      © 2018 Phil de Joux, © 2018 Block Scope Limited
+copyright:      © 2018 - 2021 Phil de Joux, © 2018 - 2021 Block Scope Limited
 license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
 tested-with:
-    GHC == 8.8.4, GHC == 8.10.4
+    GHC == 8.8.4, GHC == 8.10.7, GHC == 9.0.1
 extra-source-files:
     package.dhall
     changelog.md
@@ -108,7 +108,7 @@ extra-source-files:
 
 source-repository head
   type: git
-  location: https://github.com/blockscope/hpack-dhall
+  location: https://github.com/cabalism/hpack-dhall
 
 library
   exposed-modules:
@@ -124,11 +124,11 @@ library
     , aeson-pretty
     , base >=4.13 && <5
     , bytestring
-    , dhall
-    , dhall-json
+    , dhall >=1.40.2
+    , dhall-json >=1.7.9
     , filepath
-    , hpack >=0.34.4
-    , megaparsec
+    , hpack >=0.34.6
+    , megaparsec >=9.2.0
     , microlens
     , prettyprinter
     , text
@@ -153,12 +153,11 @@ executable dhall-hpack-cabal
     , aeson-pretty
     , base >=4.13 && <5
     , bytestring
-    , dhall
-    , dhall-json
+    , dhall >=1.40.2
+    , dhall-json >=1.7.9
     , filepath
-    , hpack >=0.34.4
-    , hpack-dhall
-    , megaparsec
+    , hpack >=0.34.6
+    , megaparsec >=9.2.0
     , microlens
     , optparse-applicative
     , prettyprinter
@@ -184,12 +183,11 @@ executable dhall-hpack-dhall
     , aeson-pretty
     , base >=4.13 && <5
     , bytestring
-    , dhall
-    , dhall-json
+    , dhall >=1.40.2
+    , dhall-json >=1.7.9
     , filepath
-    , hpack >=0.34.4
-    , hpack-dhall
-    , megaparsec
+    , hpack >=0.34.6
+    , megaparsec >=9.2.0
     , microlens
     , optparse-applicative
     , prettyprinter
@@ -215,12 +213,11 @@ executable dhall-hpack-json
     , aeson-pretty
     , base >=4.13 && <5
     , bytestring
-    , dhall
-    , dhall-json
+    , dhall >=1.40.2
+    , dhall-json >=1.7.9
     , filepath
-    , hpack >=0.34.4
-    , hpack-dhall
-    , megaparsec
+    , hpack >=0.34.6
+    , megaparsec >=9.2.0
     , microlens
     , optparse-applicative
     , prettyprinter
@@ -246,12 +243,11 @@ executable dhall-hpack-yaml
     , aeson-pretty
     , base >=4.13 && <5
     , bytestring
-    , dhall
-    , dhall-json
+    , dhall >=1.40.2
+    , dhall-json >=1.7.9
     , filepath
-    , hpack >=0.34.4
-    , hpack-dhall
-    , megaparsec
+    , hpack >=0.34.6
+    , megaparsec >=9.2.0
     , microlens
     , optparse-applicative
     , prettyprinter
@@ -278,12 +274,12 @@ test-suite golden
     , aeson-pretty
     , base
     , bytestring
-    , dhall >=1.18.0
-    , dhall-json >=1.2.4
+    , dhall >=1.40.2
+    , dhall-json >=1.7.9
     , directory
     , filepath
-    , hpack >=0.31.0
-    , megaparsec >=7.0.1
+    , hpack >=0.34.6
+    , megaparsec >=9.2.0
     , microlens
     , prettyprinter
     , tasty
@@ -311,12 +307,12 @@ test-suite hlint
     , aeson-pretty
     , base >=4.13 && <5
     , bytestring
-    , dhall
-    , dhall-json
+    , dhall >=1.40.2
+    , dhall-json >=1.7.9
     , filepath
     , hlint
-    , hpack >=0.34.4
-    , megaparsec
+    , hpack >=0.34.6
+    , megaparsec >=9.2.0
     , microlens
     , prettyprinter
     , text

@@ -3,8 +3,8 @@
 {-|
 Module: Hpack.Dhall
 Copyright:
-    © 2018 Phil de Joux
-    © 2018 Block Scope Limited
+    © 2018 - 2021 Phil de Joux
+    © 2018 - 2021 Block Scope Limited
 License: BSD3
 Maintainer: Phil de Joux <phil.dejoux@blockscope.com>
 Stability: experimental
@@ -50,8 +50,8 @@ import Dhall.Import (loadWith, emptyStatus)
 import Dhall.TypeCheck (typeOf)
 import Dhall.JSON (dhallToJSON)
 import Dhall.Pretty (prettyExpr, layoutOpts)
-import qualified Data.Text.Prettyprint.Doc as PP
-import qualified Data.Text.Prettyprint.Doc.Render.Text as PP
+import qualified Prettyprinter as PP
+import qualified Prettyprinter.Render.Text as PP
 import qualified Data.Yaml.Pretty as Y
 import qualified Data.Aeson.Encode.Pretty as A
 import Hpack.Fields (cmp)
