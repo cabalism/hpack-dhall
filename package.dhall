@@ -41,7 +41,7 @@ in  let exe-deps = [ "optparse-applicative" ]
             and functions.
             ''
         , github = "cabalism/hpack-dhall"
-        , tested-with = "GHC == 8.8.4, GHC == 8.10.7"
+        , tested-with = "GHC == 8.8.4, GHC == 8.10.7, GHC == 9.0.1"
         , extra-source-files =
           [ "package.dhall"
           , "changelog.md"
