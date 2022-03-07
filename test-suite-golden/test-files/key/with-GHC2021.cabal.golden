@@ -1,0 +1,64 @@
+cabal-version: 1.12
+
+-- This file has been generated from with-GHC2021.dhall by hpack version 0.34.6.
+--
+-- see: https://github.com/sol/hpack
+
+name:           with-GHC2021
+version:        0.0.0
+build-type:     Simple
+
+executable with-GHC2021
+  main-is: Main.hs
+  other-modules:
+      Paths_with_GHC2021
+  hs-source-dirs:
+      src
+  default-extensions:
+      ImplicitPrelude
+      StarIsType
+      MonomorphismRestriction
+      TraditionalRecordSyntax
+      EmptyDataDecls
+      ForeignFunctionInterface
+      PatternGuards
+      DoAndIfThenElse
+      FieldSelectors
+      RelaxedPolyRec
+      BangPatterns
+      BinaryLiterals
+      ConstrainedClassMethods
+      ConstraintKinds
+      DeriveDataTypeable
+      DeriveFoldable
+      DeriveFunctor
+      DeriveGeneric
+      DeriveLift
+      DeriveTraversable
+      EmptyCase
+      EmptyDataDeriving
+      ExistentialQuantification
+      ExplicitForAll
+      FlexibleContexts
+      FlexibleInstances
+      GADTSyntax
+      GeneralizedNewtypeDeriving
+      HexFloatLiterals
+      ImportQualifiedPost
+      InstanceSigs
+      KindSignatures
+      MultiParamTypeClasses
+      RecordPuns
+      NamedWildCards
+      NumericUnderscores
+      PolyKinds
+      PostfixOperators
+      RankNTypes
+      ScopedTypeVariables
+      StandaloneDeriving
+      StandaloneKindSignatures
+      TupleSections
+      TypeApplications
+      TypeOperators
+      TypeSynonymInstances
+  default-language: Haskell2010
