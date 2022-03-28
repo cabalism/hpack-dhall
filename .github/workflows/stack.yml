@@ -36,6 +36,3 @@ jobs:
 
     - name: test golden
       run: stack test hpack-dhall:golden --no-terminal --test-arguments "--color=always" --stack-yaml=./stack/stack-${{ matrix.ghc }}.yaml
-
-    - name: test hlint 
-      run: stack test hpack-dhall:hlint --no-terminal --test-arguments "--color=always" --stack-yaml=./stack/stack-${{ matrix.ghc }}.yaml

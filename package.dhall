@@ -41,7 +41,8 @@ in  let exe-deps = [ "optparse-applicative" ]
             and functions.
             ''
         , github = "cabalism/hpack-dhall"
-        , tested-with = "GHC == 8.8.4, GHC == 8.10.7, GHC == 9.0.2, GHC == 9.2.2"
+        , tested-with =
+            "GHC == 8.8.4, GHC == 8.10.7, GHC == 9.0.2, GHC == 9.2.2"
         , extra-source-files =
           [ "package.dhall"
           , "changelog.md"
@@ -85,19 +86,17 @@ in  let exe-deps = [ "optparse-applicative" ]
             , dependencies = exe-deps
             }
           }
-        , tests =
-              ./default-tests.dhall
-            ⫽ { golden =
-                { main = "Golden.hs"
-                , source-dirs = [ "test-suite-golden/src" ]
-                , dependencies =
-                  [ "Cabal"
-                  , "Diff"
-                  , "directory"
-                  , "tasty"
-                  , "tasty-golden"
-                  , "utf8-string"
-                  ]
-                }
-              }
+        , tests.golden
+          =
+          { main = "Golden.hs"
+          , source-dirs = [ "test-suite-golden/src" ]
+          , dependencies =
+            [ "Cabal"
+            , "Diff"
+            , "directory"
+            , "tasty"
+            , "tasty-golden"
+            , "utf8-string"
+            ]
+          }
         }

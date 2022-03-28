@@ -28,6 +28,11 @@ jobs:
         ghc-version: ${{ matrix.ghc }}
         cabal-version: ${{ matrix.cabal }}
 
+    - uses: rwe/actions-hlint-setup@v1
+      name: Set up HLint
+      with:
+        version: "3.3.6"
+
     - uses: actions/cache@v2
       name: cache ~/.cabal/store
       with:
@@ -36,11 +41,14 @@ jobs:
 
     - name: build
       run: |
-        cabal v2-update
-        cabal v2-build all --enable-tests
+        cabal update
+        cabal build all --enable-tests
 
     - name: test golden
-      run: cabal v2-test test:golden --test-show-details=direct --test-option="--color=always"
+      run: cabal test test:golden --test-show-details=direct --test-option="--color=always"
 
-    - name: test hlint
-      run: cabal v2-test test:hlint --test-show-details=direct --test-option="--color=always"
+    - uses: rwe/actions-hlint-run@v2
+      name: hlint
+      with:
+        path: '["library", "exe", "test-suite-golden/src"]'
+        fail-on: suggestion
