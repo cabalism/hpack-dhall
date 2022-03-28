@@ -2,7 +2,7 @@ name: cabal
 
 on:
   push:
-    branches: [ci-cabal]
+    branches: [main, ci-cabal]
   pull_request:
     branches: [main]
 
