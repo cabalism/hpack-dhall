@@ -6,7 +6,7 @@ let deps =
       , "dhall >= 1.41.1"
       , "dhall-json >= 1.7.10"
       , "filepath"
-      , "hpack >= 0.34.7"
+      , "hpack ^>= 0.35"
       , "megaparsec >= 9.2"
       , "microlens"
       , "prettyprinter"
@@ -18,7 +18,7 @@ let deps =
 in  let exe-deps = [ "optparse-applicative" ]
 
     in  { name = "hpack-dhall"
-        , version = "0.5.6"
+        , version = "0.5.7"
         , maintainer = "Phil de Joux <phil.dejoux@blockscope.com>"
         , copyright =
             "© 2018 - 2022 Phil de Joux, © 2018 - 2022 Block Scope Limited"

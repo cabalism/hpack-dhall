@@ -1,5 +1,8 @@
 The [latest version](https://github.com/blockscope/hpack-dhall/blob/master/changelog.md) of this changelog.
 
+## 0.5.7 - Bump hpack and test versions
+* Require `hpack ^>= 0.35` and pin extra-deps for stack build and tests.
+
 ## 0.5.6 - Relax hpack version upper bound
 * Relax hpack bounds to `hpack >= 0.34.7` for stackage build.
 
