@@ -6,7 +6,7 @@ let deps =
       , "dhall >= 1.41.1"
       , "dhall-json >= 1.7.10"
       , "filepath"
-      , "hpack ^>= 0.34.7"
+      , "hpack >= 0.34.7"
       , "megaparsec >= 9.2"
       , "microlens"
       , "prettyprinter"
