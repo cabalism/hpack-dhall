@@ -1,10 +1,10 @@
 cabal-version: 2.0
 
--- This file has been generated from stack.dhall by hpack version 0.34.6.
+-- This file has been generated from stack.dhall by hpack version 0.35.0.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: bfcbd657ff704d7cafe4abe83a8f7bf038b7009b840ff4a688a4ee05fbafd000
+-- hash: 645c43bbed2e4ee44172441652f686f9df4f80fe34991062b018c2410e276567
 
 name:           stack
 version:        1.10.0
@@ -280,6 +280,7 @@ library
     , yaml
     , zip-archive
     , zlib
+  default-language: Haskell2010
   if os(windows)
     cpp-options: -DWINDOWS
     build-depends:
@@ -297,7 +298,6 @@ library
         src/unix/
     c-sources:
         src/unix/cbits/uname.c
-  default-language: Haskell2010
 
 executable stack
   main-is: Main.hs
@@ -394,6 +394,7 @@ executable stack
     , yaml
     , zip-archive
     , zlib
+  default-language: Haskell2010
   if os(windows)
     cpp-options: -DWINDOWS
     build-depends:
@@ -414,7 +415,6 @@ executable stack
     cpp-options: -DHIDE_DEP_VERSIONS
   if flag(supported-build)
     cpp-options: -DSUPPORTED_BUILD
-  default-language: Haskell2010
 
 test-suite stack-integration-test
   type: exitcode-stdio-1.0
@@ -511,6 +511,7 @@ test-suite stack-integration-test
     , yaml
     , zip-archive
     , zlib
+  default-language: Haskell2010
   if os(windows)
     cpp-options: -DWINDOWS
     build-depends:
@@ -522,7 +523,6 @@ test-suite stack-integration-test
         unix
   if !flag(integration-tests)
     buildable: False
-  default-language: Haskell2010
 
 test-suite stack-test
   type: exitcode-stdio-1.0
@@ -621,6 +621,7 @@ test-suite stack-test
     , yaml
     , zip-archive
     , zlib
+  default-language: Haskell2010
   if os(windows)
     cpp-options: -DWINDOWS
     build-depends:
@@ -630,4 +631,3 @@ test-suite stack-test
         hsc2hs
     build-depends:
         unix
-  default-language: Haskell2010
