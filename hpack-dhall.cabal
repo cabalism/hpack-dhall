@@ -5,7 +5,7 @@ cabal-version: 1.12
 -- see: https://github.com/sol/hpack
 
 name:           hpack-dhall
-version:        0.5.5
+version:        0.5.6
 synopsis:       hpack's dhalling
 description:    Use hpack phrasing in dhall to write cabal files.
                 .
