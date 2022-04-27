@@ -19,15 +19,15 @@ packages:
   original:
     hackage: dhall-json-1.7.10@sha256:9d3ef002add9a4e6d54af3b1506d09ff959e7f1a7333378e7884ac1b87ea136c,4362
 - completed:
-    hackage: hpack-0.34.7@sha256:2a39d948ff5fac635a4bdba03f96fa594313784a32e48c25e0df1626614a8d22,4726
+    hackage: hpack-0.35.0@sha256:8cd6146fae269390f41dc7237ebd2c479074d4163806d349a41f5a7751d6cea5,4726
     pantry-tree:
       size: 3615
-      sha256: 7b26c5c8a5cf1ca8a94e60bff6f7961fd75e19cd93449c6c417d34d44bdc8ee8
+      sha256: f143c1cb86d6ae954be5b3cc04629fb00631290c8eb9e3c795f65e10d6ccf220
   original:
-    hackage: hpack-0.34.7@sha256:2a39d948ff5fac635a4bdba03f96fa594313784a32e48c25e0df1626614a8d22,4726
+    hackage: hpack-0.35.0@sha256:8cd6146fae269390f41dc7237ebd2c479074d4163806d349a41f5a7751d6cea5,4726
 snapshots:
 - completed:
-    size: 616897
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/19/0.yaml
-    sha256: bbf2be02f17940bac1f87cb462d4fb0c3355de6dcfc53d84f4f9ad3ee2164f65
-  original: lts-19.0
+    size: 619093
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/19/5.yaml
+    sha256: b936d27d647a31a8834d3efec126e2a07dee9c9bd6dd401d9bdac77e7b278f1e
+  original: lts-19.5
