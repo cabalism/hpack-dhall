@@ -3,3 +3,7 @@
 .ghc.environment.*
 .stack-work*
 __bin
+.updo
+updo
+project-nix
+project-versions.nix
