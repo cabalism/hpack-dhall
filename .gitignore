@@ -5,3 +5,5 @@
 __bin
 .updo
 updo
+project-nix
+project-versions.nix
