@@ -1,5 +1,0 @@
-resolver: nightly-2022-04-27
-packages:
-- '../'
-extra-deps:
-- hpack-0.35.0@sha256:8cd6146fae269390f41dc7237ebd2c479074d4163806d349a41f5a7751d6cea5,4726
