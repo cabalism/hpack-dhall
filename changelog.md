@@ -47,7 +47,7 @@ The [latest version](https://github.com/blockscope/hpack-dhall/blob/master/chang
 * Use explicit dependencies to achieve consistent golden tests in all but
   stack-8.6.3.yaml.
 
-## 0.5.1 - Minor, bump in hpack version 
+## 0.5.1 - Minor, bump in hpack version
 * Regenerate golden files for the bump in hpack's version:
 
 ```

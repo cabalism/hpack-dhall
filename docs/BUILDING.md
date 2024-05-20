@@ -12,7 +12,7 @@ Copied executables to /Users/pdejoux/.local/bin:
 - dhall-hpack-cabal
 - dhall-hpack-dhall
 - dhall-hpack-json
-- dhall-hpack-yaml 
+- dhall-hpack-yaml
 
 # installing with cabal
 $ ghcup --version
