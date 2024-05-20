@@ -1,7 +1,17 @@
-resolver: lts-19.5
+user-message: "WARNING: This stack project is generated."
+
+resolver: lts-21.25
+
 packages:
-- '.'
+  - ./.
+
 extra-deps:
-- dhall-1.41.1@sha256:4aba33b3a390fe05891285568d53c10ead112695ef217cc512616a0d7bd00483,15475
-- dhall-json-1.7.10@sha256:9d3ef002add9a4e6d54af3b1506d09ff959e7f1a7333378e7884ac1b87ea136c,4362
-- hpack-0.35.0@sha256:8cd6146fae269390f41dc7237ebd2c479074d4163806d349a41f5a7751d6cea5,4726
+  - crypton-1.0.0
+  - crypton-connection-0.4.0
+  - crypton-x509-1.7.6
+  - crypton-x509-store-1.6.9
+  - crypton-x509-system-1.6.7
+  - crypton-x509-validation-1.6.12
+  - hpack-0.36.0
+  - http-client-tls-0.3.6.3
+  - tls-2.0.5
