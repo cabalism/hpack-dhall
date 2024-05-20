@@ -1,0 +1,30 @@
+name: hlint
+
+on:
+  push:
+    paths-ignore:
+      - "**.md"
+  pull_request:
+    paths-ignore:
+      - "**.md"
+
+jobs:
+  build:
+    name: hlint-3.8
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: true
+
+    - uses: haskell-actions/hlint-setup@v2
+      name: Set up HLint
+      with:
+        version: "3.8"
+
+    - uses: haskell-actions/hlint-run@v2
+      name: hlint
+      with:
+        path: '["library/", "exe/", "test-suite-golden/src"]'
+        fail-on: suggestion
