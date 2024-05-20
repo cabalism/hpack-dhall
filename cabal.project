@@ -1,1 +1,12 @@
-packages: hpack-dhall.cabal
+import: ./project-stackage/lts-19.33.config
+
+packages:
+    .
+
+constraints:
+    dhall ==1.41.1
+  , dhall-json ==1.7.10
+  , hpack ==0.35.0
+
+program-options
+  ghc-options: -fhide-source-paths
