@@ -1,1 +1,18 @@
-packages: hpack-dhall.cabal
+import: ./project-stackage/lts-21.25.config
+
+packages:
+    .
+
+constraints:
+    crypton ==1.0.0
+  , crypton-connection ==0.4.0
+  , crypton-x509 ==1.7.6
+  , crypton-x509-store ==1.6.9
+  , crypton-x509-system ==1.6.7
+  , crypton-x509-validation ==1.6.12
+  , hpack ==0.36.0
+  , http-client-tls ==0.3.6.3
+  , tls ==2.0.5
+
+program-options
+  ghc-options: -fhide-source-paths

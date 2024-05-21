@@ -1,0 +1,13 @@
+excluded-dirs:
+  - "dist-newstyle"
+  - ".updo"
+  - "updo"
+
+included-files:
+  - "**/*.cabal"
+  - "**/*.dhall"
+  - "**/*.hs"
+  - "**/*.md"
+  - "**/*.project"
+  - "**/*.yaml"
+  - "**/*.yml"

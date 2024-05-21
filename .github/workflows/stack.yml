@@ -2,7 +2,7 @@ name: stack
 
 on:
   push:
-    branches: [ci-stack]
+    branches: [main, ci-stack]
   pull_request:
     branches: [main]
 
@@ -11,12 +11,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        cabal: ["3.6"]
-        ghc:
-          - "9.0.1"
+        cabal: ["3.10"]
+        vers:
+          - {ghc: "9.2.8", stackage: "lts-20.26"}
+          - {ghc: "9.4.8", stackage: "lts-21.25"}
+          - {ghc: "9.6.5", stackage: "lts-22.22"}
+          - {ghc: "9.8.2", stackage: "nightly-2024-05-18"}
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - uses: haskell/actions/setup@v1
       name: setup stack
@@ -29,13 +32,12 @@ jobs:
       name: cache ~/.stack
       with:
         path: ~/.stack
-        key: ${{ runner.os }}-${{ matrix.cabal }}-${{ matrix.ghc }}-cabal
+        key: ${{ runner.os }}-${{ matrix.vers.ghc }}-stack
 
     - name: build tests
-      run: stack test --no-run-tests --no-terminal --stack-yaml=./stack/stack-${{ matrix.ghc }}.yaml
+      run: |
+        GHC_VERSION=${{ matrix.vers.ghc }} STACKAGE_VERSION=${{ matrix.vers.stackage }} make -f project-files.mk
+        stack test --no-run-tests --no-terminal
 
     - name: test golden
       run: stack test hpack-dhall:golden --no-terminal --test-arguments "--color=always" --stack-yaml=./stack/stack-${{ matrix.ghc }}.yaml
-
-    - name: test hlint 
-      run: stack test hpack-dhall:hlint --no-terminal --test-arguments "--color=always" --stack-yaml=./stack/stack-${{ matrix.ghc }}.yaml

@@ -1,27 +1,27 @@
 let deps =
-      [ "base >= 4.13 && < 5"
-      , "megaparsec >= 9.2.0"
-      , "dhall >= 1.40.2"
-      , "dhall-json >= 1.7.9"
-      , "hpack >= 0.34.6"
-      , "transformers"
-      , "text"
-      , "microlens"
-      , "filepath"
-      , "bytestring"
-      , "prettyprinter"
-      , "aeson"
+      [ "aeson"
       , "aeson-pretty"
+      , "base >= 4.13 && < 5"
+      , "bytestring"
+      , "dhall >= 1.41.1"
+      , "dhall-json >= 1.7.10"
+      , "filepath"
+      , "hpack ^>= 0.36"
+      , "megaparsec >= 9.2"
+      , "microlens"
+      , "prettyprinter"
+      , "text"
+      , "transformers"
       , "yaml"
       ]
 
 in  let exe-deps = [ "optparse-applicative" ]
 
     in  { name = "hpack-dhall"
-        , version = "0.5.4"
+        , version = "0.5.7"
         , maintainer = "Phil de Joux <phil.dejoux@blockscope.com>"
         , copyright =
-            "© 2018 - 2021 Phil de Joux, © 2018 - 2021 Block Scope Limited"
+            "© 2018 - 2022 Phil de Joux, © 2018 - 2022 Block Scope Limited"
         , license = "BSD3"
         , license-file = "LICENSE"
         , category = "Development"
@@ -41,7 +41,8 @@ in  let exe-deps = [ "optparse-applicative" ]
             and functions.
             ''
         , github = "cabalism/hpack-dhall"
-        , tested-with = "GHC == 8.8.4, GHC == 8.10.7, GHC == 9.0.1"
+        , tested-with =
+            "GHC == 8.8.4, GHC == 8.10.7, GHC == 9.0.2, GHC == 9.2.2"
         , extra-source-files =
           [ "package.dhall"
           , "changelog.md"
@@ -85,31 +86,17 @@ in  let exe-deps = [ "optparse-applicative" ]
             , dependencies = exe-deps
             }
           }
-        , tests =
-              ./default-tests.dhall
-            ⫽ { golden =
-                { main = "Golden.hs"
-                , source-dirs = [ "test-suite-golden/src" ]
-                , dependencies =
-                  [ "base"
-                  , "Cabal"
-                  , "Diff"
-                  , "dhall"
-                  , "filepath"
-                  , "microlens"
-                  , "prettyprinter"
-                  , "tasty"
-                  , "tasty-golden"
-                  , "text"
-                  , "megaparsec >= 9.2.0"
-                  , "dhall >= 1.40.2"
-                  , "dhall-json >= 1.7.9"
-                  , "hpack >= 0.34.6"
-                  , "transformers"
-                  , "aeson"
-                  , "utf8-string"
-                  , "directory"
-                  ]
-                }
-              }
+        , tests.golden
+          =
+          { main = "Golden.hs"
+          , source-dirs = [ "test-suite-golden/src" ]
+          , dependencies =
+            [ "Cabal"
+            , "Diff"
+            , "directory"
+            , "tasty"
+            , "tasty-golden"
+            , "utf8-string"
+            ]
+          }
         }
