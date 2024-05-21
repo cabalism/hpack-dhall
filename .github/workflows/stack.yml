@@ -8,36 +8,45 @@ on:
 
 jobs:
   build:
+    name: ghc-${{ matrix.vers.ghc }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        cabal: ["3.10"]
+        cabal: ["3.10.3.0"]
         vers:
-          - {ghc: "9.2.8", stackage: "lts-20.26"}
-          - {ghc: "9.4.8", stackage: "lts-21.25"}
-          - {ghc: "9.6.5", stackage: "lts-22.22"}
           - {ghc: "9.8.2", stackage: "nightly-2024-05-18"}
 
     steps:
     - uses: actions/checkout@v4
 
-    - uses: haskell/actions/setup@v1
-      name: setup stack
+    - name: Set up GHC and cabal-install
+      uses: haskell-actions/setup@v2
+      id: setup
       with:
-        enable-stack: true
-        stack-version: 'latest'
+        ghc-version: ${{ matrix.vers.ghc }}
         cabal-version: ${{ matrix.cabal }}
+        enable-stack: true
+        stack-version: '2.15.7'
 
-    - uses: actions/cache@v2
-      name: cache ~/.stack
-      with:
-        path: ~/.stack
-        key: ${{ runner.os }}-${{ matrix.vers.ghc }}-stack
-
-    - name: build tests
+    - name: Configure stack
       run: |
-        GHC_VERSION=${{ matrix.vers.ghc }} STACKAGE_VERSION=${{ matrix.vers.stackage }} make -f project-files.mk
-        stack test --no-run-tests --no-terminal
+        stack config set system-ghc --global true
+        stack config set install-ghc --global false
+        stack config set resolver ${{ matrix.vers.stackage }}
+
+    - name: Update hackage index
+      run: cabal update --ignore-project
+
+    - name: Install Dhall
+      uses: dhall-lang/setup-dhall@v4
+      with:
+        version: '1.42.0'
+
+    - name: Updo
+      run: GHC_VERSION=${{ matrix.vers.ghc }} STACKAGE_VERSION=${{ matrix.vers.stackage }} make -f project-files.mk stack.yaml
+
+    - name: build
+      run: stack test --no-run-tests --no-terminal
 
     - name: test golden
-      run: stack test hpack-dhall:golden --no-terminal --test-arguments "--color=always" --stack-yaml=./stack/stack-${{ matrix.ghc }}.yaml
+      run: stack test hpack-dhall:golden --no-terminal --test-arguments "--color=always"
