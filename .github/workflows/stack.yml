@@ -19,11 +19,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Set up GHC 8.10.7 for scripts
-      uses: haskell-actions/setup@v2
-      with:
-        ghc-version: "8.10.7"
-
     - name: Set up GHC and cabal-install
       uses: haskell-actions/setup@v2
       id: setup
@@ -33,11 +28,15 @@ jobs:
         enable-stack: true
         stack-version: '2.15.7'
 
+    - name: Set up GHC 8.10.7 for scripts
+      uses: haskell-actions/setup@v2
+      with:
+        ghc-version: "8.10.7"
+
     - name: Configure stack
       run: |
         stack config set system-ghc --global true
         stack config set install-ghc --global false
-        stack config set resolver ${{ matrix.vers.stackage }}
 
     - name: Update hackage index
       run: cabal update --ignore-project
