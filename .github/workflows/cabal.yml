@@ -42,6 +42,7 @@ jobs:
     - name: Updo
       run: GHC_VERSION=${{ matrix.vers.ghc }} STACKAGE_VERSION=${{ matrix.vers.stackage }} make -f project-files.mk cabal.project
 
+    # Generate a file to cache dependencies.
     - name: Build dry run
       run: cabal build all --enable-tests --enable-benchmarks --dry-run
 
@@ -49,10 +50,10 @@ jobs:
       uses: actions/cache/restore@v4
       id: cache
       env:
-        key: ${{ runner.os }}-ghc-${{ steps.setup.outputs.ghc-version }}-cabal-${{ steps.setup.outputs.cabal-version }}
+        key: ghc-${{ steps.setup.outputs.ghc-version }}-cabal-${{ steps.setup.outputs.cabal-version }}
       with:
         path: ${{ steps.setup.outputs.cabal-store }}
-        key: ${{ env.key }}-plan-${{ hashFiles('**/plan.json') }}
+        key: ${{ env.key }}-plan-${{ hashFiles('dist-newstyle/cache/plan.json') }}
         restore-keys: ${{ env.key }}-
 
     - name: Install dependencies
