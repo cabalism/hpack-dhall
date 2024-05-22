@@ -45,6 +45,34 @@ jobs:
     - name: Updo
       run: GHC_VERSION=${{ matrix.vers.ghc }} STACKAGE_VERSION=${{ matrix.vers.stackage }} make -f project-files.mk stack.yaml
 
+    # Generate a file to cache dependencies.
+    - name: build
+      run: stack ls dependencies json | jq > stack-deps.json
+
+    - name: build
+      run: stack test --no-run-tests --no-terminal --only-dependencies
+
+    - name: Restore cached dependency of Pantry (Stackage package index)
+      uses: actions/cache/restore@v4
+      id: pantry
+      env:
+        key: ghc-${{ steps.setup.outputs.ghc-version }}-stack-${{ steps.setup.outputs.stack-version }}
+      with:
+        path: ${{ steps.setup.outputs.stack-root }}/pantry
+        key: ${{ env.key }}-plan-${{ hashFiles('stack-deps.json') }}
+        restore-keys: ${{ env.key }}-
+
+    - name: Recompute Stackage package index (~/.stack/pantry)
+      if: steps.pantry.outputs.cache-hit != 'true'
+      run: stack update
+
+    - name: Save cached dependencies
+      uses: actions/cache/save@v4
+      if: steps.pantry.outputs.cache-hit != 'true'
+      with:
+        path: ${{ steps.setup.outputs.stack-root }}/pantry
+        key: ${{ steps.cache.outputs.cache-primary-key }}
+
     - name: build
       run: stack test --no-run-tests --no-terminal
 
