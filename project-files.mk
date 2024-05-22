@@ -7,10 +7,10 @@ CABAL_VIA ?= dhall2cabal
 SHA256MAP_VIA_PYTHON ?= false
 
 # To use installed executables instead of *.hs scripts, set these to true.
-SHA256MAP_HS_EXE ?= true
-PKG_GROUPS_HS_EXE ?= true
-PKGS_SORTED_HS_EXE ?= true
-PKGS_UPGRADE_DONE_HS_EXE ?= true
+SHA256MAP_HS_EXE ?= false
+PKG_GROUPS_HS_EXE ?= false
+PKGS_SORTED_HS_EXE ?= false
+PKGS_UPGRADE_DONE_HS_EXE ?= false
 
 include project-versions.mk
 include updo/Makefile
@@ -53,4 +53,4 @@ updo/Makefile:
 	rm -rf updo
 	curl -sSL ${UPDO_URL} | tar -xz
 	mv updo-* updo
-	cabal install updo:exes --overwrite-policy=always --project-file=updo.project --with-compiler=ghc-$(GHC_VERSION)
+	chmod +x $$(grep -RIl '^#!' updo)
