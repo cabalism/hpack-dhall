@@ -48,7 +48,7 @@ import Dhall.Core (Expr)
 import Dhall.Parser (Src, exprFromText)
 import Dhall.Import (loadWith, emptyStatus)
 import Dhall.TypeCheck (typeOf)
-import Dhall.JSON (dhallToJSON)
+import Dhall.JSON (dhallToJSON, omitNull)
 import Dhall.Pretty (prettyExpr, layoutOpts)
 import qualified Prettyprinter as PP
 import qualified Prettyprinter.Render.Text as PP
@@ -129,7 +129,7 @@ textToJson
 textToJson settings text = runExceptT $ do
     expr <- liftIO $ check settings text
     _ <- liftResult $ typeOf expr
-    liftResult $ ([],) <$> dhallToJSON expr
+    liftResult $ ([],) . omitNull <$> dhallToJSON expr
     where
         liftResult :: (Show b, Monad m) => Either b a -> ExceptT String m a
         liftResult = ExceptT . return . first show
