@@ -18,10 +18,10 @@ let deps =
 in  let exe-deps = [ "optparse-applicative" ]
 
     in  { name = "hpack-dhall"
-        , version = "0.5.7"
+        , version = "0.5.8"
         , maintainer = "Phil de Joux <phil.dejoux@blockscope.com>"
         , copyright =
-            "© 2018 - 2022 Phil de Joux, © 2018 - 2022 Block Scope Limited"
+            "© 2018 - 2024 Phil de Joux, © 2018 - 2024 Block Scope Limited"
         , license = "BSD3"
         , license-file = "LICENSE"
         , category = "Development"
