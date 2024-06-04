@@ -14,7 +14,9 @@ jobs:
       matrix:
         cabal: ["3.10.3.0"]
         vers:
+          - {ghc: "9.4.8", stackage: "lts-21.25"}
           - {ghc: "9.8.2", stackage: "nightly-2024-05-18"}
+        ghc-default: ["9.4.8"]
 
     steps:
     - uses: actions/checkout@v4
@@ -70,15 +72,26 @@ jobs:
       if: steps.pantry.outputs.cache-hit != 'true'
       run: stack update
 
+    - name: Stack resolver check
+      if: ${{ matrix.vers.ghc == matrix.ghc-default }}
+      run: grep "${{ matrix.vers.stackage }}" stack.yaml
+
+    - name: Stack lock check
+      if: ${{ matrix.vers.ghc == matrix.ghc-default }}
+      run: stack test --no-run-tests --dry-run --lock-file=error-on-write
+
+    - name: Generate Stack project
+      run: GHC_VERSION=${{ matrix.vers.ghc }} STACKAGE_VERSION=${{ matrix.vers.stackage }} make -f project-files.mk ${{ matrix.vers.ghc}}.dhall2stack.yaml
+
+    - name: Build
+      run: stack test --no-run-tests --no-terminal --stack-yaml=ghc-${{ matrix.vers.ghc }}.dhall2stack.yaml
+
     - name: Save cached dependencies
       uses: actions/cache/save@v4
       if: steps.pantry.outputs.cache-hit != 'true'
       with:
         path: ${{ steps.setup.outputs.stack-root }}/pantry
-        key: ${{ steps.cache.outputs.cache-primary-key }}
+        key: ${{ steps.pantry.outputs.cache-primary-key }}
 
-    - name: build
-      run: stack test --no-run-tests --no-terminal
-
-    - name: test golden
-      run: stack test hpack-dhall:golden --no-terminal --test-arguments "--color=always"
+    - name: Test
+      run: stack test hpack-dhall:golden --test-arguments "--color=always" --no-terminal --stack-yaml=ghc-${{ matrix.vers.ghc }}.dhall2stack.yaml
