@@ -356,3 +356,4 @@ tests:
     - hspec
     - stack
     - smallcheck
+

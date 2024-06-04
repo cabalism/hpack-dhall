@@ -18,10 +18,10 @@ let deps =
 in  let exe-deps = [ "optparse-applicative" ]
 
     in  { name = "hpack-dhall"
-        , version = "0.5.7"
+        , version = "0.5.8"
         , maintainer = "Phil de Joux <phil.dejoux@blockscope.com>"
         , copyright =
-            "© 2018 - 2022 Phil de Joux, © 2018 - 2022 Block Scope Limited"
+            "© 2018 - 2024 Phil de Joux, © 2018 - 2024 Block Scope Limited"
         , license = "BSD3"
         , license-file = "LICENSE"
         , category = "Development"
@@ -42,7 +42,7 @@ in  let exe-deps = [ "optparse-applicative" ]
             ''
         , github = "cabalism/hpack-dhall"
         , tested-with =
-            "GHC == 8.8.4, GHC == 8.10.7, GHC == 9.0.2, GHC == 9.2.2"
+            "GHC == 9.2.8, GHC == 9.4.8, GHC == 9.6.5, GHC == 9.8.2"
         , extra-source-files =
           [ "package.dhall"
           , "changelog.md"

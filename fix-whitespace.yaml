@@ -7,6 +7,7 @@ included-files:
   - "**/*.cabal"
   - "**/*.dhall"
   - "**/*.hs"
+  - "**/*.json"
   - "**/*.md"
   - "**/*.project"
   - "**/*.yaml"
