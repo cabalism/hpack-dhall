@@ -30,11 +30,6 @@ jobs:
         enable-stack: true
         stack-version: '2.15.7'
 
-    - name: Set up GHC 8.10.7 for scripts
-      uses: haskell-actions/setup@v2
-      with:
-        ghc-version: "8.10.7"
-
     - name: Configure stack
       run: |
         stack config set system-ghc --global true

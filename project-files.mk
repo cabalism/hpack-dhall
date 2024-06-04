@@ -54,3 +54,5 @@ updo/Makefile:
 	curl -sSL ${UPDO_URL} | tar -xz
 	mv updo-* updo
 	chmod +x $$(grep -RIl '^#!' updo)
+	grep -RIl '^#!' updo \
+	| xargs sed --in-place -E 's/--resolver=(nightly-[[:digit:]]{4}-[[:digit:]]{2}-[[:digit:]]{2}|lts-[[:digit:]]+\.[[:digit:]]+)/--resolver=$(STACKAGE_VERSION)/g'
