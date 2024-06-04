@@ -1,10 +1,8 @@
 cabal-version: 1.12
 
--- This file has been generated from package.dhall by hpack version 0.31.0.
+-- This file has been generated from package.dhall by hpack version 0.36.0.
 --
 -- see: https://github.com/sol/hpack
---
--- hash: fb3f09267f149cb49eb030ac951c27be9964aa0d51e91460e5b2d59ee1a5082f
 
 name:           import-local
 version:        0.0.0

@@ -59,3 +59,4 @@ tests:
     - template-haskell
     - HUnit >= 1.6.0.0
     build-tools: hspec-discover
+

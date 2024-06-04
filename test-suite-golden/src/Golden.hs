@@ -55,47 +55,52 @@ goldenTestSet title dhallFiles = do
         [ testGroup ".dhall to .cabal"
             [ goldenVsFile
                 (testName dhallFile)
-                (cabalFile -<.> goldExt Cabal)
+                goldenFile
                 cabalFile
                 (writeDhallCabal dhallFile)
             | dhallFile <- dhallFiles
             , let cabalFile = cabalFilePath dhallFile
+            , let goldenFile = cabalFile -<.> goldExt Cabal
             ]
         , testGroup ".dhall to dhall"
             [ goldenVsString
                 (testName dhallFile)
-                (dhallFile -<.> goldExt Dhall)
+                goldenFile
                 (fmap fromString . showDhall $ dhallFile)
             | dhallFile <- dhallFiles
+            , let goldenFile = dhallFile -<.> goldExt Dhall
             ]
         , testGroup ".dhall to json"
             [ goldenVsFile
                 (testName dhallFile)
-                (dhallFile -<.> goldExt Json)
+                goldenFile
                 jsonFile
                 (writeJson dhallFile jsonFile)
             | dhallFile <- dhallFiles
             , let jsonFile = dhallFile -<.> ".json"
+            , let goldenFile = dhallFile -<.> goldExt Json
             ]
         , testGroup ".dhall to yaml"
             [ goldenVsFile
                 (testName dhallFile)
-                (dhallFile -<.> goldExt Yaml)
+                goldenFile
                 yamlFile
                 (writeYaml dhallFile yamlFile)
             | dhallFile <- dhallFiles
             , let yamlFile = dhallFile -<.> ".yaml"
+            , let goldenFile = dhallFile -<.> goldExt Yaml
             ]
         , testGroup ".yaml to .cabal"
             [ goldenVsFile
                 (testName dhallFile)
-                (cabalFile -<.> goldExt Cabal)
+                goldenFile
                 cabalFile
                 (writeYamlCabal yamlFile cabalFile yamlCabalFile)
             | dhallFile <- dhallFiles
             , let yamlFile = dhallFile -<.> ".yaml"
             , let cabalFile = cabalFilePath dhallFile
             , let yamlCabalFile = yamlFile <.> ".cabal"
+            , let goldenFile = cabalFile -<.> goldExt Cabal
             ]
         ]
 
@@ -145,11 +150,13 @@ writeJson :: FilePath -> FilePath -> IO ()
 writeJson dhallFile jsonFile = do
     s <- showJson Nothing dhallFile
     writeFile jsonFile s
+    appendFile jsonFile $ unlines [""]
 
 writeYaml :: FilePath -> FilePath -> IO ()
 writeYaml dhallFile yamlFile = do
     s <- showYaml Nothing dhallFile
     writeFile yamlFile s
+    appendFile yamlFile $ unlines [""]
 
 cabalFilePath :: FilePath -> FilePath
 cabalFilePath p
