@@ -150,11 +150,13 @@ writeJson :: FilePath -> FilePath -> IO ()
 writeJson dhallFile jsonFile = do
     s <- showJson Nothing dhallFile
     writeFile jsonFile s
+    appendFile jsonFile $ unlines [""]
 
 writeYaml :: FilePath -> FilePath -> IO ()
 writeYaml dhallFile yamlFile = do
     s <- showYaml Nothing dhallFile
     writeFile yamlFile s
+    appendFile yamlFile $ unlines [""]
 
 cabalFilePath :: FilePath -> FilePath
 cabalFilePath p
