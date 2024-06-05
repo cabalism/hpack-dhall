@@ -1,0 +1,5 @@
+message: "This is a stack.yaml file for a script."
+allow-newer-deps:
+  - dhall
+allow-newer: true
+# resolver: nightly-2024-05-18
