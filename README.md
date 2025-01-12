@@ -48,6 +48,30 @@ modules to package into libraries, executables and test suites.
 
 There is [more](https://github.com/cabalism/hpack-dhall/blob/main/docs/MORE.md) you can do.
 
+## Converting from Hpack's `package.yaml`
+
+If you use `stack` to generate a `.cabal` file from a `package.yaml` file, you
+can also use `hpack` to do the same. The `dhall-hpack-cabal` executable will go
+from `.dhall` to `.cabal` but you can use the `dhall-hpack-yaml` executable to
+generate `package.yaml` from a `package.dhall`. That's how we'll manage the
+conversion.
+
+If you already have a `package.yaml` file then you can rename this as
+`package.dhall`, do the conversion to `.dhall` syntax manually, run `dhall
+format package.dhall` to catch syntax errors and then run `dhall-hpack-yaml >
+package.yaml` and keep iterating until the generated `package.yaml` is as close
+to the original as you need it to be, using something like `git diff` to check
+for differences.
+
+## Converting from Cabal's `.cabal`
+
+It will be harder to write a `package.dhall` file from scratch than it is to
+convert from a `package.yaml` file but it is doable. All of the field names in
+`.dhall` are the same as for `.yaml`. Start small and keep iterating with
+`dhall-hpack-cabal` until the generated `.cabal` file is like the original. You
+may need to go back to the original to change the formatting and reorder fields
+to make comparisons with the generated `.cabal` file easier.
+
 ## Source Control
 
 Value the dhall file as a way to produce the cabal file.  If both files are be
