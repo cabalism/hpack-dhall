@@ -68,7 +68,7 @@ jobs:
         key: ${{ steps.cache.outputs.cache-primary-key }}
 
     - name: build
-      run: cabal build all --enable-tests --enable-benchmarks
+      run: cabal build all --enable-tests --enable-benchmarks --ghc-options="-Werror"
 
     - name: test golden
       run: cabal test test:golden --test-show-details=direct --test-option="--color=always"
