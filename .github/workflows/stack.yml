@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        cabal: ["3.10.3.0"]
+        cabal: ["3.16"]
         vers:
           - {ghc: "9.4.8", stackage: "lts-21.25"}
           - {ghc: "9.8.2", stackage: "nightly-2024-05-18"}
@@ -28,7 +28,7 @@ jobs:
         ghc-version: ${{ matrix.vers.ghc }}
         cabal-version: ${{ matrix.cabal }}
         enable-stack: true
-        stack-version: '2.15.7'
+        stack-version: '3.9'
 
     - name: Configure stack
       run: |
@@ -41,7 +41,7 @@ jobs:
     - name: Install Dhall
       uses: dhall-lang/setup-dhall@v4
       with:
-        version: '1.42.0'
+        version: '1.42.2'
 
     - name: Updo
       run: GHC_VERSION=${{ matrix.vers.ghc }} STACKAGE_VERSION=${{ matrix.vers.stackage }} make -f project-files.mk stack.yaml
@@ -76,10 +76,10 @@ jobs:
       run: stack test --no-run-tests --dry-run --lock-file=error-on-write
 
     - name: Generate Stack project
-      run: GHC_VERSION=${{ matrix.vers.ghc }} STACKAGE_VERSION=${{ matrix.vers.stackage }} make -f project-files.mk ${{ matrix.vers.ghc}}.dhall2stack.yaml
+      run: GHC_VERSION=${{ matrix.vers.ghc }} STACKAGE_VERSION=${{ matrix.vers.stackage }} make -f project-files.mk ghc-${{ matrix.vers.ghc}}.dhall2stack.yaml
 
     - name: Build
-      run: stack test --no-run-tests --no-terminal --stack-yaml=ghc-${{ matrix.vers.ghc }}.dhall2stack.yaml
+      run: stack test --no-run-tests --no-terminal --pedantic --stack-yaml=ghc-${{ matrix.vers.ghc }}.dhall2stack.yaml
 
     - name: Save cached dependencies
       uses: actions/cache/save@v4
