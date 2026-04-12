@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE MultiWayIf #-}
 {-# OPTIONS_HADDOCK ignore-exports #-}
@@ -7,7 +8,9 @@ module Hpack.Fields (cmp) where
 import Data.Maybe (fromMaybe)
 import Data.List (elemIndex)
 import Data.String (IsString())
+#if !MIN_VERSION_base(4,18,0)
 import Control.Applicative (liftA2)
+#endif
 import Data.Foldable (asum)
 
 -- | A default field ordering comparison.
