@@ -16,8 +16,10 @@ jobs:
         vers:
           - {ghc: "9.2.8", stackage: "lts-20.26"}
           - {ghc: "9.4.8", stackage: "lts-21.25"}
-          - {ghc: "9.6.5", stackage: "lts-22.22"}
-          - {ghc: "9.8.2", stackage: "nightly-2024-05-18"}
+          - {ghc: "9.6.7", stackage: "lts-22.44"}
+          - {ghc: "9.8.4", stackage: "lts-23.28"}
+          - {ghc: "9.10.3", stackage: "lts-24.36"}
+          - {ghc: "9.12.4", stackage: "nightly-2026-04-12"}
 
     steps:
     - uses: actions/checkout@v4

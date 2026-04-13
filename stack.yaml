@@ -2,14 +2,12 @@ user-message: "WARNING: This stack project is generated."
 
 allow-newer: true
 allow-newer-deps:
-  - dhall
   - dhall-json
 
-resolver: nightly-2024-05-18
+resolver: nightly-2026-04-12
 
 packages:
   - ./.
 
 extra-deps:
-  - dhall-1.42.1
   - dhall-json-1.7.12

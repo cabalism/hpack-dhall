@@ -6,7 +6,7 @@ let deps =
       , "dhall >= 1.41.1"
       , "dhall-json >= 1.7.10"
       , "filepath"
-      , "hpack ^>= 0.36"
+      , "hpack >= 0.39"
       , "megaparsec >= 9.2"
       , "microlens"
       , "prettyprinter"
@@ -42,7 +42,7 @@ in  let exe-deps = [ "optparse-applicative" ]
             ''
         , github = "cabalism/hpack-dhall"
         , tested-with =
-            "GHC == 9.2.8, GHC == 9.4.8, GHC == 9.6.5, GHC == 9.8.2"
+            "GHC == 9.2.8, GHC == 9.4.8, GHC == 9.6.7, GHC == 9.8.4, GHC == 9.10.3, GHC == 9.12.4"
         , extra-source-files =
           [ "package.dhall"
           , "changelog.md"
