@@ -1,6 +1,6 @@
 cabal-version: 2.0
 
--- This file has been generated from stack.yaml by hpack version 0.36.0.
+-- This file has been generated from stack.yaml by hpack version 0.39.3.
 --
 -- see: https://github.com/sol/hpack
 
@@ -284,8 +284,8 @@ library
     build-depends:
         Win32
   else
-    build-tools:
-        hsc2hs
+    build-tool-depends:
+        hsc2hs:hsc2hs
     build-depends:
         unix
   if os(windows)
@@ -398,8 +398,8 @@ executable stack
     build-depends:
         Win32
   else
-    build-tools:
-        hsc2hs
+    build-tool-depends:
+        hsc2hs:hsc2hs
     build-depends:
         unix
   if flag(static)
@@ -515,8 +515,8 @@ test-suite stack-integration-test
     build-depends:
         Win32
   else
-    build-tools:
-        hsc2hs
+    build-tool-depends:
+        hsc2hs:hsc2hs
     build-depends:
         unix
   if !flag(integration-tests)
@@ -625,7 +625,7 @@ test-suite stack-test
     build-depends:
         Win32
   else
-    build-tools:
-        hsc2hs
+    build-tool-depends:
+        hsc2hs:hsc2hs
     build-depends:
         unix
