@@ -27,7 +27,7 @@ license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
 tested-with:
-    GHC == 9.2.8, GHC == 9.4.8, GHC == 9.6.5, GHC == 9.8.2
+    GHC == 9.2.8, GHC == 9.4.8, GHC == 9.6.7, GHC == 9.8.4, GHC == 9.10.3, GHC == 9.12.4
 extra-source-files:
     package.dhall
     changelog.md
@@ -136,7 +136,7 @@ library
     , dhall >=1.41.1
     , dhall-json >=1.7.10
     , filepath
-    , hpack ==0.36.*
+    , hpack >=0.39
     , megaparsec >=9.2
     , microlens
     , prettyprinter
@@ -165,7 +165,7 @@ executable dhall-hpack-cabal
     , dhall >=1.41.1
     , dhall-json >=1.7.10
     , filepath
-    , hpack ==0.36.*
+    , hpack >=0.39
     , megaparsec >=9.2
     , microlens
     , optparse-applicative
@@ -195,7 +195,7 @@ executable dhall-hpack-dhall
     , dhall >=1.41.1
     , dhall-json >=1.7.10
     , filepath
-    , hpack ==0.36.*
+    , hpack >=0.39
     , megaparsec >=9.2
     , microlens
     , optparse-applicative
@@ -225,7 +225,7 @@ executable dhall-hpack-json
     , dhall >=1.41.1
     , dhall-json >=1.7.10
     , filepath
-    , hpack ==0.36.*
+    , hpack >=0.39
     , megaparsec >=9.2
     , microlens
     , optparse-applicative
@@ -255,7 +255,7 @@ executable dhall-hpack-yaml
     , dhall >=1.41.1
     , dhall-json >=1.7.10
     , filepath
-    , hpack ==0.36.*
+    , hpack >=0.39
     , megaparsec >=9.2
     , microlens
     , optparse-applicative
@@ -287,7 +287,7 @@ test-suite golden
     , dhall-json >=1.7.10
     , directory
     , filepath
-    , hpack ==0.36.*
+    , hpack >=0.39
     , megaparsec >=9.2
     , microlens
     , prettyprinter
