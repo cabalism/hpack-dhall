@@ -1,10 +1,4 @@
-import: https://stackage.org/nightly-2026-04-12/cabal.config
-
-packages:
-    .
-
-constraints:
-    dhall-json ==1.7.12
+''
 
 program-options
   ghc-options: -fhide-source-paths
@@ -13,3 +7,4 @@ allow-newer:
     dhall-json:aeson
   , dhall-json:bytestring
   , dhall-json:text
+''

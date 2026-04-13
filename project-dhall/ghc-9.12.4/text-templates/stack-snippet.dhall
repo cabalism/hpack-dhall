@@ -4,6 +4,5 @@
 
   allow-newer: true
   allow-newer-deps:
-    - dhall
     - dhall-json
   ''
