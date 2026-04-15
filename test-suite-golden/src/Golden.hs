@@ -13,7 +13,7 @@ import Test.Tasty.Golden (findByExtension, goldenVsFile, goldenVsString)
 
 import Hpack (Verbose(..), Options(..), hpack, defaultOptions, setDecode)
 import Hpack.Config (DecodeOptions(..))
-import Hpack.Dhall (fileToJson, showDhall, showJson, showYaml)
+import Hpack.Dhall (dhallFileToJson, showDhall, showJson, showYaml)
 import Data.ByteString.Lazy.UTF8 (fromString)
 
 data Out = Cabal | Dhall | Json | Yaml
@@ -124,7 +124,7 @@ testName p =
 
 writeDhallCabal :: FilePath -> IO ()
 writeDhallCabal dhallFile =
-    hpack NoVerbose (setDecode fileToJson options)
+    hpack NoVerbose (setDecode dhallFileToJson options)
     where
         d = optionsDecodeOptions defaultOptions
         d' = d {decodeOptionsTarget = dhallFile}

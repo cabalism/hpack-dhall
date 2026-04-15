@@ -18,7 +18,7 @@ When doing so, note that all functions resolve imports relative to the location
 of the given @.dhall@ input file.
 -}
 module Hpack.Dhall
-    ( fileToJson
+    ( dhallFileToJson
     , showJson
     , showYaml
     , showDhall
@@ -79,7 +79,7 @@ showJson
     -- ^ Path to a @.dhall@ file
     -> IO String
 showJson fieldOrdering file = do
-    x <- fileToJson file
+    x <- dhallFileToJson file
     return $ case x of
         Left err -> err
         Right (_, v) -> getJson (fromMaybe cmp fieldOrdering) v
@@ -92,7 +92,7 @@ showYaml
     -- ^ Path to a @.dhall@ file
     -> IO String
 showYaml fieldOrdering file = do
-    x <- fileToJson file
+    x <- dhallFileToJson file
     return $ case x of
         Left err -> err
         Right (_, v) -> getYaml (fromMaybe cmp fieldOrdering) v
@@ -109,12 +109,12 @@ showDhall file = do
 
 -- | A file decoder for hpack. This should evaluate to a single record with
 -- hpack's top-level <https://github.com/sol/hpack#top-level-fields fields>.
-fileToJson
+dhallFileToJson
     :: FilePath -- ^ Path to a @.dhall@ file
     -> IO (Either String ([String], Value))
-fileToJson file =
+dhallFileToJson file =
     liftIO (T.readFile file)
-    >>= textToJson (inputSettings file)
+    >>= dhallTextToJson (inputSettings file)
 
 inputSettings :: FilePath -> InputSettings
 inputSettings file =
@@ -122,11 +122,11 @@ inputSettings file =
     & set rootDirectory (takeDirectory file)
     & set sourceName file
 
-textToJson
+dhallTextToJson
     :: InputSettings
     -> T.Text
     -> IO (Either String ([String], Value))
-textToJson settings text = runExceptT $ do
+dhallTextToJson settings text = runExceptT $ do
     expr <- liftIO $ check settings text
     _ <- liftResult $ typeOf expr
     liftResult $ ([],) . omitNull <$> dhallToJSON expr
