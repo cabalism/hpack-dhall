@@ -1,6 +1,6 @@
 cabal-version: 1.12
 
--- This file has been generated from package.dhall by hpack version 0.36.0.
+-- This file has been generated from package.dhall by hpack version 0.39.3.
 --
 -- see: https://github.com/sol/hpack
 
@@ -145,6 +145,108 @@ library
     , yaml
   default-language: Haskell2010
 
+executable cabal-diy-pack
+  main-is: DiyPackMain.hs
+  other-modules:
+      Hpack.Dhall
+      Hpack.Fields
+      Options
+      RecurseFile
+      Paths_hpack_dhall
+  hs-source-dirs:
+      library
+      exe
+      exe/cabal-diy-pack
+      hook
+  ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
+  build-depends:
+      aeson
+    , aeson-pretty
+    , base >=4.13 && <5
+    , bytestring
+    , dhall >=1.41.1
+    , dhall-json >=1.7.10
+    , extra
+    , filepath
+    , filepattern
+    , hpack >=0.39
+    , megaparsec >=9.2
+    , microlens
+    , optparse-applicative
+    , prettyprinter
+    , text
+    , transformers
+    , yaml
+  default-language: Haskell2010
+
+executable cabal-dpack
+  main-is: DpackMain.hs
+  other-modules:
+      Hpack.Dhall
+      Hpack.Fields
+      Options
+      RecurseFile
+      Paths_hpack_dhall
+  hs-source-dirs:
+      library
+      exe
+      exe/cabal-dpack
+      hook
+  ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
+  build-depends:
+      aeson
+    , aeson-pretty
+    , base >=4.13 && <5
+    , bytestring
+    , dhall >=1.41.1
+    , dhall-json >=1.7.10
+    , extra
+    , filepath
+    , filepattern
+    , hpack >=0.39
+    , megaparsec >=9.2
+    , microlens
+    , optparse-applicative
+    , prettyprinter
+    , text
+    , transformers
+    , yaml
+  default-language: Haskell2010
+
+executable cabal-ypack
+  main-is: YpackMain.hs
+  other-modules:
+      Hpack.Dhall
+      Hpack.Fields
+      Options
+      RecurseFile
+      Paths_hpack_dhall
+  hs-source-dirs:
+      library
+      exe
+      exe/cabal-ypack
+      hook
+  ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
+  build-depends:
+      aeson
+    , aeson-pretty
+    , base >=4.13 && <5
+    , bytestring
+    , dhall >=1.41.1
+    , dhall-json >=1.7.10
+    , extra
+    , filepath
+    , filepattern
+    , hpack >=0.39
+    , megaparsec >=9.2
+    , microlens
+    , optparse-applicative
+    , prettyprinter
+    , text
+    , transformers
+    , yaml
+  default-language: Haskell2010
+
 executable dhall-hpack-cabal
   main-is: CabalMain.hs
   other-modules:
@@ -154,7 +256,7 @@ executable dhall-hpack-cabal
       Paths_hpack_dhall
   hs-source-dirs:
       library
-      exe/options
+      exe
       exe/dhall-hpack-cabal
   ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
@@ -184,7 +286,7 @@ executable dhall-hpack-dhall
       Paths_hpack_dhall
   hs-source-dirs:
       library
-      exe/options
+      exe
       exe/dhall-hpack-dhall
   ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
@@ -214,7 +316,7 @@ executable dhall-hpack-json
       Paths_hpack_dhall
   hs-source-dirs:
       library
-      exe/options
+      exe
       exe/dhall-hpack-json
   ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
@@ -244,8 +346,38 @@ executable dhall-hpack-yaml
       Paths_hpack_dhall
   hs-source-dirs:
       library
-      exe/options
+      exe
       exe/dhall-hpack-yaml
+  ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
+  build-depends:
+      aeson
+    , aeson-pretty
+    , base >=4.13 && <5
+    , bytestring
+    , dhall >=1.41.1
+    , dhall-json >=1.7.10
+    , filepath
+    , hpack >=0.39
+    , megaparsec >=9.2
+    , microlens
+    , optparse-applicative
+    , prettyprinter
+    , text
+    , transformers
+    , yaml
+  default-language: Haskell2010
+
+executable yaml-hpack-cabal
+  main-is: CabalMain.hs
+  other-modules:
+      Hpack.Dhall
+      Hpack.Fields
+      Options
+      Paths_hpack_dhall
+  hs-source-dirs:
+      library
+      exe
+      exe/yaml-hpack-cabal
   ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
       aeson
