@@ -1,0 +1,14 @@
+Cabal, like Git, has a command hook mechanism. Any `cabal-command` executable
+becomes available as `cabal command`. There are three such hooks available;
+
+`dpack`
+: is `dhall-hpack-cabal`, but for any `package.dhall` in the source tree.
+
+- `ypack` is `hpack`, but for any `package.yaml` in the source tree.
+- `diy-pack` converts any `package.dhall` into `package.yaml` in the source tree.
+
+## `dpack`
+
+## `ypack`
+
+## `diy-pack`
