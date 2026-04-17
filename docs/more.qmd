@@ -9,8 +9,8 @@ that.  For seeing dhall with imports resolved there's `dhall-hpack-dhall`.
 By using imports and functions we can do more than just create a cabal file. We
 can configure extensions for linting:
 
-```
-> cat default-extensions.dhall
+```dhall
+-- default-extensions.dhall
 { default-extensions =
     [ "DataKinds"
     , "DeriveFunctor"
@@ -19,9 +19,11 @@ can configure extensions for linting:
     , "UndecidableInstances"
     ]
 }
+```
 
-> cat hlint.dhall
-    let Prelude/List/map =
+```dhall
+-- hlint.dhall
+let Prelude/List/map =
           https://raw.githubusercontent.com/dhall-lang/Prelude/35deff0d41f2bf86c42089c6ca16665537f54d75/List/map
 
 in  let defs = ./default-extensions.dhall
@@ -29,10 +31,12 @@ in  let defs = ./default-extensions.dhall
 in  let f = λ(s : Text) → "-X" ++ s
 
 in  { arguments = Prelude/List/map Text Text f defs.default-extensions }
+```
 
-> dhall-to-yaml < ./hlint.dhall > ./.hlint.yaml
+```pre
+$ dhall-to-yaml < ./hlint.dhall > ./.hlint.yaml
 
-> cat .hlint.yaml
+$ cat .hlint.yaml
 arguments:
 - -XDataKinds
 - -XDeriveFunctor
@@ -43,9 +47,9 @@ arguments:
 
 We can pull those same `default-extensions` into a package description:
 
-```
-> cat package.dhall
-    let defs = ./defaults.dhall
+```dhall
+-- package.dhall
+let defs = ./defaults.dhall
 
 in    defs
     ⫽ ./default-extensions.dhall
@@ -75,7 +79,7 @@ Using hpack's [conditionals](https://github.com/sol/hpack#conditionals) in
 a list in `package.dhall` can cause an error because lists in dhall must have
 elements of the same type:
 
-```
+```yaml
 # package.yaml
 executables:
   stack:
@@ -106,8 +110,8 @@ executables:
 ```
 
 This can be represented as:
-```
-# package.dhall
+```dhall
+-- package.dhall
 , executables =
     { stack =
         { main =
