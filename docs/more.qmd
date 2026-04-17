@@ -1,6 +1,3 @@
-
-# More Uses
-
 Aside from `dhall-hpack-cabal`, three other executables are bundled with this
 package. If you're migrating from hpack to hpack-dhall but don't have a source
 controlled cabal file then `dhall-hpack-yaml` can be used to generate a
