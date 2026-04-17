@@ -1,4 +1,4 @@
-We provide 3 cabal [external commands][external-commands] that operate
+We provide 3 Cabal [external commands][external-commands] that operate
 on any matching file input file in the source tree:
 
 [external-commands]: https://cabal.readthedocs.io/en/latest/external-commands.html
@@ -19,15 +19,40 @@ it defaults to `**/package.dhall`.
 
 ## `dpack`
 
-This "d" in this `dpack` command is so named for the "d" of the `.dhall`
+The "d" in this `dpack` command is so named for the "d" of the `.dhall`
 extension.
 
 ## `ypack`
 
-This "y" in this `ypack` command is so named for the "y" of the `.yaml`
+The "y" in this `ypack` command is so named for the "y" of the `.yaml`
 extension.
+
+::: {.callout-tip collapse="true"}
+## Why is it not named "cabal-hpack"?
+We're treating `cabal-hpack` as a reserved executable name and not named this
+external command `hpack` in case Hpack wants to supply its own Cabal external
+command.
+:::
+
+If a project only has `package.yaml` files and no `.cabal` files, then Stack
+will happily generate the corresponding and needed `.cabal` files before doing
+its build. Stack has Hpack built in. Cabal doesn't.
+
+Stack will do the `.cabal` file generation on any matching `package.yaml` file
+in a `stack.yaml` project. The `cabal-ypack` executable supplies this missing
+feature to Cabal as an external command.
+
+::: {.callout-note collapse="false"}
+The `cabal.project` is not read or checked. This command finds any matching
+`package.dhall` files in the current or child directories but has options for
+excluding any of these or including files with other names.
+:::
+
+
+The standalone `hpack` executable operates on one or more input files. This
+Cabal external command can be used instead of writing a script to find and pass
+matching `package.yaml` files to `hpack`.
 
 ## `diy-pack`
 
 This "diy" of this command is short for "d-i-y", for `.dhall` into `.yaml`.
-
