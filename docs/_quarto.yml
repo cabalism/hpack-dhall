@@ -9,8 +9,8 @@ website:
     contents:
       - href: index.qmd
         text: Introduction
-      - href: hooks.qmd
-        text: Cabal Hooks
+      - href: cabal-commands.qmd
+        text: Cabal Commands
       - href: linting.qmd
       - href: conditionals.qmd
 
