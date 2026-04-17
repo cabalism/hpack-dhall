@@ -69,17 +69,17 @@ in  { name = "hpack-dhall"
     , executables =
       { cabal-dpack =
         { main = "DpackMain.hs"
-        , source-dirs = [ "exe", "exe/cabal-dpack", "hook" ]
+        , source-dirs = [ "exe", "hook", "hook/cabal-dpack" ]
         , dependencies = hook-deps
         }
       , cabal-diy-pack =
         { main = "DiyPackMain.hs"
-        , source-dirs = [ "exe", "exe/cabal-diy-pack", "hook" ]
+        , source-dirs = [ "exe", "hook", "hook/cabal-diy-pack" ]
         , dependencies = hook-deps
         }
       , cabal-ypack =
         { main = "YpackMain.hs"
-        , source-dirs = [ "exe", "exe/cabal-ypack", "hook" ]
+        , source-dirs = [ "exe", "hook", "hook/cabal-ypack" ]
         , dependencies = hook-deps
         }
       , dhall-hpack-cabal =

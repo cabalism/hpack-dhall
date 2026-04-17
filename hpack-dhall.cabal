@@ -156,8 +156,8 @@ executable cabal-diy-pack
   hs-source-dirs:
       library
       exe
-      exe/cabal-diy-pack
       hook
+      hook/cabal-diy-pack
   ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
       aeson
@@ -190,8 +190,8 @@ executable cabal-dpack
   hs-source-dirs:
       library
       exe
-      exe/cabal-dpack
       hook
+      hook/cabal-dpack
   ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
       aeson
@@ -224,8 +224,8 @@ executable cabal-ypack
   hs-source-dirs:
       library
       exe
-      exe/cabal-ypack
       hook
+      hook/cabal-ypack
   ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
       aeson
