@@ -8,9 +8,9 @@ website:
     search: true
     contents:
       - href: index.qmd
-        text: Building
-      - href: more.qmd
-        text: More Uses
+        text: Introduction
+      - href: linting.qmd
+      - href: conditionals.qmd
 
 format:
   html:
