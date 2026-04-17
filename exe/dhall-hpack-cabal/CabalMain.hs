@@ -4,40 +4,39 @@
 
 module Main (main) where
 
-import Paths_hpack_dhall (version)
 import Data.Version (showVersion)
-import qualified Options.Applicative as O
-import Options (parsePkgDhallFile, parseForce, parseQuiet, Command(..), parserInfo)
-import qualified Hpack as H (hpack, version, getOptions, setDecode)
+import qualified Hpack as H (getOptions, hpack, setDecode, version)
 import Hpack.Dhall (dhallFileToJson)
+import Options (Command (..), parseForce, parsePkgDhallFile, parseQuiet, parserInfo)
+import qualified Options.Applicative as O
+import Paths_hpack_dhall (version)
 
-data Options =
-    Options
-        { pkgDhallFile :: String
-        , force :: Bool
-        , quiet :: Bool
-        }
+data Options = Options
+  { pkgDhallFile :: String
+  , force :: Bool
+  , quiet :: Bool
+  }
 
 parseOptions :: O.Parser Options
-parseOptions = O.helper <*> do
+parseOptions =
+  O.helper <*> do
     pkgDhallFile <- parsePkgDhallFile
     force <- parseForce
     quiet <- parseQuiet
     return Options{..}
 
 main :: IO ()
-main = O.execParser (parserInfo parseOptions header description) >>= \case
+main =
+  O.execParser (parserInfo parseOptions header description) >>= \case
     NumericVersion -> putStrLn $ showVersion version
-
     Version -> do
-        putStrLn $ "dhall-hpack-cabal-" ++ showVersion version
-        putStrLn $ "hpack-" ++ showVersion H.version
-
+      putStrLn $ "dhall-hpack-cabal-" ++ showVersion version
+      putStrLn $ "hpack-" ++ showVersion H.version
     Run Options{..} -> do
-        opts <- H.getOptions pkgDhallFile $ [ "--force" | force ] ++ [ "--silent" | quiet ]
-        case opts of
-            Just (verbose, options) -> H.hpack verbose (H.setDecode dhallFileToJson options)
-            Nothing -> return ()
+      opts <- H.getOptions pkgDhallFile $ ["--force" | force] ++ ["--silent" | quiet]
+      case opts of
+        Just (verbose, options) -> H.hpack verbose (H.setDecode dhallFileToJson options)
+        Nothing -> return ()
   where
     header = "Hpack's dhalling"
-    description =  "Write the .cabal for a .dhall package description, resolving imports."
+    description = "Write the .cabal for a .dhall package description, resolving imports."
