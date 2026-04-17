@@ -2,13 +2,15 @@ project:
   type: website
 
 website:
-  title: hpack-dhall 
+  title: hpack-dhall
   sidebar:
     style: "floating"
     search: true
     contents:
       - href: index.qmd
         text: Introduction
+      - href: hooks.qmd
+        text: Cabal Hooks
       - href: linting.qmd
       - href: conditionals.qmd
 

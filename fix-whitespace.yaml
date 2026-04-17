@@ -2,6 +2,8 @@ excluded-dirs:
   - "dist-newstyle"
   - ".updo"
   - "updo"
+  - "docs/.quarto"
+  - "docs/_site"
 
 included-files:
   - "**/*.cabal"
@@ -10,5 +12,6 @@ included-files:
   - "**/*.json"
   - "**/*.md"
   - "**/*.project"
+  - "**/*.qmd"
   - "**/*.yaml"
   - "**/*.yml"
