@@ -6,38 +6,10 @@ former generates a single `<package-name>.cabal` output file. The Cabal command
 extension does this for any `package.dhall` input found in the current directory
 or any subdirectory.
 
-## Other Standalone Exes
+::: {.callout-tip collapse="true"}
+## Other Exes
 
-If you're migrating from hpack to hpack-dhall then `dhall-hpack-yaml` can be
-used to generate a package.yaml. This could be easier than trying to match the
-generated `package-name.cabal`.
-
-If for some reason you want JSON, then `dhall-hpack-json` does that.
-
-For seeing what a `package.dhall` would look like with imports resolved there's
-`dhall-hpack-dhall`.
-
-## Other Cabal External Commands
-
-There are 3 Cabal external commands included in the `hpack-dhall` package;
-[cabal-dpack][cabal-dpack], [cabal-ypack][cabal-ypack] and
-[cabal-diy-pack][cabal-diy-pack].
-
-[cabal-dpack]: cabal-commands.html#sec-dpack
-[cabal-ypack]: cabal-commands.html#sec-ypack
-[cabal-diy-pack]: cabal-commands.html#sec-diy
-
-# Installation
-
-All executables can be installed from the Hackage-published package:
-
-```txt
-$ cabal install hpack-dhall
-```
-
-If building from source, all executables or ~~just some of them~~[^1] can be installed:
-
-[^1]: This is a bug in Cabal. Despite selecting one executable, it installs all of them.
+Here's the list of all included executables:
 
 ```txt
 $ cabal target all:exes
@@ -51,8 +23,38 @@ Fully qualified target forms:
  - hpack-dhall:exe:dhall-hpack-yaml
  - hpack-dhall:exe:yaml-hpack-cabal
 Found 8 targets matching all:exes.
+```
 
+If you're migrating from hpack to hpack-dhall then `dhall-hpack-yaml` can be
+used to generate a package.yaml. This could be easier than trying to match the
+generated `package-name.cabal`.
+
+If for some reason you want JSON, then `dhall-hpack-json` does that.
+
+For seeing what a `package.dhall` would look like with imports resolved there's
+`dhall-hpack-dhall`.
+
+The three included Cabal external commands are; [cabal-dpack][cabal-dpack],
+[cabal-ypack][cabal-ypack] and [cabal-diy-pack][cabal-diy-pack].
+
+[cabal-dpack]: cabal-commands.html#sec-dpack
+[cabal-ypack]: cabal-commands.html#sec-ypack
+[cabal-diy-pack]: cabal-commands.html#sec-diy
+:::
+
+# Installation
+
+All executables can be installed from the Hackage-published package with:
+
+```txt
+$ cabal install hpack-dhall
+```
+
+If building from source, all executables or ~~just some of them~~[^1] can be
+installed with:
+
+[^1]: Despite selecting one executable with `cabal install cabal-dpack` it installs all of them and this is a bug.
+
+```txt
 $ cabal install all:exes --overwrite-policy=always
-
-$ cabal install cabal-dpack --overwrite-policy=always
 ```
