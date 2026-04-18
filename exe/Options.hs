@@ -55,7 +55,7 @@ parseGlobOptions filename =
     force <- parseForce
     quiet <- parseQuiet
     pkgGlobs <- parsePkgGlobs filename
-    ignoreGlobs <- parseIgnoreGlobs
+    ignoreGlobs <- parseIgnoreGlobs filename
     return GlobOptions{..}
 
 parseOptions :: Parser Options
@@ -110,14 +110,14 @@ parseQuiet =
 parsePkgGlobs :: String -> Parser [String]
 parsePkgGlobs name =
   many . strOption $
-    long name 
+    long (map (\c -> if c == '.' then '-' else c) name)
       <> metavar "GLOB"
-      <> help "Glob pattern to include when searching for 'package.dhall' (or otherwise named) package files. Can be specified multiple times."
+      <> help ("Glob pattern to include when searching for '" ++ name ++ "' (or otherwise named) package files. Can be specified multiple times.")
 
-parseIgnoreGlobs :: Parser [String]
-parseIgnoreGlobs =
+parseIgnoreGlobs :: String -> Parser [String]
+parseIgnoreGlobs name =
   many . strOption $
     long "ignore-glob"
       <> short 'i'
       <> metavar "GLOB"
-      <> help "Glob pattern to ignore when searching for package.dhall files. Can be specified multiple times."
+      <> help ("Glob pattern to ignore when searching for '" ++ name ++ "' files. Can be specified multiple times.")
