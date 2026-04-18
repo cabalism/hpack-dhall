@@ -5,14 +5,25 @@ The simplest use of `dhall-hpack-cabal` is to injest one self-contained
 create a single output, the `.cabal` file.
 
 The trick with reuse is to break apart `package.dhall` into sections for reuse.
-This is a facility Cabal has with its [common][cabal-common] stanzas that can be
-imported by other common stanzas and by components in the package description
-`.cabal` file. Cabal's restricts what can be commonly shared to [build
-information][cabal-buildinfo]. That's a lot of fields but there are also a lot
-of fields that are excluded.
+
+Section reuse is facility Cabal has with its [common][cabal-common] stanzas that
+can be imported by other common stanzas and by components in the package
+description `.cabal` file. Cabal's restricts what can be commonly shared to
+[build information][cabal-buildinfo]. That's a lot of fields but there are also
+a lot of fields that are excluded, such as the author and maintainer, copyright
+and license-related fields.
 
 [cabal-common]: https://cabal.readthedocs.io/en/latest/cabal-package-description-file.html#common-stanzas
 [cabal-buildinfo]: https://cabal.readthedocs.io/en/latest/cabal-package-description-file.html#build-information
+
+Section reuse is a facility YAML has too with its `&` anchors, `*` aliases, and
+`<<` merge keys. Hpack has these [facilities for reuse][hpack-reuse] and it also
+supports the non-standard YAML `!include` directive.
+
+[hpack-reuse]: https://github.com/sol/hpack#not-repeating-yourself
+
+What neither Cabal's `.cabal` files nor standard YAML `.yaml` files have is the
+ability to include or import from another file.
 
 ## Author and Maintainer Details
 
@@ -35,9 +46,11 @@ repository and be prepared for changing copyright years.
       }
 ```
 
-## Default Extensions
+## Dual Targets
 
-We can configure extensions for linting:
+If the default extensions are in their own `default-extensions.dhall` file, then
+we can generate a `.yaml` file equivalent and use this for configuring the
+extensions that HLint turns on when linting.
 
 ```dhall
 -- default-extensions.dhall
@@ -51,6 +64,10 @@ We can configure extensions for linting:
 }
 ```
 
+We want to generate a `.yaml` file with an arguments list of extensions. The
+Dhall function to do this is but a few lines long. It prefixes each extension
+with "-X":
+
 ```dhall
 -- hlint.dhall
 let Prelude/List/map =
@@ -63,14 +80,22 @@ in  let f = λ(s : Text) → "-X" ++ s
 in  { arguments = Prelude/List/map Text Text f defs.default-extensions }
 ```
 
-```txt
-$ dhall-to-yaml < ./hlint.dhall > ./.hlint.yaml
+::: {.callout-note collapse="false"}
+Imports can be URIs or local files. The example above has both kinds.
 
-$ cat .hlint.yaml
+Relative imports have to start with "./" or "../".
+:::
+
+We generate an `.hlint.yaml` file (or you could create an
+`.hlint-extensions.yaml` file and import it) with `dhall-to-yaml < ./hlint.dhall
+> ./.hlint.yaml`.
+
+```yaml
+# .hlint.yaml
 arguments:
 - -XDataKinds
 - -XDeriveFunctor
-...
+# ...
 - -XTupleSections
 - -XUndecidableInstances
 ```
@@ -83,12 +108,8 @@ let defs = ./defaults.dhall
 
 in    defs
     ⫽ ./default-extensions.dhall
-    ⫽ { name =
-          "flight-units"
-    ...
-      , github =
-          "blockscope/flare-timing/units"
-    ...
+    ⫽ { name = "flight-units"
+      , github = "blockscope/flare-timing/units"
       , dependencies =
             defs.dependencies
           # [ "numbers"
@@ -99,6 +120,19 @@ in    defs
             , "uom-plugin"
             , "siggy-chardust"
             ]
-    ...
       }
+```
+
+It doesn't really matter for this example what `defaults.dhall` contains except
+that it too has dependencies. If it has its own `default-extensions` then those
+are merged with `⫽`:
+
+```dhall
+-- defaults.dhall
+{
+, default-extensions =
+    [ "PackageImports" ]
+, dependencies =
+    [ "base >=4.10.1.0 && <5" ]
+}
 ```
