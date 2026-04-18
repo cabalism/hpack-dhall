@@ -6,7 +6,7 @@ module Main (main) where
 import Data.Foldable (forM_)
 import Data.Version (showVersion)
 import qualified Hpack as H (getOptions, hpack, setDecode, version)
-import Hpack.Dhall (dhallFileToJson)
+import Hpack.Dhall (dhallFileToJson, packageConfig)
 import Options (Command (..), GlobOptions (..), parseGlobOptions, parserInfo)
 import Options.Applicative (execParser)
 import Paths_hpack_dhall (version)
@@ -14,7 +14,7 @@ import RecurseFile (resolveFile)
 
 main :: IO ()
 main =
-  execParser (parserInfo parseGlobOptions header description) >>= \case
+  execParser (parserInfo parseOpts header description) >>= \case
     NumericVersion -> putStrLn $ showVersion version
     Version -> do
       putStrLn $ "cabal-dpack-" ++ showVersion version
@@ -28,5 +28,6 @@ main =
           Just (verbose, options) -> H.hpack verbose (H.setDecode dhallFileToJson options)
           Nothing -> return ()
   where
+    parseOpts = parseGlobOptions packageConfig
     header = "Cabal hook for converting package.dhall to <package-name>.cabal"
     description = "Write the .cabal for a .dhall package description, resolving imports."
