@@ -1,3 +1,5 @@
+# Introduction
+
 The two main executables of this package are `dhall-hpack-cabal` and its Cabal
 command extension companion `cabal-dpack`. From one `package.dhall` input, the
 former generates a single `<package-name>.cabal` output file. The Cabal command
@@ -12,3 +14,33 @@ If for some reason you want JSON, then `dhall-hpack-json` does that.
 
 For seeing what a `package.dhall` would look like with imports resolved there's
 `dhall-hpack-dhall`.
+
+# Installation
+
+All executables can be installed from the Hackage-published package:
+
+```txt
+$ cabal install hpack-dhall
+```
+
+If building from source, all executables or ~~just some of them~~[^1] can be installed:
+
+[^1]: This is a bug in Cabal. Despite selecting one executable, it installs all of them.
+
+```txt
+$ cabal target all:exes
+Fully qualified target forms:
+ - hpack-dhall:exe:cabal-diy-pack
+ - hpack-dhall:exe:cabal-dpack
+ - hpack-dhall:exe:cabal-ypack
+ - hpack-dhall:exe:dhall-hpack-cabal
+ - hpack-dhall:exe:dhall-hpack-dhall
+ - hpack-dhall:exe:dhall-hpack-json
+ - hpack-dhall:exe:dhall-hpack-yaml
+ - hpack-dhall:exe:yaml-hpack-cabal
+Found 8 targets matching all:exes.
+
+$ cabal install all:exes --overwrite-policy=always
+
+$ cabal install cabal-dpack --overwrite-policy=always
+```
