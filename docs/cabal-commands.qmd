@@ -8,7 +8,7 @@ on any matching file input file in the source tree:
 - `diy-pack` matches on any `package.dhall` writing `package.yaml`.
 
 ::: {.callout-warning collapse="false"}
-The `cabal.project` is not read or checked. These command finds any matching
+The `cabal.project` is not read or checked. These command find any matching
 `package.dhall` or matching `package.yaml` files in the current or child
 directories but has options for excluding any of these or including files with
 other names.
@@ -16,13 +16,12 @@ other names.
 
 These commands all have similar options:
 
-### Options
-
-- `--package-dhall GLOB` is a glob pattern to include when searching for files.
+- `--package-<ext> GLOB` is a glob pattern to include when searching for "package.ext" files.
 - `--ignore-glob GLOB` is a glob pattern to ignore when searching for files.
 
-These can each be supplied multiple times. If `--package-dhall` is not supplied
-it defaults to `**/package.dhall`.
+These can each be supplied multiple times. If `--package-<ext>` is not supplied,
+it defaults to `**/package.ext`, where "ext" is `yaml` for the `ypack` command
+and `dhall` for the other 2 commands.
 
 ## `dpack`
 
@@ -54,7 +53,7 @@ feature to Cabal as an external command.
 
 The standalone `hpack` executable operates on one or more input files. This
 Cabal external command can be used instead of writing a script to find and pass
-matching `package.yaml` files to `hpack`.
+multiple matching `package.yaml` files to `hpack`.
 
 ## `diy-pack`
 
