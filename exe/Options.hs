@@ -49,12 +49,12 @@ data GlobOptions = GlobOptions
   , ignoreGlobs :: [String]
   }
 
-parseGlobOptions :: Parser GlobOptions
-parseGlobOptions =
+parseGlobOptions :: String -> Parser GlobOptions
+parseGlobOptions filename =
   helper <*> do
     force <- parseForce
     quiet <- parseQuiet
-    pkgGlobs <- parsePkgGlobs
+    pkgGlobs <- parsePkgGlobs filename
     ignoreGlobs <- parseIgnoreGlobs
     return GlobOptions{..}
 
@@ -107,10 +107,10 @@ parseQuiet =
     long "silent"
       <> help "Suppress logging"
 
-parsePkgGlobs :: Parser [String]
-parsePkgGlobs =
+parsePkgGlobs :: String -> Parser [String]
+parsePkgGlobs name =
   many . strOption $
-    long "package-dhall"
+    long name 
       <> metavar "GLOB"
       <> help "Glob pattern to include when searching for 'package.dhall' (or otherwise named) package files. Can be specified multiple times."
 

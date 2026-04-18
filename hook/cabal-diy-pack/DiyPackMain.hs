@@ -6,7 +6,7 @@ module Main (main) where
 import Data.Foldable (forM_)
 import Data.Version (showVersion)
 import qualified Hpack as H (getOptions, version)
-import Hpack.Dhall (showYaml)
+import Hpack.Dhall (showYaml, packageConfig)
 import Options (Command (..), GlobOptions (..), parseGlobOptions, parserInfo)
 import Options.Applicative (execParser)
 import Paths_hpack_dhall (version)
@@ -15,7 +15,7 @@ import System.FilePath (replaceExtension)
 
 main :: IO ()
 main =
-  execParser (parserInfo parseGlobOptions header description) >>= \case
+  execParser (parserInfo parseOpts header description) >>= \case
     NumericVersion -> putStrLn $ showVersion version
     Version -> do
       putStrLn $ "cabal-diy-pack-" ++ showVersion version
@@ -29,5 +29,6 @@ main =
           Just{} -> showYaml Nothing pkgDhallFile >>= writeFile (replaceExtension pkgDhallFile ".yaml")
           Nothing -> return ()
   where
+    parseOpts = parseGlobOptions packageConfig
     header = "Cabal Dhall-Into-Yaml hook, for converting package.dhall into package.yaml."
     description = "Write the .cabal for a .dhall package description, resolving imports."
