@@ -13,5 +13,6 @@ included-files:
   - "**/*.md"
   - "**/*.project"
   - "**/*.qmd"
+  - "**/*.xml"
   - "**/*.yaml"
   - "**/*.yml"
