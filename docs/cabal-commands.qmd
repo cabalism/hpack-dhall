@@ -23,7 +23,7 @@ These can each be supplied multiple times. If `--package-<ext>` is not supplied,
 it defaults to `**/package.ext`, where "ext" is `yaml` for the `ypack` command
 and `dhall` for the other 2 commands.
 
-## `dpack`
+## `cabal-dpack` {#sec-dpack}
 
 The "d" in this `dpack` command is so named for the "d" of the `.dhall`
 extension.
@@ -31,7 +31,7 @@ extension.
 This Cabal external command will generate `<package-name>.cabal` files for each
 `package.dhall` file it finds in the current directory or any child directory.
 
-## `ypack`
+## `cabal-ypack` {#sec-ypack}
 
 The "y" in this `ypack` command is so named for the "y" of the `.yaml`
 extension.
@@ -55,7 +55,7 @@ The standalone `hpack` executable operates on one or more input files. This
 Cabal external command can be used instead of writing a script to find and pass
 multiple matching `package.yaml` files to `hpack`.
 
-## `diy-pack`
+## `cabal-diy-pack` {#sec-diy}
 
 This "diy" of this command is short for "d-i-y", for `.dhall` into `.yaml`.
 
