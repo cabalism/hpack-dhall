@@ -21,3 +21,5 @@ format:
       - brand
     css: styles.css
     toc: true
+    syntax-definitions:
+      - dhall.xml
