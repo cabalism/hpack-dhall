@@ -6,7 +6,7 @@ module Main (main) where
 import Data.Foldable (forM_)
 import Data.Version (showVersion)
 import qualified Hpack as H (getOptions, version)
-import Hpack.Dhall (showYaml, packageConfig)
+import Hpack.Dhall (packageConfig, showYaml)
 import Options (Command (..), GlobOptions (..), parseGlobOptions, parserInfo)
 import Options.Applicative (execParser)
 import Paths_hpack_dhall (version)
