@@ -12,7 +12,9 @@ website:
       - href: cabal-commands.qmd
         text: Cabal Commands
       - href: linting.qmd
+        text: Programming and Reuse
       - href: conditionals.qmd
+        text: Gotchas
 
 format:
   html:
