@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language version="10" kateversion="5.0" name="dhall" section="Sources" extensions="*.dhall" mimetype="" author="Phil de Joux" license="MPL-2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="language.xsd">
+  <highlighting>
+    <list name="keywords">
+      <item>let</item>
+      <item>in</item>
+      <item>forall</item>
+      <item>constructors</item>
+      <item>if</item>
+      <item>then</item>
+      <item>else</item>
+      <item>merge</item>
+      <item>env</item>
+      <item>as</item>
+      <item>with</item>
+    </list>
+    <list name="types">
+      <item>Optional</item>
+      <item>List</item>
+      <item>Text</item>
+    </list>
+    <list name="function">
+      <item>λ</item>
+      <item>→</item>
+      <item>\</item>
+      <item>-&gt;</item>
+      <item>⫽</item>
+    </list>
+    <contexts>
+      <context name="Normal" attribute="Normal" lineEndContext="#stay">
+        <Detect2Chars char="-" char1="-" attribute="Comment" context="Comment" />
+
+        <DetectChar attribute="Symbol" context="#stay" char="(" beginRegion="paren"/>
+        <DetectChar attribute="Symbol" context="#stay" char=")" endRegion="paren"/>
+
+        <DetectChar attribute="Symbol" context="#stay" char="{" beginRegion="record"/>
+        <DetectChar attribute="Symbol" context="#stay" char="}" endRegion="record"/>
+
+        <DetectChar attribute="Symbol" context="#stay" char="[" beginRegion="list"/>
+        <DetectChar attribute="Symbol" context="#stay" char="]" endRegion="list"/>
+
+        <keyword String="keywords" attribute="Keywords" context="#stay" />
+        <keyword String="types" attribute="Type" context="#stay" />
+        <keyword String="function" attribute="Operator" context="#stay" />
+        <Detect2Chars char="'" char1="'" attribute="String" context="Multiline String"/>
+        <DetectChar char="&quot;" attribute="String" context="Quoted String"/>
+
+        <RegExpr attribute="Url" name="Url" String="https://.*|\..*\.dhall" />
+      </context>
+      <context name="Comment" attribute="Comment" lineEndContext="#pop">
+        <IncludeRules context="##Comments" />
+      </context>
+      <context name="Quoted String" attribute="String" lineEndContext="#stay">
+        <DetectChar char="&quot;" attribute="String" context="#pop"/>
+      </context>
+      <context name="Multiline String" attribute="String" lineEndContext="#stay">
+        <StringDetect String="''" attribute="String" context="#pop"/>
+      </context>
+    </contexts>
+    <itemDatas>
+      <itemData name="Normal" defStyleNum="dsNormal" />
+      <itemData name="Keywords" defStyleNum="dsKeyword"/>
+      <itemData name="Symbol" defStyleNum="dsOperator"/>
+      <itemData name="Operator" defStyleNum="dsFunction" />
+      <itemData name="Type" defStyleNum="dsDataType" />
+      <itemData name="String" defStyleNum="dsString" />
+      <itemData name="Comment" defStyleNum="dsComment" />
+      <itemData name="Url" defStyleNum="dsImport" />
+    </itemDatas>
+  </highlighting>
+  <general>
+    <keywords casesensitive="1" weakDeliminator="-+*?!&lt;&gt;=:#\" />
+    <comments>
+      <comment name="singleLine" start="--" />
+    </comments>
+  </general>
+</language>

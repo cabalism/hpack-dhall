@@ -27,7 +27,7 @@ in  let f = λ(s : Text) → "-X" ++ s
 in  { arguments = Prelude/List/map Text Text f defs.default-extensions }
 ```
 
-```pre
+```txt
 $ dhall-to-yaml < ./hlint.dhall > ./.hlint.yaml
 
 $ cat .hlint.yaml
