@@ -17,13 +17,66 @@ and license-related fields.
 [cabal-buildinfo]: https://cabal.readthedocs.io/en/latest/cabal-package-description-file.html#build-information
 
 Section reuse is a facility YAML has too with its `&` anchors, `*` aliases, and
-`<<` merge keys. Hpack has these [facilities for reuse][hpack-reuse] and it also
-supports the non-standard YAML `!include` directive.
+`<<` merge keys.
 
 [hpack-reuse]: https://github.com/sol/hpack#not-repeating-yourself
 
 What neither Cabal's `.cabal` files nor standard YAML `.yaml` files have is the
-ability to include or import from another file.
+ability to include or import from another file but Hpack's [facilities for
+reuse][hpack-reuse] support the non-standard YAML `!include` directive.
+
+## Dhall imports versus YAML includes
+
+Dhall imports are superior to YAML `!include` directives in that they provide
+strongly typed, secure, and composable configuration, whereas an `!include`
+simply performs raw text insertion without validation.
+
+Here are the specific ways Dhall imports are better:
+
+1. Strong Type Checking Across Files
+
+    - **Dhall**: Imports are type-checked before evaluation. If `config.dhall`
+    imports `schema.dhall`, Dhall ensures the data matches the schema before
+    producing any output.
+
+    - **YAML**: `!include` brings in raw YAML data. A mistake in the imported
+    file usually isn't caught until the entire application runs and parses it. 
+
+2. Semantic Integrity Checks (Security)
+
+    - **Dhall**: Supports `dhall freeze`, which computes a SHA256 hash of the
+    imported content. This ensures that the imported file never changes
+    unexpectedly, making remote imports secure and reproducible.
+
+    - **YAML**: A `!include` from a URL can change, leading to "works on my
+    machine" issues or malicious code injection. 
+
+3. Programmable Composition
+
+    - **Dhall**: Imports are expressions, meaning you can import a function and
+    apply it to data, or import data and pass it into a function, allowing for
+    powerful code reuse (DRY).
+
+    - **YAML**: `!include` is a static "copy-paste." It cannot handle
+    conditional logic or transformations on the imported data. 
+
+4. No Unintended Side Effects 
+
+    - **Dhall**: It is not Turing-complete, ensuring that importing files will
+    never "hang" or crash the parser. It also restricts remote imports from
+    accessing local files or environment variables, enhancing security.
+
+    - **YAML**: Depending on the parser, `!include` might allow for arbitrary
+    YAML tags that could execute code. 
+
+5. Proper Handling of Import Path and Type Conflicts 
+
+    - **Dhall**: The type-checker handles complex imports properly. If two
+    different files import the same component, Dhall guarantees they are treated
+    as the same type.
+
+    - **YAML**: `!include` can lead to naming collisions in the final merged
+    YAML file, particularly with list merging or nested fields.
 
 ## Author and Maintainer Details
 
