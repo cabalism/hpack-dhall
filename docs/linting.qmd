@@ -1,7 +1,43 @@
-## Configuring Linting
+# Reuse
 
-By using imports and functions we can do more than just create a cabal file. We
-can configure extensions for linting:
+The simplest use of `dhall-hpack-cabal` is to injest one self-contained
+`package.dhall` file but by using imports and functions we can do more than just
+create a single output, the `.cabal` file.
+
+The trick with reuse is to break apart `package.dhall` into sections for reuse.
+This is a facility Cabal has with its [common][cabal-common] stanzas that can be
+imported by other common stanzas and by components in the package description
+`.cabal` file. Cabal's restricts what can be commonly shared to [build
+information][cabal-buildinfo]. That's a lot of fields but there are also a lot
+of fields that are excluded.
+
+[cabal-common]: https://cabal.readthedocs.io/en/latest/cabal-package-description-file.html#common-stanzas
+[cabal-buildinfo]: https://cabal.readthedocs.io/en/latest/cabal-package-description-file.html#build-information
+
+## Author and Maintainer Details
+
+If a single individual or company is authoring and maintaining a lot of packages
+then they might like to define their author and maintainers details once and
+import those. They might put all their source code under the same GitHub
+organisation and always use the same license but put each package in its own
+repository and be prepared for changing copyright years.
+
+```dhall
+\(copyright-years : Text) ->
+  \(repo : Text) ->
+      { author = "Thaddeus Blackwood"
+      , maintainer = "thad@black-wood.invalid"
+      , copyright = "© ${copyright-years} Thaddeus Blackwood"
+      , github = "thad-black-wood/${repo}"
+      , license = "MPL-2.0"
+      , license-file = "LICENSE.md"
+      , extra-source-files = [ "LICENSE.md" ]
+      }
+```
+
+## Default Extensions
+
+We can configure extensions for linting:
 
 ```dhall
 -- default-extensions.dhall
