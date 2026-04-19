@@ -6,7 +6,7 @@ filters:
   - include-code-files
 ---
 
-## Starting from a Cabal Package Description
+## Starting from Cabal
 
 If you already have a package description in `.cabal` format and still want to
 use `hpack-dhall`, you could either try to regenerate the `.cabal` file from a
@@ -17,6 +17,15 @@ the [Starting from Hpack](@start-from-hpack) instructions.
 [hpack-convert]: https://github.com/yamadapc/hpack-convert
 
 ## Starting from Hpack {#start-from-hpack}
+
+::: {.callout-caution}
+## No Package Type Definition
+
+There's no [Hpack schema][hpack-schema-issue] and we don't provide a type for
+`package.dhall`.
+
+[hpack-schema-issue]: https://github.com/sol/hpack/issues/521
+:::
 
 If you already have a `package.yaml` it should be pretty straightfoward to
 translate this to `package.dhall`. If your `package.yaml` is small, translation
@@ -82,7 +91,8 @@ package descriptions, such as Stack's:
 ```
 :::
 
-::: {.callout-warning}
+::: {.callout-caution}
+# Lexical Field Order
 If we reorder the fields of the inferred type and supply this as a SCHEMA to
 `yaml-to-dhall`, this has no effect on the resultant field order. Unfortunately,
 your desired field order must be imposed by hand after the conversion.
