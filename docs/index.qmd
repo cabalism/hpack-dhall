@@ -15,8 +15,8 @@ and its Cabal command extension companion `cabal-dpack` (callable as `cabal
 dpack`):
 
 - `dhall-hpack-cabal`: From one `package.dhall` generates one `<package-name>.cabal`.
-- `cabal-dpack`: same thing, but for any input found in the current directory or
-  any subdirectory.
+- `cabal-dpack`: same thing, but for any `package.dhall` in the current
+  directory or any subdirectory.
 
 ::: {.callout-tip collapse="true"}
 ## Other Exes
