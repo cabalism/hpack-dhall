@@ -16,6 +16,21 @@ the [Starting from Hpack](@start-from-hpack) instructions.
 
 [hpack-convert]: https://github.com/yamadapc/hpack-convert
 
+::: {.callout-caution collapse="true"}
+## hpack-convert Unmaintained?
+
+Published to Hackage, `hpack-convert` is a fork of [sol/hpack][sol-hpack].
+
+There are unmerged pull requests on
+[yamadapc/hpack-convert][hpack-convert-pulls], some of which mention getting it
+building again, and it has build failures with recent GHC versions. I tried with
+`ghc-8.2.2`, `ghc-8.4.4`, `ghc-8.10.7`, `ghc-9.2.8`, `ghc-9.4.8`, `ghc-9.6.7`,
+`ghc-9.8.4`, `ghc-9.10.3` and `ghc-9.12.4` but all failed to build the package.
+:::
+
+[sol-hpack]: https://github.com/sol/hpack
+[hpack-convert-pulls]: https://github.com/yamadapc/hpack-convert/pulls
+
 ## Starting from Hpack {#start-from-hpack}
 
 ::: {.callout-caution}
