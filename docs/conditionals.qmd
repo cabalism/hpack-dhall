@@ -1,3 +1,8 @@
+---
+filters:
+  - include-code-files
+---
+
 ## Conditional Restrictions
 
 In Dhall, elements of a list must all be of the same type.  There is no such
@@ -105,4 +110,10 @@ any of the conditions use. In this example, there are three fields and each is a
             ]
         }
     }
+```
+
+Another possibility is to just accept the automatic conversion of
+`yaml-to-dhall`. It takes another stance on encoding, using `Optional` values:
+
+```{.dhall filename=examples/stack/package-type.dhall include=../examples/stack/package-type.dhall start-line=6 end-line=20}
 ```
