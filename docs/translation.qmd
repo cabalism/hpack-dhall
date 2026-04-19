@@ -6,7 +6,17 @@ filters:
   - include-code-files
 ---
 
-## Starting from Hpack
+## Starting from a Cabal Package Description
+
+If you already have a package description in `.cabal` format and still want to
+use `hpack-dhall`, you could either try to regenerate the `.cabal` file from a
+`package.dhall` file you construct by hand or you could try using
+[hpack-convert][hpack-convert] to convert to a `package.yaml` and then follow
+the [Starting from Hpack](@start-from-hpack) instructions.
+
+[hpack-convert]: https://github.com/yamadapc/hpack-convert
+
+## Starting from Hpack {#start-from-hpack}
 
 If you already have a `package.yaml` it should be pretty straightfoward to
 translate this to `package.dhall`. If your `package.yaml` is small, translation
@@ -70,6 +80,12 @@ package descriptions, such as Stack's:
 # Stack's Inferred Package Type
 ```{.pre filename=examples/stack/package-type.dhall include=../examples/stack/package-type.dhall code-block-bg="none" code-line-numbers="false"}
 ```
+:::
+
+::: {.callout-warning}
+If we reorder the fields of the inferred type and supply this as a SCHEMA to
+`yaml-to-dhall`, this has no effect on the resultant field order. Unfortunately,
+your desired field order must be imposed by hand after the conversion.
 :::
 
 Without any configuration the fields will be sorted lexically but that will
