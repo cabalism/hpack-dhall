@@ -1,0 +1,23 @@
+The phraseology of configuration languages refers to the specific, often rigid,
+syntactic structures and conventions used to define system properties,
+separating data description from executable code. Modern configuration languages
+act as an interface between humans and computers, with a focus on
+being **declarative**, **typed**, and **hierarchical** (e.g., YAML, TOML, JSON).
+
+Key aspects of configuration language phraseology include:
+
+-   **Key-Value Pairs:** The fundamental building block, where properties are named and assigned values, often structured in key-value or named languages.
+-   **Declarative Syntax:** Languages that describe *what* the final configuration should be, rather than *how* to calculate it.
+-   **Ordered vs. Unordered:** Many languages are ordered (sequence matters), while others are unordered (sets of pairs).
+-   **Hierarchy and Nesting:** Hierarchical structures, often using indentation or braces, represent complex nested data.
+-   **Types:** Modern config languages use types (like strings, integers, lists) to enforce validity, often with schema validation.
+-   **Comments and Metadata:** Support for adding documentation explaining *why* a configuration exists, which is critical for system maintenance.
+-   **Composition and Reuse:** Techniques like anchors, aliases, and imports are used for reusability.
+
+**Levels of Configuration Languages:**
+
+1.  **Languages for String Data:** Basic key-value stores (e.g., `.env`).
+2.  **Languages for Typed Data:** Structured data with types (e.g., JSON, TOML).
+3.  **Programmable String-ish Languages:** Structured data with added functionality (e.g., YAML).
+4.  **Programmable Typed Data:** Typed data with powerful abstraction (e.g., Cue, Dhall, Pkl, Nickel).
+5.  **Internal DSLs in GPLs:** Using a general-purpose language to generate configuration (e.g., Python, Starlark).
