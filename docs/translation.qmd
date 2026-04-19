@@ -68,7 +68,7 @@ package descriptions, such as Stack's:
 
 ::: {.callout-note collapse="true"}
 # Stack's Inferred Package Type
-```{.pre filename=examples/stack/package-type-inferred.dhall include=../examples/stack/package-type-inferred.dhall code-block-bg="none" code-line-numbers="false"}
+```{.pre filename=examples/stack/package-type.dhall include=../examples/stack/package-type.dhall code-block-bg="none" code-line-numbers="false"}
 ```
 :::
 
