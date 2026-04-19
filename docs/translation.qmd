@@ -30,7 +30,7 @@ $ cabal install dhall-yaml --ignore-project
 This tool has quite a few options:
 
 ::: {.callout-note collapse="true"}
-# yaml-to-dhall Options 
+# yaml-to-dhall Options
 
 ```{.pre code-line-numbers="false"}
 $ yaml-to-dhall --help
