@@ -1,11 +1,22 @@
 ## Conditional Restrictions
 
-Using hpack's [conditionals](https://github.com/sol/hpack#conditionals) in
-a list in `package.dhall` can cause an error because lists in dhall must have
-elements of the same type:
+In Dhall, elements of a list must all be of the same type.  There is no such
+restriction when using Hpack's
+[conditionals](https://github.com/sol/hpack#conditionals) in a list.
 
-```yaml
-# package.yaml
+::: {.callout-tip collapse="false"}
+Type annotations in Dhall are not required for non-empty lists when the type of
+element can be inferred. Empty lists always require a type annotation.
+:::
+
+When translating a `package.yaml` to `package.dhall` we may have to add empty
+fields to ensure each list element has the same type.  For example, in the
+following snippet for the [stack executable][stack-snippet], each condition
+doesn't have every field. We find;
+
+[stack-snippet]: https://github.com/commercialhaskell/stack/blob/61f90817884c28be9c72ba93d4cbd652d988f1b0/package.yaml#L319-L344
+
+```{.yaml filename=package.yaml}
 executables:
   stack:
     main: Main.hs
@@ -19,24 +30,29 @@ executables:
     dependencies:
     - stack
     when:
-    - condition: flag(static)
-      ld-options:
-      - -static
-      - -pthread
-    - condition: ! '!(flag(disable-git-info))'
-      cpp-options: -DUSE_GIT_INFO
-      dependencies:
-      - githash
-      - optparse-simple
-    - condition: flag(hide-dependency-versions)
-      cpp-options: -DHIDE_DEP_VERSIONS
-    - condition: flag(supported-build)
-      cpp-options: -DSUPPORTED_BUILD
+    - condition: flag(static)                    # <1>
+      ld-options:                                # <1>
+      - -static                                  # <1>
+      - -pthread                                 # <1>
+    - condition: ! '!(flag(disable-git-info))'   # <2>
+      cpp-options: -DUSE_GIT_INFO                # <2>
+      dependencies:                              # <2>
+      - githash                                  # <2>
+      - optparse-simple                          # <2>
+    - condition: flag(hide-dependency-versions)  # <3>
+      cpp-options: -DHIDE_DEP_VERSIONS           # <3>
+    - condition: flag(supported-build)           # <3>
+      cpp-options: -DSUPPORTED_BUILD             # <3>
 ```
 
-This can be represented as:
-```dhall
--- package.dhall
+1. one condition with `ld-options`,
+2. one condition with `cpp-options` and `dependencies`,
+3. two conditions with `cpp-options`.
+
+To represent this in a `package.dhall` make sure each element has every field
+any of the conditions use. In this example, there are three fields and each is a `List Text`.
+
+```{.dhall filename=package.dhall}
 , executables =
     { stack =
         { main =
