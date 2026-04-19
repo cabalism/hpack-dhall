@@ -1,10 +1,20 @@
 # Introduction
 
-The two main executables of this package are `dhall-hpack-cabal` and its Cabal
-command extension companion `cabal-dpack`. From one `package.dhall` input, the
-former generates a single `<package-name>.cabal` output file. The Cabal command
-extension does this for any `package.dhall` input found in the current directory
-or any subdirectory.
+[Hpack][hpack-byline] is "a modern format for Haskell packages" and
+[Dhall][dhall-byline] "is a programmable configuration language that you can
+think of as: JSON + functions + types + imports".
+
+[hpack-byline]: https://github.com/sol/hpack#hpack-a-modern-format-for-haskell-packages
+[dhall-byline]: https://dhall-lang.org/
+
+`hpack-dhall` is the darling (Dhalling) of Haskell package definitions bringing
+functions, types and (better) imports to Hpack's phraselogy.
+
+The two main executables of the `hpack-dhall` package are `dhall-hpack-cabal`
+and its Cabal command extension companion `cabal-dpack`. From one
+`package.dhall` input, the former generates a single `<package-name>.cabal`
+output file. The Cabal command extension does this for any `package.dhall` input
+found in the current directory or any subdirectory.
 
 ::: {.callout-tip collapse="true"}
 ## Other Exes
