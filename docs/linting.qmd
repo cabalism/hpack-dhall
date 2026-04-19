@@ -59,7 +59,7 @@ import those. They might put all their source code under the same GitHub
 organisation and always use the same license but put each package in its own
 repository and be prepared for changing copyright years.
 
-```dhall
+```{.dhall filename=author.dhall}
 \(copyright-years : Text) ->
   \(repo : Text) ->
       { author = "Thaddeus Blackwood"
@@ -78,8 +78,7 @@ If the default extensions are in their own `default-extensions.dhall` file, then
 we can generate a `.yaml` file equivalent and use this for configuring the
 extensions that HLint turns on when linting.
 
-```dhall
--- default-extensions.dhall
+```{.dhall filename=default-extensions.dhall}
 { default-extensions =
     [ "DataKinds"
     , "DeriveFunctor"
@@ -94,8 +93,7 @@ We want to generate a `.yaml` file with an arguments list of extensions. The
 Dhall function to do this is but a few lines long. It prefixes each extension
 with "-X":
 
-```dhall
--- hlint.dhall
+```{.dhall filename=hlint.dhall}
 let Prelude/List/map =
           https://raw.githubusercontent.com/dhall-lang/Prelude/35deff0d41f2bf86c42089c6ca16665537f54d75/List/map
 
@@ -116,8 +114,7 @@ We generate an `.hlint.yaml` file (or you could create an
 `.hlint-extensions.yaml` file and import it) with `dhall-to-yaml < ./hlint.dhall
 > ./.hlint.yaml`.
 
-```yaml
-# .hlint.yaml
+```{.yaml filename=.hlint.yaml}
 arguments:
 - -XDataKinds
 - -XDeriveFunctor
@@ -128,8 +125,7 @@ arguments:
 
 We can pull those same `default-extensions` into a package description:
 
-```dhall
--- package.dhall
+```{.dhall filename=package.dhall}
 let defs = ./defaults.dhall
 
 in    defs
@@ -153,10 +149,8 @@ It doesn't really matter for this example what `defaults.dhall` contains except
 that it too has dependencies. If it has its own `default-extensions` then those
 are merged with `⫽`:
 
-```dhall
--- defaults.dhall
-{
-, default-extensions =
+```{.dhall filename=defaults.dhall}
+{ default-extensions =
     [ "PackageImports" ]
 , dependencies =
     [ "base >=4.10.1.0 && <5" ]
