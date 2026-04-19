@@ -9,6 +9,8 @@ website:
     contents:
       - href: index.qmd
         text: Introduction
+      - href: translation.qmd
+        text: Getting Started
       - href: cabal-commands.qmd
         text: Cabal Commands
       - href: conditionals.qmd

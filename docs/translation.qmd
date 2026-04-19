@@ -1,0 +1,87 @@
+---
+format:
+  html:
+    code-line-numbers: true
+filters:
+  - include-code-files
+---
+
+## Starting from Hpack
+
+If you already have a `package.yaml` it should be pretty straightfoward to
+translate this to `package.dhall`. If your `package.yaml` is small, translation
+by hand is not too onerous. There's also a tool for conversion, `yaml-to-dhall`,
+included in the `dhall-yaml` package. This can be installed with:
+
+```{.txt code-line-numbers="false"}
+$ cabal install dhall-yaml --ignore-project
+```
+
+This tool has quite a few options:
+
+```{.txt code-line-numbers="false"}
+$ yaml-to-dhall --help
+Usage: yaml-to-dhall [type | [SCHEMA] [--records-strict | --records-loose]
+                       [--no-keyval-arrays] [--no-keyval-maps]
+                       [--unions-first | --unions-none | --unions-strict]
+                       [--omissible-lists] [--file FILE] [--output FILE]
+                       [--ascii] [--plain] |
+                       (-V|--version)]
+
+  Convert a YAML expression to a Dhall expression, given the expected Dhall type
+
+Available options:
+  -h,--help                Show this help text
+  SCHEMA                   Dhall type expression (schema)
+  --records-strict         Fail if any JSON fields are missing from the expected
+                           Dhall type
+  --records-loose          Tolerate JSON fields not present within the expected
+                           Dhall type
+  --no-keyval-arrays       Disable conversion of key-value arrays to records
+  --no-keyval-maps         Disable conversion of homogeneous map objects to
+                           association lists
+  --unions-first           The first value with the matching type (successfully
+                           parsed all the way down the tree) is accepted, even
+                           if not the only possible match. (DEFAULT)
+  --unions-none            Unions not allowed
+  --unions-strict          Error if more than one union values match the type
+                           (and parse successfully)
+  --omissible-lists        Tolerate missing list values, they are assumed empty
+  --file FILE              Read YAML expression from a file instead of standard
+                           input
+  --output FILE            Write Dhall expression to a file instead of standard
+                           output
+  --ascii                  Format code using only ASCII syntax
+  --plain                  Disable syntax highlighting
+  -V,--version             Display version
+
+Available commands:
+  type                     Output the inferred Dhall type from a YAML value
+```
+
+It can do the conversion and supply the type it infers, even with quite large
+package descriptions, such as Stack's:
+
+::: {.callout-tip collapse="true"}
+# Stack's Inferred Package Type
+```{.dhall filename=examples/stack/package-type.dhall include=../examples/stack/package-type.dhall code-fold="true" code-summary="XXX"}
+```
+:::
+
+Without any configuration the fields will be sorted lexically but that will
+likely not be what you want:
+
+```{.dhall filename=examples/stack/package.dhall include=../examples/stack/package.dhall start-line=1 end-line=2}
+```
+
+```{.dhall include=../examples/stack/package.dhall start-line=71 end-line=85}
+```
+
+```{.dhall include=../examples/stack/package.dhall start-line=192 end-line=194}
+```
+
+```{.dhall include=../examples/stack/package.dhall start-line=368 end-line=372}
+```
+
+```{.dhall include=../examples/stack/package.dhall start-line=391 end-line=391}
+```
