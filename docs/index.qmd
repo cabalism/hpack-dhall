@@ -54,7 +54,7 @@ The three included Cabal external commands are; [cabal-dpack][cabal-dpack],
 [cabal-diy-pack]: cabal-commands.html#sec-diy
 :::
 
-# Installation
+## Installation
 
 All executables can be installed from the Hackage-published package with:
 
@@ -70,3 +70,49 @@ installed with:
 ```txt
 $ cabal install all:exes --overwrite-policy=always
 ```
+
+## Benefits
+
+A lot of the benefits are those of Hpack, like, for instance, expanding globs in
+`extra-source-files`.
+
+If you maintain multiple packages then you can share some of the package
+configuration between them by sharing a `.dhall` file.
+
+You can apply functions to alter the generated `.cabal` package description.
+
+## Drawbacks
+
+Drawbacks include those of Hpack compared to going with Cabal's Package
+Description `.cabal` files and typing problems related to having to fit together
+typed-Dhall with the untyped-YAML of Hpack.
+
+Hpack doesn't support some Cabal features, such as [common
+stanzas][common-stanzas-issue].  Where Hpack doesn't support a Cabal feature,
+there is the [`verbatim`][verbatim] escape route that allows use to write
+"whatever" into the generated `.cabal` file.
+
+[common-stanzas-issue]: https://github.com/sol/hpack/issues/569
+[verbatim]: https://github.com/sol/hpack#passing-things-to-cabal-verbatim
+
+Hpack has automatic module discovery. That's all good except when you want to
+exclude some modules in a folder from being discovered. In that case we either
+keep only modules we want discovered in the module tree or are forced to be more
+explicit about which modules are in and which are out, either by forgoing module
+discovery and being explicit with `exposed-modules` and `other-modules` or by
+hiding modules from discovery by putting them behind a false condition.
+
+```yaml
+library:
+  when:
+  - condition: false
+    other-modules: [modules to hide go here]
+```
+
+Hpack is pretty lenient with how dependencies can be supplied[^2]; as a list, an
+object or even where items are themselves objects with name and version. This
+won't fly with a Dhall encoding. Putting dependencies or any other configuration
+in a list requires each element to be of the same type.
+
+[^2]: Hpack's [dependencies section](https://github.com/sol/hpack#dependencies) show examples of each style, including an example that mixes styles.
+
