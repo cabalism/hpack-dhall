@@ -19,7 +19,10 @@ $ cabal install dhall-yaml --ignore-project
 
 This tool has quite a few options:
 
-```{.txt code-line-numbers="false"}
+::: {.callout-note collapse="true"}
+# yaml-to-dhall Options 
+
+```{.pre code-line-numbers="false"}
 $ yaml-to-dhall --help
 Usage: yaml-to-dhall [type | [SCHEMA] [--records-strict | --records-loose]
                        [--no-keyval-arrays] [--no-keyval-maps]
@@ -58,13 +61,14 @@ Available options:
 Available commands:
   type                     Output the inferred Dhall type from a YAML value
 ```
+:::
 
 It can do the conversion and supply the type it infers, even with quite large
 package descriptions, such as Stack's:
 
-::: {.callout-tip collapse="true"}
+::: {.callout-note collapse="true"}
 # Stack's Inferred Package Type
-```{.dhall filename=examples/stack/package-type.dhall include=../examples/stack/package-type.dhall code-fold="true" code-summary="XXX"}
+```{.pre filename=examples/stack/package-type-inferred.dhall include=../examples/stack/package-type-inferred.dhall code-block-bg="none" code-line-numbers="false"}
 ```
 :::
 
