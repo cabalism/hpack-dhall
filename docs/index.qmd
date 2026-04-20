@@ -74,10 +74,20 @@ $ cabal install all:exes --overwrite-policy=always
 ## Benefits
 
 A lot of the benefits are those of Hpack, like for instance, expanding globs in
-`extra-source-files`. There's no need of a separate formatter for the generated
+`extra-source-files`.
+
+You can apply functions to alter the generated `.cabal` package description.
+
+If you maintain multiple packages then you can share some of the package
+configuration between them by importing one or more common `.dhall` files.
+Imported `.dhall` files can be types, can be data or they can be functions we
+apply to arguments.
+
+There's no need of a separate formatter for the generated
 `.cabal` file.
 
 ::: {.callout-tip collapse="true"}
+
 ## Dhall has a Builtin Formatter.
 
 ```pre
@@ -94,15 +104,6 @@ Available options:
   -h,--help                Show this help text
 ```
 :::
-
-If you maintain multiple packages then you can share some of the package
-configuration between them by importing one or more common `.dhall` files.
-
-You can apply functions to alter the generated `.cabal` package description.
-
-Imported `.dhall` files can be data or they can be functions we apply to
-arguments.
-
 ## Drawbacks
 
 Drawbacks include those of Hpack compared to going with Cabal's Package
