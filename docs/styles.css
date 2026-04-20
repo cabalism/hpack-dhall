@@ -1,1 +1,9 @@
-/* css styles */
+#hpack-dhall {
+  font-family: "B612 Mono", monospace;
+  font-size: 1.3em;
+}
+
+#operator {
+  font-size: 1.4em;
+  color: #8F4E8B;
+}
