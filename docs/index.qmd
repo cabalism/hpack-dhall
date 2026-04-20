@@ -104,6 +104,7 @@ Available options:
   -h,--help                Show this help text
 ```
 :::
+
 ## Drawbacks
 
 Drawbacks include those of Hpack compared to going with Cabal's Package
@@ -139,3 +140,15 @@ in a list requires each element to be of the same type.
 
 [^2]: Hpack's [dependencies section](https://github.com/sol/hpack#dependencies) show examples of each style, including an example that mixes styles.
 
+
+## Alternatives
+
+There is another Haskell packaging solution using Dhall,
+[`dhall-to-cabal`][dhall-to-cabal], started by Ollie Charles and [moved to the
+dhall-lang][moved-issue] organisation in Feb 2018. This takes a more
+strongly-typed stance than hpack-dhall. Since late 2019, Ollie doesn't use the
+project any more and has [stepped away][stepped-away] from maintainership.
+
+[dhall-to-cabal]: https://github.com/dhall-lang/dhall-to-cabal
+[moved-issue]: https://github.com/dhall-lang/dhall-to-cabal/issues/4
+[stepped-away]: https://github.com/dhall-lang/dhall-to-cabal/issues/180
