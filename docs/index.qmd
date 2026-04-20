@@ -161,21 +161,63 @@ dhall-lang][moved-issue] organisation in Feb 2018. This takes a more
 strongly-typed stance than hpack-dhall. Since late 2019, Ollie doesn't use the
 project any more and has [stepped away][stepped-away] from maintainership.
 
+::: {.callout-caution collapse="true"}
+# cabal-to-dhall Conversion
 The `dhall-to-cabal` package includes the `cabal-to-dhall` executable. This is
 able to convert quite complex `.cabal` files, such as Stack's own `stack.cabal`,
 to `.dhall` with a type but the result is very verbose.  There's no one that
-would want to type these 94,028 lines by hand! Perhaps it could be done much
-more tersely, by using less qualified names and formatting fields more
-horizontally. Perhaps `dhall-to-cabal` needs its own Hpack-like tool for humans
-to ergonomically interact with that in turn writes `.dhall` with a
-`dhall-to-cabal` type?
+would want to type these 94,028 lines by hand!
+
+```{.pre filename=examples/stack/cabal-to-dhall.dhall include=../examples/stack/cabal-to-dhall.dhall start-line=1 end-line=13 code-line-numbers="true"}
+```
+
+```{.pre include=../examples/stack/cabal-to-dhall.dhall start-line=94007 end-line=94029 code-line-numbers="true" code-overflow="scroll"}
+```
+:::
 
 [dhall-to-cabal]: https://github.com/dhall-lang/dhall-to-cabal
 [moved-issue]: https://github.com/dhall-lang/dhall-to-cabal/issues/4
 [stepped-away]: https://github.com/dhall-lang/dhall-to-cabal/issues/180
 
-```{.dhall filename=examples/stack/cabal-to-dhall.dhall include=../examples/stack/cabal-to-dhall.dhall start-line=1 end-line=13 code-line-numbers="true"}
+Describing a package with `dhall-to-cabal` can be done tersely[^3], by using
+fewer qualified names, formatting fields more horizontally (but this means
+avoiding `dhall format`) and using less verbose version specifications, such as
+seen in this diff between the `cabal-to-dhall` generated dependency on base and
+a hand-written equivalent:
+
+```diff
+- { bounds =
+-       prelude.intersectVersionRanges
+-       ( prelude.unionVersionRanges
+-       ( prelude.thisVersion
+-           ( prelude.v
+-           "4.14.3.0"
+-           )
+-       )
+-       ( prelude.laterVersion
+-           ( prelude.v
+-           "4.14.3.0"
+-           )
+-       )
+-       )
+-       ( prelude.earlierVersion
+-       ( prelude.v
+-           "5"
+-       )
+-       )
+-   , package =
+-       "base"
+- }
++ package
++   "base"
++   ( intersectVersionRanges
++       (orLaterVersion (v "4.14.3"))
++       (earlierVersion (v "5"))
++   )
 ```
 
-```{.dhall include=../examples/stack/cabal-to-dhall.dhall start-line=94007 end-line=94029 code-line-numbers="true" code-overflow="scroll"}
-```
+Perhaps `dhall-to-cabal` needs its own Hpack-like tool for humans to
+ergonomically interact with that in turn writes `.dhall` with a `dhall-to-cabal`
+type?
+
+[^3]: Its own package, `dhall-to-cabal.dhall`, is fairly terse.
