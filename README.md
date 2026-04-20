@@ -1,4 +1,4 @@
-# `hpack-dhall`
+![hpack-dhall logo](logo.png)
 
 Use hpack's phrasing in dhall to write cabal files.
 

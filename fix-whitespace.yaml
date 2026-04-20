@@ -7,9 +7,11 @@ excluded-dirs:
 
 excluded-files:
   - "examples/stack/cabal-to-dhall.dhall"
+  - "examples/stack/dhall-to-cabal.dhall"
 
 included-files:
   - "**/*.cabal"
+  - "**/*.css"
   - "**/*.dhall"
   - "**/*.hs"
   - "**/*.json"
