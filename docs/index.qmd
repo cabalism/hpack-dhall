@@ -124,6 +124,48 @@ Drawbacks include those of Hpack compared to going with Cabal's Package
 Description `.cabal` files and typing problems related to having to fit together
 typed-Dhall with the untyped-YAML of Hpack.
 
+We use the phraseology of Hpack. This is YAML, a string-ish language with its
+keys and simple or nested values and its many syntactic forms for the same data.
+Cabal too has various syntactic forms representing the same data.
+
+::: {.callout-note collapse="true"}
+## Syntactic Variations
+
+Cabal's field list values can be space separated, comma separated, nested or not
+or they may use set syntax:
+
+```text
+field: a b
+field:
+    a
+  , b
+field: {a, b}
+```
+
+YAML's field lists can be inline or nested:
+
+```text
+field: [a, b]
+field:
+  - a
+  - b
+```
+:::
+
+The problem with going with a different phraselogy than Cabal's is that you'll
+often need to consult the Hpack docs to see which field name to use because
+they're sometimes different than Cabal's field names:
+
+```diff
+- build-depends
++ dependencies
+```
+
+You're on your own working out which type to use in Dhall but that gives some
+freedom to choose. Hpack's types are most often strings or lists of strings and
+all that really matters is that when internally the Dhall is converted to JSON
+and feed to Hpack, the library, is that Hpack can interpret those values.
+
 Hpack doesn't support Cabal's [common stanzas][common-stanzas-issue].  Where
 Hpack doesn't support a Cabal feature, there is the [`verbatim`][verbatim]
 escape route that allows use to write "whatever" into the generated `.cabal`
