@@ -6,7 +6,24 @@ filters:
   - include-code-files
 ---
 
-## Starting from Cabal
+## Starting from Scratch
+
+If you don't yet have a package, these can be created with `cabal init` or
+`stack new`, picking one of the [Stack templates][stack-templates].
+
+[cabal-init]: https://cabal.readthedocs.io/en/latest/cabal-commands.html#cabal-init
+[stack-templates]: https://docs.haskellstack.org/en/stable/commands/templates_command/
+
+The `package.yaml` file, `.cabal` file or both that these methods write can then
+be used as the starting point for a translation to `package.dhall`, following
+either the [starting from Cabal](@start-from-cabal) or [starting from
+Hpack](@start-from-hpack) instructions.
+
+Another option is picking someone else's package, with a `.cabal`,
+`package.yaml` or possibly even a `package.dhall` and modifying it for your
+purposes.
+
+## Starting from Cabal {#start-from-cabal}
 
 If you already have a package description in `.cabal` format and still want to
 use `hpack-dhall`, you could either try to regenerate the `.cabal` file from a
