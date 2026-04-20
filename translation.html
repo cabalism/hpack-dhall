@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>translation – &lt;span id="hpack-dhall"&gt;hpack&lt;span id="operator"&gt;⩓&lt;/span&gt;dhall&lt;/span&gt;</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7c69b197886ae2a34062761d21e44731.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-342b74ab62b95b6979dcab4b23b34b81.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./translation.html">Getting Started</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./"><span id="hpack-dhall">hpack<span id="operator">⩓</span>dhall</span></a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./translation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Getting Started</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cabal-commands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cabal Commands</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conditionals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gotchas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./linting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Programming and Reuse</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#starting-from-scratch" id="toc-starting-from-scratch" class="nav-link active" data-scroll-target="#starting-from-scratch">Starting from Scratch</a></li>
+  <li><a href="#start-from-cabal" id="toc-start-from-cabal" class="nav-link" data-scroll-target="#start-from-cabal">Starting from Cabal</a></li>
+  <li><a href="#start-from-hpack" id="toc-start-from-hpack" class="nav-link" data-scroll-target="#start-from-hpack">Starting from Hpack</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="starting-from-scratch" class="level2">
+<h2 class="anchored" data-anchor-id="starting-from-scratch">Starting from Scratch</h2>
+<p>If you don’t yet have a package, these can be created with <a href="https://cabal.readthedocs.io/en/latest/cabal-commands.html#cabal-init"><code>cabal init</code></a> or <a href="https://docs.haskellstack.org/en/stable/commands/new_command/"><code>stack new</code></a> with arguments “project-name” or “project-name” and “template-name”, picking one of the <a href="https://docs.haskellstack.org/en/stable/commands/templates_command/">Stack templates</a> such as “simple-hpack”.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Project-Name and Package-Name with Stack
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>When the template used with <code>stack new</code> or the default template creates a single package project, the name of the project folder and the name of the package are the same. The default project file with Stack is <code>stack.yaml</code>.</p>
+</div>
+</div>
+</div>
+<p>The <code>package.yaml</code> file, <code>.cabal</code> file or both that these methods write can then be used as the starting point for a translation to <code>package.dhall</code>, following either the <a href="@start-from-cabal">starting from Cabal</a> or <a href="@start-from-hpack">starting from Hpack</a> instructions.</p>
+<p>Another option is picking someone else’s package, with a <code>.cabal</code>, <code>package.yaml</code> or possibly even a <code>package.dhall</code> and modifying it for your purposes.</p>
+</section>
+<section id="start-from-cabal" class="level2">
+<h2 class="anchored" data-anchor-id="start-from-cabal">Starting from Cabal</h2>
+<p>If you already have a package description in <code>.cabal</code> format and still want to use <code>hpack-dhall</code>, you could either try to regenerate the <code>.cabal</code> file from a <code>package.dhall</code> file you construct by hand or you could try using <a href="https://github.com/yamadapc/hpack-convert">hpack-convert</a> to convert to a <code>package.yaml</code> and then follow the <a href="@start-from-hpack">Starting from Hpack</a> instructions.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>hpack-convert is Unmaintained
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Last published to Hackage in 2017, <code>hpack-convert</code> is a fork of <a href="https://github.com/sol/hpack">sol/hpack</a>. There are unmerged pull requests on <a href="https://github.com/yamadapc/hpack-convert/pulls">yamadapc/hpack-convert</a>, some of which mention getting it building again, and it doesn’t build with GHC versions, <code>8.2.* .. 9.14.*</code>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="start-from-hpack" class="level2">
+<h2 class="anchored" data-anchor-id="start-from-hpack">Starting from Hpack</h2>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>No Package Type Definition
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There’s no <a href="https://github.com/sol/hpack/issues/521">Hpack schema</a> and we don’t provide a type for <code>package.dhall</code>.</p>
+</div>
+</div>
+<p>If you already have a <code>package.yaml</code> it should be pretty straightfoward to translate this to <code>package.dhall</code>. If your <code>package.yaml</code> is small, translation by hand is not too onerous. There’s also a tool for conversion, <code>yaml-to-dhall</code>, included in the <code>dhall-yaml</code> package. This can be installed with:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode txt code-with-copy"><code class="sourceCode default"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>$ cabal install dhall-yaml --ignore-project</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This tool has quite a few options:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>yaml-to-dhall Options
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<pre class="pre"><code>$ yaml-to-dhall --help
+Usage: yaml-to-dhall [type | [SCHEMA] [--records-strict | --records-loose]
+                       [--no-keyval-arrays] [--no-keyval-maps]
+                       [--unions-first | --unions-none | --unions-strict]
+                       [--omissible-lists] [--file FILE] [--output FILE]
+                       [--ascii] [--plain] |
+                       (-V|--version)]
+
+  Convert a YAML expression to a Dhall expression, given the expected Dhall type
+
+Available options:
+  -h,--help                Show this help text
+  SCHEMA                   Dhall type expression (schema)
+  --records-strict         Fail if any JSON fields are missing from the expected
+                           Dhall type
+  --records-loose          Tolerate JSON fields not present within the expected
+                           Dhall type
+  --no-keyval-arrays       Disable conversion of key-value arrays to records
+  --no-keyval-maps         Disable conversion of homogeneous map objects to
+                           association lists
+  --unions-first           The first value with the matching type (successfully
+                           parsed all the way down the tree) is accepted, even
+                           if not the only possible match. (DEFAULT)
+  --unions-none            Unions not allowed
+  --unions-strict          Error if more than one union values match the type
+                           (and parse successfully)
+  --omissible-lists        Tolerate missing list values, they are assumed empty
+  --file FILE              Read YAML expression from a file instead of standard
+                           input
+  --output FILE            Write Dhall expression to a file instead of standard
+                           output
+  --ascii                  Format code using only ASCII syntax
+  --plain                  Disable syntax highlighting
+  -V,--version             Display version
+
+Available commands:
+  type                     Output the inferred Dhall type from a YAML value</code></pre>
+</div>
+</div>
+</div>
+<p>It can do the conversion and supply the type it infers, even with quite large package descriptions, such as Stack’s:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Stack’s Inferred Package Type
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>examples/stack/package-type.dhall</strong></pre>
+</div>
+<pre class="pre" data-filename="examples/stack/package-type.dhall" data-code-block-bg="none"><code>{ author : Text
+, category : Text
+, custom-setup : { dependencies : List Text }
+, dependencies : List Text
+, description : Text
+, executables :
+    { stack :
+        { dependencies : List Text
+        , generated-other-modules : List Text
+        , ghc-options : List Text
+        , main : Text
+        , source-dirs : Text
+        , when :
+            List
+              { condition : Text
+              , cpp-options : Optional Text
+              , dependencies : Optional (List Text)
+              , ld-options : Optional (List Text)
+              }
+        }
+    , stack-integration-test :
+        { dependencies : List Text
+        , ghc-options : List Text
+        , main : Text
+        , source-dirs : List Text
+        , when :
+            List
+              { buildable : Optional Bool
+              , condition : Text
+              , ld-options : Optional (List Text)
+              }
+        }
+    }
+, extra-source-files : List Text
+, flags :
+    { developer-mode : { default : Bool, description : Text, manual : Bool }
+    , disable-git-info : { default : Bool, description : Text, manual : Bool }
+    , hide-dependency-versions :
+        { default : Bool, description : Text, manual : Bool }
+    , integration-tests : { default : Bool, description : Text, manual : Bool }
+    , static : { default : Bool, description : Text, manual : Bool }
+    , supported-build : { default : Bool, description : Text, manual : Bool }
+    }
+, ghc-options : List Text
+, github : Text
+, homepage : Text
+, language : Text
+, library :
+    { exposed-modules : List Text
+    , generated-exposed-modules : List Text
+    , ghc-options : List Text
+    , source-dirs : Text
+    , when :
+        List
+          { condition : Text
+          , `else` : { c-sources : Text, source-dirs : Text }
+          , `then` : { source-dirs : Text }
+          }
+    }
+, license : Text
+, maintainer : Text
+, name : Text
+, spec-version : Text
+, synopsis : Text
+, tests :
+    { stack-test :
+        { dependencies : List Text
+        , ghc-options : List Text
+        , main : Text
+        , source-dirs : Text
+        , verbatim : Text
+        , when :
+            List
+              { condition : Text
+              , `else` : { source-dirs : Text }
+              , `then` : { source-dirs : Text }
+              }
+        }
+    }
+, version : Text
+, when :
+    List
+      { condition : Text
+      , dependencies : Optional Text
+      , `else` :
+          Optional
+            { cpp-options : Optional Text
+            , dependencies : Optional (List Text)
+            , verbatim : Optional Text
+            }
+      , `then` :
+          Optional { cpp-options : Text, dependencies : Optional (List Text) }
+      }
+}
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Lexical Field Order
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If we reorder the fields of the inferred type and supply this as a SCHEMA to <code>yaml-to-dhall</code>, this has no effect on the resultant field order. Unfortunately, your desired field order must be imposed by hand after the conversion.</p>
+</div>
+</div>
+<p>Without any configuration the fields will be sorted lexically but that will likely not be what you want:</p>
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>examples/stack/package.dhall</strong></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-filename="examples/stack/package.dhall" data-startfrom="1"><pre class="sourceCode numberSource dhall number-lines code-with-copy"><code class="sourceCode dhall"><span id="cb4-1"><a href="#cb4-1"></a><span class="op">{</span> author = <span class="st">"Commercial Haskell SIG"</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>, category = <span class="st">"Development"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-startfrom="71"><pre class="sourceCode numberSource dhall number-lines code-with-copy"><code class="sourceCode dhall" style="counter-reset: source-line 70;"><span id="cb5-71"><a href="#cb5-71"></a>, description =</span>
+<span id="cb5-72"><a href="#cb5-72"></a>    <span class="st">''</span></span>
+<span id="cb5-73"><a href="#cb5-73"></a><span class="st">    Please see the documentation at &lt;https://docs.haskellstack.org&gt;</span></span>
+<span id="cb5-74"><a href="#cb5-74"></a><span class="st">    for usage information.</span></span>
+<span id="cb5-75"><a href="#cb5-75"></a><span class="st">    .</span></span>
+<span id="cb5-76"><a href="#cb5-76"></a><span class="st">    If building a 'stack' executable for distribution, please download the</span></span>
+<span id="cb5-77"><a href="#cb5-77"></a><span class="st">    source code from &lt;https://github.com/commercialhaskell/stack/releases&gt;</span></span>
+<span id="cb5-78"><a href="#cb5-78"></a><span class="st">    and build it using Stack itself in order to ensure identical behaviour</span></span>
+<span id="cb5-79"><a href="#cb5-79"></a><span class="st">    to official binaries. This package on Hackage is provided for convenience</span></span>
+<span id="cb5-80"><a href="#cb5-80"></a><span class="st">    and bootstrapping purposes.</span></span>
+<span id="cb5-81"><a href="#cb5-81"></a><span class="st">    .</span></span>
+<span id="cb5-82"><a href="#cb5-82"></a><span class="st">    Note that the API for the library is not currently stable, and may</span></span>
+<span id="cb5-83"><a href="#cb5-83"></a><span class="st">    change significantly, even between minor releases. It is</span></span>
+<span id="cb5-84"><a href="#cb5-84"></a><span class="st">    currently only intended for use by the executable.</span></span>
+<span id="cb5-85"><a href="#cb5-85"></a><span class="st">    ''</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-startfrom="192"><pre class="sourceCode numberSource dhall number-lines code-with-copy"><code class="sourceCode dhall" style="counter-reset: source-line 191;"><span id="cb6-192"><a href="#cb6-192"></a>, github = <span class="st">"commercialhaskell/stack"</span></span>
+<span id="cb6-193"><a href="#cb6-193"></a>, homepage = <span class="st">"http://haskellstack.org"</span></span>
+<span id="cb6-194"><a href="#cb6-194"></a>, language = <span class="st">"GHC2021"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-startfrom="368"><pre class="sourceCode numberSource dhall number-lines code-with-copy"><code class="sourceCode dhall" style="counter-reset: source-line 367;"><span id="cb7-368"><a href="#cb7-368"></a>, license = <span class="st">"BSD3"</span></span>
+<span id="cb7-369"><a href="#cb7-369"></a>, maintainer = <span class="st">"manny@fpcomplete.com"</span></span>
+<span id="cb7-370"><a href="#cb7-370"></a>, name = <span class="st">"stack"</span></span>
+<span id="cb7-371"><a href="#cb7-371"></a>, spec-version = <span class="st">"0.35.0"</span></span>
+<span id="cb7-372"><a href="#cb7-372"></a>, synopsis = <span class="st">"The Haskell Tool Stack"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" data-startfrom="391"><pre class="sourceCode numberSource dhall number-lines code-with-copy"><code class="sourceCode dhall" style="counter-reset: source-line 390;"><span id="cb8-391"><a href="#cb8-391"></a>, version = <span class="st">"2.12.0"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
