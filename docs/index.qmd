@@ -12,7 +12,7 @@ include-in-header:
 
 # Introduction
 
-`hpack-dhall` brings functions, types and file imports to Haskell packaging.  It
+Hpack-Dhall brings functions, types and file imports to Haskell packaging.  It
 is Hpack with Dhall.
 
 [Hpack][hpack-byline] is "a modern format for Haskell packages" and
@@ -22,9 +22,12 @@ think of as: JSON + functions + types + imports".
 [hpack-byline]: https://github.com/sol/hpack#hpack-a-modern-format-for-haskell-packages
 [dhall-byline]: https://dhall-lang.org/
 
-The two main executables of the `hpack-dhall` package are `dhall-hpack-cabal`
-and its Cabal command extension companion `cabal-dpack` (callable as `cabal
-dpack`):
+The purpose of Hpack-Dhall's executables is to generate one or more
+`package-name.cabal` files from `package.dhall` input files. Hopefully this is
+both easier and less prone to errors and omissions than writing the `.cabal`
+files by hand.  The two main executables of the `hpack-dhall` package are
+`dhall-hpack-cabal` and its Cabal command extension companion `cabal-dpack`
+(callable as `cabal dpack`):
 
 - `dhall-hpack-cabal`: From one `package.dhall` generates one `<package-name>.cabal`.
 - `cabal-dpack`: same thing, but for any `package.dhall` in the current
