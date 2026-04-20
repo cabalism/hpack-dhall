@@ -162,9 +162,9 @@ they're sometimes different than Cabal's field names:
 ```
 
 You're on your own working out which type to use in Dhall but that gives some
-freedom to choose. Hpack's types are most often strings or lists of strings and
-all that really matters is that when internally the Dhall is converted to JSON
-and feed to Hpack, the library, is that Hpack can interpret those values.
+freedom to choose. Hpack's types are often strings or lists of strings and all
+that really matters is that when the Dhall is converted to JSON and feed to
+Hpack is that it can interpret those values and write the `.cabal` file.
 
 Hpack doesn't support Cabal's [common stanzas][common-stanzas-issue].  Where
 Hpack doesn't support a Cabal feature, there is the [`verbatim`][verbatim]
