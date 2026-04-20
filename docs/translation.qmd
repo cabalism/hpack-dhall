@@ -8,11 +8,23 @@ filters:
 
 ## Starting from Scratch
 
-If you don't yet have a package, these can be created with `cabal init` or
-`stack new`, picking one of the [Stack templates][stack-templates].
+If you don't yet have a package, these can be created with [`cabal
+init`][cabal-init] or `stack new project-name` or `stack new project-name
+template-name`, picking one of the [Stack templates][stack-templates] such as
+"simple-hpack".
 
 [cabal-init]: https://cabal.readthedocs.io/en/latest/cabal-commands.html#cabal-init
 [stack-templates]: https://docs.haskellstack.org/en/stable/commands/templates_command/
+
+::: {.callout-tip collapse="true"}
+## Project-Name and Package-Name with Stack
+
+When the template used with `stack new` or the default template creates a single
+package project, the name of the project and the name of the package are the
+same. For a complex project, the folder created will have the project name. The
+name of the packages created will depend on the template. The default project
+file with Stack is `stack.yaml`.
+:::
 
 The `package.yaml` file, `.cabal` file or both that these methods write can then
 be used as the starting point for a translation to `package.dhall`, following
