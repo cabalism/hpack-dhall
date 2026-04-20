@@ -17,8 +17,6 @@ website:
         text: Gotchas
       - href: linting.qmd
         text: Programming and Reuse
-      - href: phraseology.qmd
-        text: Phraseology
 
 format:
   html:
