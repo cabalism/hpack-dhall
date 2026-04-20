@@ -138,6 +138,9 @@ $(KY)/%/package.yaml:
 $(RW)/%.yaml:
 	dhall-hpack-yaml --package-dhall=$(@:.yaml=.dhall) > $@
 
+examples/stack/cabal-to-dhall.dhall: examples/stack/stack.cabal
+	cabal-to-dhall $< > $@
+
 examples/stack/package.dhall: examples/stack/package.yaml
 	yaml-to-dhall --file=$< --output=$@
 
@@ -147,4 +150,5 @@ examples/stack/package-type.dhall: examples/stack/package.yaml
 .PHONY: examples
 examples: \
   examples/stack/package.dhall \
-  examples/stack/package-type.dhall
+  examples/stack/package-type.dhall \
+  examples/stack/cabal-to-dhall.dhall

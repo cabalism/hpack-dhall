@@ -2,8 +2,6 @@
 format:
   html:
     code-line-numbers: true
-filters:
-  - include-code-files
 ---
 
 ## Starting from Scratch
