@@ -1,8 +1,3 @@
----
-filters:
-  - include-code-files
----
-
 ## Conditional Restrictions
 
 In Dhall, elements of a list must all be of the same type.  There is no such

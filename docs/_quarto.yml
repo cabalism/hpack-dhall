@@ -29,3 +29,6 @@ format:
     toc: true
     syntax-definitions:
       - dhall.xml
+
+filters:
+  - include-code-files

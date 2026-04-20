@@ -1,3 +1,15 @@
+---
+include-in-header:
+  text: |
+    <style>
+    code > span a {
+        display: inline-block;
+        width: 5em;
+        text-align: right;
+    }
+    </style>
+---
+
 # Introduction
 
 `hpack-dhall` brings functions, types and file imports to Haskell packaging.  It
@@ -74,7 +86,8 @@ $ cabal install all:exes --overwrite-policy=always
 ## Benefits
 
 A lot of the benefits are those of Hpack, like for instance, expanding globs in
-`extra-source-files`.
+`extra-source-files`. It is ergonomic for the lazy typist, relying on `hpack` to
+fill in details.
 
 You can apply functions to alter the generated `.cabal` package description.
 
@@ -140,7 +153,6 @@ in a list requires each element to be of the same type.
 
 [^2]: Hpack's [dependencies section](https://github.com/sol/hpack#dependencies) show examples of each style, including an example that mixes styles.
 
-
 ## Alternatives
 
 There is another Haskell packaging solution using Dhall,
@@ -149,6 +161,21 @@ dhall-lang][moved-issue] organisation in Feb 2018. This takes a more
 strongly-typed stance than hpack-dhall. Since late 2019, Ollie doesn't use the
 project any more and has [stepped away][stepped-away] from maintainership.
 
+The `dhall-to-cabal` package includes the `cabal-to-dhall` executable. This is
+able to convert quite complex `.cabal` files, such as Stack's own `stack.cabal`,
+to `.dhall` with a type but the result is very verbose.  There's no one that
+would want to type these 94,028 lines by hand! Perhaps it could be done much
+more tersely, by using less qualified names and formatting fields more
+horizontally. Perhaps `dhall-to-cabal` needs its own Hpack-like tool for humans
+to ergonomically interact with that in turn writes `.dhall` with a
+`dhall-to-cabal` type?
+
 [dhall-to-cabal]: https://github.com/dhall-lang/dhall-to-cabal
 [moved-issue]: https://github.com/dhall-lang/dhall-to-cabal/issues/4
 [stepped-away]: https://github.com/dhall-lang/dhall-to-cabal/issues/180
+
+```{.dhall filename=examples/stack/cabal-to-dhall.dhall include=../examples/stack/cabal-to-dhall.dhall start-line=1 end-line=13 code-line-numbers="true"}
+```
+
+```{.dhall include=../examples/stack/cabal-to-dhall.dhall start-line=94007 end-line=94029 code-line-numbers="true" code-overflow="scroll"}
+```
