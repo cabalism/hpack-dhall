@@ -5,6 +5,9 @@ excluded-dirs:
   - "docs/.quarto"
   - "docs/_site"
 
+excluded-files:
+  - "examples/stack/cabal-to-dhall.dhall"
+
 included-files:
   - "**/*.cabal"
   - "**/*.dhall"

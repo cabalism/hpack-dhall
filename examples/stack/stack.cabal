@@ -1,0 +1,750 @@
+cabal-version: 2.0
+
+-- This file has been generated from package.yaml by hpack version 0.35.2.
+--
+-- see: https://github.com/sol/hpack
+
+name:           stack
+version:        2.12.0
+synopsis:       The Haskell Tool Stack
+description:    Please see the documentation at <https://docs.haskellstack.org>
+                for usage information.
+                .
+                If building a 'stack' executable for distribution, please download the
+                source code from <https://github.com/commercialhaskell/stack/releases>
+                and build it using Stack itself in order to ensure identical behaviour
+                to official binaries. This package on Hackage is provided for convenience
+                and bootstrapping purposes.
+                .
+                Note that the API for the library is not currently stable, and may
+                change significantly, even between minor releases. It is
+                currently only intended for use by the executable.
+category:       Development
+homepage:       http://haskellstack.org
+bug-reports:    https://github.com/commercialhaskell/stack/issues
+author:         Commercial Haskell SIG
+maintainer:     manny@fpcomplete.com
+license:        BSD3
+license-file:   LICENSE
+build-type:     Custom
+extra-source-files:
+    CONTRIBUTING.md
+    ChangeLog.md
+    README.md
+    stack.yaml
+    doc/azure_ci.md
+    doc/build_command.md
+    doc/build_overview.md
+    doc/ChangeLog.md
+    doc/CI.md
+    doc/clean_command.md
+    doc/config_command.md
+    doc/CONTRIBUTING.md
+    doc/coverage.md
+    doc/custom_snapshot.md
+    doc/debugging.md
+    doc/dependency_visualization.md
+    doc/developing_on_windows.md
+    doc/docker_command.md
+    doc/docker_integration.md
+    doc/dot_command.md
+    doc/editor_integration.md
+    doc/environment_variables.md
+    doc/eval_command.md
+    doc/exec_command.md
+    doc/faq.md
+    doc/ghc_command.md
+    doc/ghci.md
+    doc/global_flags.md
+    doc/glossary.md
+    doc/GUIDE.md
+    doc/GUIDE_advanced.md
+    doc/hoogle_command.md
+    doc/hpc_command.md
+    doc/ide_command.md
+    doc/init_command.md
+    doc/install_and_upgrade.md
+    doc/list_command.md
+    doc/lock_files.md
+    doc/ls_command.md
+    doc/new_command.md
+    doc/nix_integration.md
+    doc/nonstandard_project_init.md
+    doc/other_resources.md
+    doc/pantry.md
+    doc/path_command.md
+    doc/purge_command.md
+    doc/query_command.md
+    doc/README.md
+    doc/run_command.md
+    doc/runghc_command.md
+    doc/script_command.md
+    doc/scripts.md
+    doc/sdist_command.md
+    doc/setup_command.md
+    doc/shell_autocompletion.md
+    doc/SIGNING_KEY.md
+    doc/Stack_and_VS_Code.md
+    doc/stack_root.md
+    doc/stack_yaml_vs_cabal_package_file.md
+    doc/templates_command.md
+    doc/travis_ci.md
+    doc/uninstall_command.md
+    doc/unpack_command.md
+    doc/update_command.md
+    doc/upgrade_command.md
+    doc/upload_command.md
+    doc/yaml_configuration.md
+    src/setup-shim/StackSetupShim.hs
+    test/package-dump/ghc-7.10.txt
+    test/package-dump/ghc-7.8.4-osx.txt
+    test/package-dump/ghc-7.8.txt
+    test/package-dump/ghc-head.txt
+    src/test/Stack/Untar/test1.tar.gz
+    src/test/Stack/Untar/test2.tar.gz
+    cabal.project
+    cabal.config
+
+source-repository head
+  type: git
+  location: https://github.com/commercialhaskell/stack
+
+custom-setup
+  setup-depends:
+      Cabal <3.12
+    , base >=4.14.3.0 && <5
+    , filepath
+
+flag developer-mode
+  description: By default, output extra developer information.
+  manual: True
+  default: False
+
+flag disable-git-info
+  description: Disable inclusion of current Git information in the Stack executable when it is built.
+  manual: True
+  default: False
+
+flag hide-dependency-versions
+  description: Hides dependency versions from 'stack --version'. Used only when building a Stack executable for official release. Note to packagers/distributors: DO NOT OVERRIDE THIS FLAG IF YOU ARE BUILDING STACK ANY OTHER WAY (e.g. using Cabal or from Hackage), as it makes debugging support requests more difficult.
+  manual: True
+  default: False
+
+flag integration-tests
+  description: Run the integration test suite.
+  manual: True
+  default: False
+
+flag static
+  description: When building the Stack executable, or the stack-integration-test executable, pass the -static and -pthread flags to the linker used by GHC.
+  manual: True
+  default: False
+
+flag supported-build
+  description: If false, causes 'stack --version' to issue a warning about the build being unsupported. Used only when building a Stack executable for official release. Note to packagers/distributors: DO NOT OVERRIDE THIS FLAG IF YOU ARE BUILDING STACK ANY OTHER WAY (e.g. using Cabal or from Hackage), as it makes debugging support requests more difficult.
+  manual: True
+  default: False
+
+library
+  exposed-modules:
+      Control.Concurrent.Execute
+      Data.Attoparsec.Args
+      Data.Attoparsec.Combinators
+      Data.Attoparsec.Interpreter
+      Data.Monoid.Map
+      Network.HTTP.StackClient
+      Options.Applicative.Args
+      Options.Applicative.Builder.Extra
+      Options.Applicative.Complicated
+      Path.CheckInstall
+      Path.Extra
+      Path.Find
+      Stack.Build
+      Stack.Build.Cache
+      Stack.Build.ConstructPlan
+      Stack.Build.Execute
+      Stack.Build.Haddock
+      Stack.Build.Installed
+      Stack.Build.Source
+      Stack.Build.Target
+      Stack.BuildPlan
+      Stack.Clean
+      Stack.Config
+      Stack.Config.Build
+      Stack.Config.Docker
+      Stack.Config.Nix
+      Stack.ConfigCmd
+      Stack.Constants
+      Stack.Constants.Config
+      Stack.Coverage
+      Stack.DefaultColorWhen
+      Stack.Docker
+      Stack.DockerCmd
+      Stack.Dot
+      Stack.Eval
+      Stack.Exec
+      Stack.FileWatch
+      Stack.GhcPkg
+      Stack.Ghci
+      Stack.Ghci.Script
+      Stack.Hoogle
+      Stack.IDE
+      Stack.Init
+      Stack.List
+      Stack.Ls
+      Stack.Lock
+      Stack.New
+      Stack.Nix
+      Stack.Options.BenchParser
+      Stack.Options.BuildMonoidParser
+      Stack.Options.BuildParser
+      Stack.Options.CleanParser
+      Stack.Options.ConfigParser
+      Stack.Options.Completion
+      Stack.Options.DockerParser
+      Stack.Options.DotParser
+      Stack.Options.EvalParser
+      Stack.Options.ExecParser
+      Stack.Options.GhcBuildParser
+      Stack.Options.GhciParser
+      Stack.Options.GhcVariantParser
+      Stack.Options.GlobalParser
+      Stack.Options.HaddockParser
+      Stack.Options.HpcReportParser
+      Stack.Options.InitParser
+      Stack.Options.LogLevelParser
+      Stack.Options.LsParser
+      Stack.Options.NewParser
+      Stack.Options.NixParser
+      Stack.Options.PackageParser
+      Stack.Options.PathParser
+      Stack.Options.ResolverParser
+      Stack.Options.SDistParser
+      Stack.Options.ScriptParser
+      Stack.Options.SetupParser
+      Stack.Options.TestParser
+      Stack.Options.UpgradeParser
+      Stack.Options.UploadParser
+      Stack.Options.Utils
+      Stack.Package
+      Stack.PackageDump
+      Stack.Path
+      Stack.Prelude
+      Stack.Query
+      Stack.Runners
+      Stack.Script
+      Stack.SDist
+      Stack.Setup
+      Stack.Setup.Installed
+      Stack.SetupCmd
+      Stack.SourceMap
+      Stack.Storage.Project
+      Stack.Storage.User
+      Stack.Storage.Util
+      Stack.Templates
+      Stack.Types.AddCommand
+      Stack.Types.AllowNewerDeps
+      Stack.Types.ApplyGhcOptions
+      Stack.Types.ApplyProgOptions
+      Stack.Types.Build
+      Stack.Types.Build.Exception
+      Stack.Types.BuildConfig
+      Stack.Types.BuildOpts
+      Stack.Types.CabalConfigKey
+      Stack.Types.ColorWhen
+      Stack.Types.CompilerBuild
+      Stack.Types.CompilerPaths
+      Stack.Types.Compiler
+      Stack.Types.Config
+      Stack.Types.Config.Exception
+      Stack.Types.ConfigMonoid
+      Stack.Types.ConfigureOpts
+      Stack.Types.Curator
+      Stack.Types.Docker
+      Stack.Types.DockerEntrypoint
+      Stack.Types.DownloadInfo
+      Stack.Types.DumpLogs
+      Stack.Types.DumpPackage
+      Stack.Types.EnvConfig
+      Stack.Types.EnvSettings
+      Stack.Types.ExtraDirs
+      Stack.Types.GHCDownloadInfo
+      Stack.Types.GHCVariant
+      Stack.Types.GhcOptionKey
+      Stack.Types.GhcOptions
+      Stack.Types.GhcPkgId
+      Stack.Types.GlobalOpts
+      Stack.Types.GlobalOptsMonoid
+      Stack.Types.IsMutable
+      Stack.Types.LockFileBehavior
+      Stack.Types.NamedComponent
+      Stack.Types.Nix
+      Stack.Types.Package
+      Stack.Types.PackageName
+      Stack.Types.ParentMap
+      Stack.Types.Platform
+      Stack.Types.Project
+      Stack.Types.ProjectAndConfigMonoid
+      Stack.Types.ProjectConfig
+      Stack.Types.PvpBounds
+      Stack.Types.Resolver
+      Stack.Types.Runner
+      Stack.Types.SCM
+      Stack.Types.SetupInfo
+      Stack.Types.SourceMap
+      Stack.Types.StackYamlLoc
+      Stack.Types.TemplateName
+      Stack.Types.UnusedFlags
+      Stack.Types.Version
+      Stack.Types.VersionedDownloadInfo
+      Stack.Uninstall
+      Stack.Unpack
+      Stack.Update
+      Stack.Upgrade
+      Stack.Upload
+      System.Info.ShortPathName
+      System.Permissions
+      System.Process.Pager
+      System.Terminal
+      Paths_stack
+  other-modules:
+      Path.Extended
+      Stack.ComponentFile
+      Stack.Constants.StackProgName
+      Stack.Internal.BuildInfo
+      Stack.PackageFile
+      Stack.Types.Cache
+      Stack.Types.Casa
+      Stack.Types.Dependency
+      Stack.Types.PackageFile
+      Stack.Types.Storage
+  autogen-modules:
+      Paths_stack
+  hs-source-dirs:
+      src/
+  ghc-options: -fwrite-ide-info -hiedir=.hie -Wall -Wmissing-export-lists -optP-Wno-nonportable-include-path -Widentities
+  build-depends:
+      Cabal >=3.8.1.0
+    , aeson >=2.0.3.0
+    , aeson-warning-parser
+    , ansi-terminal >=1.0
+    , array
+    , async
+    , attoparsec
+    , base >=4.14.3.0 && <5
+    , base64-bytestring
+    , bytestring
+    , casa-client
+    , companion
+    , conduit
+    , conduit-extra
+    , containers
+    , cryptonite
+    , directory
+    , echo
+    , exceptions
+    , extra
+    , file-embed
+    , filelock
+    , filepath
+    , fsnotify >=0.4.1
+    , generic-deriving
+    , hi-file-parser >=0.1.4.0
+    , hpack
+    , hpc
+    , http-client
+    , http-client-tls
+    , http-conduit
+    , http-download
+    , http-types
+    , memory
+    , microlens
+    , mtl
+    , mustache
+    , neat-interpolation
+    , open-browser
+    , optparse-applicative >=0.18.1.0
+    , pantry >=0.8.3
+    , path
+    , path-io
+    , persistent >=2.14.0.0 && <2.15
+    , persistent-sqlite
+    , pretty
+    , process >=1.6.13.2
+    , project-template
+    , random
+    , rio >=0.1.22.0
+    , rio-prettyprint >=0.1.4.0
+    , split
+    , stm
+    , tar
+    , template-haskell
+    , text
+    , time
+    , transformers
+    , unix-compat
+    , unordered-containers
+    , vector
+    , yaml
+    , zlib
+  default-language: GHC2021
+  if os(windows)
+    cpp-options: -DWINDOWS
+    build-depends:
+        Win32
+  else
+    build-depends:
+        unix
+    build-tool-depends:
+        hsc2hs:hsc2hs
+  if impl(ghc >= 9.4.5) && os(windows)
+    build-depends:
+        network >=3.1.2.9
+  if flag(developer-mode)
+    cpp-options: -DSTACK_DEVELOPER_MODE_DEFAULT=True
+  else
+    cpp-options: -DSTACK_DEVELOPER_MODE_DEFAULT=False
+  if os(windows)
+    other-modules:
+        Stack.Constants.UsrLibDirs
+        Stack.Docker.Handlers
+        System.Posix.User
+        System.Uname
+    hs-source-dirs:
+        src/windows/
+  else
+    other-modules:
+        Stack.Constants.UsrLibDirs
+        Stack.Docker.Handlers
+        System.Uname
+    hs-source-dirs:
+        src/unix/
+    c-sources:
+        src/unix/cbits/uname.c
+
+executable stack
+  main-is: Main.hs
+  other-modules:
+      BuildInfo
+      Stack.CLI
+      Build_stack
+      Paths_stack
+  autogen-modules:
+      Build_stack
+      Paths_stack
+  hs-source-dirs:
+      src/main
+  ghc-options: -fwrite-ide-info -hiedir=.hie -Wall -Wmissing-export-lists -optP-Wno-nonportable-include-path -threaded -rtsopts
+  build-depends:
+      Cabal >=3.8.1.0
+    , aeson >=2.0.3.0
+    , aeson-warning-parser
+    , ansi-terminal >=1.0
+    , array
+    , async
+    , attoparsec
+    , base >=4.14.3.0 && <5
+    , base64-bytestring
+    , bytestring
+    , casa-client
+    , companion
+    , conduit
+    , conduit-extra
+    , containers
+    , cryptonite
+    , directory
+    , echo
+    , exceptions
+    , extra
+    , file-embed
+    , filelock
+    , filepath
+    , fsnotify >=0.4.1
+    , generic-deriving
+    , hi-file-parser >=0.1.4.0
+    , hpack
+    , hpc
+    , http-client
+    , http-client-tls
+    , http-conduit
+    , http-download
+    , http-types
+    , memory
+    , microlens
+    , mtl
+    , mustache
+    , neat-interpolation
+    , open-browser
+    , optparse-applicative >=0.18.1.0
+    , pantry >=0.8.3
+    , path
+    , path-io
+    , persistent >=2.14.0.0 && <2.15
+    , persistent-sqlite
+    , pretty
+    , process >=1.6.13.2
+    , project-template
+    , random
+    , rio >=0.1.22.0
+    , rio-prettyprint >=0.1.4.0
+    , split
+    , stack
+    , stm
+    , tar
+    , template-haskell
+    , text
+    , time
+    , transformers
+    , unix-compat
+    , unordered-containers
+    , vector
+    , yaml
+    , zlib
+  default-language: GHC2021
+  if os(windows)
+    cpp-options: -DWINDOWS
+    build-depends:
+        Win32
+  else
+    build-depends:
+        unix
+    build-tool-depends:
+        hsc2hs:hsc2hs
+  if impl(ghc >= 9.4.5) && os(windows)
+    build-depends:
+        network >=3.1.2.9
+  if flag(developer-mode)
+    cpp-options: -DSTACK_DEVELOPER_MODE_DEFAULT=True
+  else
+    cpp-options: -DSTACK_DEVELOPER_MODE_DEFAULT=False
+  if flag(static)
+    ld-options: -static -pthread
+  if !(flag(disable-git-info))
+    cpp-options: -DUSE_GIT_INFO
+    build-depends:
+        githash
+      , optparse-simple
+  if flag(hide-dependency-versions)
+    cpp-options: -DHIDE_DEP_VERSIONS
+  if flag(supported-build)
+    cpp-options: -DSUPPORTED_BUILD
+
+executable stack-integration-test
+  main-is: IntegrationSpec.hs
+  other-modules:
+      StackTest
+      Paths_stack
+  autogen-modules:
+      Paths_stack
+  hs-source-dirs:
+      test/integration
+      test/integration/lib
+  ghc-options: -fwrite-ide-info -hiedir=.hie -Wall -Wmissing-export-lists -optP-Wno-nonportable-include-path -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      Cabal >=3.8.1.0
+    , aeson >=2.0.3.0
+    , aeson-warning-parser
+    , ansi-terminal >=1.0
+    , array
+    , async
+    , attoparsec
+    , base >=4.14.3.0 && <5
+    , base64-bytestring
+    , bytestring
+    , casa-client
+    , companion
+    , conduit
+    , conduit-extra
+    , containers
+    , cryptonite
+    , directory
+    , echo
+    , exceptions
+    , extra
+    , file-embed
+    , filelock
+    , filepath
+    , fsnotify >=0.4.1
+    , generic-deriving
+    , hi-file-parser >=0.1.4.0
+    , hpack
+    , hpc
+    , hspec
+    , http-client
+    , http-client-tls
+    , http-conduit
+    , http-download
+    , http-types
+    , memory
+    , microlens
+    , mtl
+    , mustache
+    , neat-interpolation
+    , open-browser
+    , optparse-applicative >=0.18.1.0
+    , optparse-generic
+    , pantry >=0.8.3
+    , path
+    , path-io
+    , persistent >=2.14.0.0 && <2.15
+    , persistent-sqlite
+    , pretty
+    , process >=1.6.13.2
+    , project-template
+    , random
+    , rio >=0.1.22.0
+    , rio-prettyprint >=0.1.4.0
+    , split
+    , stm
+    , tar
+    , template-haskell
+    , text
+    , time
+    , transformers
+    , unix-compat
+    , unordered-containers
+    , vector
+    , yaml
+    , zlib
+  default-language: GHC2021
+  if os(windows)
+    cpp-options: -DWINDOWS
+    build-depends:
+        Win32
+  else
+    build-depends:
+        unix
+    build-tool-depends:
+        hsc2hs:hsc2hs
+  if impl(ghc >= 9.4.5) && os(windows)
+    build-depends:
+        network >=3.1.2.9
+  if flag(developer-mode)
+    cpp-options: -DSTACK_DEVELOPER_MODE_DEFAULT=True
+  else
+    cpp-options: -DSTACK_DEVELOPER_MODE_DEFAULT=False
+  if !(flag(integration-tests))
+    buildable: False
+  if flag(static)
+    ld-options: -static -pthread
+
+test-suite stack-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Stack.ArgsSpec
+      Stack.Build.ExecuteSpec
+      Stack.Build.TargetSpec
+      Stack.Config.DockerSpec
+      Stack.ConfigSpec
+      Stack.DotSpec
+      Stack.Ghci.ScriptSpec
+      Stack.GhciSpec
+      Stack.LockSpec
+      Stack.NixSpec
+      Stack.PackageDumpSpec
+      Stack.Types.TemplateNameSpec
+      Stack.UploadSpec
+      Paths_stack
+  autogen-modules:
+      Paths_stack
+  hs-source-dirs:
+      src/test
+  ghc-options: -fwrite-ide-info -hiedir=.hie -Wall -Wmissing-export-lists -optP-Wno-nonportable-include-path -threaded
+  build-depends:
+      Cabal >=3.8.1.0
+    , QuickCheck
+    , aeson >=2.0.3.0
+    , aeson-warning-parser
+    , ansi-terminal >=1.0
+    , array
+    , async
+    , attoparsec
+    , base >=4.14.3.0 && <5
+    , base64-bytestring
+    , bytestring
+    , casa-client
+    , companion
+    , conduit
+    , conduit-extra
+    , containers
+    , cryptonite
+    , directory
+    , echo
+    , exceptions
+    , extra
+    , file-embed
+    , filelock
+    , filepath
+    , fsnotify >=0.4.1
+    , generic-deriving
+    , hi-file-parser >=0.1.4.0
+    , hpack
+    , hpc
+    , hspec
+    , http-client
+    , http-client-tls
+    , http-conduit
+    , http-download
+    , http-types
+    , memory
+    , microlens
+    , mtl
+    , mustache
+    , neat-interpolation
+    , open-browser
+    , optparse-applicative >=0.18.1.0
+    , pantry >=0.8.3
+    , path
+    , path-io
+    , persistent >=2.14.0.0 && <2.15
+    , persistent-sqlite
+    , pretty
+    , process >=1.6.13.2
+    , project-template
+    , random
+    , raw-strings-qq
+    , rio >=0.1.22.0
+    , rio-prettyprint >=0.1.4.0
+    , split
+    , stack
+    , stm
+    , tar
+    , template-haskell
+    , text
+    , time
+    , transformers
+    , unix-compat
+    , unordered-containers
+    , vector
+    , yaml
+    , zlib
+  default-language: GHC2021
+  if os(windows)
+    cpp-options: -DWINDOWS
+    build-depends:
+        Win32
+  else
+    build-depends:
+        unix
+    build-tool-depends:
+        hsc2hs:hsc2hs
+  if impl(ghc >= 9.4.5) && os(windows)
+    build-depends:
+        network >=3.1.2.9
+  if flag(developer-mode)
+    cpp-options: -DSTACK_DEVELOPER_MODE_DEFAULT=True
+  else
+    cpp-options: -DSTACK_DEVELOPER_MODE_DEFAULT=False
+  if os(windows)
+    other-modules:
+        Stack.Ghci.FakePaths
+    hs-source-dirs:
+        src/test/windows/
+  else
+    other-modules:
+        Stack.Ghci.FakePaths
+    hs-source-dirs:
+        src/test/unix/
+  build-tool-depends:
+      hspec-discover:hspec-discover
