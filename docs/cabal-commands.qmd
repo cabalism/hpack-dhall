@@ -1,5 +1,5 @@
 We provide three Cabal [external commands][external-commands] that operate on
-any matching file input file in the source tree:
+any matching input file in the source tree:
 
 [external-commands]: https://cabal.readthedocs.io/en/latest/external-commands.html
 
