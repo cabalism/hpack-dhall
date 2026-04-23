@@ -57,7 +57,7 @@ multiple matching `package.yaml` files to `hpack`.
 
 ## `cabal-diy-pack` {#sec-diy}
 
-This "diy" of this command is short for "d-i-y", for `.dhall` into `.yaml`.
+The "d-i-y" of this command is for `.dhall` into `.yaml`.
 
 If you already have `package.yaml` files but are thinking of using
 `package.dhall` files instead, then this command can be used to generate the
