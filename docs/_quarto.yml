@@ -12,11 +12,11 @@ website:
       - href: translation.qmd
         text: Getting Started
       - href: cabal-commands.qmd
-        text: Cabal Commands
-      - href: conditionals.qmd
-        text: Gotchas
+        text: "Cabal Commands <i style='color:red' class='bi bi-rocket-takeoff'></i>"
       - href: linting.qmd
         text: Programming and Reuse
+      - href: conditionals.qmd
+        text: Gotchas
 
 format:
   html:
