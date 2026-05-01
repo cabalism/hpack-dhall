@@ -1,0 +1,11 @@
+# ghc-tcplugins-extra
+
+
+```{.pre filename=examples/ghc-tcplugins-extra/package.dhall include=../examples/ghc-tcplugins-extra/package.dhall start-line=1 end-line=48 code-line-numbers="true"}
+```
+
+```{.pre filename=examples/ghc-tcplugins-extra/defaults.dhall include=../examples/ghc-tcplugins-extra/defaults.dhall start-line=1 end-line=48 code-line-numbers="true"}
+```
+
+```{.pre filename=examples/ghc-tcplugins-extra/version.dhall include=../examples/ghc-tcplugins-extra/version.dhall start-line=1 end-line=48 code-line-numbers="true"}
+```
