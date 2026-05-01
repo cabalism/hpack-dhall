@@ -17,6 +17,8 @@ website:
         text: Programming and Reuse
       - href: conditionals.qmd
         text: Gotchas
+      - href: examples.qmd
+        text: Examples
 
 format:
   html:
