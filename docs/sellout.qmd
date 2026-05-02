@@ -1,0 +1,8 @@
+# More Typing
+
+In [hpack-dhall-defaults][hpack-dhall-defaults], Greg Pfeil ([@sellout][sellout]) keeps a
+selection of `.dhall` files that he imports into other projects. These provide a
+lot of typing beyond what is required to interact with Hpack.
+
+[hpack-dhall-defaults]: https://github.com/sellout/hpack-dhall-defaults
+[sellout]: https://github.com/sellout
