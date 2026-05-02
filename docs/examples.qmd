@@ -1,11 +1,48 @@
-# ghc-tcplugins-extra
+# Mixins and Sources
 
+[ghc-tcplugins-extra][ghc-tcplugins-extra] is a package with utilities for
+writing GHC typechecker plugins. It exposes one module and supports a **lot** of
+GHC versions!
 
+```{.pre filename=examples/ghc-tcplugins-extra/ghc-tcplugins-extra.cabal include=../examples/ghc-tcplugins-extra/ghc-tcplugins-extra.cabal start-line=40 end-line=50 code-line-numbers="true"}
+```
+
+In part, it deals with the changing GHC API with `hs-source-dirs` specific to
+GHC version ranges.
+
+```{.pre filename=examples/ghc-tcplugins-extra/ghc-tcplugins-extra.cabal include=../examples/ghc-tcplugins-extra/ghc-tcplugins-extra.cabal start-line=66 end-line=70 code-line-numbers="true"}
+```
+
+For older GHC versions, mixins are used as well:
+
+```{.pre filename=examples/ghc-tcplugins-extra/ghc-tcplugins-extra.cabal include=../examples/ghc-tcplugins-extra/ghc-tcplugins-extra.cabal start-line=225 end-line=234 code-line-numbers="true"}
+```
+[ghc-tcplugins-extra]: https://github.com/clash-lang/ghc-tcplugins-extra 
+
+The package definition in `package.dhall` is a merger of the package fields from
+`defaults.dhall` and library fields resulting calls to `version.dhall` to set
+the `hs-source-dirs`, mixins and GHC version constraints.
+
+::: {.callout-note collapse="true"}
+### package.dhall 
 ```{.pre filename=examples/ghc-tcplugins-extra/package.dhall include=../examples/ghc-tcplugins-extra/package.dhall start-line=1 end-line=48 code-line-numbers="true"}
 ```
+:::
 
+As well as setting package fields, such as name and version, `defaults.dhall`
+also has some conditionals to vary the warnings enabled.
+
+::: {.callout-note collapse="true"}
+### defaults.dhall
 ```{.pre filename=examples/ghc-tcplugins-extra/defaults.dhall include=../examples/ghc-tcplugins-extra/defaults.dhall start-line=1 end-line=48 code-line-numbers="true"}
 ```
+:::
 
+The `version.dhall` file is a function used to vary the `hs-source-dirs` and to
+constraint the GHC version within a GHC version range conditional.
+
+::: {.callout-note collapse="true"}
+### version.dhall
 ```{.pre filename=examples/ghc-tcplugins-extra/version.dhall include=../examples/ghc-tcplugins-extra/version.dhall start-line=1 end-line=48 code-line-numbers="true"}
 ```
+:::
