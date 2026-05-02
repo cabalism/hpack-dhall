@@ -17,8 +17,10 @@ website:
         text: Programming and Reuse
       - href: conditionals.qmd
         text: Gotchas
-      - href: examples.qmd
-        text: Examples
+      - section: Examples
+        contents:
+        - clash.qmd
+        - sellout.qmd
 
 format:
   html:
