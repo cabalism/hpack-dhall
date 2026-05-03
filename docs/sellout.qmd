@@ -6,3 +6,14 @@ lot of typing beyond what is required to interact with Hpack.
 
 [hpack-dhall-defaults]: https://github.com/sellout/hpack-dhall-defaults
 [sellout]: https://github.com/sellout
+
+```{.pre filename=examples/sellout/defaults.dhall include=../examples/sellout/defaults.dhall start-line=1 end-line=11 code-line-numbers="true"}
+```
+
+These "defaults" in turn import from [/hall/package][hall-package] that is a
+record with fields for Cabal, GHC, hpack and the [Haskell Package Versioning
+Policy][pvp] (PVP), where the "hall" ($^{d}ha_{ske}ll$) is the corridor
+connecting Dhall and Haskell.
+
+[hall-package]: https://sellout.github.io/hall/package.dhall.html
+[pvp]: https://pvp.haskell.org
