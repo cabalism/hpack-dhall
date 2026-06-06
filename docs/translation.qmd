@@ -41,9 +41,8 @@ package project, the name of the project folder and the name of the package are 
 same.  The default project file with Stack is `stack.yaml`.
 :::
 
-Another option is picking someone else's package, with a `.cabal`,
-`package.yaml` or possibly even a `package.dhall` and modifying it for your
-purposes.
+Another option is copying someone else's package description in `package.dhall`,
+`package.yaml` or `.cabal` format and modifying it for your purposes.
 
 ## Starting from Cabal {#start-from-cabal}
 
