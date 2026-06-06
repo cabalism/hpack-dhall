@@ -35,7 +35,7 @@ purposes.
 ## Starting from Cabal {#start-from-cabal}
 
 If you already have a package description in `.cabal` format and still want to
-use `hpack-dhall`, you could either try to regenerate the `.cabal` file from a
+use Hpack-Dhall, you could either try to regenerate the `.cabal` file from a
 `package.dhall` file you construct by hand or you could try using
 [hpack-convert][hpack-convert] to convert to a `package.yaml` and then follow
 the [Starting from Hpack](@start-from-hpack) instructions.
