@@ -1,6 +1,6 @@
 # Reuse
 
-The simplest use of `dhall-hpack-cabal` is to injest one self-contained
+The simplest use of `dhall-hpack-cabal` is to ingest one self-contained
 `package.dhall` file but by using imports and functions we can do more than just
 create a single output, the `.cabal` file.
 
