@@ -52,7 +52,7 @@ Fully qualified target forms:
 Found 8 targets matching all:exes.
 ```
 
-If you're migrating from hpack to hpack-dhall then `dhall-hpack-yaml` can be
+If you're migrating from hpack to Hpack-Dhall then `dhall-hpack-yaml` can be
 used to generate a `package.yaml`. This could be easier than trying to match the
 generated `package-name.cabal`.
 
@@ -203,7 +203,7 @@ in a list requires each element to be of the same type.
 There is another Haskell packaging solution using Dhall,
 [`dhall-to-cabal`][dhall-to-cabal], started by Ollie Charles and [moved to the
 dhall-lang][moved-issue] organisation in Feb 2018. This takes a more
-strongly-typed stance than hpack-dhall. Since late 2019, Ollie doesn't use the
+strongly-typed stance than Hpack-Dhall. Since late 2019, Ollie doesn't use the
 project any more and has [stepped away][stepped-away] from maintainership.
 
 ::: {.callout-caution collapse="true"}
