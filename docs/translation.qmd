@@ -4,7 +4,25 @@ format:
     code-line-numbers: true
 ---
 
-## Starting from Scratch
+## What's Needed
+
+To start using Hpack-Dhall we want a `package.dhall` file.
+
+::: {.callout-note}
+# Package Description Files
+Hpack converts a `package.yaml` into a `package-name.cabal`.  The Hpack
+`package.yaml` file and the Cabal `.cabal` file are both package description
+files as is a `package.dhall` file.
+:::
+
+If you have nothing, then follow [starting from scatch](@start-from-scratch)
+instructions. Either of the other formats can be used as the starting point for
+a translation to `package.dhall`;
+
+- with `package-name.cabal`, follow [starting from Cabal](@start-from-cabal) instructions and
+- with `package.yaml`, follow [starting from Hpack](@start-from-hpack) instructions.
+
+## Starting from Scratch {#start-from-scratch}
 
 If you don't yet have a package, these can be created with [`cabal
 init`][cabal-init] or [`stack new`][stack-new] with arguments "project-name" or
@@ -22,14 +40,6 @@ When the template used with `stack new` or the default template creates a single
 package project, the name of the project folder and the name of the package are the
 same.  The default project file with Stack is `stack.yaml`.
 :::
-
-The Hpack `package.yaml` file and the Cabal `.cabal` file are both package
-description files.
-
-Hpack converts a `package.yaml` into a `package-name.cabal`.  Either format can
-be used as the starting point for a translation to `package.dhall`, following
-the [starting from Cabal](@start-from-cabal) or [starting from
-Hpack](@start-from-hpack) instructions.
 
 Another option is picking someone else's package, with a `.cabal`,
 `package.yaml` or possibly even a `package.dhall` and modifying it for your
