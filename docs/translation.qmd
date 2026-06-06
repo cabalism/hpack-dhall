@@ -23,9 +23,12 @@ package project, the name of the project folder and the name of the package are 
 same.  The default project file with Stack is `stack.yaml`.
 :::
 
-The `package.yaml` file, `.cabal` file or both that these methods write can then
+The Hpack `package.yaml` file and the Cabal `.cabal` file are both package
+description files.
+
+Hpack converts a `package.yaml` into a `package-name.cabal`.  Either format can
 be used as the starting point for a translation to `package.dhall`, following
-either the [starting from Cabal](@start-from-cabal) or [starting from
+the [starting from Cabal](@start-from-cabal) or [starting from
 Hpack](@start-from-hpack) instructions.
 
 Another option is picking someone else's package, with a `.cabal`,
