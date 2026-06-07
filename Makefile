@@ -171,6 +171,14 @@ typos-install: ## Install typos-cli for typos target using cargo.
 
 FIND_MARKDOWN := find . -type f \( -name "*.md" -o -name "*.qmd" \)
 
+.PHONY: hs-typos
+hs-typos: ## Find typos in Haskell source files: .hs, .cabal, etc.
+	typos --config .typos-srcs.toml --force-exclude
+
+.PHONY: hs-fix-typos
+hs-fix-typos: ## Fix typos in Haskell source files: .hs, .cabal, etc.
+	typos --config .typos-srcs.toml --write-changes --force-exclude
+
 .PHONY: markdown-typos
 markdown-typos: ## Find typos in markdown files.
 	$(FIND_MARKDOWN) | xargs typos --config .typos-docs.toml --force-exclude

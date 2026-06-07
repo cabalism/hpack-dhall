@@ -1,0 +1,26 @@
+[files]
+ignore-files = true
+ignore-hidden = false
+extend-exclude = [
+    ".git/",
+    ".hlint.yaml",
+    ".typos-docs.toml",
+    ".typos-srcs.toml",
+    "*.md",
+    "*.qmd",
+    "dist-newstyle/",
+    "fourmolu.yaml",
+    "docs/dhall.xml",
+    "project-stackage/*.config",
+    "examples/clash/defaults.dhall",
+    "examples/clash/ghc-tcplugins-extra.cabal",
+]
+
+[default]
+extend-ignore-re = [
+    "(?s)(#|//)\\s*spellchecker:off.*?\\n\\s*(#|//)\\s*spellchecker:on",
+]
+
+check-filename = true
+
+[default.extend-words]
