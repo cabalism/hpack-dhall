@@ -11,7 +11,7 @@
 # GHC_VERSION ?= 9.10.3
 # STACKAGE_VERSION ?= lts-24.36
 GHC_VERSION ?= 9.12.4
-STACKAGE_VERSION ?= nightly-2026-04-12
+STACKAGE_VERSION ?= nightly-2026-06-07
 
 # For the upgrade, pick a matching pair of ghc-version and stack resolver.
 

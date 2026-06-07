@@ -1,6 +1,6 @@
 cabal-version: 1.12
 
--- This file has been generated from package.dhall by hpack version 0.39.3.
+-- This file has been generated from package.dhall by hpack version 0.39.6.
 --
 -- see: https://github.com/sol/hpack
 
@@ -136,7 +136,7 @@ library
     , dhall >=1.41.1
     , dhall-json >=1.7.10
     , filepath
-    , hpack >=0.39
+    , hpack >=0.39.6
     , megaparsec >=9.2
     , microlens
     , prettyprinter
@@ -169,7 +169,7 @@ executable cabal-diy-pack
     , extra
     , filepath
     , filepattern
-    , hpack >=0.39
+    , hpack >=0.39.6
     , megaparsec >=9.2
     , microlens
     , optparse-applicative
@@ -203,7 +203,7 @@ executable cabal-dpack
     , extra
     , filepath
     , filepattern
-    , hpack >=0.39
+    , hpack >=0.39.6
     , megaparsec >=9.2
     , microlens
     , optparse-applicative
@@ -237,7 +237,7 @@ executable cabal-ypack
     , extra
     , filepath
     , filepattern
-    , hpack >=0.39
+    , hpack >=0.39.6
     , megaparsec >=9.2
     , microlens
     , optparse-applicative
@@ -267,7 +267,7 @@ executable dhall-hpack-cabal
     , dhall >=1.41.1
     , dhall-json >=1.7.10
     , filepath
-    , hpack >=0.39
+    , hpack >=0.39.6
     , megaparsec >=9.2
     , microlens
     , optparse-applicative
@@ -297,7 +297,7 @@ executable dhall-hpack-dhall
     , dhall >=1.41.1
     , dhall-json >=1.7.10
     , filepath
-    , hpack >=0.39
+    , hpack >=0.39.6
     , megaparsec >=9.2
     , microlens
     , optparse-applicative
@@ -327,7 +327,7 @@ executable dhall-hpack-json
     , dhall >=1.41.1
     , dhall-json >=1.7.10
     , filepath
-    , hpack >=0.39
+    , hpack >=0.39.6
     , megaparsec >=9.2
     , microlens
     , optparse-applicative
@@ -357,7 +357,7 @@ executable dhall-hpack-yaml
     , dhall >=1.41.1
     , dhall-json >=1.7.10
     , filepath
-    , hpack >=0.39
+    , hpack >=0.39.6
     , megaparsec >=9.2
     , microlens
     , optparse-applicative
@@ -387,7 +387,7 @@ executable yaml-hpack-cabal
     , dhall >=1.41.1
     , dhall-json >=1.7.10
     , filepath
-    , hpack >=0.39
+    , hpack >=0.39.6
     , megaparsec >=9.2
     , microlens
     , optparse-applicative
@@ -419,7 +419,7 @@ test-suite golden
     , dhall-json >=1.7.10
     , directory
     , filepath
-    , hpack >=0.39
+    , hpack >=0.39.6
     , megaparsec >=9.2
     , microlens
     , prettyprinter

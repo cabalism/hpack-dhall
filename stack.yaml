@@ -4,7 +4,7 @@ allow-newer: true
 allow-newer-deps:
   - dhall-json
 
-resolver: nightly-2026-04-12
+resolver: nightly-2026-06-07
 
 packages:
   - ./.
