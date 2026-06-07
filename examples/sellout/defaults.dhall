@@ -21,7 +21,7 @@ in  λ(minimumGhcVersion : Pvp.Version) →
               { description =
                   ''
                   Prior to GHC 9.10, the `DEPRECATED` pragma can’t distinguish
-                  between terms and types. Consenquently, you can get spurious
+                  between terms and types. Consequently, you can get spurious
                   warnings when there’s a name collision and the name in the
                   other namespace is deprecated. Or you can choose to not get
                   those warnings, at the risk of not being warned when there’s a
