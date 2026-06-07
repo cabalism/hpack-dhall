@@ -152,3 +152,29 @@ examples: \
   examples/stack/package.dhall \
   examples/stack/package-type.dhall \
   examples/stack/cabal-to-dhall.dhall
+
+.PHONY: help
+help: ## Show the commented targets.
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
+	sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
+.PHONY: help-banner
+help-banner: ## Show the help banner.
+	@echo "===================================================================="
+	@echo "§ all                  make with no arguments also shows this banner"
+	@echo "§ help                 make help will list targets with descriptions"
+	@echo "===================================================================="
+
+.PHONY: typos-install
+typos-install: ## Install typos-cli for typos target using cargo.
+	cargo install typos-cli
+
+FIND_MARKDOWN := find . -type f \( -name "*.md" -o -name "*.qmd" \)
+
+.PHONY: markdown-typos
+markdown-typos: ## Find typos in markdown files.
+	$(FIND_MARKDOWN) | xargs typos --config .typos-docs.toml --force-exclude
+
+.PHONY: markdown-fix-typos
+markdown-fix-typos: ## Fix typos in markdown files.
+	$(FIND_MARKDOWN) | xargs typos --config .typos-docs.toml --write-changes --force-exclude

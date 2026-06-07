@@ -1,0 +1,10 @@
+[files]
+extend-exclude = [
+]
+
+[default]
+extend-ignore-re = [
+    "(?s)(#|//)\\s*spellchecker:off.*?\\n\\s*(#|//)\\s*spellchecker:on",
+]
+
+[default.extend-words]
