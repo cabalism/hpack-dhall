@@ -33,7 +33,7 @@ validation.
 ## Dhall Import Advantages
 
 Dhall's imports are great. They provide strongly typed, secure, and composable
-configuration and have a lot of [saftey guarantees][dhall-safety].  Dhall
+configuration and have a lot of [safety guarantees][dhall-safety].  Dhall
 imports have (or optionally can have):
 
 - **Type Checking Across Files**  Imports are type-checked before evaluation and

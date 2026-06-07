@@ -15,7 +15,7 @@ Hpack converts a `package.yaml` into a `package-name.cabal`.  The Hpack
 files as is a `package.dhall` file.
 :::
 
-If you have nothing, then follow [starting from scatch](@start-from-scratch)
+If you have nothing, then follow [starting from scratch](@start-from-scratch)
 instructions. Either of the other formats can be used as the starting point for
 a translation to `package.dhall`;
 
@@ -77,7 +77,7 @@ There's no [Hpack schema][hpack-schema-issue] and we don't provide a type for
 [hpack-schema-issue]: https://github.com/sol/hpack/issues/521
 :::
 
-If you already have a `package.yaml`, it should be pretty straightfoward to
+If you already have a `package.yaml`, it should be pretty straightforward to
 translate this to `package.dhall`. If your `package.yaml` is small, translation
 by hand is not too onerous. There's also a tool for conversion, `yaml-to-dhall`,
 included in the `dhall-yaml` package. This can be installed with:
