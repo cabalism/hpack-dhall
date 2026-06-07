@@ -153,6 +153,18 @@ examples: \
   examples/stack/package-type.dhall \
   examples/stack/cabal-to-dhall.dhall
 
+.PHONY: repo-pkgs
+repo-pkgs:
+	tree -P 'package.dhall' --prune
+
+.PHONY: dpack-self
+dpack-self: repo-pkgs ## Run cabal dpack on this repository.
+	cabal dpack --ignore-glob=examples --ignore-glob=updo
+
+.PHONY: updo
+updo:
+	make -f project-files.mk all
+
 .PHONY: help
 help: ## Show the commented targets.
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \

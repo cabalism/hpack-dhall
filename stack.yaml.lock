@@ -13,7 +13,7 @@ packages:
     hackage: dhall-json-1.7.12
 snapshots:
 - completed:
-    sha256: dcf86269b2b17d59d4c760c8e11525d6c38c1adfc1b591c506ad8047008d550d
-    size: 737699
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/nightly/2026/4/12.yaml
-  original: nightly-2026-04-12
+    sha256: ca26ae59b0728a9edafdaafdc7ba5cd6633df716d743f077d07d073c3a05628d
+    size: 758691
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/nightly/2026/6/7.yaml
+  original: nightly-2026-06-07
