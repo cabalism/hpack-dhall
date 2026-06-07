@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>linting – &lt;span id="hpack-dhall"&gt;Hpack&lt;span id="operator"&gt;⩓&lt;/span&gt;Dhall&lt;/span&gt;</title>
+<title>clash – &lt;span id="hpack-dhall"&gt;Hpack&lt;span id="operator"&gt;⩓&lt;/span&gt;Dhall&lt;/span&gt;</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -119,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./linting.html">Programming and Reuse</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./clash.html">Examples</a></li><li class="breadcrumb-item"><a href="./clash.html">Mixins and Sources</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -164,7 +164,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./linting.html" class="sidebar-item-text sidebar-link active">
+  <a href="./linting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Programming and Reuse</span></a>
   </div>
 </li>
@@ -185,7 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./clash.html" class="sidebar-item-text sidebar-link">
+  <a href="./clash.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Mixins and Sources</span></a>
   </div>
 </li>
@@ -207,153 +207,231 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#reuse" id="toc-reuse" class="nav-link active" data-scroll-target="#reuse">Reuse</a>
-  <ul class="collapse">
-  <li><a href="#dhall-import-advantages" id="toc-dhall-import-advantages" class="nav-link" data-scroll-target="#dhall-import-advantages">Dhall Import Advantages</a></li>
-  <li><a href="#author-and-maintainer-details" id="toc-author-and-maintainer-details" class="nav-link" data-scroll-target="#author-and-maintainer-details">Author and Maintainer Details</a></li>
-  <li><a href="#dual-targets" id="toc-dual-targets" class="nav-link" data-scroll-target="#dual-targets">Dual Targets</a></li>
-  </ul></li>
+  <li><a href="#mixins-and-sources" id="toc-mixins-and-sources" class="nav-link active" data-scroll-target="#mixins-and-sources">Mixins and Sources</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./clash.html">Examples</a></li><li class="breadcrumb-item"><a href="./clash.html">Mixins and Sources</a></li></ol></nav></header>
 
 
 
 
-<section id="reuse" class="level1">
-<h1>Reuse</h1>
-<p>The simplest use of <code>dhall-hpack-cabal</code> is to ingest one self-contained <code>package.dhall</code> file but by using imports and functions we can do more than just create a single output, the <code>.cabal</code> file.</p>
-<p>The trick with reuse is to break apart <code>package.dhall</code> into sections for reuse.</p>
-<p>Section reuse is a facility Cabal has with its <a href="https://cabal.readthedocs.io/en/latest/cabal-package-description-file.html#common-stanzas">common</a> stanzas that can be imported by other common stanzas and by components in the package description <code>.cabal</code> file. Cabal restricts what can be commonly shared to <a href="https://cabal.readthedocs.io/en/latest/cabal-package-description-file.html#build-information">build information</a>. That’s a lot of fields but there are also a lot of fields that are excluded, such as the author and maintainer, copyright and license-related fields.</p>
-<p>Section reuse is a facility YAML has too with its <code>&amp;</code> anchors, <code>*</code> aliases, and <code>&lt;&lt;</code> merge keys.</p>
-<p>What neither Cabal’s <code>.cabal</code> files nor standard YAML <code>.yaml</code> files have is the ability to include or import from another file but Hpack’s <a href="https://github.com/sol/hpack#not-repeating-yourself">facilities for reuse</a> support the non-standard YAML <code>!include</code> directive by its use of <a href="https://github.com/snoyberg/yaml/blob/7380d7f560daa2f45ff265d425866f497ca07966/yaml/src/Data/Yaml/Include.hs#L86-L94"><code>Data.Yaml.Include.decodeFileWithWarnings</code></a>, a function that does file inclusions by raw text insertion into the stream without validation.</p>
-<section id="dhall-import-advantages" class="level2">
-<h2 class="anchored" data-anchor-id="dhall-import-advantages">Dhall Import Advantages</h2>
-<p>Dhall’s imports are great. They provide strongly typed, secure, and composable configuration and have a lot of <a href="https://docs.dhall-lang.org/discussions/Safety-guarantees.html">saftey guarantees</a>. Dhall imports have (or optionally can have):</p>
-<ul>
-<li><p><strong>Type Checking Across Files</strong> Imports are type-checked before evaluation and it is possible to mark imported data with a separate imported type, something other data formats achieve with schemas.</p></li>
-<li><p><strong>Security</strong> It is possible to <code>dhall freeze</code>, which computes a SHA256 hash of the imported content.</p></li>
-<li><p><strong>Programmable Composition</strong> Imports are expressions. You can import a function and apply it to data or import data and pass it into a function.</p></li>
-<li><p><strong>Termination</strong> Dhall is not Turing-complete. Importing will never hang or crash the parser.</p></li>
-</ul>
-</section>
-<section id="author-and-maintainer-details" class="level2">
-<h2 class="anchored" data-anchor-id="author-and-maintainer-details">Author and Maintainer Details</h2>
-<p>If a single individual or company is authoring and maintaining a lot of packages then they might like to define their author and maintainers details once and import those. They might put all their source code under the same GitHub organisation and always use the same license but put each package in its own repository and be prepared for changing copyright years.</p>
+<section id="mixins-and-sources" class="level1">
+<h1>Mixins and Sources</h1>
+<p><a href="https://github.com/clash-lang/ghc-tcplugins-extra">ghc-tcplugins-extra</a> is a package with utilities for writing GHC typechecker plugins. It exposes one module and supports a <strong>lot</strong> of GHC versions!</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>author.dhall</strong></pre>
+<pre><strong>examples/clash/ghc-tcplugins-extra.cabal</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="author.dhall"><pre class="sourceCode dhall code-with-copy"><code class="sourceCode dhall"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\</span><span class="op">(</span>copyright-years : <span class="dt">Text</span><span class="op">)</span> <span class="fu">-&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\</span><span class="op">(</span>repo : <span class="dt">Text</span><span class="op">)</span> <span class="fu">-&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> author = <span class="st">"Thaddeus Blackwood"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>      , maintainer = <span class="st">"thad@black-wood.invalid"</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      , copyright = <span class="st">"© ${copyright-years} Thaddeus Blackwood"</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      , github = <span class="st">"thad-black-wood/${repo}"</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      , license = <span class="st">"MPL-2.0"</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>      , license-file = <span class="st">"LICENSE.md"</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>      , extra-source-files = <span class="op">[</span> <span class="st">"LICENSE.md"</span> <span class="op">]</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="examples/clash/ghc-tcplugins-extra.cabal" data-startfrom="40"><pre class="sourceCode numberSource pre number-lines code-with-copy"><code class="sourceCode" style="counter-reset: source-line 39;"><span id="cb1-40"><a href="#cb1-40"></a>library</span>
+<span id="cb1-41"><a href="#cb1-41"></a>  exposed-modules:</span>
+<span id="cb1-42"><a href="#cb1-42"></a>      GHC.TcPluginM.Extra</span>
+<span id="cb1-43"><a href="#cb1-43"></a>  other-modules:</span>
+<span id="cb1-44"><a href="#cb1-44"></a>      Internal</span>
+<span id="cb1-45"><a href="#cb1-45"></a>  hs-source-dirs:</span>
+<span id="cb1-46"><a href="#cb1-46"></a>      src</span>
+<span id="cb1-47"><a href="#cb1-47"></a>  ghc-options: -Wall</span>
+<span id="cb1-48"><a href="#cb1-48"></a>  build-depends:</span>
+<span id="cb1-49"><a href="#cb1-49"></a>      base &gt;=4.8 &amp;&amp; &lt;5</span>
+<span id="cb1-50"><a href="#cb1-50"></a>    , ghc &gt;=7.10 &amp;&amp; &lt;9.13</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="dual-targets" class="level2">
-<h2 class="anchored" data-anchor-id="dual-targets">Dual Targets</h2>
-<p>If the default extensions are in their own <code>default-extensions.dhall</code> file, then we can generate a <code>.yaml</code> file equivalent and use this for configuring the extensions that HLint turns on when linting.</p>
+<p>In part, it deals with the changing GHC API with <code>hs-source-dirs</code> specific to GHC version ranges.</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>default-extensions.dhall</strong></pre>
+<pre><strong>examples/clash/ghc-tcplugins-extra.cabal</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-filename="default-extensions.dhall"><pre class="sourceCode dhall code-with-copy"><code class="sourceCode dhall"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> default-extensions =</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span> <span class="st">"DataKinds"</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    , <span class="st">"DeriveFunctor"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    ...</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    , <span class="st">"TupleSections"</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    , <span class="st">"UndecidableInstances"</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">]</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-filename="examples/clash/ghc-tcplugins-extra.cabal" data-startfrom="66"><pre class="sourceCode numberSource pre number-lines code-with-copy"><code class="sourceCode" style="counter-reset: source-line 65;"><span id="cb2-66"><a href="#cb2-66"></a>    hs-source-dirs:</span>
+<span id="cb2-67"><a href="#cb2-67"></a>        src-ghc-tree-9.4</span>
+<span id="cb2-68"><a href="#cb2-68"></a>        src-ghc-9.12</span>
+<span id="cb2-69"><a href="#cb2-69"></a>    build-depends:</span>
+<span id="cb2-70"><a href="#cb2-70"></a>        ghc &gt;=9.11 &amp;&amp; &lt;9.13</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>We want to generate a <code>.yaml</code> file with an arguments list of extensions. The Dhall function to do this is but a few lines long. It prefixes each extension with “-X”:</p>
+<p>For older GHC versions, mixins are used as well:</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>hlint.dhall</strong></pre>
+<pre><strong>examples/clash/ghc-tcplugins-extra.cabal</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-filename="hlint.dhall"><pre class="sourceCode dhall code-with-copy"><code class="sourceCode dhall"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> Prelude/<span class="dt">List</span>/map =</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>          <span class="im">https://raw.githubusercontent.com/dhall-lang/Prelude/35deff0d41f2bf86c42089c6ca16665537f54d75/List/map</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">in</span>  <span class="kw">let</span> defs = <span class="im">./default-extensions.dhall</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">in</span>  <span class="kw">let</span> f = <span class="fu">λ</span><span class="op">(</span>s : <span class="dt">Text</span><span class="op">)</span> <span class="fu">→</span> <span class="st">"-X"</span> ++ s</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">in</span>  <span class="op">{</span> arguments = Prelude/<span class="dt">List</span>/map <span class="dt">Text</span> <span class="dt">Text</span> f defs.default-extensions <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-filename="examples/clash/ghc-tcplugins-extra.cabal" data-startfrom="225"><pre class="sourceCode numberSource pre number-lines code-with-copy"><code class="sourceCode" style="counter-reset: source-line 224;"><span id="cb3-225"><a href="#cb3-225"></a>    hs-source-dirs:</span>
+<span id="cb3-226"><a href="#cb3-226"></a>        src-ghc-flat</span>
+<span id="cb3-227"><a href="#cb3-227"></a>        src-ghc-8.0</span>
+<span id="cb3-228"><a href="#cb3-228"></a>    build-depends:</span>
+<span id="cb3-229"><a href="#cb3-229"></a>        ghc &gt;=8.0 &amp;&amp; &lt;8.2</span>
+<span id="cb3-230"><a href="#cb3-230"></a>    mixins:</span>
+<span id="cb3-231"><a href="#cb3-231"></a>        ghc hiding ()</span>
+<span id="cb3-232"><a href="#cb3-232"></a>      , ghc (TcRnTypes as Constraint)</span>
+<span id="cb3-233"><a href="#cb3-233"></a>      , ghc (Type as Predicate)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>The package definition in <code>package.dhall</code> is a merger of the package fields from <code>defaults.dhall</code> and library fields resulting calls to <code>version.dhall</code> to set the <code>hs-source-dirs</code>, mixins and GHC version constraints.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Note</span>package.dhall
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Imports can be URIs or local files. The example above has both kinds.</p>
-<p>Relative imports have to start with “./” or “../”.</p>
-</div>
-</div>
-</div>
-<p>We generate an <code>.hlint.yaml</code> file (or you could create an <code>.hlint-extensions.yaml</code> file and import it) with <code>dhall-to-yaml &lt; ./hlint.dhall &gt; ./.hlint.yaml</code>.</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>.hlint.yaml</strong></pre>
+<pre><strong>examples/clash/package.dhall</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-filename=".hlint.yaml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arguments</span><span class="kw">:</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> -XDataKinds</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> -XDeriveFunctor</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ...</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> -XTupleSections</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> -XUndecidableInstances</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-filename="examples/clash/package.dhall" data-startfrom="1"><pre class="sourceCode numberSource pre number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>let defs = ./defaults.dhall</span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a>let version = ./version.dhall</span>
+<span id="cb4-4"><a href="#cb4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5"></a>in  let ghc = { name = "ghc", mixin = [] : List Text }</span>
+<span id="cb4-6"><a href="#cb4-6"></a></span>
+<span id="cb4-7"><a href="#cb4-7"></a>    in  let gin =</span>
+<span id="cb4-8"><a href="#cb4-8"></a>                  ghc</span>
+<span id="cb4-9"><a href="#cb4-9"></a>              //  { mixin =</span>
+<span id="cb4-10"><a href="#cb4-10"></a>                    [ "hiding ()"</span>
+<span id="cb4-11"><a href="#cb4-11"></a>                    , "(TcRnTypes as Constraint)"</span>
+<span id="cb4-12"><a href="#cb4-12"></a>                    , "(Type as Predicate)"</span>
+<span id="cb4-13"><a href="#cb4-13"></a>                    ]</span>
+<span id="cb4-14"><a href="#cb4-14"></a>                  }</span>
+<span id="cb4-15"><a href="#cb4-15"></a></span>
+<span id="cb4-16"><a href="#cb4-16"></a>        in  let mods =</span>
+<span id="cb4-17"><a href="#cb4-17"></a>                  [ "GhcApi.Constraint"</span>
+<span id="cb4-18"><a href="#cb4-18"></a>                  , "GhcApi.Predicate"</span>
+<span id="cb4-19"><a href="#cb4-19"></a>                  , "GhcApi.GhcPlugins"</span>
+<span id="cb4-20"><a href="#cb4-20"></a>                  , "Internal.Type"</span>
+<span id="cb4-21"><a href="#cb4-21"></a>                  , "Internal.Constraint"</span>
+<span id="cb4-22"><a href="#cb4-22"></a>                  , "Internal.Evidence"</span>
+<span id="cb4-23"><a href="#cb4-23"></a>                  ]</span>
+<span id="cb4-24"><a href="#cb4-24"></a></span>
+<span id="cb4-25"><a href="#cb4-25"></a>            in      defs</span>
+<span id="cb4-26"><a href="#cb4-26"></a>                //  { library =</span>
+<span id="cb4-27"><a href="#cb4-27"></a>                      { source-dirs = "src"</span>
+<span id="cb4-28"><a href="#cb4-28"></a>                      , dependencies =</span>
+<span id="cb4-29"><a href="#cb4-29"></a>                        [ "base &gt;=4.8 &amp;&amp; &lt;5", "ghc &gt;=7.10 &amp;&amp; &lt;9.13" ]</span>
+<span id="cb4-30"><a href="#cb4-30"></a>                      , exposed-modules = "GHC.TcPluginM.Extra"</span>
+<span id="cb4-31"><a href="#cb4-31"></a>                      , other-modules = "Internal"</span>
+<span id="cb4-32"><a href="#cb4-32"></a>                      , when =</span>
+<span id="cb4-33"><a href="#cb4-33"></a>                        [ version "9.11" "9.13" [ "tree-9.4", "9.12" ] ghc mods</span>
+<span id="cb4-34"><a href="#cb4-34"></a>                        , version "9.10" "9.11" [ "tree-9.4", "9.10" ] ghc mods</span>
+<span id="cb4-35"><a href="#cb4-35"></a>                        , version "9.8" "9.10" [ "tree-9.4", "9.8" ] ghc mods</span>
+<span id="cb4-36"><a href="#cb4-36"></a>                        , version "9.4" "9.8" [ "tree-9.4", "9.4" ] ghc mods</span>
+<span id="cb4-37"><a href="#cb4-37"></a>                        , version "9.2" "9.4" [ "tree", "9.2" ] ghc mods</span>
+<span id="cb4-38"><a href="#cb4-38"></a>                        , version "9.0" "9.2" [ "tree", "9.0" ] ghc mods</span>
+<span id="cb4-39"><a href="#cb4-39"></a>                        , version "8.10" "9.0" [ "flat", "8.10" ] ghc mods</span>
+<span id="cb4-40"><a href="#cb4-40"></a>                        , version "8.8" "8.10" [ "flat", "8.8" ] gin mods</span>
+<span id="cb4-41"><a href="#cb4-41"></a>                        , version "8.6" "8.8" [ "flat", "8.6" ] gin mods</span>
+<span id="cb4-42"><a href="#cb4-42"></a>                        , version "8.4" "8.6" [ "flat", "8.4" ] gin mods</span>
+<span id="cb4-43"><a href="#cb4-43"></a>                        , version "8.2" "8.4" [ "flat", "8.2" ] gin mods</span>
+<span id="cb4-44"><a href="#cb4-44"></a>                        , version "8.0" "8.2" [ "flat", "8.0" ] gin mods</span>
+<span id="cb4-45"><a href="#cb4-45"></a>                        ]</span>
+<span id="cb4-46"><a href="#cb4-46"></a>                      }</span>
+<span id="cb4-47"><a href="#cb4-47"></a>                    }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>We can pull those same <code>default-extensions</code> into a package description:</p>
+</div>
+</div>
+</div>
+<p>As well as setting package fields, such as name and version, <code>defaults.dhall</code> also has some conditionals to vary the warnings enabled.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>defaults.dhall
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>package.dhall</strong></pre>
+<pre><strong>examples/clash/defaults.dhall</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-filename="package.dhall"><pre class="sourceCode dhall code-with-copy"><code class="sourceCode dhall"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> defs = <span class="im">./defaults.dhall</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">in</span>    defs</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">⫽</span> <span class="im">./default-extensions.dhall</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">⫽</span> <span class="op">{</span> name = <span class="st">"flight-units"</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      , github = <span class="st">"blockscope/flare-timing/units"</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      , dependencies =</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>            defs.dependencies</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>          # <span class="op">[</span> <span class="st">"numbers"</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>            , <span class="st">"fixed"</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>            , <span class="st">"bifunctors"</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>            , <span class="st">"text"</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>            , <span class="st">"formatting"</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>            , <span class="st">"uom-plugin"</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>            , <span class="st">"siggy-chardust"</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>            <span class="op">]</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-filename="examples/clash/defaults.dhall" data-startfrom="1"><pre class="sourceCode numberSource pre number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>{ name = "ghc-tcplugins-extra"</span>
+<span id="cb5-2"><a href="#cb5-2"></a>, version = "0.5"</span>
+<span id="cb5-3"><a href="#cb5-3"></a>, synopsis = "Utilities for writing GHC type-checker plugins"</span>
+<span id="cb5-4"><a href="#cb5-4"></a>, description =</span>
+<span id="cb5-5"><a href="#cb5-5"></a>    ''</span>
+<span id="cb5-6"><a href="#cb5-6"></a>    Utilities for writing GHC type-checker plugins, such as</span>
+<span id="cb5-7"><a href="#cb5-7"></a>    creating constraints, with a stable API covering multiple</span>
+<span id="cb5-8"><a href="#cb5-8"></a>    GHC releases.''</span>
+<span id="cb5-9"><a href="#cb5-9"></a>, category = "Type System"</span>
+<span id="cb5-10"><a href="#cb5-10"></a>, author = "Christiaan Baaij"</span>
+<span id="cb5-11"><a href="#cb5-11"></a>, maintainer = "christiaan.baaij@gmail.com"</span>
+<span id="cb5-12"><a href="#cb5-12"></a>, copyright =</span>
+<span id="cb5-13"><a href="#cb5-13"></a>    ''</span>
+<span id="cb5-14"><a href="#cb5-14"></a>    Copyright © 2015-2016, University of Twente,</span>
+<span id="cb5-15"><a href="#cb5-15"></a>                                2017-2018, QBayLogic''</span>
+<span id="cb5-16"><a href="#cb5-16"></a>, github = "clash-lang/ghc-tcplugins-extra"</span>
+<span id="cb5-17"><a href="#cb5-17"></a>, license = "BSD2"</span>
+<span id="cb5-18"><a href="#cb5-18"></a>, license-file = "LICENSE"</span>
+<span id="cb5-19"><a href="#cb5-19"></a>, tested-with =</span>
+<span id="cb5-20"><a href="#cb5-20"></a>    "GHC == 8.0.2, GHC == 8.2.2, GHC == 8.4.4, GHC == 8.6.5, GHC == 8.8.4, GHC == 8.10.7, GHC == 9.0.2, GHC == 9.2.8, GHC == 9.4.7, GHC == 9.6.6, GHC == 9.8.4, GHC == 9.10.1, GHC == 9.12.1"</span>
+<span id="cb5-21"><a href="#cb5-21"></a>, extra-source-files =</span>
+<span id="cb5-22"><a href="#cb5-22"></a>  [ "README.md", "CHANGELOG.md", "defaults.dhall", "package.dhall" ]</span>
+<span id="cb5-23"><a href="#cb5-23"></a>, ghc-options = [ "-Wall" ]</span>
+<span id="cb5-24"><a href="#cb5-24"></a>, flags.deverror</span>
+<span id="cb5-25"><a href="#cb5-25"></a>  =</span>
+<span id="cb5-26"><a href="#cb5-26"></a>  { description = "Enables `-Werror` for development mode and TravisCI"</span>
+<span id="cb5-27"><a href="#cb5-27"></a>  , default = False</span>
+<span id="cb5-28"><a href="#cb5-28"></a>  , manual = True</span>
+<span id="cb5-29"><a href="#cb5-29"></a>  }</span>
+<span id="cb5-30"><a href="#cb5-30"></a>, when =</span>
+<span id="cb5-31"><a href="#cb5-31"></a>  [ { condition = "impl(ghc &gt;= 8.0.0)"</span>
+<span id="cb5-32"><a href="#cb5-32"></a>    , ghc-options =</span>
+<span id="cb5-33"><a href="#cb5-33"></a>      [ "-Wcompat"</span>
+<span id="cb5-34"><a href="#cb5-34"></a>      , "-Wincomplete-uni-patterns"</span>
+<span id="cb5-35"><a href="#cb5-35"></a>      , "-Widentities"</span>
+<span id="cb5-36"><a href="#cb5-36"></a>      , "-Wredundant-constraints"</span>
+<span id="cb5-37"><a href="#cb5-37"></a>      ]</span>
+<span id="cb5-38"><a href="#cb5-38"></a>    }</span>
+<span id="cb5-39"><a href="#cb5-39"></a>  , { condition = "impl(ghc &gt;= 8.4.0)"</span>
+<span id="cb5-40"><a href="#cb5-40"></a>    , ghc-options = [ "-fhide-source-paths" ]</span>
+<span id="cb5-41"><a href="#cb5-41"></a>    }</span>
+<span id="cb5-42"><a href="#cb5-42"></a>  , { condition = "flag(deverror)", ghc-options = [ "-Werror" ] }</span>
+<span id="cb5-43"><a href="#cb5-43"></a>  ]</span>
+<span id="cb5-44"><a href="#cb5-44"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>It doesn’t really matter for this example what <code>defaults.dhall</code> contains except that it too has dependencies. If it has its own <code>default-extensions</code> then those are merged with <code>⫽</code>:</p>
+</div>
+</div>
+</div>
+<p>The <code>version.dhall</code> file is a function used to vary the <code>hs-source-dirs</code> and to constraint the GHC version within a GHC version range conditional.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>version.dhall
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>defaults.dhall</strong></pre>
+<pre><strong>examples/clash/version.dhall</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-filename="defaults.dhall"><pre class="sourceCode dhall code-with-copy"><code class="sourceCode dhall"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> default-extensions =</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span> <span class="st">"PackageImports"</span> <span class="op">]</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>, dependencies =</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span> <span class="st">"base &gt;=4.10.1.0 &amp;&amp; &lt;5"</span> <span class="op">]</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-filename="examples/clash/version.dhall" data-startfrom="1"><pre class="sourceCode numberSource pre number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>let Prelude/List/map =</span>
+<span id="cb6-2"><a href="#cb6-2"></a>      https://raw.githubusercontent.com/dhall-lang/Prelude/35deff0d41f2bf86c42089c6ca16665537f54d75/List/map</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a>in  \(low : Text) -&gt;</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    \(high : Text) -&gt;</span>
+<span id="cb6-6"><a href="#cb6-6"></a>    \(srcs : List Text) -&gt;</span>
+<span id="cb6-7"><a href="#cb6-7"></a>    \(ghc : { name : Text, mixin : List Text }) -&gt;</span>
+<span id="cb6-8"><a href="#cb6-8"></a>    \(mods : List Text) -&gt;</span>
+<span id="cb6-9"><a href="#cb6-9"></a>      { condition = "impl(ghc &gt;= ${low}) &amp;&amp; impl(ghc &lt; ${high})"</span>
+<span id="cb6-10"><a href="#cb6-10"></a>      , source-dirs =</span>
+<span id="cb6-11"><a href="#cb6-11"></a>          Prelude/List/map Text Text (\(x : Text) -&gt; "src-ghc-${x}") srcs</span>
+<span id="cb6-12"><a href="#cb6-12"></a>      , dependencies = [ ghc // { version = "&gt;=${low} &amp;&amp; &lt;${high}" } ]</span>
+<span id="cb6-13"><a href="#cb6-13"></a>      , other-modules = mods</span>
+<span id="cb6-14"><a href="#cb6-14"></a>      }</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>hpack⩓dhall</title>
+<title>Hpack⩓Dhall</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -141,7 +141,7 @@ code > span a {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./"><span id="hpack-dhall">hpack<span id="operator">⩓</span>dhall</span></a> 
+      <a href="./"><span id="hpack-dhall">Hpack<span id="operator">⩓</span>Dhall</span></a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -166,13 +166,7 @@ code > span a {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./cabal-commands.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Cabal Commands</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./conditionals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Gotchas</span></a>
+ <span class="menu-text">Cabal Commands <i style="color:red" class="bi bi-rocket-takeoff"></i></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -181,6 +175,35 @@ code > span a {
  <span class="menu-text">Programming and Reuse</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conditionals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Gotchas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Examples</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./clash.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Mixins and Sources</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sellout.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">More Typing</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -240,7 +263,7 @@ code > span a {
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a> - hpack-dhall:exe:dhall-hpack-yaml</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a> - hpack-dhall:exe:yaml-hpack-cabal</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>Found 8 targets matching all:exes.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>If you’re migrating from hpack to hpack-dhall then <code>dhall-hpack-yaml</code> can be used to generate a <code>package.yaml</code>. This could be easier than trying to match the generated <code>package-name.cabal</code>.</p>
+<p>If you’re migrating from hpack to Hpack-Dhall then <code>dhall-hpack-yaml</code> can be used to generate a <code>package.yaml</code>. This could be easier than trying to match the generated <code>package-name.cabal</code>.</p>
 <p>If for some reason you want JSON, then <code>dhall-hpack-json</code> does that.</p>
 <p>For seeing what a <code>package.dhall</code> would look like with imports resolved there’s <code>dhall-hpack-dhall</code>.</p>
 <p>The three included Cabal external commands are; <a href="cabal-commands.html#sec-dpack">cabal-dpack</a>, <a href="cabal-commands.html#sec-ypack">cabal-ypack</a> and <a href="cabal-commands.html#sec-diy">cabal-diy-pack</a>.</p>
@@ -331,7 +354,7 @@ field:
 </section>
 <section id="alternatives" class="level2">
 <h2 class="anchored" data-anchor-id="alternatives">Alternatives</h2>
-<p>There is another Haskell packaging solution using Dhall, <a href="https://github.com/dhall-lang/dhall-to-cabal"><code>dhall-to-cabal</code></a>, started by Ollie Charles and <a href="https://github.com/dhall-lang/dhall-to-cabal/issues/4">moved to the dhall-lang</a> organisation in Feb 2018. This takes a more strongly-typed stance than hpack-dhall. Since late 2019, Ollie doesn’t use the project any more and has <a href="https://github.com/dhall-lang/dhall-to-cabal/issues/180">stepped away</a> from maintainership.</p>
+<p>There is another Haskell packaging solution using Dhall, <a href="https://github.com/dhall-lang/dhall-to-cabal"><code>dhall-to-cabal</code></a>, started by Ollie Charles and <a href="https://github.com/dhall-lang/dhall-to-cabal/issues/4">moved to the dhall-lang</a> organisation in Feb 2018. This takes a more strongly-typed stance than Hpack-Dhall. Since late 2019, Ollie doesn’t use the project any more and has <a href="https://github.com/dhall-lang/dhall-to-cabal/issues/180">stepped away</a> from maintainership.</p>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">

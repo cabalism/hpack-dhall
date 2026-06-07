@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>linting – &lt;span id="hpack-dhall"&gt;Hpack&lt;span id="operator"&gt;⩓&lt;/span&gt;Dhall&lt;/span&gt;</title>
+<title>sellout – &lt;span id="hpack-dhall"&gt;Hpack&lt;span id="operator"&gt;⩓&lt;/span&gt;Dhall&lt;/span&gt;</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -106,6 +106,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -119,7 +148,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./linting.html">Programming and Reuse</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./clash.html">Examples</a></li><li class="breadcrumb-item"><a href="./sellout.html">More Typing</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -164,7 +193,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./linting.html" class="sidebar-item-text sidebar-link active">
+  <a href="./linting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Programming and Reuse</span></a>
   </div>
 </li>
@@ -191,7 +220,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./sellout.html" class="sidebar-item-text sidebar-link">
+  <a href="./sellout.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">More Typing</span></a>
   </div>
 </li>
@@ -207,153 +236,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#reuse" id="toc-reuse" class="nav-link active" data-scroll-target="#reuse">Reuse</a>
-  <ul class="collapse">
-  <li><a href="#dhall-import-advantages" id="toc-dhall-import-advantages" class="nav-link" data-scroll-target="#dhall-import-advantages">Dhall Import Advantages</a></li>
-  <li><a href="#author-and-maintainer-details" id="toc-author-and-maintainer-details" class="nav-link" data-scroll-target="#author-and-maintainer-details">Author and Maintainer Details</a></li>
-  <li><a href="#dual-targets" id="toc-dual-targets" class="nav-link" data-scroll-target="#dual-targets">Dual Targets</a></li>
-  </ul></li>
+  <li><a href="#more-typing" id="toc-more-typing" class="nav-link active" data-scroll-target="#more-typing">More Typing</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./clash.html">Examples</a></li><li class="breadcrumb-item"><a href="./sellout.html">More Typing</a></li></ol></nav></header>
 
 
 
 
-<section id="reuse" class="level1">
-<h1>Reuse</h1>
-<p>The simplest use of <code>dhall-hpack-cabal</code> is to ingest one self-contained <code>package.dhall</code> file but by using imports and functions we can do more than just create a single output, the <code>.cabal</code> file.</p>
-<p>The trick with reuse is to break apart <code>package.dhall</code> into sections for reuse.</p>
-<p>Section reuse is a facility Cabal has with its <a href="https://cabal.readthedocs.io/en/latest/cabal-package-description-file.html#common-stanzas">common</a> stanzas that can be imported by other common stanzas and by components in the package description <code>.cabal</code> file. Cabal restricts what can be commonly shared to <a href="https://cabal.readthedocs.io/en/latest/cabal-package-description-file.html#build-information">build information</a>. That’s a lot of fields but there are also a lot of fields that are excluded, such as the author and maintainer, copyright and license-related fields.</p>
-<p>Section reuse is a facility YAML has too with its <code>&amp;</code> anchors, <code>*</code> aliases, and <code>&lt;&lt;</code> merge keys.</p>
-<p>What neither Cabal’s <code>.cabal</code> files nor standard YAML <code>.yaml</code> files have is the ability to include or import from another file but Hpack’s <a href="https://github.com/sol/hpack#not-repeating-yourself">facilities for reuse</a> support the non-standard YAML <code>!include</code> directive by its use of <a href="https://github.com/snoyberg/yaml/blob/7380d7f560daa2f45ff265d425866f497ca07966/yaml/src/Data/Yaml/Include.hs#L86-L94"><code>Data.Yaml.Include.decodeFileWithWarnings</code></a>, a function that does file inclusions by raw text insertion into the stream without validation.</p>
-<section id="dhall-import-advantages" class="level2">
-<h2 class="anchored" data-anchor-id="dhall-import-advantages">Dhall Import Advantages</h2>
-<p>Dhall’s imports are great. They provide strongly typed, secure, and composable configuration and have a lot of <a href="https://docs.dhall-lang.org/discussions/Safety-guarantees.html">saftey guarantees</a>. Dhall imports have (or optionally can have):</p>
-<ul>
-<li><p><strong>Type Checking Across Files</strong> Imports are type-checked before evaluation and it is possible to mark imported data with a separate imported type, something other data formats achieve with schemas.</p></li>
-<li><p><strong>Security</strong> It is possible to <code>dhall freeze</code>, which computes a SHA256 hash of the imported content.</p></li>
-<li><p><strong>Programmable Composition</strong> Imports are expressions. You can import a function and apply it to data or import data and pass it into a function.</p></li>
-<li><p><strong>Termination</strong> Dhall is not Turing-complete. Importing will never hang or crash the parser.</p></li>
-</ul>
-</section>
-<section id="author-and-maintainer-details" class="level2">
-<h2 class="anchored" data-anchor-id="author-and-maintainer-details">Author and Maintainer Details</h2>
-<p>If a single individual or company is authoring and maintaining a lot of packages then they might like to define their author and maintainers details once and import those. They might put all their source code under the same GitHub organisation and always use the same license but put each package in its own repository and be prepared for changing copyright years.</p>
+<section id="more-typing" class="level1">
+<h1>More Typing</h1>
+<p>In <a href="https://github.com/sellout/hpack-dhall-defaults">hpack-dhall-defaults</a>, Greg Pfeil (<a href="https://github.com/sellout"><span class="citation" data-cites="sellout">@sellout</span></a>) keeps a selection of <code>.dhall</code> files that he imports into other projects. These provide a lot of typing beyond what is required to interact with Hpack.</p>
 <div class="code-with-filename">
 <div class="code-with-filename-file">
-<pre><strong>author.dhall</strong></pre>
+<pre><strong>examples/sellout/defaults.dhall</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="author.dhall"><pre class="sourceCode dhall code-with-copy"><code class="sourceCode dhall"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\</span><span class="op">(</span>copyright-years : <span class="dt">Text</span><span class="op">)</span> <span class="fu">-&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">\</span><span class="op">(</span>repo : <span class="dt">Text</span><span class="op">)</span> <span class="fu">-&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>      <span class="op">{</span> author = <span class="st">"Thaddeus Blackwood"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>      , maintainer = <span class="st">"thad@black-wood.invalid"</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>      , copyright = <span class="st">"© ${copyright-years} Thaddeus Blackwood"</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>      , github = <span class="st">"thad-black-wood/${repo}"</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>      , license = <span class="st">"MPL-2.0"</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>      , license-file = <span class="st">"LICENSE.md"</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>      , extra-source-files = <span class="op">[</span> <span class="st">"LICENSE.md"</span> <span class="op">]</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="examples/sellout/defaults.dhall" data-startfrom="1"><pre class="sourceCode numberSource pre number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>let H =</span>
+<span id="cb1-2"><a href="#cb1-2"></a>      https://sellout.github.io/hall/package.dhall</span>
+<span id="cb1-3"><a href="#cb1-3"></a>        sha256:e3bb101e3c8ba2f65aa5b4f3156a6ef116f07ad24ecf3c7214f48a686517168c</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a>let Pvp = H.PVP</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a>let ghc = H.GHC.Release</span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a>let language = H.GHC.LanguageEdition</span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a>let hpack = H.hpack</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
-<section id="dual-targets" class="level2">
-<h2 class="anchored" data-anchor-id="dual-targets">Dual Targets</h2>
-<p>If the default extensions are in their own <code>default-extensions.dhall</code> file, then we can generate a <code>.yaml</code> file equivalent and use this for configuring the extensions that HLint turns on when linting.</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>default-extensions.dhall</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-filename="default-extensions.dhall"><pre class="sourceCode dhall code-with-copy"><code class="sourceCode dhall"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> default-extensions =</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span> <span class="st">"DataKinds"</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    , <span class="st">"DeriveFunctor"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    ...</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    , <span class="st">"TupleSections"</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    , <span class="st">"UndecidableInstances"</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="op">]</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>We want to generate a <code>.yaml</code> file with an arguments list of extensions. The Dhall function to do this is but a few lines long. It prefixes each extension with “-X”:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>hlint.dhall</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-filename="hlint.dhall"><pre class="sourceCode dhall code-with-copy"><code class="sourceCode dhall"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> Prelude/<span class="dt">List</span>/map =</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>          <span class="im">https://raw.githubusercontent.com/dhall-lang/Prelude/35deff0d41f2bf86c42089c6ca16665537f54d75/List/map</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">in</span>  <span class="kw">let</span> defs = <span class="im">./default-extensions.dhall</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="kw">in</span>  <span class="kw">let</span> f = <span class="fu">λ</span><span class="op">(</span>s : <span class="dt">Text</span><span class="op">)</span> <span class="fu">→</span> <span class="st">"-X"</span> ++ s</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="kw">in</span>  <span class="op">{</span> arguments = Prelude/<span class="dt">List</span>/map <span class="dt">Text</span> <span class="dt">Text</span> f defs.default-extensions <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
-<div class="callout-body-container callout-body">
-<p>Imports can be URIs or local files. The example above has both kinds.</p>
-<p>Relative imports have to start with “./” or “../”.</p>
-</div>
-</div>
-</div>
-<p>We generate an <code>.hlint.yaml</code> file (or you could create an <code>.hlint-extensions.yaml</code> file and import it) with <code>dhall-to-yaml &lt; ./hlint.dhall &gt; ./.hlint.yaml</code>.</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>.hlint.yaml</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-filename=".hlint.yaml"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">arguments</span><span class="kw">:</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> -XDataKinds</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> -XDeriveFunctor</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ...</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> -XTupleSections</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> -XUndecidableInstances</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>We can pull those same <code>default-extensions</code> into a package description:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>package.dhall</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-filename="package.dhall"><pre class="sourceCode dhall code-with-copy"><code class="sourceCode dhall"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> defs = <span class="im">./defaults.dhall</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">in</span>    defs</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">⫽</span> <span class="im">./default-extensions.dhall</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">⫽</span> <span class="op">{</span> name = <span class="st">"flight-units"</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>      , github = <span class="st">"blockscope/flare-timing/units"</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>      , dependencies =</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>            defs.dependencies</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>          # <span class="op">[</span> <span class="st">"numbers"</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>            , <span class="st">"fixed"</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>            , <span class="st">"bifunctors"</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>            , <span class="st">"text"</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>            , <span class="st">"formatting"</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>            , <span class="st">"uom-plugin"</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>            , <span class="st">"siggy-chardust"</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>            <span class="op">]</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>It doesn’t really matter for this example what <code>defaults.dhall</code> contains except that it too has dependencies. If it has its own <code>default-extensions</code> then those are merged with <code>⫽</code>:</p>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>defaults.dhall</strong></pre>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-filename="defaults.dhall"><pre class="sourceCode dhall code-with-copy"><code class="sourceCode dhall"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="op">{</span> default-extensions =</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span> <span class="st">"PackageImports"</span> <span class="op">]</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>, dependencies =</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">[</span> <span class="st">"base &gt;=4.10.1.0 &amp;&amp; &lt;5"</span> <span class="op">]</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<p>These “defaults” in turn import from <a href="https://sellout.github.io/hall/package.dhall.html">/hall/package</a> that is a record with fields for Cabal, GHC, hpack and the <a href="https://pvp.haskell.org">Haskell Package Versioning Policy</a> (PVP), where the “hall” (<span class="math inline">\(^{d}ha_{ske}ll\)</span>) is the corridor connecting Dhall and Haskell.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
