@@ -1,4 +1,4 @@
-![hpack-dhall logo](logo.png)
+# $\text{HPack}{\color{#8F4E8B}{\text{⩓}}}\text{Dhall}$
 
 Haskell package descriptions merging (⩓) the best of Hpack and Dhall.
 
