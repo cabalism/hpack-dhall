@@ -20,27 +20,18 @@ let exe-deps = [ "optparse-applicative" ]
 let hook-deps = [ "extra", "filepattern", "optparse-applicative" ]
 
 in  { name = "hpack-dhall"
-    , version = "0.5.8"
+    , version = "0.6.0"
     , maintainer = "Phil de Joux <phil.dejoux@blockscope.com>"
     , copyright =
-        "© 2018 - 2024 Phil de Joux, © 2018 - 2024 Block Scope Limited"
+        "© 2018 - 2026 Phil de Joux, © 2018 - 2026 Block Scope Limited"
     , license = "BSD3"
     , license-file = "LICENSE"
     , category = "Development"
-    , synopsis = "hpack's dhalling"
+    , synopsis = "Hpack with Dhall"
     , description =
         ''
-        Use hpack phrasing in dhall to write cabal files.
-
-        There are two main reasons why you'd use hpack-dhall, convenience and safety.
-
-        Get the convenience of hpack. Don't bother to state what can be inferred or
-        defaulted, easing the burden of completing a package description by hand.  For
-        example `other-modules` can be inferred by taking the set difference between
-        modules on disk and the set of `exposed-modules`.
-
-        Get the safety of dhall's programmable configuration: typed fields, safe imports
-        and functions.
+        Hpack-Dhall brings functions, types and file imports to Haskell
+        packaging.  It is Hpack with Dhall.
         ''
     , github = "cabalism/hpack-dhall"
     , tested-with =

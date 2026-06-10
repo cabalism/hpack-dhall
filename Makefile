@@ -154,11 +154,11 @@ examples: \
   examples/stack/cabal-to-dhall.dhall
 
 .PHONY: repo-pkgs
-repo-pkgs:
+dpack-pkgs: ## Show package.dhall files in this repository.
 	tree -P 'package.dhall' --prune
 
-.PHONY: dpack-self
-dpack-self: repo-pkgs ## Run cabal dpack on this repository.
+.PHONY: dpack
+dpack: dpack-pkgs ## Run cabal dpack on this repository with ignore globbing.
 	cabal dpack --ignore-glob=examples --ignore-glob=updo
 
 .PHONY: updo
