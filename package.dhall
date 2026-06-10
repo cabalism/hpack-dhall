@@ -1,23 +1,23 @@
 let deps =
-      [ "aeson"
-      , "aeson-pretty"
-      , "base >= 4.13 && < 5"
-      , "bytestring"
-      , "dhall >= 1.41.1"
-      , "dhall-json >= 1.7.10"
-      , "filepath"
-      , "hpack >= 0.39.6"
-      , "megaparsec >= 9.2"
-      , "microlens"
-      , "prettyprinter"
-      , "text"
-      , "transformers"
-      , "yaml"
+      [ "aeson <3"
+      , "aeson-pretty <1"
+      , "base >=4.13 && <5"
+      , "bytestring <0.13"
+      , "dhall >=1.41.1 && <2"
+      , "dhall-json >=1.7.10 && <2"
+      , "filepath <2"
+      , "hpack >=0.39.6 && <1"
+      , "megaparsec >=9.2 && <10"
+      , "microlens <0.6"
+      , "prettyprinter <2"
+      , "text <3"
+      , "transformers <0.7"
+      , "yaml <0.12"
       ]
 
-let exe-deps = [ "optparse-applicative" ]
+let exe-deps = [ "optparse-applicative <0.20" ]
 
-let hook-deps = [ "extra", "filepattern", "optparse-applicative" ]
+let hook-deps = [ "extra <2", "filepattern <1", "optparse-applicative <0.20" ]
 
 in  { name = "hpack-dhall"
     , version = "0.6.0"

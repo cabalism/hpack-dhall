@@ -120,20 +120,20 @@ library
       library
   ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
-      aeson
-    , aeson-pretty
+      aeson <3
+    , aeson-pretty <1
     , base >=4.13 && <5
-    , bytestring
-    , dhall >=1.41.1
-    , dhall-json >=1.7.10
-    , filepath
-    , hpack >=0.39.6
-    , megaparsec >=9.2
-    , microlens
-    , prettyprinter
-    , text
-    , transformers
-    , yaml
+    , bytestring <0.13
+    , dhall >=1.41.1 && <2
+    , dhall-json >=1.7.10 && <2
+    , filepath <2
+    , hpack >=0.39.6 && <1
+    , megaparsec >=9.2 && <10
+    , microlens <0.6
+    , prettyprinter <2
+    , text <3
+    , transformers <0.7
+    , yaml <0.12
   default-language: Haskell2010
 
 executable cabal-diy-pack
@@ -151,23 +151,23 @@ executable cabal-diy-pack
       hook/cabal-diy-pack
   ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
-      aeson
-    , aeson-pretty
+      aeson <3
+    , aeson-pretty <1
     , base >=4.13 && <5
-    , bytestring
-    , dhall >=1.41.1
-    , dhall-json >=1.7.10
-    , extra
-    , filepath
-    , filepattern
-    , hpack >=0.39.6
-    , megaparsec >=9.2
-    , microlens
-    , optparse-applicative
-    , prettyprinter
-    , text
-    , transformers
-    , yaml
+    , bytestring <0.13
+    , dhall >=1.41.1 && <2
+    , dhall-json >=1.7.10 && <2
+    , extra <2
+    , filepath <2
+    , filepattern <1
+    , hpack >=0.39.6 && <1
+    , megaparsec >=9.2 && <10
+    , microlens <0.6
+    , optparse-applicative <0.20
+    , prettyprinter <2
+    , text <3
+    , transformers <0.7
+    , yaml <0.12
   default-language: Haskell2010
 
 executable cabal-dpack
@@ -185,23 +185,23 @@ executable cabal-dpack
       hook/cabal-dpack
   ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
-      aeson
-    , aeson-pretty
+      aeson <3
+    , aeson-pretty <1
     , base >=4.13 && <5
-    , bytestring
-    , dhall >=1.41.1
-    , dhall-json >=1.7.10
-    , extra
-    , filepath
-    , filepattern
-    , hpack >=0.39.6
-    , megaparsec >=9.2
-    , microlens
-    , optparse-applicative
-    , prettyprinter
-    , text
-    , transformers
-    , yaml
+    , bytestring <0.13
+    , dhall >=1.41.1 && <2
+    , dhall-json >=1.7.10 && <2
+    , extra <2
+    , filepath <2
+    , filepattern <1
+    , hpack >=0.39.6 && <1
+    , megaparsec >=9.2 && <10
+    , microlens <0.6
+    , optparse-applicative <0.20
+    , prettyprinter <2
+    , text <3
+    , transformers <0.7
+    , yaml <0.12
   default-language: Haskell2010
 
 executable cabal-ypack
@@ -219,23 +219,23 @@ executable cabal-ypack
       hook/cabal-ypack
   ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
-      aeson
-    , aeson-pretty
+      aeson <3
+    , aeson-pretty <1
     , base >=4.13 && <5
-    , bytestring
-    , dhall >=1.41.1
-    , dhall-json >=1.7.10
-    , extra
-    , filepath
-    , filepattern
-    , hpack >=0.39.6
-    , megaparsec >=9.2
-    , microlens
-    , optparse-applicative
-    , prettyprinter
-    , text
-    , transformers
-    , yaml
+    , bytestring <0.13
+    , dhall >=1.41.1 && <2
+    , dhall-json >=1.7.10 && <2
+    , extra <2
+    , filepath <2
+    , filepattern <1
+    , hpack >=0.39.6 && <1
+    , megaparsec >=9.2 && <10
+    , microlens <0.6
+    , optparse-applicative <0.20
+    , prettyprinter <2
+    , text <3
+    , transformers <0.7
+    , yaml <0.12
   default-language: Haskell2010
 
 executable dhall-hpack-cabal
@@ -251,21 +251,21 @@ executable dhall-hpack-cabal
       exe/dhall-hpack-cabal
   ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
-      aeson
-    , aeson-pretty
+      aeson <3
+    , aeson-pretty <1
     , base >=4.13 && <5
-    , bytestring
-    , dhall >=1.41.1
-    , dhall-json >=1.7.10
-    , filepath
-    , hpack >=0.39.6
-    , megaparsec >=9.2
-    , microlens
-    , optparse-applicative
-    , prettyprinter
-    , text
-    , transformers
-    , yaml
+    , bytestring <0.13
+    , dhall >=1.41.1 && <2
+    , dhall-json >=1.7.10 && <2
+    , filepath <2
+    , hpack >=0.39.6 && <1
+    , megaparsec >=9.2 && <10
+    , microlens <0.6
+    , optparse-applicative <0.20
+    , prettyprinter <2
+    , text <3
+    , transformers <0.7
+    , yaml <0.12
   default-language: Haskell2010
 
 executable dhall-hpack-dhall
@@ -281,21 +281,21 @@ executable dhall-hpack-dhall
       exe/dhall-hpack-dhall
   ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
-      aeson
-    , aeson-pretty
+      aeson <3
+    , aeson-pretty <1
     , base >=4.13 && <5
-    , bytestring
-    , dhall >=1.41.1
-    , dhall-json >=1.7.10
-    , filepath
-    , hpack >=0.39.6
-    , megaparsec >=9.2
-    , microlens
-    , optparse-applicative
-    , prettyprinter
-    , text
-    , transformers
-    , yaml
+    , bytestring <0.13
+    , dhall >=1.41.1 && <2
+    , dhall-json >=1.7.10 && <2
+    , filepath <2
+    , hpack >=0.39.6 && <1
+    , megaparsec >=9.2 && <10
+    , microlens <0.6
+    , optparse-applicative <0.20
+    , prettyprinter <2
+    , text <3
+    , transformers <0.7
+    , yaml <0.12
   default-language: Haskell2010
 
 executable dhall-hpack-json
@@ -311,21 +311,21 @@ executable dhall-hpack-json
       exe/dhall-hpack-json
   ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
-      aeson
-    , aeson-pretty
+      aeson <3
+    , aeson-pretty <1
     , base >=4.13 && <5
-    , bytestring
-    , dhall >=1.41.1
-    , dhall-json >=1.7.10
-    , filepath
-    , hpack >=0.39.6
-    , megaparsec >=9.2
-    , microlens
-    , optparse-applicative
-    , prettyprinter
-    , text
-    , transformers
-    , yaml
+    , bytestring <0.13
+    , dhall >=1.41.1 && <2
+    , dhall-json >=1.7.10 && <2
+    , filepath <2
+    , hpack >=0.39.6 && <1
+    , megaparsec >=9.2 && <10
+    , microlens <0.6
+    , optparse-applicative <0.20
+    , prettyprinter <2
+    , text <3
+    , transformers <0.7
+    , yaml <0.12
   default-language: Haskell2010
 
 executable dhall-hpack-yaml
@@ -341,21 +341,21 @@ executable dhall-hpack-yaml
       exe/dhall-hpack-yaml
   ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
-      aeson
-    , aeson-pretty
+      aeson <3
+    , aeson-pretty <1
     , base >=4.13 && <5
-    , bytestring
-    , dhall >=1.41.1
-    , dhall-json >=1.7.10
-    , filepath
-    , hpack >=0.39.6
-    , megaparsec >=9.2
-    , microlens
-    , optparse-applicative
-    , prettyprinter
-    , text
-    , transformers
-    , yaml
+    , bytestring <0.13
+    , dhall >=1.41.1 && <2
+    , dhall-json >=1.7.10 && <2
+    , filepath <2
+    , hpack >=0.39.6 && <1
+    , megaparsec >=9.2 && <10
+    , microlens <0.6
+    , optparse-applicative <0.20
+    , prettyprinter <2
+    , text <3
+    , transformers <0.7
+    , yaml <0.12
   default-language: Haskell2010
 
 executable yaml-hpack-cabal
@@ -371,21 +371,21 @@ executable yaml-hpack-cabal
       exe/yaml-hpack-cabal
   ghc-options: -Wall -Wincomplete-uni-patterns -Wcompat -Widentities -Wredundant-constraints -fhide-source-paths
   build-depends:
-      aeson
-    , aeson-pretty
+      aeson <3
+    , aeson-pretty <1
     , base >=4.13 && <5
-    , bytestring
-    , dhall >=1.41.1
-    , dhall-json >=1.7.10
-    , filepath
-    , hpack >=0.39.6
-    , megaparsec >=9.2
-    , microlens
-    , optparse-applicative
-    , prettyprinter
-    , text
-    , transformers
-    , yaml
+    , bytestring <0.13
+    , dhall >=1.41.1 && <2
+    , dhall-json >=1.7.10 && <2
+    , filepath <2
+    , hpack >=0.39.6 && <1
+    , megaparsec >=9.2 && <10
+    , microlens <0.6
+    , optparse-applicative <0.20
+    , prettyprinter <2
+    , text <3
+    , transformers <0.7
+    , yaml <0.12
   default-language: Haskell2010
 
 test-suite golden
@@ -402,22 +402,22 @@ test-suite golden
   build-depends:
       Cabal
     , Diff
-    , aeson
-    , aeson-pretty
+    , aeson <3
+    , aeson-pretty <1
     , base >=4.13 && <5
-    , bytestring
-    , dhall >=1.41.1
-    , dhall-json >=1.7.10
+    , bytestring <0.13
+    , dhall >=1.41.1 && <2
+    , dhall-json >=1.7.10 && <2
     , directory
-    , filepath
-    , hpack >=0.39.6
-    , megaparsec >=9.2
-    , microlens
-    , prettyprinter
+    , filepath <2
+    , hpack >=0.39.6 && <1
+    , megaparsec >=9.2 && <10
+    , microlens <0.6
+    , prettyprinter <2
     , tasty
     , tasty-golden
-    , text
-    , transformers
+    , text <3
+    , transformers <0.7
     , utf8-string
-    , yaml
+    , yaml <0.12
   default-language: Haskell2010
