@@ -56,7 +56,31 @@ goldenTests = do
   rs <- findByExtension [".dhall"] "test-suite-golden/test-files/real-world"
   g1 <- goldenTestSet "archetypes" ks
   g2 <- goldenTestSet "real-world examples" rs
-  return $ testGroup "golden tests" [g1, g2]
+  return $ testGroup "golden tests" [g1, g2, mapsTests]
+
+-- | The real-world packages here are the ones from @real-world@, but written
+--   with `toMap`, so they have to produce the same @.cabal@ files.
+mapsTests :: TestTree
+mapsTests =
+  testGroup
+    "Dhall maps become objects"
+    [ mapsTest "archetype" (dir </> "package.dhall") (dir </> "maps")
+    , realWorldMapsTest "hpack"
+    , realWorldMapsTest "stack"
+    ]
+  where
+    dir = "test-suite-golden/test-files/maps"
+    realWorldMapsTest name =
+      mapsTest
+        name
+        (dir </> name </> name <.> "dhall")
+        ("test-suite-golden/test-files/real-world" </> name </> name)
+    mapsTest name dhallFile golden =
+      goldenVsFile
+        name
+        (golden -<.> goldExt Cabal)
+        (cabalFilePath dhallFile)
+        (writeDhallCabal dhallFile)
 
 goldenTestSet :: String -> [FilePath] -> IO TestTree
 goldenTestSet title dhallFiles = do

@@ -28,6 +28,9 @@ extra-source-files:
     test-suite-golden/test-files/key/import-relative/package.dhall
     test-suite-golden/test-files/key/when-dependencies.dhall
     test-suite-golden/test-files/key/with-GHC2021.dhall
+    test-suite-golden/test-files/maps/hpack/hpack.dhall
+    test-suite-golden/test-files/maps/package.dhall
+    test-suite-golden/test-files/maps/stack/stack.dhall
     test-suite-golden/test-files/real-world/hpack/hpack.dhall
     test-suite-golden/test-files/real-world/stack/stack.dhall
     test-suite-golden/test-files/key/import-local/name.dhl
@@ -95,6 +98,7 @@ extra-source-files:
     test-suite-golden/test-files/key/with-GHC2021.dhall-1.34.golden
     test-suite-golden/test-files/key/with-GHC2021.json.golden
     test-suite-golden/test-files/key/with-GHC2021.yaml.golden
+    test-suite-golden/test-files/maps/maps.cabal.golden
     test-suite-golden/test-files/real-world/hpack/hpack.cabal.golden
     test-suite-golden/test-files/real-world/hpack/hpack.dhall-1.32.golden
     test-suite-golden/test-files/real-world/hpack/hpack.dhall-1.34.golden
