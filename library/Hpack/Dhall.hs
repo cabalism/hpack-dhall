@@ -48,7 +48,7 @@ import Dhall
   )
 import Dhall.Core (Expr)
 import Dhall.Import (emptyStatus, loadWith)
-import Dhall.JSON (dhallToJSON, omitNull)
+import Dhall.JSON (convertToHomogeneousMaps, defaultConversion, dhallToJSON, omitNull)
 import Dhall.Parser (Src, exprFromText)
 import Dhall.Pretty (layoutOpts, prettyExpr)
 import Dhall.TypeCheck (typeOf)
@@ -133,7 +133,9 @@ dhallTextToJson
 dhallTextToJson settings text = runExceptT $ do
   expr <- liftIO $ check settings text
   _ <- liftResult $ typeOf expr
-  liftResult $ ([],) . omitNull <$> dhallToJSON expr
+  liftResult $
+    ([],) . omitNull
+      <$> dhallToJSON (convertToHomogeneousMaps defaultConversion expr)
   where
     liftResult :: (Show b, Monad m) => Either b a -> ExceptT String m a
     liftResult = ExceptT . return . first show

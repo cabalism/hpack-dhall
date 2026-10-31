@@ -47,6 +47,9 @@ extra-source-files:
     test-suite-golden/test-files/key/when-dependencies.yaml.cabal
     test-suite-golden/test-files/key/with-GHC2021.cabal
     test-suite-golden/test-files/key/with-GHC2021.yaml.cabal
+    test-suite-golden/test-files/maps/hpack/hpack.cabal
+    test-suite-golden/test-files/maps/maps.cabal
+    test-suite-golden/test-files/maps/stack/stack.cabal
     test-suite-golden/test-files/real-world/hpack/hpack.cabal
     test-suite-golden/test-files/real-world/hpack/hpack.yaml.cabal
     test-suite-golden/test-files/real-world/stack/stack.cabal
