@@ -76,7 +76,7 @@ canonicalTest =
         writeFile cabalFile perturbedCabal
         callProcess
           "dhall-hpack-cabal"
-          ["--force", "--silent", "--package-dhall", dir </> "package.dhall"]
+          ["--canonical", "--force", "--silent", "--package-dhall", dir </> "package.dhall"]
     )
   where
     dir = "test-suite-golden/test-files/canonical"

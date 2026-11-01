@@ -36,6 +36,7 @@ extra-source-files:
     test-suite-golden/test-files/real-world/stack/stack.dhall
     test-suite-golden/test-files/key/import-local/name.dhl
     test-suite-golden/test-files/key/import-relative.dhl
+    test-suite-golden/test-files/canonical/canonical.cabal
     test-suite-golden/test-files/key/empty-inferred/empty-inferred.cabal
     test-suite-golden/test-files/key/empty-inferred/package.yaml.cabal
     test-suite-golden/test-files/key/empty-package.cabal
