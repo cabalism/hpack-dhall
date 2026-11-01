@@ -15,6 +15,7 @@ import System.FilePath
   , (<.>)
   , (</>)
   )
+import System.Process (callProcess)
 import Test.Tasty (TestTree, defaultMain, testGroup)
 import Test.Tasty.Golden (findByExtension, goldenVsFile, goldenVsString)
 import Test.Tasty.HUnit (assertBool, testCase)
@@ -61,7 +62,41 @@ goldenTests = do
   -- The hpack and stack packages here are the ones from real-world, but written
   -- with toMap, so their golden files other than for .dhall are copies.
   g3 <- goldenTestSet "Dhall maps become objects" ms
-  return $ testGroup "golden tests" [g1, g2, g3, driftTests]
+  return $ testGroup "golden tests" [g1, g2, g3, canonicalTest, driftTests]
+
+-- | Without @--canonical@, hpack tries to match the existing .cabal file, so
+--   this would keep the layout of `perturbedCabal`.
+canonicalTest :: TestTree
+canonicalTest =
+  goldenVsFile
+    "output ignores the existing .cabal layout"
+    (cabalFile -<.> goldExt Cabal)
+    cabalFile
+    ( do
+        writeFile cabalFile perturbedCabal
+        callProcess
+          "dhall-hpack-cabal"
+          ["--force", "--silent", "--package-dhall", dir </> "package.dhall"]
+    )
+  where
+    dir = "test-suite-golden/test-files/canonical"
+    cabalFile = dir </> "canonical.cabal"
+
+-- | A example Cabal file with non-canonical field ordering.
+perturbedCabal :: String
+perturbedCabal =
+  unlines
+    [ "cabal-version: 1.12"
+    , ""
+    , "-- This file has been generated from package.dhall by hpack version 0.39.6."
+    , "--"
+    , "-- see: https://github.com/sol/hpack"
+    , ""
+    , "build-type: Simple"
+    , "version: 0.0.0"
+    , "synopsis: A package"
+    , "name: canonical"
+    ]
 
 -- | The @.cabal@ golden files for the real-world packages written with toMap
 -- should not drift from those of the originals. These tests come last so that
