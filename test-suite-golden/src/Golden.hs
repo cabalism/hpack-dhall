@@ -54,33 +54,13 @@ goldenTests :: IO TestTree
 goldenTests = do
   ks <- findByExtension [".dhall"] "test-suite-golden/test-files/key"
   rs <- findByExtension [".dhall"] "test-suite-golden/test-files/real-world"
+  ms <- findByExtension [".dhall"] "test-suite-golden/test-files/maps"
   g1 <- goldenTestSet "archetypes" ks
   g2 <- goldenTestSet "real-world examples" rs
-  return $ testGroup "golden tests" [g1, g2, mapsTests]
-
--- | The real-world packages here are the ones from @real-world@, but written
---   with `toMap`, so they have to produce the same @.cabal@ files.
-mapsTests :: TestTree
-mapsTests =
-  testGroup
-    "Dhall maps become objects"
-    [ mapsTest "archetype" (dir </> "package.dhall") (dir </> "maps")
-    , realWorldMapsTest "hpack"
-    , realWorldMapsTest "stack"
-    ]
-  where
-    dir = "test-suite-golden/test-files/maps"
-    realWorldMapsTest name =
-      mapsTest
-        name
-        (dir </> name </> name <.> "dhall")
-        ("test-suite-golden/test-files/real-world" </> name </> name)
-    mapsTest name dhallFile golden =
-      goldenVsFile
-        name
-        (golden -<.> goldExt Cabal)
-        (cabalFilePath dhallFile)
-        (writeDhallCabal dhallFile)
+  -- The hpack and stack packages here are the ones from real-world, but written
+  -- with toMap, so their golden files other than for .dhall are copies.
+  g3 <- goldenTestSet "Dhall maps become objects" ms
+  return $ testGroup "golden tests" [g1, g2, g3]
 
 goldenTestSet :: String -> [FilePath] -> IO TestTree
 goldenTestSet title dhallFiles = do

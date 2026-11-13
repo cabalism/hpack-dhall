@@ -48,8 +48,11 @@ extra-source-files:
     test-suite-golden/test-files/key/with-GHC2021.cabal
     test-suite-golden/test-files/key/with-GHC2021.yaml.cabal
     test-suite-golden/test-files/maps/hpack/hpack.cabal
+    test-suite-golden/test-files/maps/hpack/hpack.yaml.cabal
     test-suite-golden/test-files/maps/maps.cabal
+    test-suite-golden/test-files/maps/package.yaml.cabal
     test-suite-golden/test-files/maps/stack/stack.cabal
+    test-suite-golden/test-files/maps/stack/stack.yaml.cabal
     test-suite-golden/test-files/real-world/hpack/hpack.cabal
     test-suite-golden/test-files/real-world/hpack/hpack.yaml.cabal
     test-suite-golden/test-files/real-world/stack/stack.cabal
@@ -60,6 +63,9 @@ extra-source-files:
     test-suite-golden/test-files/key/import-relative/package.json
     test-suite-golden/test-files/key/when-dependencies.json
     test-suite-golden/test-files/key/with-GHC2021.json
+    test-suite-golden/test-files/maps/hpack/hpack.json
+    test-suite-golden/test-files/maps/package.json
+    test-suite-golden/test-files/maps/stack/stack.json
     test-suite-golden/test-files/real-world/hpack/hpack.json
     test-suite-golden/test-files/real-world/stack/stack.json
     test-suite-golden/test-files/key/empty-inferred/package.yaml
@@ -68,6 +74,9 @@ extra-source-files:
     test-suite-golden/test-files/key/import-relative/package.yaml
     test-suite-golden/test-files/key/when-dependencies.yaml
     test-suite-golden/test-files/key/with-GHC2021.yaml
+    test-suite-golden/test-files/maps/hpack/hpack.yaml
+    test-suite-golden/test-files/maps/package.yaml
+    test-suite-golden/test-files/maps/stack/stack.yaml
     test-suite-golden/test-files/real-world/hpack/hpack.yaml
     test-suite-golden/test-files/real-world/hpack/package.yaml
     test-suite-golden/test-files/real-world/stack/package.yaml
@@ -101,7 +110,18 @@ extra-source-files:
     test-suite-golden/test-files/key/with-GHC2021.dhall-1.34.golden
     test-suite-golden/test-files/key/with-GHC2021.json.golden
     test-suite-golden/test-files/key/with-GHC2021.yaml.golden
+    test-suite-golden/test-files/maps/hpack/hpack.cabal.golden
+    test-suite-golden/test-files/maps/hpack/hpack.dhall-1.34.golden
+    test-suite-golden/test-files/maps/hpack/hpack.json.golden
+    test-suite-golden/test-files/maps/hpack/hpack.yaml.golden
     test-suite-golden/test-files/maps/maps.cabal.golden
+    test-suite-golden/test-files/maps/package.dhall-1.34.golden
+    test-suite-golden/test-files/maps/package.json.golden
+    test-suite-golden/test-files/maps/package.yaml.golden
+    test-suite-golden/test-files/maps/stack/stack.cabal.golden
+    test-suite-golden/test-files/maps/stack/stack.dhall-1.34.golden
+    test-suite-golden/test-files/maps/stack/stack.json.golden
+    test-suite-golden/test-files/maps/stack/stack.yaml.golden
     test-suite-golden/test-files/real-world/hpack/hpack.cabal.golden
     test-suite-golden/test-files/real-world/hpack/hpack.dhall-1.32.golden
     test-suite-golden/test-files/real-world/hpack/hpack.dhall-1.34.golden
