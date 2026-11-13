@@ -1,6 +1,7 @@
 name: maps
 dependencies:
   base: '>=4 && <5'
+  bytestring: <0.13
 flags:
   example:
     description: An example
