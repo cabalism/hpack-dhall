@@ -112,3 +112,30 @@ Another possibility is to just accept the automatic conversion of
 
 ```{.dhall filename=examples/stack/package-type.dhall include=../examples/stack/package-type.dhall start-line=6 end-line=20}
 ```
+
+## Duplicate Keys in Maps
+
+Fields that take an object, such as `dependencies`, `flags`, `executables` and
+`tests`, can be written as a Dhall `Map` using `toMap`. Unlike records with
+different fields, maps with different keys have the same type and can be joined
+with `#`.
+
+A record can't have the same field twice but a map can have the same key twice.
+When it does, the last one wins and the others are dropped without warning.
+
+```{.dhall filename=package.dhall}
+, dependencies = toMap { base = ">=4.13", text = ">=2" } # toMap { base = "<5" }
+```
+
+Here the lower bound on `base` is lost:
+
+```{.txt code-line-numbers="false"}
+  build-depends:
+      base <5
+    , text >=2
+```
+
+::: {.callout-tip collapse="false"}
+Combining records with `/\` instead is a type error if both have the same field,
+so nothing can be lost that way.
+:::
