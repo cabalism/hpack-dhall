@@ -104,6 +104,6 @@ in  { name = "hpack-dhall"
       { main = "Golden.hs"
       , source-dirs = [ "test-suite-golden/src" ]
       , dependencies =
-        [ "Cabal", "Diff", "directory", "tasty", "tasty-golden", "utf8-string" ]
+        [ "Cabal", "Diff", "directory", "tasty", "tasty-golden", "tasty-hunit", "utf8-string" ]
       }
     }
