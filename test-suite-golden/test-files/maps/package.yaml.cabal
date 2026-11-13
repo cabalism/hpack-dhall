@@ -19,5 +19,6 @@ executable example
       Paths_maps
   build-depends:
       base ==4.*
+    , bytestring <0.13
     , text >=2
   default-language: Haskell2010
