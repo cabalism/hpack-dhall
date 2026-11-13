@@ -1,5 +1,12 @@
 The [latest version](https://github.com/blockscope/hpack-dhall/blob/master/changelog.md) of this changelog.
 
+## Unreleased
+
+* Convert Dhall `Map`s to JSON objects, the same as `dhall-to-json` does by
+  default. Fields that take an object, such as `flags`, `dependencies`,
+  `executables` and `tests`, can now be written with `toMap`, giving them the
+  same type whatever their keys.
+
 ## 0.6.0 - Add Cabal External Commands
 
 * Replace the README with a user guide.
