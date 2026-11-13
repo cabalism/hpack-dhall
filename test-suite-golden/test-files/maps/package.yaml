@@ -1,0 +1,7 @@
+name: maps
+flags:
+  example:
+    description: An example
+    manual: true
+    default: false
+

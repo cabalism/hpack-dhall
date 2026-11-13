@@ -1,0 +1,73 @@
+{
+    "name": "hpack",
+    "version": "0.31.1",
+    "synopsis": "A modern format for Haskell packages",
+    "description": "See README at <https://github.com/sol/hpack#readme>",
+    "category": "Development",
+    "maintainer": "Simon Hengel <sol@typeful.net>",
+    "github": "sol/hpack",
+    "extra-source-files": [
+        "CHANGELOG.md"
+    ],
+    "ghc-options": "-Wall",
+    "dependencies": [
+        "base >= 4.9 && < 5",
+        "bytestring",
+        "deepseq",
+        "directory",
+        "filepath",
+        "Glob >= 0.9.0",
+        "text",
+        "containers",
+        "unordered-containers",
+        "yaml >= 0.10.0",
+        "aeson >= 1.2.1.0",
+        "scientific",
+        "Cabal >= 2.2",
+        "pretty",
+        "bifunctors",
+        "cryptonite",
+        "transformers",
+        "http-types",
+        "http-client",
+        "http-client-tls",
+        "vector",
+        "infer-license >= 0.2.0 && < 0.3"
+    ],
+    "library": {
+        "exposed-modules": [
+            "Hpack",
+            "Hpack.Config",
+            "Hpack.Render",
+            "Hpack.Yaml"
+        ],
+        "source-dirs": "src"
+    },
+    "executable": {
+        "main": "Main.hs",
+        "source-dirs": "driver",
+        "dependencies": [
+            "hpack"
+        ]
+    },
+    "tests": {
+        "spec": {
+            "main": "Spec.hs",
+            "source-dirs": [
+                "test",
+                "src"
+            ],
+            "cpp-options": "-DTEST",
+            "dependencies": [
+                "hspec == 2.*",
+                "QuickCheck",
+                "temporary",
+                "mockery >= 0.3",
+                "interpolate",
+                "template-haskell",
+                "HUnit >= 1.6.0.0"
+            ],
+            "build-tools": "hspec-discover"
+        }
+    }
+}
