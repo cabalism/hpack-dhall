@@ -17,6 +17,7 @@ import System.FilePath
   )
 import Test.Tasty (TestTree, defaultMain, testGroup)
 import Test.Tasty.Golden (findByExtension, goldenVsFile, goldenVsString)
+import Test.Tasty.HUnit (assertBool, testCase)
 
 import Data.ByteString.Lazy.UTF8 (fromString)
 import Hpack (Options (..), Verbose (..), defaultOptions, hpack, setDecode)
@@ -60,7 +61,25 @@ goldenTests = do
   -- The hpack and stack packages here are the ones from real-world, but written
   -- with toMap, so their golden files other than for .dhall are copies.
   g3 <- goldenTestSet "Dhall maps become objects" ms
-  return $ testGroup "golden tests" [g1, g2, g3]
+  return $ testGroup "golden tests" [g1, g2, g3, driftTests]
+
+-- | The @.cabal@ golden files for the real-world packages written with toMap
+-- should not drift from those of the originals. These tests come last so that
+-- with @--accept@ they see the golden files after any changes are accepted.
+driftTests :: TestTree
+driftTests =
+  testGroup
+    "maps same as real-world"
+    [ testCase name $ do
+      maps <- readFile $ golden "maps"
+      realWorld <- readFile $ golden "real-world"
+      assertBool
+        (golden "maps" ++ " differs from " ++ golden "real-world")
+        (maps == realWorld)
+    | name <- ["hpack", "stack"]
+    , let golden dir =
+            "test-suite-golden/test-files" </> dir </> name </> name <.> goldExt Cabal
+    ]
 
 goldenTestSet :: String -> [FilePath] -> IO TestTree
 goldenTestSet title dhallFiles = do

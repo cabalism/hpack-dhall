@@ -443,6 +443,7 @@ test-suite golden
     , prettyprinter <2
     , tasty
     , tasty-golden
+    , tasty-hunit
     , text <3
     , transformers <0.7
     , utf8-string
