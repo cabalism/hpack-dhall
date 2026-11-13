@@ -9,6 +9,7 @@ module Options
   , parsePkgYamlFile
   , parsePkgDhallFile
   , parseForce
+  , parseCanonical
   , parseQuiet
   , parserInfo
   , Command (..)
@@ -100,6 +101,12 @@ parseForce =
     long "force"
       <> short 'f'
       <> help "Overwrite of the output .cabal file unnecessarily"
+
+parseCanonical :: Parser Bool
+parseCanonical =
+  flag False True $
+    long "canonical"
+      <> help "Ignore the layout of any existing .cabal file, so the output depends only on the input"
 
 parseQuiet :: Parser Bool
 parseQuiet =

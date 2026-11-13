@@ -7,13 +7,14 @@ module Main (main) where
 import Data.Version (showVersion)
 import qualified Hpack as H (getOptions, hpack, setDecode, version)
 import Hpack.Dhall (dhallFileToJson)
-import Options (Command (..), parseForce, parsePkgDhallFile, parseQuiet, parserInfo)
+import Options (Command (..), parseCanonical, parseForce, parsePkgDhallFile, parseQuiet, parserInfo)
 import qualified Options.Applicative as O
 import Paths_hpack_dhall (version)
 
 data Options = Options
   { pkgDhallFile :: String
   , force :: Bool
+  , canonical :: Bool
   , quiet :: Bool
   }
 
@@ -22,6 +23,7 @@ parseOptions =
   O.helper <*> do
     pkgDhallFile <- parsePkgDhallFile
     force <- parseForce
+    canonical <- parseCanonical
     quiet <- parseQuiet
     return Options{..}
 
@@ -33,7 +35,7 @@ main =
       putStrLn $ "dhall-hpack-cabal-" ++ showVersion version
       putStrLn $ "hpack-" ++ showVersion H.version
     Run Options{..} -> do
-      opts <- H.getOptions pkgDhallFile $ ["--force" | force] ++ ["--silent" | quiet]
+      opts <- H.getOptions pkgDhallFile $ ["--force" | force] ++ ["--canonical" | canonical] ++ ["--silent" | quiet]
       case opts of
         Just (verbose, options) -> H.hpack verbose (H.setDecode dhallFileToJson options)
         Nothing -> return ()
